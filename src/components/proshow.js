@@ -32,6 +32,7 @@ export default function Home() {
 
             {/*rippling thing bro*/}
             <div
+
                 className="flex flex-wrap justify-center gap-[5vw] scale-y-[-1] opacity-30 mt-[2vw] pointer-events-none select-none"
 
                 style={{
