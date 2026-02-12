@@ -5,8 +5,38 @@ import ProshowCard from "@/components/proshowCard";
 
 export default function FocusCarousel({ items = [] }) {
     const containerRef = useRef(null);
-    const [active, setActive] = useState(0);
+    const [active, setActive] = useState(Math.floor(items.length / 2));
     const [spacer, setSpacer] = useState(0);
+
+    /* ---------- initial center on mount ---------- */
+    useEffect(() => {
+        const el = containerRef.current;
+        if (!el) return;
+
+        const children = Array.from(el.children);
+        const target = children[active + 1]; // +1 for spacer
+        if (!target) return;
+
+        target.scrollIntoView({
+            behavior: "auto", // no animation on first load
+            inline: "center",
+            block: "nearest",
+        });
+    }, [spacer]); // run after spacer computed
+    /* ---------- initial center on mount ---------- */
+    useEffect(() => {
+        const el = containerRef.current;
+        if (!el) return;
+
+        const children = Array.from(el.children);
+        const target = children[active + 1];
+        if (!target) return;
+
+        const left =
+            target.offsetLeft - el.clientWidth / 2 + target.clientWidth / 2;
+
+        el.scrollTo({ left, behavior: "auto" });
+    }, [spacer]);
 
     /* ---------- calculate dynamic spacer ---------- */
     useEffect(() => {
@@ -76,7 +106,7 @@ export default function FocusCarousel({ items = [] }) {
                 className="flex overflow-x-auto  gap-6 px-12 py-8"
             >
                 {/* LEFT dynamic spacer */}
-                <div style={{ width: spacer }} className="shrink-0" />
+                <div style={{ width: spacer }} className="shrink-1" />
 
                 {items.map((item, i) => {
                     const isActive = i === active;
@@ -87,8 +117,8 @@ export default function FocusCarousel({ items = [] }) {
                             data-card
                             className=" shrink-0 w-[70vw] sm:w-[50vw] md:w-[40vw] transition-all duration-300"
                             style={{
-                                transform: `scale(${isActive ? 1 : 0.8})`,
-                                filter: `brightness(${isActive ? 1 : 0.6})`,
+                                transform: `scale(${isActive ? 0.9 : 0.7})`,
+                                filter: `brightness(${isActive ? 1.1 : 0.2})`,
                             }}
                         >
                             <ProshowCard tilt={item.tilt} />

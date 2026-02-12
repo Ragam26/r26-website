@@ -7,9 +7,9 @@ const allura = Allura({ subsets: ["latin"], weight: "400" });
 
 export default function ProshowSection({ isMobile }) {
     const artists = [
-        { id: 1, tilt: 15 },
+        { id: 1, tilt: -15 },
         { id: 2, tilt: 0 },
-        { id: 3, tilt: -15 },
+        { id: 3, tilt: 15 },
     ];
 
     return (
@@ -35,7 +35,7 @@ export default function ProshowSection({ isMobile }) {
             </svg>
 
             {/* Title */}
-            <h1 className="font-bold mb-16 flex justify-center items-center
+            <h1 className="font-bold flex justify-center items-center
                text-[15vw] lg:text-[10vw]">
                 <span
                     className={`${leagueGothic.className} text-[#F4EFCF]
