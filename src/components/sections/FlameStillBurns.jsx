@@ -3,7 +3,13 @@
 import { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import localFont from 'next/font/local'
 import Test from './Test'
+
+const brixton = localFont({
+  src: '../../../public/fonts/brixton-lead-vector.otf',
+  display: 'swap',
+})
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -201,45 +207,24 @@ export default function FlameStillBurns() {
       </div>
 
       {/* TEXT (MIDDLE) */}
-      <div className='relative z-20 py-20 mt-48 md:mt-32 lg:mt-18 sm:py-8 sm:px-2'>
-        <div className='flex justify-center items-start'>
-          {/* <img
-            src={swap ? '/images/STILL.svg' : '/images/THE.svg'}
-            alt='LEFT'
-            className='
-              h-[9vw] min-h-8
-              sm:h-[12vw] sm:min-h-12
-              md:h-[7vw] md:min-h-7
-              w-auto
-            '
-          /> */}
+      <div className='relative z-20 py-20 mt-32 md:mt-18 lg:mt-0 sm:py-8 sm:px-2'>
+        <div className='flex justify-center gap-8'>
           <div
-            className='h-[9vw] min-h-8
-              sm:h-[12vw] sm:min-h-12
-              md:h-[7vw] md:min-h-7
-              w-auto flex items-center justify-center
-              text-orange-500 font-bold'
+            className='w-auto flex self-start justify-center text-white font-bold'
             style={{
-              fontSize: 'max(8vw, 2rem)',
-              // textShadow:
-              //   '0 0 10px rgba(251, 146, 60, 0.8), 0 0 20px rgba(251, 146, 60, 0.6)',
-              // filter: 'drop-shadow(0 0 5px rgba(251, 146, 60, 0.9))',
+              fontSize: 'max(10vw, 6rem)',
             }}
           >
             <Test texts={['THE', 'STILL']} morphTime={1.5} cooldownTime={1} />
           </div>
-          <img
-            src={swap ? '/images/BURNS.svg' : '/images/FLAME.svg'}
-            alt='RIGHT'
-            className='
-              h-[26vw] min-h-24
-              sm:h-[34vw] sm:min-h-32
-              md:h-[21vw] md:min-h-21
-              w-auto
-              -ml-5
-              md:-ml-[3vw]
-            '
-          />
+          <div
+            className='w-auto flex self-start justify-center text-orange-500 font-bold'
+            style={{
+              fontSize: 'max(24vw, 12rem)',
+            }}
+          >
+            <Test texts={['FLAME', 'BURNS']} morphTime={1.5} cooldownTime={1} />
+          </div>
         </div>
       </div>
 
@@ -256,6 +241,12 @@ export default function FlameStillBurns() {
           src='/images/Rajan.svg'
           className='hidden lg:block h-full w-auto translate-x-60'
         />
+      </div>
+
+      <div
+        className={`${brixton.className} absolute z-40 bottom-10 left-0 right-0 text-lg sm:text-xl md:text-2xl lg:text-6xl text-white p-4 text-center`}
+      >
+        <a>CLICK TO KNOW ABOUT THE STORY</a>
       </div>
     </div>
   )

@@ -2,6 +2,11 @@
 
 import { useEffect, useRef } from 'react'
 
+const mtxValues = [
+  '1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 255 -120',
+  '1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 180 -140',
+]
+
 export default function Test({ texts = [], morphTime = 1, cooldownTime = 2 }) {
   const text1Ref = useRef(null)
   const text2Ref = useRef(null)
@@ -10,55 +15,57 @@ export default function Test({ texts = [], morphTime = 1, cooldownTime = 2 }) {
   useEffect(() => {
     if (!texts || texts.length < 2) return
 
-    let textIndex = texts.length - 1
-    let time = new Date()
+    let textIndex = 0
     let morph = 0
-    let cooldown = cooldownTime
+    let cooldown = 0
+    let lastTime = performance.now()
 
     function setMorph(fraction) {
       const t1 = text1Ref.current
       const t2 = text2Ref.current
       if (!t1 || !t2) return
 
-      // Avoid division by zero
-      const safeFraction = Math.max(Math.min(fraction, 1), 0)
+      fraction = Math.max(0, Math.min(fraction, 1))
 
-      t2.style.filter = `blur(${safeFraction === 0 ? 100 : Math.min(8 / safeFraction - 8, 100)}px)`
-      t2.style.opacity = Math.pow(safeFraction, 0.4)
+      t2.style.filter = `blur(${fraction === 0 ? 100 : Math.min(8 / fraction - 8, 100)}px)`
+      t2.style.opacity = Math.pow(fraction, 0.4)
 
-      t1.style.filter = `blur(${safeFraction === 1 ? 100 : Math.min(8 / (1 - safeFraction) - 8, 100)}px)`
-      t1.style.opacity = Math.pow(1 - safeFraction, 0.4)
+      t1.style.filter = `blur(${fraction === 1 ? 100 : Math.min(8 / (1 - fraction) - 8, 100)}px)`
+      t1.style.opacity = Math.pow(1 - fraction, 0.4)
 
+      // Update text content
       t1.textContent = texts[textIndex % texts.length]
       t2.textContent = texts[(textIndex + 1) % texts.length]
     }
 
-    function animate() {
+    function animate(now) {
       animationRef.current = requestAnimationFrame(animate)
+      const dt = (now - lastTime) / 1000
+      lastTime = now
 
-      const newTime = new Date()
-      const dt = (newTime - time) / 1000
-      time = newTime
-
-      cooldown -= dt
-
-      if (cooldown <= 0) {
-        morph += dt
-        let fraction = morph / morphTime
-
-        if (fraction >= 1) {
-          cooldown = cooldownTime
-          fraction = 1
-          textIndex++
+      if (cooldown > 0) {
+        cooldown -= dt
+        // Keep t1 and t2 as is during cooldown
+        setMorph(1)
+        if (cooldown <= 0) {
+          // Only increment after cooldown
+          textIndex = (textIndex + 1) % texts.length
           morph = 0
         }
-        setMorph(fraction)
-      } else {
-        setMorph(0)
+        return
+      }
+
+      morph += dt
+      let fraction = morph / morphTime
+      fraction = Math.min(fraction, 1)
+      setMorph(fraction)
+
+      if (fraction >= 1) {
+        cooldown = cooldownTime
       }
     }
 
-    animate()
+    animationRef.current = requestAnimationFrame(animate)
 
     return () => cancelAnimationFrame(animationRef.current)
   }, [texts, morphTime, cooldownTime])
@@ -93,15 +100,12 @@ export default function Test({ texts = [], morphTime = 1, cooldownTime = 2 }) {
         />
       </div>
 
-      <svg style={{ position: 'absolute w-200 h-200', width: 0, height: 0 }}>
+      <svg style={{ width: 0, height: 0 }}>
         <filter id='threshold'>
           <feColorMatrix
             in='SourceGraphic'
             type='matrix'
-            values='1 0 0 0 0
-                    0 1 0 0 0
-                    0 0 1 0 0
-                    0 0 0 255 -140'
+            values={mtxValues[1]}
           />
         </filter>
       </svg>
