@@ -1,4 +1,5 @@
 import FlameStillBurns from '@/components/sections/FlameStillBurns'
+import Test from '@/components/sections/Test'
 
 export default function Home() {
   return (
