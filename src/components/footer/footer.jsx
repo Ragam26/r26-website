@@ -70,8 +70,8 @@ export default function Footer() {
         )}
 
         {/* Huge RAGAM Text */}
-        <div className="w-full text-center mb-20">
-          <h1 className="text-[18vw] font-bold tracking-wide leading-none flex justify-center gap-2">
+        <div className="w-full text-center md:mb-20 mb-5">
+          <h1 className="text-[21vw] md:text-[18vw] md:font-bold font-extrabold tracking-wide leading-none flex justify-center gap-2 scale-y-200 origin-bottom">
             {letters.map((letter, index) => (
               <span
                 key={index}
@@ -92,35 +92,35 @@ export default function Footer() {
         </div>
 
         {/* Bottom Section */}
-        <div className="flex flex-col md:flex-row justify-between gap-12">
+        <div className="flex flex-col md:flex-row md:justify-between items-center gap-1 md:gap-12">
 
           {/* Left Section */}
-          <div className="flex flex-col gap-6 ">
-            <div className="font-bold pl-3">
+          <div className="order-2 md:order-1 flex flex-col gap-6 items-center md:items-start">
+            <div className="font-bold pl-5">
               <Image
                 src="/images/footer/ragam-logo.svg"
                 alt="Ragam Logo"
                 width={100}
                 height={100}
-                className="w-24 h-24"
+                className="w-24 h-24 hidden md:block"
               />
             </div>
 
             <div className="flex gap-6">
-              <a href="#" className="hover:text-gray-400 transition">
-                <FaInstagram size={24} />
+              <a href="https://www.instagram.com/ragam_nitc/" target="_blank" rel="noopener noreferrer" className="hover:text-gray-400 transition">
+                <FaInstagram className="text-xl md:text-3xl" />
               </a>
-              <a href="#" className="hover:text-gray-400 transition">
-                <FaFacebook size={24} />
+              <a href="https://www.facebook.com/Ragam.nitc/" target="_blank" rel="noopener noreferrer" className="hover:text-gray-400 transition">
+                <FaFacebook className="text-xl md:text-3xl" />
               </a>
-              <a href="#" className="hover:text-gray-400 transition">
-                <FaLinkedinIn size={24} />
+              <a href="https://in.linkedin.com/company/ragam-national-institute-of-technology-calicut" target="_blank" rel="noopener noreferrer" className="hover:text-gray-400 transition">
+                <FaLinkedinIn className="text-xl md:text-3xl" />
               </a>
             </div>
           </div>
 
           {/* Right Section */}
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-15 text-sm">
+          <div className="order-1 md:order-2 grid grid-cols-3 gap-8 text-center md:text-left text-md md:text-md">
             <div className="flex flex-col gap-3">
               <a href="#" className="hover:text-gray-400 transition">Home</a>
               <a href="#" className="hover:text-gray-400 transition">Team</a>
@@ -144,7 +144,7 @@ export default function Footer() {
         </div>
 
         {/* Copyright */}
-        <div className="mt-6 text-center text-xs text-gray-400">
+        <div className="mt-6 md:text-center text-[10px] text-gray-400 md:text-sm text-right">
           © 2026 - Ragam NITC
         </div>
 
