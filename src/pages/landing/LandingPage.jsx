@@ -1,10 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { useRef, useLayoutEffect } from "react";
+import { useRef, useLayoutEffect, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
+import { LOOPS_CONFIG } from "./loopsConfig";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -14,73 +15,10 @@ const LOGO_MAX_SCALE = 2.15; // Final scale for the Red Logo (2.15x)
 const LOOP_EXIT_SCALE = 18; // Final scale for the loops as they exit (18x)
 const TUNNEL_EASE = "none"; // Linear scaling for the tunnel effect
 const TEXT_REVEAL_START = 0.2;
+const DANCER_REVEAL_START = 0.6;
 
-const LOOPS_CONFIG = [
-  {
-    id: "8",
-    src: "loopM.svg",
-    width: "210vmin",
-    zIndex: 20,
-    duration: 55,
-    direction: -1,
-  },
-  {
-    id: "7",
-    src: "loopS.svg",
-    width: "171vmin",
-    zIndex: 30,
-    duration: 50,
-    direction: 1,
-  },
-  {
-    id: "6",
-    src: "loopL.svg",
-    width: "128vmin",
-    zIndex: 10,
-    duration: 45,
-    direction: -1,
-  },
-  {
-    id: "5",
-    src: "loopM.svg",
-    width: "94vmin",
-    zIndex: 20,
-    duration: 40,
-    direction: 1,
-  },
-  {
-    id: "4",
-    src: "loopS.svg",
-    width: "75vmin",
-    zIndex: 30,
-    duration: 35,
-    direction: -1,
-  },
-  {
-    id: "3",
-    src: "loopL.svg",
-    width: "56vmin",
-    zIndex: 10,
-    duration: 30,
-    direction: 1,
-  },
-  {
-    id: "2",
-    src: "loopM.svg",
-    width: "40vmin",
-    zIndex: 20,
-    duration: 25,
-    direction: -1,
-  },
-  {
-    id: "1",
-    src: "loopS.svg",
-    width: "30vmin",
-    zIndex: 30,
-    duration: 20,
-    direction: 1,
-  },
-];
+const MASK_CLOSED = "polygon(0% 0%, 0% 0%, -20% 100%, -20% 100%)";
+const MASK_OPEN = "polygon(0% 0%, 120% 0%, 100% 100%, -20% 100%)";
 
 export default function LandingPage() {
   const outerContainerRef = useRef(null);
@@ -89,6 +27,9 @@ export default function LandingPage() {
   const logoRef = useRef(null);
   const textRef = useRef(null);
   const loopsRef = useRef([]);
+  const dancerContainerRef = useRef(null);
+  const [leftDancer] = useState(() => Math.floor(Math.random() * 3) + 1);
+  const [rightDancer] = useState(() => Math.floor(Math.random() * 3) + 1);
 
   useLayoutEffect(() => {
     // Lock scroll during the intro animation
@@ -130,6 +71,12 @@ export default function LandingPage() {
       });
       gsap.set(loopsRef.current, { opacity: 0, scale: 1.2 });
 
+      // Dancers start at 0 opacity and clipped shut
+      gsap.set(dancerContainerRef.current, {
+        opacity: 0,
+        clipPath: MASK_CLOSED,
+      });
+
       // Set the "Closed" Clip Path state (Hidden on the left with angle)
       gsap.set(textRef.current, {
         opacity: 1, // It's "there" but clipped
@@ -162,9 +109,9 @@ export default function LandingPage() {
       // We animate textRef scale here too, so it matches the logo perfectly
       // even though it's still invisible (clipped).
       introTl.to(
-        [logoRef.current, textRef.current],
+        [logoRef.current, textRef.current, dancerContainerRef.current],
         {
-          opacity: 1, // Logo fades in, Text fades in (but is still clipped hidden)
+          opacity: 1,
           scale: 1,
           duration: 0.6,
           ease: "back.out(1.7)",
@@ -224,6 +171,8 @@ export default function LandingPage() {
           ease: "power1.out",
           force3D: true,
           duration: 0.4,
+          immediateRender: false,
+          overwrite: "auto",
         },
         0,
       );
@@ -238,8 +187,24 @@ export default function LandingPage() {
           clipPath: "polygon(0% 0%, 120% 0%, 100% 100%, -20% 100%)",
           ease: "power2.inOut",
           duration: 0.5, // Quick swipe
+          immediateRender: false,
+          overwrite: "auto",
         },
         TEXT_REVEAL_START,
+      );
+
+      // Dancer Reveal (Mask 2 - 110 degree slant)
+      // Starts at 0.6 (Text is at 80% completion)
+      scrollTl.to(
+        dancerContainerRef.current,
+        {
+          clipPath: MASK_OPEN,
+          ease: "power2.out",
+          duration: 0.4,
+          immediateRender: false,
+          overwrite: "auto",
+        },
+        DANCER_REVEAL_START,
       );
 
       // 3. LOOPS SCALING
@@ -252,6 +217,8 @@ export default function LandingPage() {
           ease: "none",
           force3D: true,
           duration: 0.9,
+          immediateRender: false,
+          overwrite: "auto",
         },
         0,
       );
@@ -274,8 +241,11 @@ export default function LandingPage() {
         ref={stickyRef}
         className="sticky top-0 flex h-screen w-full flex-col items-center justify-center overflow-hidden bg-black text-white"
       >
-        {/* Background Overlay */}
-        <div className="absolute inset-0 z-0 opacity-80 pointer-events-none">
+        {/* GRAIN TEXTURE OVERLAY 
+           - z-[5]: Higher than background, lower than loops (z-10).
+           - mix-blend-overlay: Makes it look like texture/grain on the black.
+        */}
+        <div className="absolute inset-0 z-5 opacity-100 pointer-events-none mix-blend-overlay">
           <Image
             src="/images/landingAnimation/heroBgOverlay.png"
             alt="Texture"
@@ -285,7 +255,7 @@ export default function LandingPage() {
           />
         </div>
 
-        {/* Render loops from LOOPS_CONFIG array */}
+        {/* Render loops (Starts at z-10, so they float ABOVE the grain) */}
         {LOOPS_CONFIG.map((loop, index) => (
           <div
             key={loop.id}
@@ -334,6 +304,26 @@ export default function LandingPage() {
             alt="Ragam 2026"
             className="h-full w-full object-contain"
           />
+        </div>
+
+        <div
+          ref={dancerContainerRef}
+          className="absolute inset-0 z-4 pointer-events-none"
+        >
+          <div className="absolute bottom-3 -left-25 h-screen">
+            <img
+              src={`/images/landingAnimation/dancers/dancerLeft${leftDancer}.png`}
+              alt="Dancer L"
+              className="h-full w-full object-contain object-bottom-left mix-blend-screen opacity-90"
+            />
+          </div>
+          <div className="absolute bottom-0 -right-25 h-screen">
+            <img
+              src={`/images/landingAnimation/dancers/dancerRight${rightDancer}.png`}
+              alt="Dancer R"
+              className="h-full w-full object-contain object-bottom-right mix-blend-screen opacity-90"
+            />
+          </div>
         </div>
       </main>
     </div>
