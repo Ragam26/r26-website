@@ -1,11 +1,21 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaInstagram, FaFacebook, FaLinkedinIn } from "react-icons/fa";
 import Image from "next/image";
 
 export default function Footer() {
   const [hoverData, setHoverData] = useState(null);
+  const [activeMobileLetter, setActiveMobileLetter] = useState(null);
+
+  useEffect(() => {
+    if (activeMobileLetter !== null) {
+      const timer = setTimeout(() => {
+        setActiveMobileLetter(null);
+      }, 600);
+      return () => clearTimeout(timer);
+    }
+  }, [activeMobileLetter]);
 
   const letters = [
     {
@@ -70,19 +80,40 @@ export default function Footer() {
         )}
 
         {/* Huge RAGAM Text */}
-        <div className="w-full text-center md:mb-20 mb-5">
-          <h1 className="text-[21vw] md:text-[18vw] md:font-bold font-extrabold tracking-wide leading-none flex justify-center gap-2 scale-y-200 origin-bottom">
-            {letters.map((letter, index) => (
+        <div className="w-full text-center md:mb-5 md:mt-10 mb-5">
+          <h1 className="text-[21vw] md:text-[16vw] md:font-bold font-extrabold tracking-normal leading-none flex justify-center gap-2 md:scale-y-120 scale-y-200 origin-bottom">
+            {letters.map((letter) => (
               <span
-                key={index}
-                onMouseEnter={() => setHoverData(letter)}
-                onMouseLeave={() => setHoverData(null)}
-                className="cursor-pointer transition-colors duration-300"
+                key={letter.id}
+                onPointerEnter={(e) => {
+                    if(e.pointerType === "mouse") {
+                        setHoverData(letter);
+                    }
+                }}
+                onPointerLeave={(e) => {
+                    if(e.pointerType === "mouse") {
+                        setHoverData(null);
+                    }
+                }}
+                onPointerDown={(e) => {
+                    if(e.pointerType === "touch") {
+                        setActiveMobileLetter(letter.id);
+                    }
+                }}
+                className={`cursor-pointer transition-colors duration-300 ${activeMobileLetter === letter.id ? "bg-clip-text text-transparent bg-cover bg-center scale-105" : ""}`}
                 style={{
-                  color:
-                    hoverData?.id === letter.id
-                      ? letter.color
-                      : "white",
+                    backgroundImage:
+                        activeMobileLetter === letter.id ? `url(${letter.image})` : "none",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    WebkitBackgroundClip: 
+                        activeMobileLetter === letter.id ? "text" : "",
+                    WebkitTextFillColor: 
+                        activeMobileLetter === letter.id ? "transparent" : "",
+                    color:
+                        hoverData?.id === letter.id
+                        ? letter.color
+                        : "white",
                 }}
               >
                 {letter.char}
@@ -95,7 +126,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row md:justify-between items-center gap-1 md:gap-12">
 
           {/* Left Section */}
-          <div className="order-2 md:order-1 flex flex-col gap-6 items-center md:items-start">
+          <div className="order-2 md:order-1 flex flex-col gap-6 items-center md:items-start md:-ml-15">
             <div className="font-bold pl-5">
               <Image
                 src="/images/footer/ragam-logo.svg"
@@ -120,21 +151,21 @@ export default function Footer() {
           </div>
 
           {/* Right Section */}
-          <div className="order-1 md:order-2 grid grid-cols-3 gap-8 text-center md:text-left text-md md:text-md">
-            <div className="flex flex-col gap-3">
+          <div className="order-1 md:order-2 grid grid-cols-3 gap-16 text-center md:text-left md:-mr-10 text-sm md:text-md">
+            <div className="flex flex-col gap-3 order-3 md:order-1">
               <a href="#" className="hover:text-gray-400 transition">Home</a>
               <a href="#" className="hover:text-gray-400 transition">Team</a>
               <a href="#" className="hover:text-gray-400 transition">Sponsors</a>
               <a href="#" className="hover:text-gray-400 transition">Contact Us</a>
             </div>
 
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-3 order-2 md:order-2">
               <a href="#" className="hover:text-gray-400 transition">Ragnarok</a>
               <a href="#" className="hover:text-gray-400 transition">Proshow</a>
               <a href="#" className="hover:text-gray-400 transition">Prodezza</a>
             </div>
 
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-3 order-1 md:order-3">
               <a href="#" className="hover:text-gray-400 transition">Certificates</a>
               <a href="#" className="hover:text-gray-400 transition">Events</a>
               <a href="#" className="hover:text-gray-400 transition">Workshops</a>
