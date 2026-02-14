@@ -1,5 +1,7 @@
 import { Slackey, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Footer from "@/components/footer/footer";
+
 import SmoothScroll from "@/components/common/SmoothScroll";
 import ScrollReset from "@/components/common/ScrollReset";
 
@@ -21,7 +23,7 @@ export default function RootLayout({ children }) {
       <body className={`${slackey.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
         suppressHydrationWarning>
         {" "}
-        <ScrollReset /> <SmoothScroll>{children}</SmoothScroll>
+        <ScrollReset /> <SmoothScroll>{children} <Footer /></SmoothScroll>
         <ScrollReset />
       </body>
     </html>
