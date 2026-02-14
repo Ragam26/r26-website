@@ -64,3 +64,54 @@ export const LOOPS_CONFIG = [
     direction: 1,
   },
 ];
+
+export const LOOPS_CONFIG_MOBILE = [
+  {
+    id: "6",
+    src: "loops/loop3.svg",
+    width: "134vmin",
+    zIndex: 10,
+    duration: 45,
+    direction: -1,
+  },
+  {
+    id: "5",
+    src: "loops/loop2.svg",
+    width: "106vmin",
+    zIndex: 20,
+    duration: 40,
+    direction: 1,
+  },
+  {
+    id: "4",
+    src: "loops/loop1.svg",
+    width: "79vmin",
+    zIndex: 30,
+    duration: 35,
+    direction: -1,
+  },
+  {
+    id: "3",
+    src: "loops/loop3.svg",
+    width: "57vmin",
+    zIndex: 10,
+    duration: 30,
+    direction: 1,
+  },
+  {
+    id: "2",
+    src: "loops/loop2.svg",
+    width: "44vmin",
+    zIndex: 20,
+    duration: 25,
+    direction: -1,
+  },
+  {
+    id: "1",
+    src: "loops/loop1.svg",
+    width: "32vmin",
+    zIndex: 30,
+    duration: 20,
+    direction: 1,
+  },
+];
