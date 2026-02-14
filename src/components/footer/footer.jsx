@@ -7,6 +7,7 @@ import Image from "next/image";
 export default function Footer() {
   const [hoverData, setHoverData] = useState(null);
   const [activeMobileLetter, setActiveMobileLetter] = useState(null);
+  const [showRoast, setShowRoast] = useState(false);
 
   useEffect(() => {
     if (activeMobileLetter !== null) {
@@ -16,6 +17,15 @@ export default function Footer() {
       return () => clearTimeout(timer);
     }
   }, [activeMobileLetter]);
+
+  useEffect(() => {
+    if (showRoast) {
+      const timer = setTimeout(() => {
+        setShowRoast(false);
+      }, 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [showRoast]);
 
   const letters = [
     {
@@ -58,7 +68,6 @@ export default function Footer() {
   return (
     <footer className="bg-black text-white">
       <div className="relative max-w-7xl mx-auto px-6 pt-5 pb-5">
-
         {/* Floating Image */}
         {hoverData && (
           <div
@@ -86,34 +95,33 @@ export default function Footer() {
               <span
                 key={letter.id}
                 onPointerEnter={(e) => {
-                    if(e.pointerType === "mouse") {
-                        setHoverData(letter);
-                    }
+                  if (e.pointerType === "mouse") {
+                    setHoverData(letter);
+                  }
                 }}
                 onPointerLeave={(e) => {
-                    if(e.pointerType === "mouse") {
-                        setHoverData(null);
-                    }
+                  if (e.pointerType === "mouse") {
+                    setHoverData(null);
+                  }
                 }}
                 onPointerDown={(e) => {
-                    if(e.pointerType === "touch") {
-                        setActiveMobileLetter(letter.id);
-                    }
+                  if (e.pointerType === "touch") {
+                    setActiveMobileLetter(letter.id);
+                  }
                 }}
                 className={`cursor-pointer transition-colors duration-300 ${activeMobileLetter === letter.id ? "bg-clip-text text-transparent bg-cover bg-center scale-105" : ""}`}
                 style={{
-                    backgroundImage:
-                        activeMobileLetter === letter.id ? `url(${letter.image})` : "none",
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    WebkitBackgroundClip: 
-                        activeMobileLetter === letter.id ? "text" : "",
-                    WebkitTextFillColor: 
-                        activeMobileLetter === letter.id ? "transparent" : "",
-                    color:
-                        hoverData?.id === letter.id
-                        ? letter.color
-                        : "white",
+                  backgroundImage:
+                    activeMobileLetter === letter.id
+                      ? `url(${letter.image})`
+                      : "none",
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  WebkitBackgroundClip:
+                    activeMobileLetter === letter.id ? "text" : "",
+                  WebkitTextFillColor:
+                    activeMobileLetter === letter.id ? "transparent" : "",
+                  color: hoverData?.id === letter.id ? letter.color : "white",
                 }}
               >
                 {letter.char}
@@ -123,10 +131,9 @@ export default function Footer() {
         </div>
 
         {/* Bottom Section */}
-        <div className="flex flex-col md:flex-row md:justify-between items-center gap-1 md:gap-12">
-
+        <div className="flex flex-col md:flex-row md:justify-between items-center md:items-start gap-6 w-full">
           {/* Left Section */}
-          <div className="order-2 md:order-1 flex flex-col gap-6 items-center md:items-start md:-ml-15">
+          <div className="order-2 md:order-1 flex flex-col gap-6 items-center md:items-start w-full md:w-auto">
             <div className="font-bold pl-5">
               <Image
                 src="/images/footer/ragam-logo.svg"
@@ -137,49 +144,94 @@ export default function Footer() {
               />
             </div>
 
-            <div className="flex gap-6">
-              <a href="https://www.instagram.com/ragam_nitc/" target="_blank" rel="noopener noreferrer" className="hover:text-gray-400 transition">
+            <div className="flex gap-4 sm:gap-6 flex-wrap justify-center md:justify-start">
+              <a
+                href="https://www.instagram.com/ragam_nitc/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-gray-400 transition"
+              >
                 <FaInstagram className="text-xl md:text-3xl" />
               </a>
-              <a href="https://www.facebook.com/Ragam.nitc/" target="_blank" rel="noopener noreferrer" className="hover:text-gray-400 transition">
+              <a
+                href="https://www.facebook.com/Ragam.nitc/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-gray-400 transition"
+              >
                 <FaFacebook className="text-xl md:text-3xl" />
               </a>
-              <a href="https://in.linkedin.com/company/ragam-national-institute-of-technology-calicut" target="_blank" rel="noopener noreferrer" className="hover:text-gray-400 transition">
+              <a
+                href="https://in.linkedin.com/company/ragam-national-institute-of-technology-calicut"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-gray-400 transition"
+              >
                 <FaLinkedinIn className="text-xl md:text-3xl" />
               </a>
             </div>
           </div>
 
           {/* Right Section */}
-          <div className="order-1 md:order-2 grid grid-cols-3 gap-16 text-center md:text-left md:-mr-10 text-sm md:text-md">
+          <div className="order-1 md:order-2 grid grid-cols-2 sm:grid-cols-3 gap-x-8 gap-y-4 w-full md:w-auto text-center md:text-left text-sm md:text-base">
             <div className="flex flex-col gap-3 order-3 md:order-1">
-              <a href="#" className="hover:text-gray-400 transition">Home</a>
-              <a href="#" className="hover:text-gray-400 transition">Team</a>
-              <a href="#" className="hover:text-gray-400 transition">Sponsors</a>
-              <a href="#" className="hover:text-gray-400 transition">Contact Us</a>
+              <a href="#" className="hover:text-gray-400 transition">
+                Home
+              </a>
+              <a href="#" className="hover:text-gray-400 transition">
+                Team
+              </a>
+              <a href="#" className="hover:text-gray-400 transition">
+                Sponsors
+              </a>
+              <a href="#" className="hover:text-gray-400 transition">
+                Contact Us
+              </a>
             </div>
 
             <div className="flex flex-col gap-3 order-2 md:order-2">
-              <a href="#" className="hover:text-gray-400 transition">Ragnarok</a>
-              <a href="#" className="hover:text-gray-400 transition">Proshow</a>
-              <a href="#" className="hover:text-gray-400 transition">Prodezza</a>
+              <a href="#" className="hover:text-gray-400 transition">
+                Ragnarok
+              </a>
+              <a href="#" className="hover:text-gray-400 transition">
+                Proshow
+              </a>
+              <a href="#" className="hover:text-gray-400 transition">
+                Prodezza
+              </a>
             </div>
 
             <div className="flex flex-col gap-3 order-1 md:order-3">
-              <a href="#" className="hover:text-gray-400 transition">Certificates</a>
-              <a href="#" className="hover:text-gray-400 transition">Events</a>
-              <a href="#" className="hover:text-gray-400 transition">Workshops</a>
-              <a href="#" className="hover:text-gray-400 transition">Sports</a>
+              <a href="#" className="hover:text-gray-400 transition">
+                Certificates
+              </a>
+              <a href="#" className="hover:text-gray-400 transition">
+                Events
+              </a>
+              <a href="#" className="hover:text-gray-400 transition">
+                Workshops
+              </a>
+              <a href="#" className="hover:text-gray-400 transition">
+                Sports
+              </a>
             </div>
           </div>
         </div>
 
         {/* Copyright */}
-        <div className="mt-6 md:text-center text-[10px] text-gray-400 md:text-sm text-right">
+        <div
+          onClick={() => setShowRoast(true)}
+          className="mt-6 md:text-center text-[10px] text-gray-400 md:text-sm text-right cursor-pointer"
+        >
           © 2026 - Ragam NITC
         </div>
-
       </div>
+
+      {showRoast && (
+        <div className="fixed bottom-4 right-4 bg-white text-black text-xs md:text-sm px-4 py-2 rounded-lg shadow-lg z-100 animate-fade-in">
+          stop tripping bro
+        </div>
+      )}
     </footer>
   );
 }
