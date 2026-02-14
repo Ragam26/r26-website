@@ -1,5 +1,15 @@
+import { Slackey, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/footer/footer";
+
+import SmoothScroll from "@/components/common/SmoothScroll";
+import ScrollReset from "@/components/common/ScrollReset";
+
+const slackey = Slackey({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-slackey",
+});
 
 export const metadata = {
   title: "Ragam 2026",
@@ -10,7 +20,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="antialiased">{children}<Footer /></body>
+      <body className={`${slackey.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
+        suppressHydrationWarning>
+        {" "}
+        <ScrollReset /> <SmoothScroll>{children} <Footer /></SmoothScroll>
+        <ScrollReset />
+      </body>
     </html>
   );
 }
