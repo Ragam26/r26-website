@@ -67,9 +67,25 @@ export const LOOPS_CONFIG = [
 
 export const LOOPS_CONFIG_MOBILE = [
   {
+    id: "8",
+    src: "loops/loop2.svg",
+    width: "290vmin",
+    zIndex: 20,
+    duration: 55,
+    direction: -1,
+  },
+  {
+    id: "7",
+    src: "loops/loop1.svg",
+    width: "222vmin",
+    zIndex: 30,
+    duration: 50,
+    direction: 1,
+  },
+  {
     id: "6",
     src: "loops/loop3.svg",
-    width: "134vmin",
+    width: "164vmin",
     zIndex: 10,
     duration: 45,
     direction: -1,
@@ -77,7 +93,7 @@ export const LOOPS_CONFIG_MOBILE = [
   {
     id: "5",
     src: "loops/loop2.svg",
-    width: "106vmin",
+    width: "131vmin",
     zIndex: 20,
     duration: 40,
     direction: 1,
@@ -85,7 +101,7 @@ export const LOOPS_CONFIG_MOBILE = [
   {
     id: "4",
     src: "loops/loop1.svg",
-    width: "79vmin",
+    width: "100vmin",
     zIndex: 30,
     duration: 35,
     direction: -1,
@@ -93,7 +109,7 @@ export const LOOPS_CONFIG_MOBILE = [
   {
     id: "3",
     src: "loops/loop3.svg",
-    width: "57vmin",
+    width: "73vmin",
     zIndex: 10,
     duration: 30,
     direction: 1,
@@ -101,7 +117,7 @@ export const LOOPS_CONFIG_MOBILE = [
   {
     id: "2",
     src: "loops/loop2.svg",
-    width: "44vmin",
+    width: "58vmin",
     zIndex: 20,
     duration: 25,
     direction: -1,
@@ -109,7 +125,7 @@ export const LOOPS_CONFIG_MOBILE = [
   {
     id: "1",
     src: "loops/loop1.svg",
-    width: "32vmin",
+    width: "42vmin",
     zIndex: 30,
     duration: 20,
     direction: 1,

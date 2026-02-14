@@ -5,15 +5,13 @@ import { useRef, useLayoutEffect, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
-import { LOOPS_CONFIG } from "./loopsConfig";
+import { LOOPS_CONFIG, LOOPS_CONFIG_MOBILE } from "./loopsConfig";
 
 gsap.registerPlugin(ScrollTrigger);
 
 // --- CURRENT CONFIGURATION VALUES ---
 const SCROLL_HEIGHT = "373vh"; // Total height of the scrollable container
-const LOGO_MAX_SCALE = 2.15; // Final scale for the Red Logo (2.15x)
 const LOOP_EXIT_SCALE = 18; // Final scale for the loops as they exit (18x)
-const TUNNEL_EASE = "none"; // Linear scaling for the tunnel effect
 const TEXT_REVEAL_START = 0.2;
 const DANCER_REVEAL_START = 0.55;
 
@@ -30,8 +28,25 @@ export default function LandingPage() {
   const dancerContainerRef = useRef(null);
   const [leftDancer] = useState(() => Math.floor(Math.random() * 3) + 1);
   const [rightDancer] = useState(() => Math.floor(Math.random() * 3) + 1);
+  const [isMobile, setIsMobile] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+
+  // setect screen size
+  useLayoutEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setIsMounted(true);
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile(); // Check immediately
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  const LOGO_MAX_SCALE = isMobile ? 1.67 : 2.15;
+  const activeLoops = isMobile ? LOOPS_CONFIG_MOBILE : LOOPS_CONFIG;
 
   useLayoutEffect(() => {
+    if (!isMounted) return;
+
     // Lock scroll during the intro animation
     document.body.style.overflow = "hidden";
 
@@ -62,12 +77,14 @@ export default function LandingPage() {
         },
       });
 
+      const START_LOGO_SCALE = isMobile ? 1.2 : 0.8;
+
       // 1. Initial Setups
       // Note: We set textRef opacity to 1 immediately so it's "ready",
       // but we hide it using clipPath so it's invisible to the eye.
       gsap.set([logoWhiteRef.current, logoRef.current, textRef.current], {
         opacity: 0,
-        scale: 0.8,
+        scale: START_LOGO_SCALE,
       });
       gsap.set(loopsRef.current, { opacity: 0, scale: 1.2 });
 
@@ -228,7 +245,7 @@ export default function LandingPage() {
       ctx.revert();
       document.body.style.overflow = "auto";
     };
-  }, []);
+  }, [isMounted, isMobile, activeLoops]);
 
   return (
     <div
@@ -256,7 +273,7 @@ export default function LandingPage() {
         </div>
 
         {/* Render loops (Starts at z-10, so they float ABOVE the grain) */}
-        {LOOPS_CONFIG.map((loop, index) => (
+        {activeLoops.map((loop, index) => (
           <div
             key={loop.id}
             ref={(el) => (loopsRef.current[index] = el)}
@@ -264,25 +281,19 @@ export default function LandingPage() {
             style={{
               width: loop.width,
               zIndex: loop.zIndex,
-              aspectRatio: "1/1", // Ensures the container is square for the mask
+              aspectRatio: "1/1",
               marginTop: "8px",
               marginLeft: "-5px",
             }}
           >
-            {/* This div holds the PNG Gradient */}
             <div
               className="w-full h-full"
               style={{
-                // 1. The "Ink": Your PNG Gradient
                 backgroundImage: `url('/images/landingAnimation/loops/gradient.png')`,
                 backgroundSize: "135% 135%",
                 backgroundPosition: "center",
-
-                // 2. The "Stencil": Your SVG Loop
                 WebkitMaskImage: `url('/images/landingAnimation/${loop.src}')`,
                 maskImage: `url('/images/landingAnimation/${loop.src}')`,
-
-                // 3. Mask Settings (Crucial for alignment)
                 WebkitMaskRepeat: "no-repeat",
                 maskRepeat: "no-repeat",
                 WebkitMaskSize: "contain",
@@ -309,7 +320,7 @@ export default function LandingPage() {
         {/* Final Red Logo (Z-index 100) */}
         <div
           ref={logoRef}
-          className="absolute left-1/2 top-1/2 z-100 h-auto w-[44vmin] -translate-x-1/2 -translate-y-1/2 opacity-0 will-change-transform"
+          className="absolute left-1/2 top-1/2 z-100 h-auto w-[64vmin] md:w-[44vmin] -translate-x-1/2 -translate-y-1/2 opacity-0 will-change-transform"
         >
           <img
             src="/images/landingAnimation/ragamLogo.svg"
@@ -320,7 +331,7 @@ export default function LandingPage() {
 
         <div
           ref={textRef}
-          className="absolute left-1/2 top-1/2 z-102 h-auto w-[44vmin] -translate-x-1/2 -translate-y-1/2 opacity-0 will-change-transform"
+          className="absolute left-1/2 top-1/2 z-102 h-auto w-[64vmin] md:w-[44vmin] -translate-x-1/2 -translate-y-1/2 opacity-0 will-change-transform"
         >
           <img
             src="/images/landingAnimation/ragamText.svg"
@@ -333,18 +344,21 @@ export default function LandingPage() {
           ref={dancerContainerRef}
           className="absolute inset-0 z-4 pointer-events-none"
         >
-          <div className="absolute bottom-3 -left-25 h-screen">
+          {/* Left Dancer: Top 50% on mobile */}
+          <div className="absolute top-2 left-12 w-full h-[50vh] md:top-auto md:bottom-3 md:-left-25 md:h-screen md:w-auto overflow-visible">
             <img
               src={`/images/landingAnimation/dancers/dancerLeft${leftDancer}.png`}
               alt="Dancer L"
-              className="h-full w-full object-contain object-bottom-left mix-blend-screen opacity-90"
+              className="h-full w-full object-contain object-bottom scale-[1.7] origin-bottom md:scale-100 md:object-bottom-left mix-blend-screen opacity-90"
             />
           </div>
-          <div className="absolute bottom-0 -right-25 h-screen">
+
+          {/* Right Dancer: Bottom 50% on mobile */}
+          <div className="absolute -bottom-7 right-14 w-full h-[50vh] md:-right-25 md:h-screen md:w-auto overflow-visible">
             <img
               src={`/images/landingAnimation/dancers/dancerRight${rightDancer}.png`}
               alt="Dancer R"
-              className="h-full w-full object-contain object-bottom-right mix-blend-screen opacity-90"
+              className="h-full w-full object-contain object-bottom scale-[1.7] origin-bottom md:scale-100 md:object-bottom-right mix-blend-screen opacity-90"
             />
           </div>
         </div>
