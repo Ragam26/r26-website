@@ -25,7 +25,7 @@ function VinylDisc() {
         ref={vinylRef}
         src={"/images/polaroid_page/vinyl.svg"}
         alt="vinyl"
-        className="w-30 sm:min-w-35 md:max-w-40 lg:min-w-50 lg:max-w-80 object-cover  z-10 "
+        className="w-33 sm:min-w-35 md:max-w-40 lg:min-w-50 lg:max-w-80 object-cover  z-10 "
       />
     </div>
   );

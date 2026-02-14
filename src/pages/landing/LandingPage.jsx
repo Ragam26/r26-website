@@ -10,9 +10,8 @@ import Loader from "@/components/common/Loader";
 
 gsap.registerPlugin(ScrollTrigger);
 
-// --- CURRENT CONFIGURATION VALUES ---
-const SCROLL_HEIGHT = "373vh"; // Total height of the scrollable container
-const LOOP_EXIT_SCALE = 18; // Final scale for the loops as they exit (18x)
+const SCROLL_HEIGHT = "373vh";
+const LOOP_EXIT_SCALE = 18;
 const TEXT_REVEAL_START = 0.2;
 const DANCER_REVEAL_START = 0.55;
 
@@ -39,7 +38,7 @@ export default function LandingPage() {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsMounted(true);
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile(); // Check immediately
+    checkMobile(); // check immediately
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
@@ -50,11 +49,11 @@ export default function LandingPage() {
   useLayoutEffect(() => {
     if (!isMounted) return;
 
-    // Lock scroll during the intro animation
+    // ;ock scroll during the intro animation
     document.body.style.overflow = "hidden";
 
     let ctx = gsap.context(() => {
-      // --- PART A: THE INFINITE SPIN (Continuous Rotation) ---
+      // INFINITE SPIN
       const spinTl = gsap.timeline({ paused: true });
       LOOPS_CONFIG.forEach((loop, index) => {
         const element = loopsRef.current[index];
@@ -72,10 +71,10 @@ export default function LandingPage() {
         }
       });
 
-      // --- PART B: THE INTRO SEQUENCE (Blink -> Cascade -> Red Logo) ---
+      // INTRO SEQUENCE
       const introTl = gsap.timeline({
         onComplete: () => {
-          // Unlock scroll once the logo and loops are settled
+          // unlock scroll once the logo and loops are settled
           document.body.style.overflow = "auto";
         },
       });
@@ -83,8 +82,8 @@ export default function LandingPage() {
       const START_LOGO_SCALE = isMobile ? 1.2 : 0.8;
 
       // 1. Initial Setups
-      // Note: We set textRef opacity to 1 immediately so it's "ready",
-      // but we hide it using clipPath so it's invisible to the eye.
+      // set textRef opacity to 1 immediately so it's ready,
+      // but we hide it using clipPath so it's invisible
       gsap.set([logoWhiteRef.current, logoRef.current, textRef.current], {
         opacity: 0,
         scale: START_LOGO_SCALE,
@@ -97,9 +96,9 @@ export default function LandingPage() {
         clipPath: MASK_CLOSED,
       });
 
-      // Set the "Closed" Clip Path state (Hidden on the left with angle)
+      // Set the "Closed" Clip Path state
       gsap.set(textRef.current, {
-        opacity: 1, // It's "there" but clipped
+        opacity: 1,
         clipPath: "polygon(0% 0%, 0% 0%, -20% 100%, -20% 100%)",
       });
 
@@ -108,7 +107,7 @@ export default function LandingPage() {
         opacity: 0,
         duration: 0.8,
         ease: "power2.inOut",
-        onComplete: () => setShowLoader(false), // Clean up the DOM after fade
+        onComplete: () => setShowLoader(false),
       });
 
       // 2. White Logo Blink
@@ -134,7 +133,7 @@ export default function LandingPage() {
       );
 
       // 4. Red Logo Entry (Locked with Text Scaling)
-      // We animate textRef scale here too, so it matches the logo perfectly
+      // animate textRef scale here too so it matches the logo perfectly
       // even though it's still invisible (clipped).
       introTl.to(
         [logoRef.current, textRef.current, dancerContainerRef.current],
@@ -147,33 +146,31 @@ export default function LandingPage() {
         "-=0.6",
       );
 
-      // Start the infinite rotation logic mid-intro
+      // call infinite rotation logic mid-intro
       introTl.call(() => spinTl.play(), null, "-=0.9");
 
-      // --- BREATHING GLOW EFFECT ---
-      // This is the looping animation that will be triggered by the scroll
+      // BREATHING GLOW EFFECT
       gsap.set(logoRef.current, {
         filter:
           "drop-shadow(0 0 5px rgba(220, 38, 38, 0.8)) drop-shadow(0 0 10px rgba(220, 38, 38, 0.4))",
       });
 
-      // --- THE MODULAR BREATHING TIMELINE ---
+      // BREATHING TIMELINE
       const glowTl = gsap.timeline({
         paused: true,
         repeat: -1,
-        yoyo: true, // This creates the "breath in / breath out" loop
+        yoyo: true, //
       });
 
       glowTl.to(logoRef.current, {
-        // The "Maximum" state of the breath
         filter:
-          "drop-shadow(0 0 9px rgba(220, 38, 38, 0.9)) " + // Tighter core gets slightly wider
-          "drop-shadow(0 0 14px rgba(220, 38, 38, 0.6))", // Outer aura expands significantly
+          "drop-shadow(0 0 9px rgba(220, 38, 38, 0.9)) " +
+          "drop-shadow(0 0 14px rgba(220, 38, 38, 0.6))",
         duration: 1.5,
         ease: "sine.inOut",
       });
 
-      // --- PART C: THE TUNNEL SCROLL ---
+      // SCROLL TIMELINE
       const scrollTl = gsap.timeline({
         scrollTrigger: {
           trigger: outerContainerRef.current,
@@ -190,7 +187,6 @@ export default function LandingPage() {
       });
 
       // 1. LOGO & TEXT SCALING
-      // Using fromTo ensures the scale resets perfectly when scrolling back to 0
       scrollTl.fromTo(
         [logoRef.current, textRef.current],
         { scale: 1 },
@@ -229,7 +225,6 @@ export default function LandingPage() {
       );
 
       // 4. LOOPS SCALING & FADE
-      // Explicitly defining from opacity 1 and scale 1 to the exit values
       scrollTl.fromTo(
         loopsRef.current,
         {
@@ -266,15 +261,10 @@ export default function LandingPage() {
         </div>
       )}
 
-      {/* Sticky container that keeps visual elements centered during scroll */}
       <main
         ref={stickyRef}
         className="sticky top-0 flex h-screen w-full flex-col items-center justify-center overflow-hidden bg-black text-white"
       >
-        {/* GRAIN TEXTURE OVERLAY 
-           - z-[5]: Higher than background, lower than loops (z-10).
-           - mix-blend-overlay: Makes it look like texture/grain on the black.
-        */}
         <div className="absolute inset-0 z-5 opacity-100 pointer-events-none mix-blend-overlay">
           <Image
             src="/images/landingAnimation/heroBgOverlay.png"
@@ -285,7 +275,7 @@ export default function LandingPage() {
           />
         </div>
 
-        {/* Render loops (Starts at z-10, so they float ABOVE the grain) */}
+        {/* Render loops */}
         {activeLoops.map((loop, index) => (
           <div
             key={loop.id}
@@ -318,7 +308,7 @@ export default function LandingPage() {
           </div>
         ))}
 
-        {/* Initial White Logo (Z-index 101 to stay on top of red if needed) */}
+        {/* White Logo */}
         <div
           ref={logoWhiteRef}
           className="pointer-events-none absolute left-1/2 top-1/2 z-101 h-auto w-[12vmin] -translate-x-1/2 -translate-y-1/2 opacity-0 will-change-transform"
@@ -330,7 +320,7 @@ export default function LandingPage() {
           />
         </div>
 
-        {/* Final Red Logo (Z-index 100) */}
+        {/* Red Logo */}
         <div
           ref={logoRef}
           className="absolute left-1/2 top-1/2 z-100 h-auto w-[64vmin] md:w-[44vmin] -translate-x-1/2 -translate-y-1/2 opacity-0 will-change-transform"
@@ -357,21 +347,33 @@ export default function LandingPage() {
           ref={dancerContainerRef}
           className="absolute inset-0 z-4 pointer-events-none"
         >
-          {/* Left Dancer: Top 50% on mobile */}
+          {/* Left Dancer */}
           <div className="absolute top-2 left-12 w-full h-[50vh] md:top-auto md:bottom-3 md:-left-25 md:h-screen md:w-auto overflow-visible">
             <img
               src={`/images/landingAnimation/dancers/dancerLeft${leftDancer}.png`}
               alt="Dancer L"
               className="h-full w-full object-contain object-bottom scale-[1.7] origin-bottom md:scale-100 md:object-bottom-left mix-blend-screen opacity-90"
+              style={{
+                WebkitMaskImage:
+                  "linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)",
+                maskImage:
+                  "linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)",
+              }}
             />
           </div>
 
-          {/* Right Dancer: Bottom 50% on mobile */}
+          {/* Right Dancer */}
           <div className="absolute -bottom-7 right-14 w-full h-[50vh] md:-right-25 md:h-screen md:w-auto overflow-visible">
             <img
               src={`/images/landingAnimation/dancers/dancerRight${rightDancer}.png`}
               alt="Dancer R"
               className="h-full w-full object-contain object-bottom scale-[1.7] origin-bottom md:scale-100 md:object-bottom-right mix-blend-screen opacity-90"
+              style={{
+                WebkitMaskImage:
+                  "linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)",
+                maskImage:
+                  "linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)",
+              }}
             />
           </div>
         </div>
