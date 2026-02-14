@@ -1,6 +1,4 @@
 import "./globals.css";
-import SmoothScroll from "@/components/common/SmoothScroll";
-import ScrollReset from "@/components/common/ScrollReset";
 
 export const metadata = {
   title: "Ragam 2026",
@@ -11,11 +9,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="antialiased">
-        {" "}
-        <ScrollReset /> <SmoothScroll>{children}</SmoothScroll>
-        <ScrollReset />
-      </body>
+      <body className="antialiased">{children}</body>
     </html>
   );
 }
