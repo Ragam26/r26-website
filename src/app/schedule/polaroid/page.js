@@ -1,12 +1,17 @@
 /* eslint-disable @next/next/no-img-element */
-import React from "react";
+"use client";
+import React, { useRef, useLayoutEffect } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import VinylDisc from "./vinylAnimation";
 import KathakaliEyes from "./eyesAnimation";
+
+gsap.registerPlugin(ScrollTrigger);
 
 function Polaroid() {
   return (
     <div className="relative flex flex-col items-center justify-center w-full h-screen bg-black overflow-hidden">
-      <div className="relative flex flex-col sm:flex-row items-center justify-center w-full h-[90%] sm:h-[60%] md:h-[70%] lg:h-[80%]  border-t-1 border-b-1 border-[#F4EFCF] sm:pl-3 sm:pr-3 sm:gap-2 ">
+      <div className="relative flex flex-col sm:flex-row items-center justify-center w-full h-[90%] sm:h-[60%] md:h-[70%] lg:h-[80%]  border-t border-b border-[#F4EFCF] sm:pl-3 sm:pr-3 sm:gap-2 ">
         <img
           src={"/assets/images/polaroid_page/upper.svg"}
           alt="Background texture"

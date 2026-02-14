@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 
@@ -33,7 +35,7 @@ function KathakaliEyes() {
         <img
           src="/assets/images/polaroid_page/face.svg" // Replace with your image path
           alt="Kathakali Face"
-          className="relative w-auto h-full object-cover border-1 border-[#F4EFCF] z-10 pointer-events-none"
+          className="relative w-auto h-full object-cover border border-[#F4EFCF] z-10 pointer-events-none"
         />
 
         {/* 2. THE MOVING PUPILS (Overlay Layer) */}
