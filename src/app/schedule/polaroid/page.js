@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import React, { useRef, useLayoutEffect } from "react";
+import React, { useRef, useLayoutEffect, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import VinylDisc from "./vinylAnimation";
@@ -12,6 +12,13 @@ function Polaroid() {
   const containerRef = useRef(null);
   const rangoliRef = useRef(null);
   const datesRef = useRef([]);
+  const framesRef = useRef([]);
+
+  const [selectedFrames] = useState(() => {
+    const allFrames = [1, 2, 3, 4];
+    const shuffled = allFrames.sort(() => 0.5 - Math.random());
+    return [shuffled[0], shuffled[1]];
+  });
 
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
@@ -33,6 +40,29 @@ function Polaroid() {
         { x: 200 },
         { x: 0, stagger: 0.1, ease: "none" },
         "<0.1", // Starts right after the rangoli begins moving
+      );
+
+      // --- POLAROID PRINTING ANIMATION (One-time) ---
+      gsap.fromTo(
+        framesRef.current,
+        {
+          y: -100, // Start tucked behind the camera
+          opacity: 0,
+          scale: 0.9,
+        },
+        {
+          y: 0, // Move to final CSS position
+          opacity: 1,
+          scale: 1,
+          duration: 1.2,
+          stagger: 0.75, // Second frame starts after 0.4s
+          ease: "back.out(1.1)",
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top 30%", // Trigger when the section is mostly in view
+            toggleActions: "play none none none", // Only plays once
+          },
+        },
       );
     }, containerRef);
 
@@ -117,17 +147,19 @@ function Polaroid() {
             <img
               src={"/images/polaroid_page/camera.svg"}
               alt="camera"
-              className="max-w-33 sm:min-w-35 md:max-w-45 lg:max-w-60  h-full object-cover z-10"
+              className="max-w-33 sm:min-w-35 md:max-w-45 lg:max-w-60  h-full object-cover z-10 mt-[25%]"
             />
             <img
-              src={"/images/polaroid_page/frame1.svg"}
+              ref={(el) => (framesRef.current[0] = el)}
+              src={`/images/polaroid_page/polaroids/frame${selectedFrames[0]}.svg`}
               alt="frame1"
               className="max-w-25 sm:max-w-25 md:max-w-30 lg:min-w-46 h-full object-cover -mt-[25%] z-9"
             />
             <img
-              src={"/images/polaroid_page/frame2.svg"}
+              ref={(el) => (framesRef.current[1] = el)}
+              src={`/images/polaroid_page/polaroids/frame${selectedFrames[1]}.svg`}
               alt="frame2"
-              className="max-w-25 sm:max-w-25 md:max-w-30 lg:min-w-45 h-full object-cover -mt-[40%] z-8"
+              className="max-w-25 sm:max-w-25 md:max-w-30 lg:min-w-45 h-full object-cover -mt-[30%] z-8"
             />
           </div>
           <div className="flex flex-col justify-between items-center gap-5 sm:gap-8 md:gap-6 md:mt-10 z-10 sm:mr-10 sm:w-90">
@@ -140,12 +172,29 @@ function Polaroid() {
               />
               <div className="absolute top-[23.5%] left-[19%] w-[52%] h-[55%] z-10 overflow-hidden rounded-2xl bg-black">
                 <img
-                  src="/images/polaroid_page/tvVideo.gif" // Replace with your GIF path
+                  src="/images/polaroid_page/tvVideo.gif"
                   alt="Screen Animation"
-                  className="w-full h-full object-cover opacity-80" // opacity-80 makes it look like it's "inside" the glass
+                  className="w-full h-full object-cover opacity-80 blur-[0.4px]"
                 />
 
-                {/* Optional: CRT Scanline Effect Overlay */}
+                <div className="absolute inset-0 pointer-events-none z-20 overflow-hidden">
+                  <div
+                    className="absolute inset-0 w-full h-full opacity-[0.15]"
+                    style={{
+                      background:
+                        "repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.1) 0px, rgba(0, 0, 0, 0.1) 1px, transparent 1px, transparent 2px)",
+                      backgroundSize: "100% 3px",
+                    }}
+                  />
+
+                  <div
+                    className="absolute inset-0 w-full h-full"
+                    style={{
+                      background:
+                        "radial-gradient(circle, transparent 50%, rgba(0,0,0,0.5) 120%)",
+                    }}
+                  />
+                </div>
               </div>
             </div>
           </div>
