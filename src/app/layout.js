@@ -1,4 +1,4 @@
-import { Slackey, Geist, Geist_Mono } from "next/font/google";
+import { Slackey } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/footer/footer";
 
@@ -20,8 +20,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${slackey.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
-        suppressHydrationWarning>
+      <body
+        className={`${slackey.variable} antialiased`}
+        suppressHydrationWarning
+      >
         {" "}
         <ScrollReset /> <SmoothScroll>{children} <Footer /></SmoothScroll>
         <ScrollReset />

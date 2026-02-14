@@ -6,6 +6,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import { LOOPS_CONFIG, LOOPS_CONFIG_MOBILE } from "./loopsConfig";
+import Loader from "@/components/common/Loader";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -26,10 +27,12 @@ export default function LandingPage() {
   const textRef = useRef(null);
   const loopsRef = useRef([]);
   const dancerContainerRef = useRef(null);
+  const loaderRef = useRef(null);
   const [leftDancer] = useState(() => Math.floor(Math.random() * 3) + 1);
   const [rightDancer] = useState(() => Math.floor(Math.random() * 3) + 1);
   const [isMobile, setIsMobile] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
+  const [showLoader, setShowLoader] = useState(true);
 
   // setect screen size
   useLayoutEffect(() => {
@@ -98,6 +101,14 @@ export default function LandingPage() {
       gsap.set(textRef.current, {
         opacity: 1, // It's "there" but clipped
         clipPath: "polygon(0% 0%, 0% 0%, -20% 100%, -20% 100%)",
+      });
+
+      // fade out loader
+      introTl.to(".loader-container", {
+        opacity: 0,
+        duration: 0.8,
+        ease: "power2.inOut",
+        onComplete: () => setShowLoader(false), // Clean up the DOM after fade
       });
 
       // 2. White Logo Blink
@@ -171,7 +182,6 @@ export default function LandingPage() {
           scrub: 0.5,
           invalidateOnRefresh: true,
           onUpdate: (self) => {
-            // Trigger glow at 25% scroll progress (0.25)
             if (self.progress >= 0.25) {
               if (glowTl.paused()) glowTl.play();
             }
@@ -179,55 +189,53 @@ export default function LandingPage() {
         },
       });
 
-      // 1. LOGO SCALING and text scaling
-      // The Red Logo reaches 2.15x scale at 40% (duration 0.4) of the scroll area
-      scrollTl.to(
+      // 1. LOGO & TEXT SCALING
+      // Using fromTo ensures the scale resets perfectly when scrolling back to 0
+      scrollTl.fromTo(
         [logoRef.current, textRef.current],
+        { scale: 1 },
         {
           scale: LOGO_MAX_SCALE,
           ease: "power1.out",
           force3D: true,
           duration: 0.4,
           immediateRender: false,
-          overwrite: "auto",
         },
         0,
       );
 
       // 2. TEXT REVEAL (Angled Wipe)
-      // Starts at TEXT_REVEAL_START (0.2)
-      scrollTl.to(
+      scrollTl.fromTo(
         textRef.current,
+        { clipPath: MASK_CLOSED },
         {
-          // We move the right-hand points of the polygon across the screen
-          // effectively "wiping" the text into existence.
-          clipPath: "polygon(0% 0%, 120% 0%, 100% 100%, -20% 100%)",
+          clipPath: MASK_OPEN,
           ease: "power2.inOut",
-          duration: 0.5, // Quick swipe
-          immediateRender: false,
-          overwrite: "auto",
+          duration: 0.5,
         },
         TEXT_REVEAL_START,
       );
 
-      // Dancer Reveal (Mask 2 - 110 degree slant)
-      // Starts at 0.6 (Text is at 80% completion)
-      scrollTl.to(
+      // 3. DANCER REVEAL
+      scrollTl.fromTo(
         dancerContainerRef.current,
+        { clipPath: MASK_CLOSED },
         {
           clipPath: MASK_OPEN,
           ease: "power2.out",
           duration: 0.4,
-          immediateRender: false,
-          overwrite: "auto",
         },
         DANCER_REVEAL_START,
       );
 
-      // 3. LOOPS SCALING
-      // All loops scale to 18x and fade out over 90% (duration 0.9) of the scroll area
-      scrollTl.to(
+      // 4. LOOPS SCALING & FADE
+      // Explicitly defining from opacity 1 and scale 1 to the exit values
+      scrollTl.fromTo(
         loopsRef.current,
+        {
+          scale: 1,
+          opacity: 1,
+        },
         {
           scale: LOOP_EXIT_SCALE,
           opacity: 0,
@@ -235,7 +243,6 @@ export default function LandingPage() {
           force3D: true,
           duration: 0.9,
           immediateRender: false,
-          overwrite: "auto",
         },
         0,
       );
@@ -245,7 +252,7 @@ export default function LandingPage() {
       ctx.revert();
       document.body.style.overflow = "auto";
     };
-  }, [isMounted, isMobile, activeLoops]);
+  }, [isMounted, isMobile, activeLoops, LOGO_MAX_SCALE]);
 
   return (
     <div
@@ -253,6 +260,12 @@ export default function LandingPage() {
       style={{ height: SCROLL_HEIGHT }}
       className="bg-black"
     >
+      {showLoader && (
+        <div className="loader-container fixed inset-0 z-9999">
+          <Loader />
+        </div>
+      )}
+
       {/* Sticky container that keeps visual elements centered during scroll */}
       <main
         ref={stickyRef}

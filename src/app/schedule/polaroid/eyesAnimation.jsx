@@ -33,7 +33,7 @@ function KathakaliEyes() {
         {/* 1. THE FACE IMAGE (Main Layer) */}
         {/* Ideally, use an image where the pupils are erased/white */}
         <img
-          src="/assets/images/polaroid_page/face.svg" // Replace with your image path
+          src="/images/polaroid_page/face.svg" // Replace with your image path
           alt="Kathakali Face"
           className="relative w-auto h-full object-cover border border-[#F4EFCF] z-10 pointer-events-none"
         />
@@ -44,7 +44,7 @@ function KathakaliEyes() {
         {/* LEFT EYE */}
         <img
           className="absolute z-20 bg-black rounded-full"
-          src={"/assets/images/polaroid_page/eyes.png"}
+          src={"/images/polaroid_page/eyes.png"}
           style={{
             width: "7.5%", // Adjust size to match image eyes
             height: "auto",
@@ -58,7 +58,7 @@ function KathakaliEyes() {
         {/* RIGHT EYE */}
         <img
           className="absolute z-20 bg-black rounded-full"
-          src={"/assets/images/polaroid_page/eyes.png"}
+          src={"/images/polaroid_page/eyes.png"}
           style={{
             width: "7.5%", // Adjust size
             height: "auto",
