@@ -2,7 +2,7 @@ export const LOOPS_CONFIG = [
   {
     id: "8",
     src: "loops/loop2.svg",
-    width: "380vmin",
+    width: "243vmin",
     zIndex: 20,
     duration: 55,
     direction: -1,
@@ -10,7 +10,7 @@ export const LOOPS_CONFIG = [
   {
     id: "7",
     src: "loops/loop1.svg",
-    width: "276vmin",
+    width: "184vmin",
     zIndex: 30,
     duration: 50,
     direction: 1,
@@ -18,7 +18,7 @@ export const LOOPS_CONFIG = [
   {
     id: "6",
     src: "loops/loop3.svg",
-    width: "208vmin",
+    width: "134vmin",
     zIndex: 10,
     duration: 45,
     direction: -1,
@@ -26,7 +26,7 @@ export const LOOPS_CONFIG = [
   {
     id: "5",
     src: "loops/loop2.svg",
-    width: "166vmin",
+    width: "106vmin",
     zIndex: 20,
     duration: 40,
     direction: 1,
@@ -34,7 +34,7 @@ export const LOOPS_CONFIG = [
   {
     id: "4",
     src: "loops/loop1.svg",
-    width: "124vmin",
+    width: "79vmin",
     zIndex: 30,
     duration: 35,
     direction: -1,
@@ -42,7 +42,7 @@ export const LOOPS_CONFIG = [
   {
     id: "3",
     src: "loops/loop3.svg",
-    width: "94vmin",
+    width: "57vmin",
     zIndex: 10,
     duration: 30,
     direction: 1,
@@ -50,7 +50,7 @@ export const LOOPS_CONFIG = [
   {
     id: "2",
     src: "loops/loop2.svg",
-    width: "74vmin",
+    width: "44vmin",
     zIndex: 20,
     duration: 25,
     direction: -1,
@@ -58,7 +58,7 @@ export const LOOPS_CONFIG = [
   {
     id: "1",
     src: "loops/loop1.svg",
-    width: "54vmin",
+    width: "32vmin",
     zIndex: 30,
     duration: 20,
     direction: 1,

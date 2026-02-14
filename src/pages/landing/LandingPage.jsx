@@ -15,7 +15,7 @@ const LOGO_MAX_SCALE = 2.15; // Final scale for the Red Logo (2.15x)
 const LOOP_EXIT_SCALE = 18; // Final scale for the loops as they exit (18x)
 const TUNNEL_EASE = "none"; // Linear scaling for the tunnel effect
 const TEXT_REVEAL_START = 0.2;
-const DANCER_REVEAL_START = 0.6;
+const DANCER_REVEAL_START = 0.55;
 
 const MASK_CLOSED = "polygon(0% 0%, 0% 0%, -20% 100%, -20% 100%)";
 const MASK_OPEN = "polygon(0% 0%, 120% 0%, 100% 100%, -20% 100%)";
@@ -261,12 +261,35 @@ export default function LandingPage() {
             key={loop.id}
             ref={(el) => (loopsRef.current[index] = el)}
             className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 origin-center will-change-transform"
-            style={{ width: loop.width, zIndex: loop.zIndex }}
+            style={{
+              width: loop.width,
+              zIndex: loop.zIndex,
+              aspectRatio: "1/1", // Ensures the container is square for the mask
+              marginTop: "8px",
+              marginLeft: "-5px",
+            }}
           >
-            <img
-              src={`/images/landingAnimation/${loop.src}`}
-              alt="Loop"
-              className="h-full w-full"
+            {/* This div holds the PNG Gradient */}
+            <div
+              className="w-full h-full"
+              style={{
+                // 1. The "Ink": Your PNG Gradient
+                backgroundImage: `url('/images/landingAnimation/loops/gradient.png')`,
+                backgroundSize: "135% 135%",
+                backgroundPosition: "center",
+
+                // 2. The "Stencil": Your SVG Loop
+                WebkitMaskImage: `url('/images/landingAnimation/${loop.src}')`,
+                maskImage: `url('/images/landingAnimation/${loop.src}')`,
+
+                // 3. Mask Settings (Crucial for alignment)
+                WebkitMaskRepeat: "no-repeat",
+                maskRepeat: "no-repeat",
+                WebkitMaskSize: "contain",
+                maskSize: "contain",
+                WebkitMaskPosition: "center",
+                maskPosition: "center",
+              }}
             />
           </div>
         ))}
