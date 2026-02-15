@@ -97,7 +97,7 @@ function Polaroid() {
               <KathakaliEyes />
             </div>
           </div>
-          <div className="flex flex-row items-end font-black justify-center gap-2 translate-y-10 -translate-x-2 md:translate-0">
+          <div className="flex flex-row items-end font-black justify-center gap-2 translate-y-10 md:translate-y-6 -translate-x-2 ">
             <div className="flex flex-row items-end gap-1 font-black text-[#b0a695] relative overflow-hidden z-0 ">
               <div className="flex flex-col font-[--font-slackey] text-3xl sm:text-3xl md:text-4xl lg:text-5xl uppercase leading-none tracking-wide text-[#8F7B75] gap-2 ">
                 <div
