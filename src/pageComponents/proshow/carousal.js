@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect, useLayoutEffect } from "react";
-import ProshowCard from "@/pages/proshow/proshowCard";
+import ProshowCard from "@/pageComponents/proshow/proshowCard";
 
 export default function FocusCarousel({ items = [] }) {
   const containerRef = useRef(null);
