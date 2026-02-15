@@ -33,35 +33,35 @@ export default function Footer() {
       char: "/images/footer/R.svg",
       color: "#EC8047",
       image: "/images/footer/footer-1.svg",
-      position: { left: "32%", top: "59%" },
+      hoverOffset: {x: "10%", y: "59%"},
     },
     {
       id: 2,
       char: "/images/footer/A1.svg",
       color: "#FAE4B2",
       image: "/images/footer/footer-2.svg",
-      position: { left: "43%", top: "22%" },
+      hoverOffset: {x: "-5%", y: "-135%"},
     },
     {
       id: 3,
       char: "/images/footer/G.svg",
       color: "#850419",
       image: "/images/footer/footer-3.svg",
-      position: { left: "39%", top: "38%" },
+      hoverOffset: {x: "-120%", y: "-50%"},
     },
     {
       id: 4,
       char: "/images/footer/A2.svg",
       color: "#F7BD73",
       image: "/images/footer/footer-4.svg",
-      position: { left: "72%", top: "57%" },
+      hoverOffset: {x: "9%", y: "32%"},
     },
     {
       id: 5,
       char: "/images/footer/M.svg",
       color: "#768367",
       image: "/images/footer/footer-5.svg",
-      position: { left: "67%", top: "56%" },
+      hoverOffset: {x: "-120%", y: "36%"},
     },
   ];
 
@@ -69,24 +69,7 @@ export default function Footer() {
     <footer className="bg-black text-white">
       <div className="relative max-w-7xl mx-auto mt-20 pt-5 pb-5">
         {/* Floating Image */}
-        {hoverData && (
-          <div
-            className="absolute z-50 pointer-events-none transition-all duration-300"
-            style={{
-              left: hoverData.position.left,
-              top: hoverData.position.top,
-              transform: "translate(-50%, -50%)",
-            }}
-          >
-            <Image
-              src={hoverData.image}
-              alt="preview"
-              width={300}
-              height={300}
-              className="w-48 h-auto object-cover"
-            />
-          </div>
-        )}
+        
 
         {/* Huge RAGAM Text */}
         <div className="w-full text-center md:mb-20 md:mt-30 mb-10 -mt-10 ml-5">
@@ -109,7 +92,7 @@ export default function Footer() {
                     setActiveMobileLetter(letter.id);
                   }
                 }}
-                className="cursor-pointer -mx-9"
+                className="cursor-pointer -mx-9 relative"
               >
                 <div
                   className="transition-all duration-300"
@@ -143,6 +126,23 @@ export default function Footer() {
                         : "white",
                   }}  
                 />
+                {hoverData?.id === letter.id && (
+                  <div
+                    className="absolute pointer-events-none z-50 transition-all duration-300 w-50 h-33"
+                    style={{
+                        left: "50%",
+                        top: "50%",
+                        transform: `translate(${letter.hoverOffset.x}, ${letter.hoverOffset.y})`,        
+                    }}
+                    >
+                    <Image
+                        src={letter.image}
+                        alt={letter.char}
+                        fill
+                        className="object-cover"
+                    />    
+                </div>
+                )}
               </span>
             ))}
           </h1>
