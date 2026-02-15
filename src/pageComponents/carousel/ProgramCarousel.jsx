@@ -73,7 +73,7 @@ const ProgramCarousel = () => {
 
     const newTitle = document.createElement("h1");
     newTitle.textContent = data.title;
-    newTitle.className = `absolute text-white uppercase leading-none ${data.titleFont} ${data.titleSize} ${data.titleWeight}`;
+    newTitle.className = `absolute text-white uppercase leading-none ${data.titleFont} ${data.titleSizeMobile} md:${data.titleSize} ${data.titleWeight}`;
     newTitle.style.willChange = "transform";
     gsap.set(newTitle, { y: "100%" });
 
@@ -351,7 +351,7 @@ const ProgramCarousel = () => {
   return (
     <div className="w-full h-full font-sans">
       <footer className="fixed bottom-0 left-0 w-full p-12 flex justify-between items-center z-2">
-        <div className="flex text-white text-[15px] font-light">
+        <div className="hidden md:flex text-white text-[15px] font-light">
           <div className="count relative h-4.5 w-6 flex justify-center overflow-hidden">
             <p
               className="absolute translate-x-0 text-base leading-none opacity-100"
@@ -371,7 +371,7 @@ const ProgramCarousel = () => {
         style={{
           background: `
       radial-gradient(ellipse at center, transparent 35%, rgba(0,0,0,0.84) 100%),
-      linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, transparent 20%, transparent 65%, rgba(0,0,0,0.75) 100%)
+      linear-gradient(to bottom, rgba(0,0,0,0.75) 0%, transparent 20%, transparent 65%, rgba(0,0,0,0.75) 100%)
     `,
           mixBlendMode: "multiply",
         }}
@@ -398,9 +398,9 @@ const ProgramCarousel = () => {
         </div>
 
         {/* Container positioned to the center, containing all three cards */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-[23%] -translate-y-28 flex items-end gap-8 z-10 w-max ">
+        <div className="absolute top-1/2 left-1/2 -translate-x-[50%] md:-translate-x-[23%] -translate-y-20 md:-translate-y-28 flex items-end gap-8 z-10 w-max ">
           {/* 1. MAIN CENTRE CARD (Your exact size) */}
-          <div className="slide-main-img relative w-70 h-105 rounded-2xl border-3 border-[#DFB385] overflow-hidden shadow-2xl cursor-pointer transition-transform duration-300 hover:-translate-y-3">
+          <div className="slide-main-img relative w-76 h-114 md:w-70 md:h-105 rounded-2xl border-3 border-[#DFB385] overflow-hidden shadow-2xl cursor-pointer transition-transform duration-300 hover:-translate-y-3">
             <div className="slide-main-img-wrapper h-full w-full">
               <img
                 src={`/images/programCarousel/img${currentSlide}.png`}
@@ -440,16 +440,22 @@ const ProgramCarousel = () => {
             <div className="absolute inset-0 shadow-[inset_0_0_50px_rgba(0,0,0,0.6)] z-10" />
           </div>
         </div>
-        <div className="slide-copy absolute top-[28%] left-[4.5%] text-white z-100 ">
-          <div className="slide-title relative w-125 h-20 mb-2 overflow-hidden">
+        <div className="slide-copy absolute top-[14%] md:top-[28%] left-[11%] md:left-[4.5%] text-white z-100 ">
+          <div className="slide-title relative w-125 h-15 md:h-20 mb-2 overflow-hidden">
             <h1
-              className={`absolute text-white leading-none translate-x-0 uppercase ${slideData[currentSlide - 1].titleFont} ${slideData[currentSlide - 1].titleSize} ${slideData[currentSlide - 1].titleWeight}`}
+              className={`
+      absolute text-white leading-none translate-x-0 uppercase 
+      ${slideData[currentSlide - 1].titleFont} 
+      ${slideData[currentSlide - 1].titleWeight}
+      ${slideData[currentSlide - 1].titleSizeMobile} 
+      md:${slideData[currentSlide - 1].titleSize}
+    `}
               style={{ willChange: "transform" }}
             >
               {slideData[currentSlide - 1].title}
             </h1>
           </div>
-          <div className="slide-description relative w-125 h-6 mb-3 overflow-hidden">
+          <div className="slide-description relative w-125 h-6 mb-2 md:mb-3 overflow-hidden">
             <p
               className={`absolute text-white leading-none translate-x-0 ${slideData[currentSlide - 1].descFont} ${slideData[currentSlide - 1].descSize} ${slideData[currentSlide - 1].descWeight}`}
               style={{ willChange: "transform" }}
@@ -467,7 +473,7 @@ const ProgramCarousel = () => {
               <img
                 src="/images/programCarousel/leftButton.svg"
                 alt="Previous"
-                className="w-9 h-9 transition-opacity group-hover:opacity-80"
+                className="w-12 h-12 md:w-9 md:h-9 transition-opacity group-hover:opacity-80"
               />
             </button>
             <button
@@ -478,7 +484,7 @@ const ProgramCarousel = () => {
               <img
                 src="/images/programCarousel/leftButton.svg"
                 alt="Next"
-                className="w-9 h-9 transition-opacity group-hover:opacity-80 scale-x-[-1]"
+                className="w-12 h-12 md:w-9 md:h-9 transition-opacity group-hover:opacity-80 scale-x-[-1]"
               />
             </button>
           </div>
@@ -486,7 +492,7 @@ const ProgramCarousel = () => {
       </div>
 
       <footer className="fixed bottom-2 left-0 w-full px-12 z-20">
-        <div className="flex justify-center items-center">
+        <div className="hidden md:flex justify-center items-center">
           <div className="flex gap-10">
             {slideTitles.map((title, index) => {
               const slideNumber = index + 1;

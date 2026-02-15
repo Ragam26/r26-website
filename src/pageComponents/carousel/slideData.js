@@ -15,6 +15,7 @@ export const slideData = [
     title: "EVENTS",
     titleFont: calfine.className,
     titleSize: "text-8xl",
+    titleSizeMobile: "text-7xl",
     titleWeight: "font-bold",
 
     desc: "Flagship Competitions",
@@ -26,6 +27,7 @@ export const slideData = [
     title: "WORKSHOPS",
     titleFont: moniqa.className,
     titleSize: "text-[6.2rem]",
+    titleSizeMobile: "text-[4.8rem]",
     titleWeight: "font-black",
 
     desc: "Hands-on Learning",
@@ -37,6 +39,7 @@ export const slideData = [
     title: "GAMING",
     titleFont: scalter.className,
     titleSize: "text-8xl",
+    titleSizeMobile: "text-7xl",
     titleWeight: "font-normal",
 
     desc: "Esports Battles",
@@ -48,6 +51,7 @@ export const slideData = [
     title: "PRODEZZA",
     titleFont: magilio.className,
     titleSize: "text-[5.6rem]",
+    titleSizeMobile: "text-[4.4rem]",
     titleWeight: "font-black",
 
     desc: "Creative Contests",
@@ -59,6 +63,7 @@ export const slideData = [
     title: "SPORTS",
     titleFont: calfine.className,
     titleSize: "text-8xl",
+    titleSizeMobile: "text-7xl",
     titleWeight: "font-black",
 
     desc: "Athletic Showdown",
@@ -70,6 +75,7 @@ export const slideData = [
     title: "PROSHOW",
     titleFont: moniqa.className,
     titleSize: "text-[6.2rem]",
+    titleSizeMobile: "text-[4.8rem]",
     titleWeight: "font-black",
 
     desc: "Star Performances",
@@ -81,6 +87,7 @@ export const slideData = [
     title: "I-INK",
     titleFont: magilio.className,
     titleSize: "text-[5.6rem]",
+    titleSizeMobile: "text-[4.4rem]",
     titleWeight: "font-black",
 
     desc: "Words & Wit",
@@ -92,6 +99,7 @@ export const slideData = [
     title: "INFORMALS",
     titleFont: scalter.className,
     titleSize: "text-8xl",
+    titleSizeMobile: "text-7xl",
     titleWeight: "font-normal",
 
     desc: "Cultural Showcase",
