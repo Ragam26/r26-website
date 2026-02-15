@@ -30,38 +30,38 @@ export default function Footer() {
   const letters = [
     {
       id: 1,
-      char: "R",
+      char: "/images/footer/R.svg",
       color: "#EC8047",
       image: "/images/footer/footer-1.svg",
-      position: { left: "25%", top: "45%" },
+      position: { left: "32%", top: "59%" },
     },
     {
       id: 2,
-      char: "A",
+      char: "/images/footer/A1.svg",
       color: "#FAE4B2",
       image: "/images/footer/footer-2.svg",
-      position: { left: "40%", top: "10%" },
+      position: { left: "43%", top: "22%" },
     },
     {
       id: 3,
-      char: "G",
+      char: "/images/footer/G.svg",
       color: "#850419",
       image: "/images/footer/footer-3.svg",
-      position: { left: "34%", top: "27%" },
+      position: { left: "39%", top: "38%" },
     },
     {
       id: 4,
-      char: "A",
+      char: "/images/footer/A2.svg",
       color: "#F7BD73",
       image: "/images/footer/footer-4.svg",
-      position: { left: "76%", top: "46%" },
+      position: { left: "72%", top: "57%" },
     },
     {
       id: 5,
-      char: "M",
+      char: "/images/footer/M.svg",
       color: "#768367",
       image: "/images/footer/footer-5.svg",
-      position: { left: "70%", top: "45%" },
+      position: { left: "67%", top: "56%" },
     },
   ];
 
@@ -89,8 +89,8 @@ export default function Footer() {
         )}
 
         {/* Huge RAGAM Text */}
-        <div className="w-full text-center md:mb-5 md:mt-10 mb-5">
-          <h1 className="text-[21vw] md:text-[16vw] md:font-bold font-extrabold tracking-normal leading-none flex justify-center gap-2 md:scale-y-120 scale-y-200 origin-bottom">
+        <div className="w-full text-center md:mb-20 md:mt-30 mb-5">
+          <h1 className="text-[21vw] md:text-[16vw] md:font-bold font-extrabold tracking-normal leading-none flex justify-center gap-0 md:scale-y-100 scale-y-200 origin-bottom">
             {letters.map((letter) => (
               <span
                 key={letter.id}
@@ -109,22 +109,40 @@ export default function Footer() {
                     setActiveMobileLetter(letter.id);
                   }
                 }}
-                className={`cursor-pointer transition-colors duration-300 ${activeMobileLetter === letter.id ? "bg-clip-text text-transparent bg-cover bg-center scale-105" : ""}`}
-                style={{
-                  backgroundImage:
-                    activeMobileLetter === letter.id
-                      ? `url(${letter.image})`
-                      : "none",
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                  WebkitBackgroundClip:
-                    activeMobileLetter === letter.id ? "text" : "",
-                  WebkitTextFillColor:
-                    activeMobileLetter === letter.id ? "transparent" : "",
-                  color: hoverData?.id === letter.id ? letter.color : "white",
-                }}
+                className="cursor-pointer -mx-9"
               >
-                {letter.char}
+                <div
+                  className="transition-all duration-300"
+                  style={{
+                    width: "1em",
+                    height: "1em",
+                    transform:
+                      activeMobileLetter === letter.id
+                        ? "scale(1.05)"
+                        : "scale(1)",
+                    backgroundImage:
+                      activeMobileLetter === letter.id
+                        ? `url(${letter.image})`
+                        : "none",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+
+                    WebKitMaskImage: `url(${letter.char})`,
+                    WebkitMaskRepeat: "no-repeat",
+                    WebkitMaskSize: "contain",
+                    WebkitMaskPosition: "center",
+
+                    maskImage: `url(${letter.char})`,
+                    maskRepeat: "no-repeat",
+                    maskSize: "contain",
+                    maskPosition: "center",
+
+                    backgroundColor:
+                      hoverData?.id === letter.id
+                        ? letter.color
+                        : "white",
+                  }}  
+                />
               </span>
             ))}
           </h1>
@@ -173,7 +191,7 @@ export default function Footer() {
           </div>
 
           {/* Right Section */}
-          <div className="order-1 md:order-2 grid grid-cols-2 sm:grid-cols-3 gap-x-8 gap-y-4 w-full md:w-auto text-center md:text-left text-sm md:text-base">
+          <div className="order-1 md:order-2 grid grid-cols-2 sm:grid-cols-3 gap-x-24 gap-y-3 w-full md:w-auto text-center md:text-left text-sm md:text-base md:translate-x-10">
             <div className="flex flex-col gap-3 order-3 md:order-1">
               <a href="#" className="hover:text-gray-400 transition">
                 Home
