@@ -1,148 +1,130 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useLayoutEffect } from "react";
 import ProshowCard from "@/components/proshowCard";
 
 export default function FocusCarousel({ items = [] }) {
-    const containerRef = useRef(null);
-    const [active, setActive] = useState(Math.floor(items.length / 2));
-    const [spacer, setSpacer] = useState(0);
+  const containerRef = useRef(null);
+  // Start active state at the middle card (index 1 for 3 items)
+  const [active, setActive] = useState(Math.floor(items.length / 2));
+  const [spacer, setSpacer] = useState(0);
 
-    /* ---------- initial center on mount ---------- */
-    useEffect(() => {
-        const el = containerRef.current;
-        if (!el) return;
+  const handleCardClick = (index) => {
+    const el = containerRef.current;
+    if (!el) return;
 
-        const children = Array.from(el.children);
-        const target = children[active + 1]; // +1 for spacer
-        if (!target) return;
+    const children = Array.from(el.children);
+    const target = children[index + 1];
 
-        target.scrollIntoView({
-            behavior: "auto", // no animation on first load
-            inline: "center",
-            block: "nearest",
+    if (target) {
+      el.scrollTo({
+        left: target.offsetLeft - spacer,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  useLayoutEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    const updateLayout = () => {
+      const firstCard = el.querySelector("[data-card]");
+      if (!firstCard) return;
+
+      const containerWidth = el.clientWidth;
+      const cardWidth = firstCard.clientWidth;
+      const newSpacer = containerWidth / 2 - cardWidth / 2;
+      setSpacer(newSpacer);
+
+      const children = Array.from(el.children);
+      const target = children[active + 1];
+      if (target) {
+        el.scrollTo({
+          left: target.offsetLeft - newSpacer,
+          behavior: "instant",
         });
-    }, [spacer]); // run after spacer computed
-    /* ---------- initial center on mount ---------- */
-    useEffect(() => {
-        const el = containerRef.current;
-        if (!el) return;
+      }
+    };
 
-        const children = Array.from(el.children);
-        const target = children[active + 1];
-        if (!target) return;
+    updateLayout();
+    window.addEventListener("resize", updateLayout);
+    return () => window.removeEventListener("resize", updateLayout);
+  }, [active]);
 
-        const left =
-            target.offsetLeft - el.clientWidth / 2 + target.clientWidth / 2;
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
 
-        el.scrollTo({ left, behavior: "auto" });
-    }, [spacer]);
+    const handleScroll = () => {
+      const children = Array.from(el.children).slice(1, -1);
+      const containerCenter = el.scrollLeft + el.clientWidth / 2;
 
-    /* ---------- calculate dynamic spacer ---------- */
-    useEffect(() => {
-        const el = containerRef.current;
-        if (!el) return;
+      let closest = 0;
+      let minDist = Infinity;
 
-        const updateSpacer = () => {
-            const firstCard = el.querySelector("[data-card]");
-            if (!firstCard) return;
+      children.forEach((child, i) => {
+        const childCenter = child.offsetLeft + child.clientWidth / 2;
+        const dist = Math.abs(containerCenter - childCenter);
+        if (dist < minDist) {
+          minDist = dist;
+          closest = i;
+        }
+      });
+      setActive(closest);
+    };
 
-            const containerWidth = el.clientWidth;
-            const cardWidth = firstCard.clientWidth;
+    el.addEventListener("scroll", handleScroll, { passive: true });
+    return () => el.removeEventListener("scroll", handleScroll);
+  }, []);
 
-            setSpacer(containerWidth / 2 - cardWidth / 2);
-        };
+  return (
+    <div className="relative w-full overflow-hidden">
+      <div
+        ref={containerRef}
+        className="flex overflow-x-auto snap-x snap-mandatory no-scrollbar pb-10"
+        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+      >
+        {/* Lelt Spacer */}
+        <div style={{ minWidth: spacer }} className="shrink-0" />
 
-        updateSpacer();
-        window.addEventListener("resize", updateSpacer);
-        return () => window.removeEventListener("resize", updateSpacer);
-    }, []);
+        {items.map((item, i) => {
+          const isActive = i === active;
 
-    /* ---------- scroll to active ---------- */
-
-
-    /* ---------- sync focus on swipe ---------- */
-    useEffect(() => {
-        const el = containerRef.current;
-        if (!el) return;
-
-        const handleScroll = () => {
-            const children = Array.from(el.children).slice(1, -1);
-            const containerRect = el.getBoundingClientRect();
-            const containerCenter = containerRect.left + containerRect.width / 2;
-
-            let closest = 0;
-            let minDist = Infinity;
-
-            children.forEach((child, i) => {
-                const rect = child.getBoundingClientRect();
-                const childCenter = rect.left + rect.width / 2;
-                const dist = Math.abs(containerCenter - childCenter);
-
-                if (dist < minDist) {
-                    minDist = dist;
-                    closest = i;
-                }
-            });
-
-            setActive(closest);
-        };
-
-        el.addEventListener("scroll", handleScroll, { passive: true });
-        return () => el.removeEventListener("scroll", handleScroll);
-    }, []);
-
-    /* ---------- arrows ---------- */
-    const prev = () => setActive((a) => Math.max(a - 1, 0));
-    const next = () => setActive((a) => Math.min(a + 1, items.length - 1));
-
-    return (
-        <div className="relative w-full">
-
-
-            {/* scroll container */}
+          return (
             <div
-                ref={containerRef}
-                className="flex overflow-x-auto  gap-6 px-12 py-8"
+              key={item.id ?? i}
+              data-card
+              onClick={() => handleCardClick(i)}
+              className="shrink-0 w-[60vw] snap-center transition-all duration-500 ease-out flex flex-col items-center"
+              style={{
+                transform: `scale(${isActive ? 0.88 : 0.67})`,
+                filter: `brightness(${isActive ? 1 : 0.4})`,
+                zIndex: isActive ? 10 : 1,
+              }}
             >
-                {/* LEFT dynamic spacer */}
-                <div style={{ width: spacer }} className="shrink-1" />
+              <ProshowCard {...item} />
 
-                {items.map((item, i) => {
-                    const isActive = i === active;
-
-                    return (
-                        <div
-                            key={item.id ?? i}
-                            data-card
-                            className=" shrink-0 w-[70vw] sm:w-[50vw] md:w-[40vw] transition-all duration-300"
-                            style={{
-                                transform: `scale(${isActive ? 0.9 : 0.7})`,
-                                filter: `brightness(${isActive ? 1.1 : 0.2})`,
-                            }}
-                        >
-                            <ProshowCard tilt={item.tilt} />
-
-                            {/* reflection */}
-                            <div
-                                className="scale-y-[-1] opacity-30 mt-6 pointer-events-none"
-                                style={{
-                                    filter: "url(#water-ripple) blur(3px)",
-                                    maskImage:
-                                        "linear-gradient(to top, rgba(0,0,0,1) 20%, transparent 90%)",
-                                    WebkitMaskImage:
-                                        "linear-gradient(to top, rgba(0,0,0,1) 20%, transparent 90%)",
-                                }}
-                            >
-                                <ProshowCard tilt={item.tilt} />
-                            </div>
-                        </div>
-                    );
-                })}
-
-                {/* RIGHT dynamic spacer */}
-                <div style={{ width: spacer }} className="shrink-0" />
+              {/* Reflection matching the smaller scale */}
+              <div
+                className="scale-y-[-1] opacity-20 mt-2 pointer-events-none"
+                style={{
+                  filter: "url(#water-ripple) blur(2px)",
+                  maskImage:
+                    "linear-gradient(to top, rgba(0,0,0,1) 0%, transparent 40%)",
+                  WebkitMaskImage:
+                    "linear-gradient(to top, rgba(0,0,0,1) 0%, transparent 40%)",
+                }}
+              >
+                <ProshowCard {...item} />
+              </div>
             </div>
-        </div>
-    );
+          );
+        })}
+
+        {/* Right Spacer */}
+        <div style={{ minWidth: spacer }} className="shrink-0" />
+      </div>
+    </div>
+  );
 }

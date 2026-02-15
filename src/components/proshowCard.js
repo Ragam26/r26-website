@@ -1,8 +1,23 @@
 import Image from "next/image";
 
-export default function ProshowCard({ name, month, date, tilt, image }) {
+export default function ProshowCard({
+  name = "Artist Name",
+  month = "MAR",
+  date = "00",
+  tilt = 0,
+  image = "/images/proshow/proshowArtist_1.png",
+}) {
   return (
-    <div className="perspective-[1000px]">
+    <div
+      className="
+  perspective-[1000px] 
+  transition-transform 
+  duration-300 
+  ease-in-out 
+  hover:-translate-y-3
+"
+    >
+      {" "}
       <div
         className="
           text-yellow-100 w-70 h-130 flex flex-col
@@ -11,7 +26,7 @@ export default function ProshowCard({ name, month, date, tilt, image }) {
           transform-3d
         "
         style={{
-          backgroundImage: `url(proshowCardBg.png)`,
+          backgroundImage: `url(/images/proshow/proshowCardBg.png)`,
           transform: `rotateY(${tilt}deg)`,
         }}
       >

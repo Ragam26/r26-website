@@ -13,7 +13,7 @@ export default function ProshowSection({ isMobile }) {
       name: "COMING SOON",
       date: "27",
       month: "MARCH",
-      image: "/images/proshow/proshowArtist_1.png",
+      image: "/images/proshow/proshowArtist_2.png",
     },
     {
       id: 2,
@@ -29,12 +29,12 @@ export default function ProshowSection({ isMobile }) {
       name: "COMING SOON",
       date: "29",
       month: "MARCH",
-      image: "/images/proshow/proshowArtist_1.png",
+      image: "/images/proshow/proshowArtist_3.png",
     },
   ];
 
   return (
-    <section className="max-w-7xl mx-auto py-3 overflow-hidden md:h-[screen]">
+    <section className="max-w-7xl mx-auto py-3 overflow-hidden h-screen">
       {/* Water ripple filter */}
       <svg className="fixed top-0 left-0 w-0 h-0 invisible">
         <filter id="water-ripple">
@@ -58,7 +58,7 @@ export default function ProshowSection({ isMobile }) {
       {/* Title */}
       <h1
         className="font-bold flex justify-center items-center
-               text-[15vw] lg:text-[6vw]"
+               translate-y-6 md:translate-0 text-[17vw] lg:text-[6vw]"
       >
         <span
           className={`${leagueGothic.className} text-[#F4EFCF]
