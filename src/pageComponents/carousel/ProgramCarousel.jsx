@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/refs */
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import React, { useRef, useState } from "react";
 import gsap from "gsap";
@@ -11,23 +13,26 @@ const ProgramCarousel = () => {
   const isAnimating = useRef(false);
 
   const slideTitles = [
-    "Field Unit",
-    "Astral Convergence",
-    "Eclipse Core",
-    "Luminous",
-    "Serenity",
-    "Nebula Point",
-    "Horizon",
+    "EVENTS",
+    "WORKSHOPS",
+    "GAMING",
+    "PRODEZZA",
+    "SPORTS",
+    "PROSHOW",
+    "I-INK",
+    "INFORMALS",
   ];
 
   const slideDescriptions = [
-    "Concept Art",
-    "Soundscape",
-    "Experimental Film",
-    "Editorial",
-    "Music Video",
-    "VFX",
+    "Flagship Competitions",
+    "Hands-on Learning",
+    "Esports Battles",
+    "Creative Contests",
+    "Athletic Showdown",
+    "Star Performances",
     "Set Design",
+    "Words & Wit",
+    "Cultural Showcase",
   ];
 
   const createSlide = (slideNumber, direction) => {
@@ -39,7 +44,7 @@ const ProgramCarousel = () => {
     slideBgImg.style.willChange = "clip-path";
 
     const img = document.createElement("img");
-    img.src = `./assets/img${slideNumber}.jpeg`;
+    img.src = `/images/programCarousel/bg${slideNumber}.png`;
     img.alt = "";
     img.className = "w-full h-full object-cover";
     img.style.willChange = "transform";
@@ -68,7 +73,7 @@ const ProgramCarousel = () => {
     wrapper.style.willChange = "clip-path";
 
     const img = document.createElement("img");
-    img.src = `./assets/img${slideNumber}.jpeg`;
+    img.src = `/images/programCarousel/img${slideNumber}.png`;
     img.alt = "";
     img.className = "w-full h-full object-cover";
     img.style.willChange = "transform";
@@ -288,9 +293,9 @@ const ProgramCarousel = () => {
   return (
     <div className="w-full h-full font-sans">
       {/* Footer with counter */}
-      <footer className="fixed bottom-0 left-0 w-full p-12 flex justify-between items-center z-[2]">
+      <footer className="fixed bottom-0 left-0 w-full p-12 flex justify-between items-center z-2">
         <div className="flex text-white text-[15px] font-light">
-          <div className="count relative h-[18px] w-6 flex justify-center overflow-hidden">
+          <div className="count relative h-4.5 w-6 flex justify-center overflow-hidden">
             <p
               className="absolute translate-x-0 text-base leading-none opacity-100"
               style={{ willChange: "transform" }}
@@ -303,49 +308,17 @@ const ProgramCarousel = () => {
         </div>
       </footer>
 
-      {/* Navigation Buttons */}
-      <div className="fixed top-1/2 left-0 w-full -translate-y-1/2 flex justify-between items-center px-12 z-[3] pointer-events-none">
-        <button
-          onClick={handlePrevious}
-          disabled={isAnimating.current}
-          className="pointer-events-auto w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-          aria-label="Previous slide"
-        >
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M15 19l-7-7 7-7"
-            />
-          </svg>
-        </button>
-        <button
-          onClick={handleNext}
-          disabled={isAnimating.current}
-          className="pointer-events-auto w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-          aria-label="Next slide"
-        >
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M9 5l7 7-7 7"
-            />
-          </svg>
-        </button>
-      </div>
+      {/* Stretched Oval with extra Top/Bottom feathering */}
+      <div
+        className="absolute inset-0 z-5 pointer-events-none"
+        style={{
+          background: `
+      radial-gradient(ellipse at center, transparent 35%, rgba(0,0,0,0.84) 100%),
+      linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, transparent 20%, transparent 80%, rgba(0,0,0,0.7) 100%)
+    `,
+          mixBlendMode: "multiply",
+        }}
+      />
 
       {/* Slider */}
       <div className="slider relative w-screen h-screen overflow-hidden">
@@ -358,16 +331,16 @@ const ProgramCarousel = () => {
             }}
           >
             <img
-              src="./assets/img1.jpeg"
+              src="/images/programCarousel/bg1.png"
               alt=""
               className="w-full h-full object-cover"
               style={{ willChange: "transform" }}
             />
-            <div className="absolute top-0 left-0 w-full h-full bg-black/[0.125]" />
+            <div className="absolute top-0 left-0 w-full h-full bg-black/12.5" />
           </div>
         </div>
 
-        <div className="slide-main-img absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[25%] h-1/2 z-[2] max-[900px]:w-[75%]">
+        <div className="slide-main-img absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[25%] h-1/2 z-2 max-[900px]:w-[75%]">
           <div
             className="slide-main-img-wrapper absolute top-0 left-0 w-full h-full"
             style={{
@@ -376,7 +349,7 @@ const ProgramCarousel = () => {
             }}
           >
             <img
-              src="./assets/img1.jpeg"
+              src="/images/programCarousel/img1.png"
               alt=""
               className="w-full h-full object-cover"
               style={{ willChange: "transform" }}
@@ -384,8 +357,8 @@ const ProgramCarousel = () => {
           </div>
         </div>
 
-        <div className="slide-copy absolute top-1/2 left-[30%] -translate-x-1/2 -translate-y-1/2 text-white z-[2] max-[900px]:top-[60%] max-[900px]:left-[60%]">
-          <div className="slide-title relative w-[500px] h-[50px] mb-3 overflow-hidden">
+        <div className="slide-copy absolute top-1/2 left-[30%] -translate-x-1/2 -translate-y-1/2 text-white z-2 max-[900px]:top-[60%] max-[900px]:left-[60%]">
+          <div className="slide-title relative w-125 h-12.5 mb-3 overflow-hidden">
             <h1
               className="absolute text-white text-5xl font-normal leading-none translate-x-0"
               style={{ willChange: "transform" }}
@@ -393,13 +366,38 @@ const ProgramCarousel = () => {
               Field Unit
             </h1>
           </div>
-          <div className="slide-description relative w-[500px] h-5 overflow-hidden">
+          <div className="slide-description relative w-125 h-5 overflow-hidden">
             <p
               className="absolute text-white text-lg font-light leading-none translate-x-0"
               style={{ willChange: "transform" }}
             >
               Concept Art
             </p>
+          </div>
+
+          <div className="flex gap-8 items-center">
+            <button
+              onClick={handlePrevious}
+              disabled={isAnimating.current}
+              className="group transition-transform active:scale-95 disabled:opacity-50"
+            >
+              <img
+                src="/images/programCarousel/leftButton.svg"
+                alt="Previous"
+                className="w-12 h-12 transition-opacity group-hover:opacity-80"
+              />
+            </button>
+            <button
+              onClick={handleNext}
+              disabled={isAnimating.current}
+              className="group transition-transform active:scale-95 disabled:opacity-50"
+            >
+              <img
+                src="/images/programCarousel/leftButton.svg"
+                alt="Next"
+                className="w-12 h-12 transition-opacity group-hover:opacity-80 scale-x-[-1]"
+              />
+            </button>
           </div>
         </div>
       </div>

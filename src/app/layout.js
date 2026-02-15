@@ -1,21 +1,19 @@
 import "./globals.css";
-import localFont from "next/font/local";
-import { Slackey } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/common/Footer";
 import SmoothScroll from "@/components/common/SmoothScroll";
 import ScrollReset from "@/components/common/ScrollReset";
-
-const slackey = Slackey({
-  weight: "400",
-  subsets: ["latin"],
-  variable: "--font-slackey",
-});
-
-const leagueGothic = localFont({
-  src: "../fonts/LeagueGothic-Regular-VariableFont_wdth.ttf",
-  variable: "--font-league-gothic",
-});
+import {
+  brixton,
+  calfine,
+  elanor,
+  magilio,
+  marko,
+  moniqa,
+  scalter,
+  leagueGothic,
+  slackey,
+} from "./fonts";
 
 export const metadata = {
   title: "Ragam 2026",
@@ -27,7 +25,18 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${leagueGothic.variable} ${slackey.variable} antialiased`}
+        className={`
+          ${leagueGothic.variable}
+          ${slackey.variable}
+          ${brixton.variable}
+          ${calfine.variable}
+          ${elanor.variable}
+          ${magilio.variable}
+          ${marko.variable}
+          ${moniqa.variable}
+          ${scalter.variable}
+          antialiased
+        `}
         suppressHydrationWarning
       >
         {" "}
