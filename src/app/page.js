@@ -4,9 +4,7 @@ import Proshow from "@/components/proshow";
 export default function Home() {
   return (
     <>
-
       <Proshow />
-
     </>
   );
 }

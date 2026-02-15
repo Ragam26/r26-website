@@ -1,23 +1,18 @@
 import Image from "next/image";
 
-export default function ProshowCard({
-  name = "JUBIN NAUTIYAL",
-  month = "MARCH",
-  date = "23",
-  tilt = 0,
-}) {
+export default function ProshowCard({ name, month, date, tilt, image }) {
   return (
-    <div className="[perspective:1000px]">
+    <div className="perspective-[1000px]">
       <div
         className="
           text-yellow-100 w-70 h-130 flex flex-col
           bg-no-repeat bg-center bg-contain
           transition-transform duration-500
-          [transform-style:preserve-3d]
+          transform-3d
         "
         style={{
           backgroundImage: `url(proshowCardBg.png)`,
-          transform: `rotateY(${tilt}deg)` // Use style for dynamic values
+          transform: `rotateY(${tilt}deg)`,
         }}
       >
         <div className="flex flex-col flex-1 justify-end text-center text-6xl font-league-gothic">
@@ -38,8 +33,8 @@ export default function ProshowCard({
 
           <div className="flex flex-col p-4 flex-5 relative">
             <Image
-              src="/proshowArtist_1.png"
-              alt="Proshow Artist"
+              src={image}
+              alt={name}
               fill
               className="-ml-15 mt-12 scale-100 overflow-visible object-contain"
             />
