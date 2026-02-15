@@ -99,7 +99,17 @@ const ProgramCarousel = () => {
     const slider = document.querySelector(".slider");
     const currentSlideElement = slider.querySelector(".slide");
     const mainImageContainer = document.querySelector(".slide-main-img");
+    const nextImageContainer = document.querySelector(".slide-next-img");
+    const nextNextImageContainer = document.querySelector(
+      ".slide-next-next-img",
+    );
     const currentMainWrapper = mainImageContainer.querySelector(
+      ".slide-main-img-wrapper",
+    );
+    const currentNextWrapper = nextImageContainer?.querySelector(
+      ".slide-main-img-wrapper",
+    );
+    const currentNextNextWrapper = nextNextImageContainer?.querySelector(
       ".slide-main-img-wrapper",
     );
 
@@ -120,6 +130,14 @@ const ProgramCarousel = () => {
 
     const newSlide = createSlide(nextSlide, direction);
     const newMainWrapper = createMainImageWrapper(nextSlide, direction);
+    const newNextWrapper = createMainImageWrapper(
+      (nextSlide % totalSlides) + 1,
+      direction,
+    );
+    const newNextNextWrapper = createMainImageWrapper(
+      ((nextSlide + 1) % totalSlides) + 1,
+      direction,
+    );
     const { newTitle, newDescription, newCounter } = createTextElements(
       nextSlide,
       direction,
@@ -127,12 +145,18 @@ const ProgramCarousel = () => {
 
     slider.appendChild(newSlide);
     mainImageContainer.appendChild(newMainWrapper);
+    if (nextImageContainer) nextImageContainer.appendChild(newNextWrapper);
+    if (nextNextImageContainer)
+      nextNextImageContainer.appendChild(newNextNextWrapper);
+
     titleContainer.appendChild(newTitle);
     descriptionContainer.appendChild(newDescription);
     counterContainer.appendChild(newCounter);
 
-    gsap.set(newMainWrapper.querySelector("img"), {
-      x: direction === "right" ? "-50%" : "50%",
+    [newMainWrapper, newNextWrapper, newNextNextWrapper].forEach((wrapper) => {
+      gsap.set(wrapper.querySelector("img"), {
+        x: direction === "right" ? "-50%" : "50%",
+      });
     });
 
     const tl = gsap.timeline({
@@ -140,6 +164,8 @@ const ProgramCarousel = () => {
         [
           currentSlideElement,
           currentMainWrapper,
+          currentNextWrapper,
+          currentNextNextWrapper,
           currentTitle,
           currentDescription,
           currentCounter,
@@ -149,6 +175,51 @@ const ProgramCarousel = () => {
         isAnimating.current = false;
       },
     });
+
+    [newMainWrapper, newNextWrapper, newNextNextWrapper].forEach(
+      (wrapper, index) => {
+        // Animate the ClipPath
+        tl.to(
+          wrapper,
+          {
+            clipPath:
+              direction === "right"
+                ? "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)"
+                : "polygon(100% 0%, 0% 0%, 0% 100%, 100% 100%)",
+            duration: 1.25,
+            ease: CustomEase.create("", ".87,0,.13,1"),
+          },
+          0,
+        );
+
+        // Animate the Image sliding inside
+        tl.to(
+          wrapper.querySelector("img"),
+          {
+            x: "0%",
+            duration: 1.25,
+            ease: CustomEase.create("", ".87,0,.13,1"),
+          },
+          0,
+        );
+      },
+    );
+
+    // 7. Animate the OLD images out
+    [currentMainWrapper, currentNextWrapper, currentNextNextWrapper].forEach(
+      (wrapper) => {
+        if (!wrapper) return;
+        tl.to(
+          wrapper.querySelector("img"),
+          {
+            x: direction === "right" ? "50%" : "-50%",
+            duration: 1.25,
+            ease: CustomEase.create("", ".87,0,.13,1"),
+          },
+          0,
+        );
+      },
+    );
 
     tl.to(
       newSlide.querySelector("div"),
@@ -323,29 +394,32 @@ const ProgramCarousel = () => {
               <img
                 src={`/images/programCarousel/img${currentSlide}.png`}
                 alt=""
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-center"
+                style={{ willChange: "transform" }}
               />
               <div className="absolute inset-0 pointer-events-none shadow-[inset_0_0_50px_rgba(0,0,0,0.6)] z-10" />
             </div>
           </div>
 
           {/* 2. SECOND CARD (+1) */}
-          <div className="relative w-[220px] h-[330px] rounded-2xl border-2 border-[#DFB385] overflow-hidden hidden md:block">
+          <div className="slide-next-img relative w-[220px] h-[330px] rounded-2xl border-2 border-[#DFB385] overflow-hidden hidden md:block">
             <img
               src={`/images/programCarousel/img${(currentSlide % totalSlides) + 1}.png`}
               alt=""
               className="w-full h-full object-cover"
             />
+            <div className="absolute inset-0 bg-black/20 pointer-events-none z-10" />
             <div className="absolute inset-0 pointer-events-none shadow-[inset_0_0_50px_rgba(0,0,0,0.6)] z-10" />
           </div>
 
           {/* 3. THIRD CARD (+2) */}
-          <div className="relative w-[220px] h-[330px] rounded-2xl border-2 border-[#DFB385] overflow-hidden hidden lg:block">
+          <div className="slide-next-next-img relative w-[220px] h-[330px] rounded-2xl border-2 border-[#DFB385] overflow-hidden hidden lg:block">
             <img
               src={`/images/programCarousel/img${((currentSlide + 1) % totalSlides) + 1}.png`}
               alt=""
               className="w-full h-full object-cover"
             />
+            <div className="absolute inset-0 bg-black/20 pointer-events-none z-10" />
             <div className="absolute inset-0 pointer-events-none shadow-[inset_0_0_50px_rgba(0,0,0,0.6)] z-10" />
           </div>
         </div>
