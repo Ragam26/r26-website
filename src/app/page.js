@@ -1,10 +1,13 @@
 import Image from "next/image";
-import Proshow from "@/components/proshow";
+import Polaroid from "./schedule/polaroid/page";
+import LandingPage from "@/pages/landing/LandingPage";
 
 export default function Home() {
   return (
     <>
-      <Proshow />
+      {" "}
+      <LandingPage />
+      <Polaroid />
     </>
   );
 }
