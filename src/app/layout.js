@@ -11,9 +11,9 @@ import {
   marko,
   moniqa,
   scalter,
-  leagueGothic,
   slackey,
-} from "./fonts";
+  leagueGothic,
+} from "@/lib/fonts";
 
 export const metadata = {
   title: "Ragam 2026",
