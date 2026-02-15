@@ -1,3 +1,5 @@
+import { Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import { Slackey } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/footer/footer";
@@ -11,6 +13,11 @@ const slackey = Slackey({
   variable: "--font-slackey",
 });
 
+const leagueGothic = localFont({
+  src: "../fonts/LeagueGothic-Regular-VariableFont_wdth.ttf",
+  variable: "--font-league-gothic",
+});
+
 export const metadata = {
   title: "Ragam 2026",
   description:
@@ -21,7 +28,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${slackey.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${leagueGothic.variable} ${slackey.variable} antialiased`}
         suppressHydrationWarning
       >
         {" "}
