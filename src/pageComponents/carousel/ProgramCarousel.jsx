@@ -4,36 +4,13 @@
 import React, { useRef, useState } from "react";
 import gsap from "gsap";
 import { CustomEase } from "gsap/CustomEase";
-
+import { slideData } from "./slideData";
 gsap.registerPlugin(CustomEase);
 
 const ProgramCarousel = () => {
-  const totalSlides = 7;
+  const totalSlides = 8;
   const [currentSlide, setCurrentSlide] = useState(1);
   const isAnimating = useRef(false);
-
-  const slideTitles = [
-    "EVENTS",
-    "WORKSHOPS",
-    "GAMING",
-    "PRODEZZA",
-    "SPORTS",
-    "PROSHOW",
-    "I-INK",
-    "INFORMALS",
-  ];
-
-  const slideDescriptions = [
-    "Flagship Competitions",
-    "Hands-on Learning",
-    "Esports Battles",
-    "Creative Contests",
-    "Athletic Showdown",
-    "Star Performances",
-    "Set Design",
-    "Words & Wit",
-    "Cultural Showcase",
-  ];
 
   const createSlide = (slideNumber, direction) => {
     const slide = document.createElement("div");
@@ -91,20 +68,18 @@ const ProgramCarousel = () => {
   };
 
   const createTextElements = (slideNumber, direction) => {
+    const data = slideData[slideNumber - 1];
+
     const newTitle = document.createElement("h1");
-    newTitle.textContent = slideTitles[slideNumber - 1];
-    newTitle.className =
-      "absolute text-white text-5xl font-normal leading-none uppercase";
+    newTitle.textContent = data.title;
+    newTitle.className = `absolute text-white uppercase leading-none ${data.titleFont} ${data.titleSize} ${data.titleWeight}`;
     newTitle.style.willChange = "transform";
-    // Start 100% down (hidden by overflow-hidden)
     gsap.set(newTitle, { y: "100%" });
 
     const newDescription = document.createElement("p");
-    newDescription.textContent = slideDescriptions[slideNumber - 1];
-    newDescription.className =
-      "absolute text-white text-lg font-light leading-none";
+    newDescription.textContent = data.desc;
+    newDescription.className = `absolute text-white leading-none ${data.descFont} ${data.descSize} ${data.descWeight}`;
     newDescription.style.willChange = "transform";
-    // Start 100% down
     gsap.set(newDescription, { y: "100%" });
 
     const newCounter = document.createElement("p");
@@ -314,7 +289,7 @@ const ProgramCarousel = () => {
         style={{
           background: `
       radial-gradient(ellipse at center, transparent 35%, rgba(0,0,0,0.84) 100%),
-      linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, transparent 20%, transparent 80%, rgba(0,0,0,0.7) 100%)
+      linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, transparent 20%, transparent 65%, rgba(0,0,0,0.75) 100%)
     `,
           mixBlendMode: "multiply",
         }}
@@ -340,42 +315,59 @@ const ProgramCarousel = () => {
           </div>
         </div>
 
-        <div className="slide-main-img absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[25%] h-1/2 z-2 max-[900px]:w-[75%]">
-          <div
-            className="slide-main-img-wrapper absolute top-0 left-0 w-full h-full"
-            style={{
-              clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
-              willChange: "clip-path",
-            }}
-          >
+        {/* Container positioned to the center, containing all three cards */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-[23%] -translate-y-26 flex items-end gap-8 z-10 w-max pointer-events-none">
+          {/* 1. MAIN CENTRE CARD (Your exact size) */}
+          <div className="slide-main-img relative w-70 h-105 rounded-2xl border-3 border-[#DFB385] overflow-hidden shadow-2xl">
+            <div className="slide-main-img-wrapper h-full w-full">
+              <img
+                src={`/images/programCarousel/img${currentSlide}.png`}
+                alt=""
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 pointer-events-none shadow-[inset_0_0_50px_rgba(0,0,0,0.6)] z-10" />
+            </div>
+          </div>
+
+          {/* 2. SECOND CARD (+1) */}
+          <div className="relative w-[220px] h-[330px] rounded-2xl border-2 border-[#DFB385] overflow-hidden hidden md:block">
             <img
-              src="/images/programCarousel/img1.png"
+              src={`/images/programCarousel/img${(currentSlide % totalSlides) + 1}.png`}
               alt=""
               className="w-full h-full object-cover"
-              style={{ willChange: "transform" }}
             />
+            <div className="absolute inset-0 pointer-events-none shadow-[inset_0_0_50px_rgba(0,0,0,0.6)] z-10" />
+          </div>
+
+          {/* 3. THIRD CARD (+2) */}
+          <div className="relative w-[220px] h-[330px] rounded-2xl border-2 border-[#DFB385] overflow-hidden hidden lg:block">
+            <img
+              src={`/images/programCarousel/img${((currentSlide + 1) % totalSlides) + 1}.png`}
+              alt=""
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 pointer-events-none shadow-[inset_0_0_50px_rgba(0,0,0,0.6)] z-10" />
           </div>
         </div>
-
-        <div className="slide-copy absolute top-1/2 left-[30%] -translate-x-1/2 -translate-y-1/2 text-white z-2 max-[900px]:top-[60%] max-[900px]:left-[60%]">
-          <div className="slide-title relative w-125 h-12.5 mb-3 overflow-hidden">
+        <div className="slide-copy absolute top-[28%] left-[4.5%] text-white z-100 ">
+          <div className="slide-title relative w-125 h-20 mb-2 overflow-hidden">
             <h1
-              className="absolute text-white text-5xl font-normal leading-none translate-x-0"
+              className={`absolute text-white leading-none translate-x-0 uppercase ${slideData[currentSlide - 1].titleFont} ${slideData[currentSlide - 1].titleSize} ${slideData[currentSlide - 1].titleWeight}`}
               style={{ willChange: "transform" }}
             >
-              Field Unit
+              {slideData[currentSlide - 1].title}
             </h1>
           </div>
-          <div className="slide-description relative w-125 h-5 overflow-hidden">
+          <div className="slide-description relative w-125 h-6 mb-3 overflow-hidden">
             <p
-              className="absolute text-white text-lg font-light leading-none translate-x-0"
+              className={`absolute text-white leading-none translate-x-0 ${slideData[currentSlide - 1].descFont} ${slideData[currentSlide - 1].descSize} ${slideData[currentSlide - 1].descWeight}`}
               style={{ willChange: "transform" }}
             >
-              Concept Art
+              {slideData[currentSlide - 1].desc}
             </p>
           </div>
 
-          <div className="flex gap-8 items-center">
+          <div className="flex gap-12 items-center">
             <button
               onClick={handlePrevious}
               disabled={isAnimating.current}
@@ -384,7 +376,7 @@ const ProgramCarousel = () => {
               <img
                 src="/images/programCarousel/leftButton.svg"
                 alt="Previous"
-                className="w-12 h-12 transition-opacity group-hover:opacity-80"
+                className="w-10 h-10 transition-opacity group-hover:opacity-80"
               />
             </button>
             <button
@@ -395,7 +387,7 @@ const ProgramCarousel = () => {
               <img
                 src="/images/programCarousel/leftButton.svg"
                 alt="Next"
-                className="w-12 h-12 transition-opacity group-hover:opacity-80 scale-x-[-1]"
+                className="w-10 h-10 transition-opacity group-hover:opacity-80 scale-x-[-1]"
               />
             </button>
           </div>
