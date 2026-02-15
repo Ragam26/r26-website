@@ -9,8 +9,9 @@ export default function Home() {
       {' '}
       <LandingPage />
       <PolaroidPage />
-      <Legacy />
+      <ProgramCarousel />
       <ProshowSection />
+      <Legacy />
     </>
   )
 }

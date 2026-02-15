@@ -124,7 +124,55 @@ export default function Footer() {
                   color: hoverData?.id === letter.id ? letter.color : 'white',
                 }}
               >
-                {letter.char}
+                <div
+                  className="transition-all duration-300"
+                  style={{
+                    width: "1em",
+                    height: "1em",
+                    transform:
+                      activeMobileLetter === letter.id
+                        ? "scale(1.05)"
+                        : "scale(1)",
+                    backgroundImage:
+                      activeMobileLetter === letter.id
+                        ? `url(${letter.image})`
+                        : "none",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+
+                    WebKitMaskImage: `url(${letter.char})`,
+                    WebkitMaskRepeat: "no-repeat",
+                    WebkitMaskSize: "contain",
+                    WebkitMaskPosition: "center",
+
+                    maskImage: `url(${letter.char})`,
+                    maskRepeat: "no-repeat",
+                    maskSize: "contain",
+                    maskPosition: "center",
+
+                    backgroundColor:
+                      hoverData?.id === letter.id
+                        ? letter.color
+                        : "white",
+                  }}  
+                />
+                {hoverData?.id === letter.id && (
+                  <div
+                    className="absolute pointer-events-none z-50 transition-all duration-300 w-50 h-33"
+                    style={{
+                        left: "50%",
+                        top: "50%",
+                        transform: `translate(${letter.hoverOffset.x}, ${letter.hoverOffset.y})`,        
+                    }}
+                    >
+                    <Image
+                        src={letter.image}
+                        alt={letter.char}
+                        fill
+                        className="object-cover"
+                    />    
+                </div>
+                )}
               </span>
             ))}
           </h1>
