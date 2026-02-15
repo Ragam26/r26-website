@@ -349,22 +349,9 @@ const ProgramCarousel = () => {
   };
 
   return (
-    <div className="w-full h-full font-sans">
-      <footer className="fixed bottom-0 left-0 w-full p-12 flex justify-between items-center z-2">
-        <div className="hidden md:flex text-white text-[15px] font-light">
-          <div className="count relative h-4.5 w-6 flex justify-center overflow-hidden">
-            <p
-              className="absolute translate-x-0 text-base leading-none opacity-100"
-              style={{ willChange: "transform" }}
-            >
-              {currentSlide}
-            </p>
-          </div>
-          <p className="w-6 flex justify-center opacity-35">/</p>
-          <p className="opacity-35">7</p>
-        </div>
-      </footer>
-
+    <div className="relative w-full h-screen font-sans overflow-hidden bg-black">
+      {" "}
+      <footer className="count"></footer>
       {/* Stretched Oval with extra Top/Bottom feathering */}
       <div
         className="absolute inset-0 z-5 pointer-events-none"
@@ -376,7 +363,6 @@ const ProgramCarousel = () => {
           mixBlendMode: "multiply",
         }}
       />
-
       {/* Slider */}
       <div className="slider relative w-screen h-screen overflow-hidden">
         <div className="slide absolute top-0 left-0 w-full h-full">
@@ -490,8 +476,7 @@ const ProgramCarousel = () => {
           </div>
         </div>
       </div>
-
-      <footer className="fixed bottom-2 left-0 w-full px-12 z-20">
+      <footer className="absolute bottom-2 left-0 w-full px-12 z-20">
         <div className="hidden md:flex justify-center items-center">
           <div className="flex gap-10">
             {slideTitles.map((title, index) => {

@@ -45,7 +45,7 @@ export default function RootLayout({ children }) {
         <ScrollReset />{" "}
         <SmoothScroll>
           {children}
-          {/* <Footer /> */}
+          <Footer />
         </SmoothScroll>
         <ScrollReset />
       </body>

@@ -8,12 +8,11 @@ export default function Home() {
   return (
     <>
       {" "}
-      {/* <LandingPage />
+      <LandingPage />
       <PolaroidPage />
-      <Legacy />
-
-      <ProshowSection /> */}
       <ProgramCarousel />
+      <ProshowSection />
+      <Legacy />
     </>
   );
 }
