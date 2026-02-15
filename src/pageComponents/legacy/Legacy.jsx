@@ -337,7 +337,7 @@ export default function Legacy() {
         <RadialDots />
       </div>
 
-      <div className="relative z-20 md:py-16 mt-0 md:mt-18 lg:mt-0 sm:py-8 sm:px-2">
+      <div className="relative z-20 md:pb-16 md:pt-6 mt-0 md:mt-18 lg:mt-0 sm:py-8 sm:px-2">
         <div className="flex justify-center gap-8">
           <div
             className="w-auto flex self-start justify-center text-white font-bold -mr-8 left-text"
