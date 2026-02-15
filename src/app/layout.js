@@ -13,6 +13,7 @@ import {
   scalter,
   slackey,
   leagueGothic,
+  kiwi,
 } from "@/lib/fonts";
 
 export const metadata = {
@@ -35,6 +36,7 @@ export default function RootLayout({ children }) {
           ${marko.variable}
           ${moniqa.variable}
           ${scalter.variable}
+          ${kiwi.variable}
           antialiased
         `}
         suppressHydrationWarning

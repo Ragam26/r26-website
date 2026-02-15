@@ -43,6 +43,12 @@ export const scalter = localFont({
   display: "swap",
 });
 
+export const kiwi = localFont({
+  src: "../../public/fonts/KiwiMaru-Medium.ttf",
+  variable: "--font-kiwi",
+  display: "swap",
+});
+
 export const slackey = Slackey({
   weight: "400",
   subsets: ["latin"],

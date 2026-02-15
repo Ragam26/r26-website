@@ -100,3 +100,5 @@ export const slideData = [
     descWeight: "font-normal",
   },
 ];
+
+export const slideTitles = slideData.map((slide) => slide.title);

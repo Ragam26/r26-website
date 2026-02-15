@@ -4,7 +4,8 @@
 import React, { useRef, useState } from "react";
 import gsap from "gsap";
 import { CustomEase } from "gsap/CustomEase";
-import { slideData } from "./slideData";
+import { slideData, slideTitles } from "./slideData";
+import { kiwi } from "@/lib/fonts";
 gsap.registerPlugin(CustomEase);
 
 const ProgramCarousel = () => {
@@ -91,8 +92,10 @@ const ProgramCarousel = () => {
     return { newTitle, newDescription, newCounter };
   };
 
-  const animateSlide = (direction) => {
+  const animateSlide = (direction, targetSlide = null) => {
     if (isAnimating.current) return;
+
+    if (targetSlide !== null && targetSlide === currentSlide) return;
 
     isAnimating.current = true;
 
@@ -122,10 +125,14 @@ const ProgramCarousel = () => {
     const currentCounter = counterContainer.querySelector("p");
 
     let nextSlide;
-    if (direction === "right") {
-      nextSlide = currentSlide === totalSlides ? 1 : currentSlide + 1;
+    if (targetSlide !== null) {
+      nextSlide = targetSlide;
     } else {
-      nextSlide = currentSlide === 1 ? totalSlides : currentSlide - 1;
+      if (direction === "right") {
+        nextSlide = currentSlide === totalSlides ? 1 : currentSlide + 1;
+      } else {
+        nextSlide = currentSlide === 1 ? totalSlides : currentSlide - 1;
+      }
     }
 
     const newSlide = createSlide(nextSlide, direction);
@@ -186,7 +193,7 @@ const ProgramCarousel = () => {
               direction === "right"
                 ? "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)"
                 : "polygon(100% 0%, 0% 0%, 0% 100%, 100% 100%)",
-            duration: 1.25,
+            duration: 0.8,
             ease: CustomEase.create("", ".87,0,.13,1"),
           },
           0,
@@ -197,7 +204,7 @@ const ProgramCarousel = () => {
           wrapper.querySelector("img"),
           {
             x: "0%",
-            duration: 1.25,
+            duration: 0.8,
             ease: CustomEase.create("", ".87,0,.13,1"),
           },
           0,
@@ -205,7 +212,6 @@ const ProgramCarousel = () => {
       },
     );
 
-    // 7. Animate the OLD images out
     [currentMainWrapper, currentNextWrapper, currentNextNextWrapper].forEach(
       (wrapper) => {
         if (!wrapper) return;
@@ -213,7 +219,7 @@ const ProgramCarousel = () => {
           wrapper.querySelector("img"),
           {
             x: direction === "right" ? "50%" : "-50%",
-            duration: 1.25,
+            duration: 0.8,
             ease: CustomEase.create("", ".87,0,.13,1"),
           },
           0,
@@ -228,7 +234,7 @@ const ProgramCarousel = () => {
           direction === "right"
             ? "polygon(100% 0%, 0% 0%, 0% 100%, 100% 100%)"
             : "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-        duration: 1.25,
+        duration: 0.8,
         ease: CustomEase.create("", ".87,0,.13,1"),
       },
       0,
@@ -237,7 +243,7 @@ const ProgramCarousel = () => {
         currentSlideElement.querySelector("img"),
         {
           scale: 1.5,
-          duration: 1.25,
+          duration: 0.8,
           ease: CustomEase.create("", ".87,0,.13,1"),
         },
         0,
@@ -249,7 +255,7 @@ const ProgramCarousel = () => {
             direction === "right"
               ? "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)"
               : "polygon(100% 0%, 0% 0%, 0% 100%, 100% 100%)",
-          duration: 1.25,
+          duration: 0.8,
           ease: CustomEase.create("", ".87,0,.13,1"),
         },
         0,
@@ -258,7 +264,7 @@ const ProgramCarousel = () => {
         currentMainWrapper.querySelector("img"),
         {
           x: direction === "right" ? "50%" : "-50%",
-          duration: 1.25,
+          duration: 0.8,
           ease: CustomEase.create("", ".87,0,.13,1"),
         },
         0,
@@ -267,7 +273,7 @@ const ProgramCarousel = () => {
         newMainWrapper.querySelector("img"),
         {
           x: "0%",
-          duration: 1.25,
+          duration: 0.8,
           ease: CustomEase.create("", ".87,0,.13,1"),
         },
         0,
@@ -276,7 +282,7 @@ const ProgramCarousel = () => {
         currentTitle,
         {
           y: "-100%", // Slide up and out
-          duration: 1.25,
+          duration: 0.8,
           ease: CustomEase.create("", ".87,0,.13,1"),
         },
         0,
@@ -285,7 +291,7 @@ const ProgramCarousel = () => {
         newTitle,
         {
           y: "0%", // Slide up into view
-          duration: 1.25,
+          duration: 0.8,
           ease: CustomEase.create("", ".87,0,.13,1"),
         },
         0,
@@ -294,7 +300,7 @@ const ProgramCarousel = () => {
         currentDescription,
         {
           y: "-100%",
-          duration: 1.25,
+          duration: 0.8,
           ease: CustomEase.create("", ".87,0,.13,1"),
         },
         0,
@@ -303,7 +309,7 @@ const ProgramCarousel = () => {
         newDescription,
         {
           y: "0%",
-          duration: 1.25,
+          duration: 0.8,
           ease: CustomEase.create("", ".87,0,.13,1"),
         },
         0,
@@ -312,7 +318,7 @@ const ProgramCarousel = () => {
         currentCounter,
         {
           y: "-100%",
-          duration: 1.25,
+          duration: 0.8,
           ease: CustomEase.create("", ".87,0,.13,1"),
         },
         0,
@@ -321,24 +327,29 @@ const ProgramCarousel = () => {
         newCounter,
         {
           y: "0%",
-          duration: 1.25,
+          duration: 0.8,
           ease: CustomEase.create("", ".87,0,.13,1"),
         },
         0,
       );
   };
 
-  const handlePrevious = () => {
-    animateSlide("left");
+  const handlePrevious = () => animateSlide("left");
+  const handleNext = () => animateSlide("right");
+
+  const goToSlide = (index) => {
+    const direction = index > currentSlide ? "right" : "left";
+    animateSlide(direction, index);
   };
 
-  const handleNext = () => {
-    animateSlide("right");
+  const clickToSlide = (targetIndex) => {
+    if (isAnimating.current || targetIndex === currentSlide) return;
+    const direction = targetIndex > currentSlide ? "right" : "left";
+    animateSlide(direction, targetIndex);
   };
 
   return (
     <div className="w-full h-full font-sans">
-      {/* Footer with counter */}
       <footer className="fixed bottom-0 left-0 w-full p-12 flex justify-between items-center z-2">
         <div className="flex text-white text-[15px] font-light">
           <div className="count relative h-4.5 w-6 flex justify-center overflow-hidden">
@@ -387,9 +398,9 @@ const ProgramCarousel = () => {
         </div>
 
         {/* Container positioned to the center, containing all three cards */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-[23%] -translate-y-26 flex items-end gap-8 z-10 w-max pointer-events-none">
+        <div className="absolute top-1/2 left-1/2 -translate-x-[23%] -translate-y-28 flex items-end gap-8 z-10 w-max ">
           {/* 1. MAIN CENTRE CARD (Your exact size) */}
-          <div className="slide-main-img relative w-70 h-105 rounded-2xl border-3 border-[#DFB385] overflow-hidden shadow-2xl">
+          <div className="slide-main-img relative w-70 h-105 rounded-2xl border-3 border-[#DFB385] overflow-hidden shadow-2xl cursor-pointer transition-transform duration-300 hover:-translate-y-3">
             <div className="slide-main-img-wrapper h-full w-full">
               <img
                 src={`/images/programCarousel/img${currentSlide}.png`}
@@ -402,25 +413,31 @@ const ProgramCarousel = () => {
           </div>
 
           {/* 2. SECOND CARD (+1) */}
-          <div className="slide-next-img relative w-[220px] h-[330px] rounded-2xl border-2 border-[#DFB385] overflow-hidden hidden md:block">
+          <div
+            onClick={() => clickToSlide((currentSlide % totalSlides) + 1)}
+            className="slide-next-img relative w-[220px] h-[330px] rounded-2xl border-2 border-[#DFB385] overflow-hidden hidden md:block pointer-events-auto cursor-pointer transition-transform duration-300 hover:-translate-y-3"
+          >
             <img
               src={`/images/programCarousel/img${(currentSlide % totalSlides) + 1}.png`}
               alt=""
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-black/20 pointer-events-none z-10" />
-            <div className="absolute inset-0 pointer-events-none shadow-[inset_0_0_50px_rgba(0,0,0,0.6)] z-10" />
+            <div className="absolute inset-0 bg-black/20 z-10" />
+            <div className="absolute inset-0 shadow-[inset_0_0_50px_rgba(0,0,0,0.6)] z-10" />
           </div>
 
           {/* 3. THIRD CARD (+2) */}
-          <div className="slide-next-next-img relative w-[220px] h-[330px] rounded-2xl border-2 border-[#DFB385] overflow-hidden hidden lg:block">
+          <div
+            onClick={() => clickToSlide(((currentSlide + 1) % totalSlides) + 1)}
+            className="slide-next-next-img relative w-[220px] h-[330px] rounded-2xl border-2 border-[#DFB385] overflow-hidden hidden lg:block pointer-events-auto cursor-pointer transition-transform duration-300 hover:-translate-y-3"
+          >
             <img
               src={`/images/programCarousel/img${((currentSlide + 1) % totalSlides) + 1}.png`}
               alt=""
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-black/20 pointer-events-none z-10" />
-            <div className="absolute inset-0 pointer-events-none shadow-[inset_0_0_50px_rgba(0,0,0,0.6)] z-10" />
+            <div className="absolute inset-0 bg-black/20 z-10" />
+            <div className="absolute inset-0 shadow-[inset_0_0_50px_rgba(0,0,0,0.6)] z-10" />
           </div>
         </div>
         <div className="slide-copy absolute top-[28%] left-[4.5%] text-white z-100 ">
@@ -441,7 +458,7 @@ const ProgramCarousel = () => {
             </p>
           </div>
 
-          <div className="flex gap-12 items-center">
+          <div className="flex gap-14 items-center">
             <button
               onClick={handlePrevious}
               disabled={isAnimating.current}
@@ -450,7 +467,7 @@ const ProgramCarousel = () => {
               <img
                 src="/images/programCarousel/leftButton.svg"
                 alt="Previous"
-                className="w-10 h-10 transition-opacity group-hover:opacity-80"
+                className="w-9 h-9 transition-opacity group-hover:opacity-80"
               />
             </button>
             <button
@@ -461,12 +478,37 @@ const ProgramCarousel = () => {
               <img
                 src="/images/programCarousel/leftButton.svg"
                 alt="Next"
-                className="w-10 h-10 transition-opacity group-hover:opacity-80 scale-x-[-1]"
+                className="w-9 h-9 transition-opacity group-hover:opacity-80 scale-x-[-1]"
               />
             </button>
           </div>
         </div>
       </div>
+
+      <footer className="fixed bottom-2 left-0 w-full px-12 z-20">
+        <div className="flex justify-center items-center">
+          <div className="flex gap-10">
+            {slideTitles.map((title, index) => {
+              const slideNumber = index + 1;
+              const isActive = currentSlide === slideNumber;
+
+              return (
+                <button
+                  key={index}
+                  onClick={() => goToSlide(slideNumber)}
+                  className={`
+              text-sm tracking-[0.3em] uppercase transition-all duration-300 hover:text-white
+              ${isActive ? "text-[#DFB385] scale-105" : "text-white/80"}
+              ${kiwi.className} 
+            `}
+                >
+                  {title}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };
