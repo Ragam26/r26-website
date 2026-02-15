@@ -1,7 +1,7 @@
 import PolaroidPage from "./schedule/polaroid/page";
-import LandingPage from "@/pages/landing/LandingPage";
-import Legacy from "@/pages/legacy/Legacy";
-import ProshowSection from "@/pages/proshow/proshow";
+import LandingPage from "@/pageComponents/landing/LandingPage";
+import Legacy from "@/pageComponents/legacy/Legacy";
+import ProshowSection from "@/pageComponents/proshow/proshow";
 
 export default function Home() {
   return (

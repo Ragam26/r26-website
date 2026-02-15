@@ -1,6 +1,6 @@
 import { League_Gothic, Allura } from "next/font/google";
-import ProshowDesktop from "@/pages/proshow/proshowDesktop";
-import ProshowMobile from "@/pages/proshow/carousal";
+import ProshowDesktop from "@/pageComponents/proshow/proshowDesktop";
+import ProshowMobile from "@/pageComponents/proshow/carousal";
 
 const leagueGothic = League_Gothic({ subsets: ["latin"], weight: "400" });
 const allura = Allura({ subsets: ["latin"], weight: "400" });
