@@ -1,4 +1,4 @@
-import ProshowCard from "@/components/proshowCard";
+import ProshowCard from "@/pages/proshow/proshowCard";
 
 export default function ProshowDesktop({ artists }) {
   return (

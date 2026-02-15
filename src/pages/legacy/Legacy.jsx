@@ -183,7 +183,7 @@ function RadialDots({ count = 0.7, maxDistance = 5100 }) {
   );
 }
 
-export default function FlameStillBurns() {
+export default function Legacy() {
   const [swap, setSwap] = useState(false);
 
   const mobileRef = useRef(null);
@@ -297,7 +297,7 @@ export default function FlameStillBurns() {
   return (
     <div
       ref={sectionRef}
-      className={`relative ${brixton.className} min-h-screen w-full bg-cover bg-center bg-no-repeat overflow-hidden`}
+      className={`relative ${brixton.className} h-[65vh] sm:min-h-screen w-full bg-cover bg-center bg-no-repeat overflow-hidden`}
       style={{
         backgroundImage: `
           radial-gradient(
@@ -337,7 +337,7 @@ export default function FlameStillBurns() {
         <RadialDots />
       </div>
 
-      <div className="relative z-20 py-20 mt-16 md:mt-18 lg:mt-0 sm:py-8 sm:px-2">
+      <div className="relative z-20 md:py-16 mt-0 md:mt-18 lg:mt-0 sm:py-8 sm:px-2">
         <div className="flex justify-center gap-8">
           <div
             className="w-auto flex self-start justify-center text-white font-bold -mr-8 left-text"
@@ -396,6 +396,15 @@ export default function FlameStillBurns() {
           Learn more about the legacy
         </a>
       </div>
+
+      {/* feather fade out */}
+      <div
+        className="absolute bottom-0 left-0 w-full h-32 z-50 pointer-events-none"
+        style={{
+          background:
+            "linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%)",
+        }}
+      />
     </div>
   );
 }

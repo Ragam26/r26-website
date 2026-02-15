@@ -1,6 +1,6 @@
 import { League_Gothic, Allura } from "next/font/google";
-import ProshowDesktop from "@/components/proshowDesktop";
-import ProshowMobile from "@/components/carousal";
+import ProshowDesktop from "@/pages/proshow/proshowDesktop";
+import ProshowMobile from "@/pages/proshow/carousal";
 
 const leagueGothic = League_Gothic({ subsets: ["latin"], weight: "400" });
 const allura = Allura({ subsets: ["latin"], weight: "400" });
@@ -34,7 +34,7 @@ export default function ProshowSection({ isMobile }) {
   ];
 
   return (
-    <section className="max-w-7xl mx-auto py-3 overflow-hidden h-screen">
+    <section className="max-w-7xl mx-auto py-3 overflow-hidden h-screen ">
       {/* Water ripple filter */}
       <svg className="fixed top-0 left-0 w-0 h-0 invisible">
         <filter id="water-ripple">
@@ -58,7 +58,7 @@ export default function ProshowSection({ isMobile }) {
       {/* Title */}
       <h1
         className="font-bold flex justify-center items-center
-               translate-y-6 md:translate-0 text-[17vw] lg:text-[6vw]"
+               translate-y-6 md:translate-0 text-[17vw] lg:text-[8vw]"
       >
         <span
           className={`${leagueGothic.className} text-[#F4EFCF]

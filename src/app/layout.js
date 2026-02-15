@@ -1,10 +1,8 @@
-import './globals.css'
-import { Geist, Geist_Mono } from "next/font/google";
+import "./globals.css";
 import localFont from "next/font/local";
 import { Slackey } from "next/font/google";
 import "./globals.css";
-import Footer from "@/components/footer/footer";
-
+import Footer from "@/components/common/Footer";
 import SmoothScroll from "@/components/common/SmoothScroll";
 import ScrollReset from "@/components/common/ScrollReset";
 
@@ -20,22 +18,25 @@ const leagueGothic = localFont({
 });
 
 export const metadata = {
-  title: 'Ragam 2026',
+  title: "Ragam 2026",
   description:
     "Official website of Ragam 2026, South India's biggest cultural fest!",
-}
+};
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${leagueGothic.variable} ${slackey.variable} antialiased`}
+        className={`${leagueGothic.variable} ${slackey.variable} antialiased`}
         suppressHydrationWarning
       >
         {" "}
-        <ScrollReset /> <SmoothScroll>{children} <Footer /></SmoothScroll>
+        <ScrollReset />{" "}
+        <SmoothScroll>
+          {children} <Footer />
+        </SmoothScroll>
         <ScrollReset />
       </body>
     </html>
-  )
+  );
 }

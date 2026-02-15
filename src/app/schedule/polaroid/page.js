@@ -8,7 +8,7 @@ import KathakaliEyes from "./eyesAnimation";
 
 gsap.registerPlugin(ScrollTrigger);
 
-function Polaroid() {
+function PolaroidPage() {
   const containerRef = useRef(null);
   const rangoliRef = useRef(null);
   const datesRef = useRef([]);
@@ -72,7 +72,7 @@ function Polaroid() {
       ref={containerRef}
       className="relative flex flex-col items-center justify-center w-full h-screen bg-black overflow-hidden"
     >
-      <div className="relative flex flex-col sm:flex-row items-center justify-center md:w-full h-[75%] sm:h-[60%] md:h-[70%] lg:h-[80%]  border-t border-b border-[#F4EFCF] sm:pl-3 sm:pr-3  ">
+      <div className="relative flex flex-col sm:flex-row items-center justify-center md:w-full h-[75%] sm:h-[60%] md:h-[70%] lg:h-[80%] border-y-3  border-[#F4EFCF] sm:pl-3 sm:pr-3  ">
         {/* bg textures */}
         <img
           src={"/images/polaroid_page/upper.svg"}
@@ -201,4 +201,4 @@ function Polaroid() {
   );
 }
 
-export default Polaroid;
+export default PolaroidPage;
