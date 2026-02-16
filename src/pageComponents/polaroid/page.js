@@ -24,7 +24,7 @@ function Texture({ imageName, className }) {
   return (
     <>
       <img
-        src={`/images/polaroid_page/${imageName}.svg`}
+        src={`/images/polaroid_page/${imageName}.png`}
         alt="Background texture"
         className={className}
       />
@@ -153,12 +153,12 @@ function PolaroidPage() {
       <div className="relative flex flex-col sm:flex-row items-center justify-center w-full md:w-full h-[90%] sm:h-[60%] md:h-[70%] lg:h-[85%] border-y-3 border-[#F4EFCF] sm:px-3">
         {/* bg textures */}
         <Texture
-          imageName="upper"
+          imageName="upperBg"
           className="absolute top-0 left-0 w-full sm:w-[50%] max-w-250"
         />
 
         <Texture
-          imageName="lower"
+          imageName="lowerBg"
           className="absolute bottom-0 right-0 w-full sm:w-[50%] max-w-250"
         />
 
