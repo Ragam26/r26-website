@@ -306,13 +306,13 @@ export default function Legacy() {
             rgba(0,0,0,0.8) 50%,
             rgba(0,0,0,0.9) 100%
           ),
-          url('/images/fire-background.png')
+          url('/images/legacy/fire-background.png')
         `,
       }}
     >
       <div className="absolute inset-0 z-10 flex items-end justify-center overflow-hidden pointer-events-none">
         <Image
-          src="/images/fire.svg"
+          src="/images/legacy/fire.svg"
           alt="fire"
           className="hidden lg:block absolute bottom-0 rounded-full scale-100 bg-transparent w-auto translate-x-60"
           width={0}
@@ -320,7 +320,7 @@ export default function Legacy() {
         />
         <Image
           alt="fire"
-          src="/images/fire2.svg"
+          src="/images/legacy/fire2.svg"
           className="block lg:hidden object-cover scale-40 sm:scale-50 md:scale-60 w-auto"
           height={0}
           width={0}
@@ -337,7 +337,7 @@ export default function Legacy() {
         <RadialDots />
       </div>
 
-      <div className="relative z-20 md:py-16 mt-0 md:mt-18 lg:mt-0 sm:py-8 sm:px-2">
+      <div className="relative z-20 md:pb-16 md:pt-6 mt-0 md:mt-18 lg:mt-0 sm:py-8 sm:px-2">
         <div className="flex justify-center gap-8">
           <div
             className="w-auto flex self-start justify-center text-white font-bold -mr-8 left-text"
@@ -372,7 +372,7 @@ export default function Legacy() {
         <Image
           alt="character"
           ref={mobileRef}
-          src="/images/Rajan2.svg"
+          src="/images/legacy/Rajan2.svg"
           width={0}
           height={0}
           className="block lg:hidden object-cover w-auto
@@ -381,7 +381,7 @@ export default function Legacy() {
         <Image
           ref={desktopRef}
           alt="character"
-          src="/images/Rajan.svg"
+          src="/images/legacy/Rajan.svg"
           width={0}
           height={0}
           className="hidden lg:block h-full w-auto translate-x-60"

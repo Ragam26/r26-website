@@ -30,38 +30,38 @@ export default function Footer() {
   const letters = [
     {
       id: 1,
-      char: "/images/footer/R.svg",
+      char: "R",
       color: "#EC8047",
       image: "/images/footer/footer-1.svg",
-      hoverOffset: {x: "10%", y: "59%"},
+      position: { left: "25%", top: "45%" },
     },
     {
       id: 2,
-      char: "/images/footer/A1.svg",
+      char: "A",
       color: "#FAE4B2",
       image: "/images/footer/footer-2.svg",
-      hoverOffset: {x: "-5%", y: "-135%"},
+      position: { left: "40%", top: "10%" },
     },
     {
       id: 3,
-      char: "/images/footer/G.svg",
+      char: "G",
       color: "#850419",
       image: "/images/footer/footer-3.svg",
-      hoverOffset: {x: "-120%", y: "-50%"},
+      position: { left: "34%", top: "27%" },
     },
     {
       id: 4,
-      char: "/images/footer/A2.svg",
+      char: "A",
       color: "#F7BD73",
       image: "/images/footer/footer-4.svg",
-      hoverOffset: {x: "9%", y: "32%"},
+      position: { left: "76%", top: "46%" },
     },
     {
       id: 5,
-      char: "/images/footer/M.svg",
+      char: "M",
       color: "#768367",
       image: "/images/footer/footer-5.svg",
-      hoverOffset: {x: "-120%", y: "36%"},
+      position: { left: "70%", top: "45%" },
     },
   ];
 
@@ -69,8 +69,8 @@ export default function Footer() {
     <footer className="bg-black text-white">
       <div className="relative max-w-7xl mx-auto md:mt-2 mt-20 pt-5 pb-5">
         {/* Huge RAGAM Text */}
-        <div className="w-full text-center md:mb-20 md:mt-30 mb-10 -mt-10 ml-5">
-          <h1 className="text-[clamp(6rem,18vw,16rem)] md:font-bold font-extrabold tracking-normal leading-none flex justify-center md:gap-0 gap-11 md:scale-y-100 scale-y-150 scale-x-130 md:scale-x-100 origin-bottom">
+        <div className="w-full text-center md:mb-5 md:mt-10 mb-5">
+          <h1 className="text-[21vw] md:text-[16vw] md:font-bold font-extrabold tracking-normal leading-none flex justify-center gap-2 md:scale-y-120 scale-y-200 origin-bottom">
             {letters.map((letter) => (
               <span
                 key={letter.id}
@@ -89,64 +89,29 @@ export default function Footer() {
                     setActiveMobileLetter(letter.id);
                   }
                 }}
-                className="cursor-pointer -mx-9 relative"
+                className={`cursor-pointer transition-colors duration-300 ${activeMobileLetter === letter.id ? "bg-clip-text text-transparent bg-cover bg-center scale-105" : ""}`}
+                style={{
+                  backgroundImage:
+                    activeMobileLetter === letter.id
+                      ? `url(${letter.image})`
+                      : "none",
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  WebkitBackgroundClip:
+                    activeMobileLetter === letter.id ? "text" : "",
+                  WebkitTextFillColor:
+                    activeMobileLetter === letter.id ? "transparent" : "",
+                  color: hoverData?.id === letter.id ? letter.color : "white",
+                }}
               >
-                <div
-                  className="transition-all duration-300"
-                  style={{
-                    width: "1em",
-                    height: "1em",
-                    transform:
-                      activeMobileLetter === letter.id
-                        ? "scale(1.05)"
-                        : "scale(1)",
-                    backgroundImage:
-                      activeMobileLetter === letter.id
-                        ? `url(${letter.image})`
-                        : "none",
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-
-                    WebKitMaskImage: `url(${letter.char})`,
-                    WebkitMaskRepeat: "no-repeat",
-                    WebkitMaskSize: "contain",
-                    WebkitMaskPosition: "center",
-
-                    maskImage: `url(${letter.char})`,
-                    maskRepeat: "no-repeat",
-                    maskSize: "contain",
-                    maskPosition: "center",
-
-                    backgroundColor:
-                      hoverData?.id === letter.id
-                        ? letter.color
-                        : "white",
-                  }}  
-                />
-                {hoverData?.id === letter.id && (
-                  <div
-                    className="absolute pointer-events-none z-50 transition-all duration-300 w-50 h-33"
-                    style={{
-                        left: "50%",
-                        top: "50%",
-                        transform: `translate(${letter.hoverOffset.x}, ${letter.hoverOffset.y})`,        
-                    }}
-                    >
-                    <Image
-                        src={letter.image}
-                        alt={letter.char}
-                        fill
-                        className="object-cover"
-                    />    
-                </div>
-                )}
+                {letter.char}
               </span>
             ))}
           </h1>
         </div>
 
         {/* Bottom Section */}
-        <div className="flex flex-col md:flex-row md:justify-between items-center md:items-start gap-1 md:gap-6 w-full">
+        <div className="flex flex-col md:flex-row md:justify-between items-center md:items-start gap-6 w-full">
           {/* Left Section */}
           <div className="order-2 md:order-1 flex flex-col gap-6 items-center md:items-start w-full md:w-auto translate-x-5 md:translate-x-0">
             <div className="font-bold pl-5">
@@ -159,7 +124,7 @@ export default function Footer() {
               />
             </div>
 
-            <div className="flex gap-4 gap-6 flex-wrap justify-center md:justify-start">
+            <div className="flex gap-4 sm:gap-6 flex-wrap justify-center md:justify-start">
               <a
                 href="https://www.instagram.com/ragam_nitc/"
                 target="_blank"
