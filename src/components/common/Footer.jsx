@@ -67,27 +67,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-black text-white">
-      <div className="relative max-w-7xl mx-auto px-6 pt-5 pb-5">
-        {/* Floating Image */}
-        {hoverData && (
-          <div
-            className="absolute z-50 pointer-events-none transition-all duration-300"
-            style={{
-              left: hoverData.position.left,
-              top: hoverData.position.top,
-              transform: "translate(-50%, -50%)",
-            }}
-          >
-            <Image
-              src={hoverData.image}
-              alt="preview"
-              width={300}
-              height={300}
-              className="w-48 h-auto object-cover"
-            />
-          </div>
-        )}
-
+      <div className="relative max-w-7xl mx-auto md:mt-2 mt-20 pt-5 pb-5">
         {/* Huge RAGAM Text */}
         <div className="w-full text-center md:mb-5 md:mt-10 mb-5">
           <h1 className="text-[21vw] md:text-[16vw] md:font-bold font-extrabold tracking-normal leading-none flex justify-center gap-2 md:scale-y-120 scale-y-200 origin-bottom">
@@ -133,7 +113,7 @@ export default function Footer() {
         {/* Bottom Section */}
         <div className="flex flex-col md:flex-row md:justify-between items-center md:items-start gap-6 w-full">
           {/* Left Section */}
-          <div className="order-2 md:order-1 flex flex-col gap-6 items-center md:items-start w-full md:w-auto">
+          <div className="order-2 md:order-1 flex flex-col gap-6 items-center md:items-start w-full md:w-auto translate-x-5 md:translate-x-0">
             <div className="font-bold pl-5">
               <Image
                 src="/images/footer/ragam-logo.svg"
@@ -173,7 +153,7 @@ export default function Footer() {
           </div>
 
           {/* Right Section */}
-          <div className="order-1 md:order-2 grid grid-cols-2 sm:grid-cols-3 gap-x-8 gap-y-4 w-full md:w-auto text-center md:text-left text-sm md:text-base">
+          <div className="order-1 md:order-2 grid grid-cols-3 md:gap-x-24 gap-x-6 gap-y-3 w-full md:w-auto text-center md:text-left text-sm md:text-base md:translate-x-10 translate-x-5">
             <div className="flex flex-col gap-3 order-3 md:order-1">
               <a href="#" className="hover:text-gray-400 transition">
                 Home
