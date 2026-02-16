@@ -97,6 +97,25 @@ function PolaroidPage() {
 
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
+      const rangoli = rangoliRef.current;
+      const eyes = rangoli?.nextElementSibling;
+      const dates = datesRef.current.filter(Boolean);
+
+      if (!rangoli || !eyes || dates.length === 0) return;
+
+      gsap.set(rangoli, { x: 0 });
+      gsap.set(dates, { x: 0 });
+
+      const rangoliOffset =
+        eyes.offsetLeft - (rangoli.offsetLeft + rangoli.offsetWidth);
+
+      const firstDate = dates[0];
+      const parent = firstDate.parentElement;
+
+      // distance from right edge of parent
+      const datesOffset =
+        parent.offsetWidth - (firstDate.offsetLeft + firstDate.offsetWidth);
+
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
@@ -106,47 +125,32 @@ function PolaroidPage() {
         },
       });
 
-      tl.fromTo(rangoliRef.current, { x: 120 }, { x: 0, ease: "none" });
-      tl.fromTo(
-        datesRef.current,
-        { x: 200 },
-        { x: 0, stagger: 0.1, ease: "none" },
-        "<0.1",
-      );
+      // rangoli
+      tl.fromTo(rangoli, { x: rangoliOffset || 200 }, { x: 20, ease: "none" });
 
-      //  polaroid animation
-      gsap.fromTo(
-        framesRef.current,
+      // dates
+      tl.fromTo(
+        dates,
+        { x: datesOffset || 200 },
         {
-          y: -100,
-          opacity: 0,
-          scale: 0.9,
+          x: 0,
+          stagger: 0.1,
+          ease: "none",
         },
-        {
-          y: 0,
-          opacity: 1,
-          scale: 1,
-          duration: 1.2,
-          stagger: 0.75,
-          ease: "back.out(1.1)",
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: "top 30%",
-            toggleActions: "play none none none", // only plays once
-          },
-        },
+        "<0.1",
       );
     }, containerRef);
 
     return () => ctx.revert();
   }, []);
 
+  // bro im gonan crahs tf out if i fgix mobilem desktop breaks, fii  fix desktop, mobiel brkas like wtf do you want me to do
   return (
     <div
       ref={containerRef}
       className="relative flex flex-col items-center justify-center h-screen overflow-hidden w-full"
     >
-      <div className="relative flex flex-col sm:flex-row items-center justify-center w-full md:w-full h-[90%] sm:h-[60%] md:h-[70%] lg:h-[80%] border-y-3 border-[#F4EFCF] sm:px-3">
+      <div className="relative flex flex-col sm:flex-row items-center justify-center w-full md:w-full h-[90%] sm:h-[60%] md:h-[70%] lg:h-[85%] border-y-3 border-[#F4EFCF] sm:px-3">
         {/* bg textures */}
         <Texture
           imageName="upper"
@@ -207,7 +211,7 @@ function PolaroidPage() {
             />
           </div>
 
-          <div className="flex flex-col justify-between items-center gap-5 sm:gap-8 md:gap-6 mt-15 md:mt-10 sm:mr-10 sm:w-90">
+          <div className="flex flex-col justify-between items-center gap-5 sm:gap-8 md:gap-6 mt-15 md:mt-20 sm:mr-10 sm:w-90">
             <VinylDisc />
             <TV />
           </div>
