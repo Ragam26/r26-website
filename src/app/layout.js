@@ -1,4 +1,20 @@
 import "./globals.css";
+import "./globals.css";
+import Footer from "@/components/common/Footer";
+import SmoothScroll from "@/components/common/SmoothScroll";
+import ScrollReset from "@/components/common/ScrollReset";
+import {
+  brixton,
+  calfine,
+  elanor,
+  magilio,
+  marko,
+  moniqa,
+  scalter,
+  slackey,
+  leagueGothic,
+  kiwi,
+} from "@/lib/fonts";
 
 export const metadata = {
   title: "Ragam 2026",
@@ -9,7 +25,30 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="antialiased">{children}</body>
+      <body
+        className={`
+          ${leagueGothic.variable}
+          ${slackey.variable}
+          ${brixton.variable}
+          ${calfine.variable}
+          ${elanor.variable}
+          ${magilio.variable}
+          ${marko.variable}
+          ${moniqa.variable}
+          ${scalter.variable}
+          ${kiwi.variable}
+          antialiased
+        `}
+        suppressHydrationWarning
+      >
+        {" "}
+        <ScrollReset />{" "}
+        <SmoothScroll>
+          {children}
+          <Footer />
+        </SmoothScroll>
+        <ScrollReset />
+      </body>
     </html>
   );
 }

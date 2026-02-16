@@ -1,8 +1,18 @@
+import PolaroidPage from "../pageComponents/polaroid/page";
+import LandingPage from "@/pageComponents/landing/LandingPage";
+import Legacy from "@/pageComponents/legacy/Legacy";
+import ProshowSection from "@/pageComponents/proshow/proshow";
+import ProgramCarousel from "@/pageComponents/carousel/ProgramCarousel";
+
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center">
-      <h1 className="text-2xl font-bold">Hello World</h1>
-      <p className="text-gray-400">We are Ragam 2026 aah website</p>
-    </main>
+    <>
+      {" "}
+      <LandingPage />
+      <PolaroidPage />
+      <ProgramCarousel />
+      <ProshowSection />
+      <Legacy />
+    </>
   );
 }
