@@ -318,19 +318,19 @@ export default function Legacy() {
           width={0}
           height={0}
         />
-        <Image
+        {/* <Image
           alt="fire"
           src="/images/legacy/fire2.svg"
           className="block lg:hidden object-cover scale-40 sm:scale-50 md:scale-60 w-auto"
           height={0}
           width={0}
-        />
+        /> */}
       </div>
 
-      <div className="absolute bottom-0 right-[40%]">
+      <div className="absolute hidden md:flex bottom-0 right-[40%]">
         <RadialDots />
       </div>
-      <div className="absolute bottom-[20%] right-[40%]">
+      <div className="absolute hidden md:flex bottom-[20%] right-[40%]">
         <RadialDots />
       </div>
       <div className="absolute bottom-[50%] right-[40%]">
