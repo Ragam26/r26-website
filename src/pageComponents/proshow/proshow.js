@@ -34,7 +34,7 @@ export default function ProshowSection({ isMobile }) {
   ];
 
   return (
-    <section className="relative max-w-7xl mx-auto py-3 overflow-hidden h-[100vh] ">
+    <section className="relative max-w-7xl mx-auto py-3 overflow-hidden h-screen md:h-[115vh]">
       {/* Water ripple filter */}
       <svg className="fixed top-0 left-0 w-0 h-0 invisible">
         <filter id="water-ripple">
