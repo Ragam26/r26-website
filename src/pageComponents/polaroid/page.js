@@ -186,7 +186,7 @@ function PolaroidPage() {
         </div>
 
         {/* RIGHT SECTION */}
-        <div className='relative z-10 flex sm:w-[40%] items-center justify-start bottom-29 sm:bottom-0 sm:ml-5'>
+        <div className='relative z-10 flex sm:w-[40%] items-center justify-start bottom-28 sm:bottom-0 sm:ml-5'>
           <div className='flex flex-col items-center sm:-mt-18'>
             <img
               src='/images/polaroid_page/camera.svg'
