@@ -2,9 +2,9 @@
 
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "motion/react";
-import BlurText from "../../components/TextAnimations/BlurText";
-import DecryptedText from "../../components/TextAnimations/DecryptedText";
-import FaqAccordion from "../../components/Faq/FaqAccordion";
+import BlurText from "@/lib/BlurText";
+import DecryptedText from "@/lib/DecryptedText";
+import FaqAccordion from "@/components/faq/FaqAccordion";
 
 export default function BackgroundPage() {
   const { scrollY } = useScroll();
@@ -49,16 +49,16 @@ export default function BackgroundPage() {
 
       {/* Hero */}
       <div className="h-[60vh] lg:h-screen relative flex items-center justify-center px-4">
-          <BlurText
-            text="FAQ"
-            delay={250}
-            animateBy="chars"
-            direction="top"
-            className="text-white text-8xl md:text-10xl lg:text-[14rem] font-bold leading-none"
-          />
+        <BlurText
+          text="FAQ"
+          delay={250}
+          animateBy="chars"
+          direction="top"
+          className="text-white text-8xl md:text-10xl lg:text-[14rem] font-bold leading-none"
+        />
 
         {/* Diya */}
-        <motion.div 
+        <motion.div
           style={{ y: diyaY }}
           className="hidden lg:flex absolute right-4 top-1/2 z-10 w-56 h-56 sm:w-72 sm:h-72 md:w-96 md:h-96 lg:w-md lg:h-112 items-center justify-center"
         >
@@ -75,17 +75,17 @@ export default function BackgroundPage() {
       <section className="bg-black pt-0 pb-12 lg:py-12 px-4">
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
           <div className="space-y-4 order-2 lg:order-1">
-            <FaqAccordion 
+            <FaqAccordion
               question="What is Ragam?"
               answer="Ragam is a celebration of art, culture, and community with events for everyone."
             />
-            
-            <FaqAccordion 
+
+            <FaqAccordion
               question="How do I register for events?"
               answer="Visit the registration page, choose your events, and complete the form."
             />
-            
-            <FaqAccordion 
+
+            <FaqAccordion
               question="Where can I find the schedule?"
               answer="The full schedule is available on the website and will be updated regularly."
             />
