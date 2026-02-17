@@ -53,6 +53,8 @@ export default function LandingPage() {
     document.body.style.overflow = "hidden";
 
     let ctx = gsap.context(() => {
+      const navbar = document.getElementById("global-navbar");
+      console.log("Navbar element:", navbar);
       // INFINITE SPIN
       const spinTl = gsap.timeline({ paused: true });
       LOOPS_CONFIG.forEach((loop, index) => {
@@ -88,6 +90,13 @@ export default function LandingPage() {
         opacity: 0,
         scale: START_LOGO_SCALE,
       });
+      if(navbar) {
+        gsap.set(navbar, {
+          opacity: 0,
+          y: -40,
+          pointerEvents: "none",
+        });
+      }
       gsap.set(loopsRef.current, { opacity: 0, scale: 1.2 });
 
       // Dancers start at 0 opacity and clipped shut
@@ -211,6 +220,20 @@ export default function LandingPage() {
         },
         TEXT_REVEAL_START,
       );
+
+      if(navbar) {
+        // NAVBAR APPEAR
+        scrollTl.to(
+          navbar, {
+            opacity: 1,
+            y: 0,
+            duration: 0.5,
+            ease: "power2.inOut",
+            pointerEvents: "auto",
+          },
+          TEXT_REVEAL_START + 0.1,
+        );
+      }
 
       // 3. DANCER REVEAL
       scrollTl.fromTo(

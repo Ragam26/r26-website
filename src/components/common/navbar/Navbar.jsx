@@ -1,16 +1,29 @@
 "use client";
 
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import { usePathname } from "next/navigation";
 import MenuOverlay from "./MenuOverlay";
 import { MdOutlineMenu } from "react-icons/md";
 import { IoMdClose } from "react-icons/io";
+import { gsap } from "gsap";
 import Image from "next/image";
 
 export default function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const pathname = usePathname();
+
+    useEffect(() => {
+        if(pathname !== "/") {
+            gsap.set("#global-navbar", { 
+                opacity: 1, 
+                translateY: 0, 
+                pointerEvents: "auto" 
+            });
+        }
+    }, [pathname]);
     return (
         <>
-            <nav className="fixed top-0 left-0 w-full z-50 text-white backdrop-filter backdrop-blur-lg bg-opacity-30 border-b border-gray-200">
+            <nav id="global-navbar"className="fixed top-0 left-0 w-full z-50 text-white pointer-events-none opacity-0 translate-y-[-40px] backdrop-filter backdrop-blur-lg bg-opacity-30 border-b border-gray-200">
                 <div className="px-6 py-5">
                     <div className="grid grid-cols-3 items-center">
                         {/* Left Side */}
