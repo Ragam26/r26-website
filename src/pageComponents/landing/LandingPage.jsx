@@ -181,6 +181,7 @@ export default function LandingPage() {
       // SCROLL TIMELINE
       const scrollTl = gsap.timeline({
         scrollTrigger: {
+          id: "landing-scroll",
           trigger: outerContainerRef.current,
           start: "top top",
           end: "bottom bottom",

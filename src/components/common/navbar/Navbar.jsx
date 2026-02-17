@@ -26,10 +26,12 @@ export default function Navbar() {
     useEffect(() => {
         const navbar = document.querySelector("#global-navbar");
         if (!navbar) return;
-
+        const scrollTrigger = ScrollTrigger.getById("landing-scroll");
+        if(!scrollTrigger) return;
         if (isMenuOpen) {
 
             // keep navbar visible
+            scrollTrigger.disable(false);
             gsap.to(navbar, {
                 opacity: 1,
                 y: 0,
@@ -52,6 +54,8 @@ export default function Navbar() {
         } else {
 
             // ===== RESTORE SCROLL =====
+            scrollTrigger.enable(false);
+            ScrollTrigger.refresh();
             const scrollY = document.body.dataset.scrollY || 0;
 
             document.body.style.position = "";

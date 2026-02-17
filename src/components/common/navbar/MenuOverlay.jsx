@@ -8,6 +8,7 @@ import ThreeScene from "./ThreeScene";
 export default function MenuOverlay({ isOpen }) {
   const overlayRef = useRef(null);
   const bgRef = useRef(null);
+  const itemsRef = useRef(null);
 
   const menuItems = [
     "Home",
@@ -16,6 +17,7 @@ export default function MenuOverlay({ isOpen }) {
     "Events",
     "Prodezza",
     "Proshows",
+    "Campus Ambassador",
     "Team",
     "Sponsors",
   ];
@@ -25,8 +27,8 @@ export default function MenuOverlay({ isOpen }) {
   if (!overlayRef.current || !bgRef.current) return;
 
   // kill previous animations safely
-  gsap.killTweensOf([overlayRef.current, bgRef.current]);
-
+  gsap.killTweensOf([overlayRef.current, bgRef.current, itemsRef.current?.children]);
+  
   if (isOpen) {
     // ensure overlay is above everything immediately
     gsap.set(overlayRef.current, {
@@ -36,7 +38,7 @@ export default function MenuOverlay({ isOpen }) {
 
     gsap.to(overlayRef.current, {
       opacity: 1,
-      duration: 0.35,
+      duration: 0.3,
       ease: "power2.out",
       overwrite: "auto",
     });
@@ -51,7 +53,7 @@ export default function MenuOverlay({ isOpen }) {
   } else {
     gsap.to(bgRef.current, {
       opacity: 0,
-      duration: 0.35,
+      duration: 0.45,
       ease: "power2.in",
       overwrite: "auto",
     });
@@ -89,7 +91,7 @@ export default function MenuOverlay({ isOpen }) {
       />
 
       {/* Menu Items */}
-      <div className="relative h-full flex flex-col justify-center w-full lg:w-[45%]">
+      <div ref={itemsRef} className="relative h-full flex flex-col justify-center w-full lg:w-[45%]">
         {menuItems.map((item, i) => (
           <MenuItem key={item} index={i + 1} title={item} />
         ))}
