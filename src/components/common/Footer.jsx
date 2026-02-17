@@ -35,35 +35,35 @@ export default function Footer() {
       char: "/images/footer/R.svg",
       color: "#EC8047",
       image: "/images/footer/footer-1.svg",
-      hoverOffset: { x: "0%", y: "43%" },
+      hoverOffset: { x: "10%", y: "59%" },
     },
     {
       id: 2,
       char: "/images/footer/A1.svg",
       color: "#FAE4B2",
       image: "/images/footer/footer-2.svg",
-      hoverOffset: { x: "-15%", y: "-65%" },
+      hoverOffset: { x: "-5%", y: "-135%" },
     },
     {
       id: 3,
       char: "/images/footer/G.svg",
       color: "#850419",
       image: "/images/footer/footer-3.svg",
-      hoverOffset: { x: "-108%", y: "-20%" },
+      hoverOffset: { x: "-120%", y: "-50%" },
     },
     {
       id: 4,
       char: "/images/footer/A2.svg",
       color: "#F7BD73",
       image: "/images/footer/footer-4.svg",
-      hoverOffset: { x: "-2%", y: "29%" },
+      hoverOffset: { x: "9%", y: "32%" },
     },
     {
       id: 5,
       char: "/images/footer/M.svg",
       color: "#768367",
       image: "/images/footer/footer-5.svg",
-      hoverOffset: { x: "-95%", y: "32%" },
+      hoverOffset: { x: "-120%", y: "36%" },
     },
   ];
 
@@ -71,36 +71,9 @@ export default function Footer() {
     <footer className="bg-black text-white">
       <div className="relative max-w-7xl mx-auto md:mt-2 mt-20 pt-5 pb-5">
 
-        {/* ---------- SMOOTH FLOATING IMAGE ---------- */}
-        {hoverData && (
-          <div
-            className="
-              absolute
-              pointer-events-none
-              z-50
-              w-52 h-36
-              transition-all duration-500
-              ease-[cubic-bezier(0.22,1,0.36,1)]
-            "
-            style={{
-              left: hoverData.x,
-              top: hoverData.y,
-              transform: "translate(-50%, -50%)",
-            }}
-          >
-            <Image
-              key={hoverData.image}
-              src={hoverData.image}
-              alt="preview"
-              fill
-              className="object-cover transition-opacity duration-300"
-            />
-          </div>
-        )}
-
         {/* ---------- HUGE RAGAM TEXT ---------- */}
         <div className="w-full text-center md:mb-20 md:mt-30 mb-10 -mt-10 ml-5">
-          <h1 className="text-[clamp(6rem,18vw,16rem)] md:font-bold font-extrabold tracking-normal leading-none flex justify-center md:gap-0 gap-10 md:scale-y-100 scale-y-150 scale-x-130 md:scale-x-100 origin-bottom -translate-x-5 md:translate-x-0">
+          <h1 className="text-[clamp(6rem,18vw,16rem)] md:font-bold font-extrabold leading-none flex justify-center md:gap-0 gap-10 md:scale-y-100 scale-y-150 scale-x-130 md:scale-x-100 origin-bottom -translate-x-5 md:translate-x-0">
 
             {letters.map((letter) => (
               <span
@@ -109,25 +82,7 @@ export default function Footer() {
 
                 onPointerEnter={(e) => {
                   if (e.pointerType === "mouse") {
-                    const rect =
-                      e.currentTarget.getBoundingClientRect();
-
-                    setHoverData({
-                      ...letter,
-
-                      // ✅ ORIGINAL POSITION PRESERVED
-                      x:
-                        rect.left +
-                        rect.width / 2 +
-                        (parseFloat(letter.hoverOffset.x) / 100) *
-                          rect.width,
-
-                      y:
-                        rect.top +
-                        rect.height / 2 +
-                        (parseFloat(letter.hoverOffset.y) / 100) *
-                          rect.height,
-                    });
+                    setHoverData(letter);
                   }
                 }}
 
@@ -143,6 +98,7 @@ export default function Footer() {
                   }
                 }}
               >
+                {/* LETTER SHAPE */}
                 <div
                   className="transition-all duration-300"
                   style={{
@@ -177,6 +133,33 @@ export default function Footer() {
                         : "white",
                   }}
                 />
+
+                {/* ✅ SMOOTH HOVER IMAGE (ALWAYS MOUNTED) */}
+                <div
+                  className="
+                    absolute
+                    pointer-events-none
+                    z-50
+                    w-52 h-36
+                    transition-all duration-500
+                    ease-[cubic-bezier(0.22,1,0.36,1)]
+                    will-change-[opacity,transform]
+                  "
+                  style={{
+                    left: "50%",
+                    top: "50%",
+                    transform: `translate(${letter.hoverOffset.x}, ${letter.hoverOffset.y})`,
+                    opacity: hoverData?.id === letter.id ? 1 : 0,
+                    scale: hoverData?.id === letter.id ? 1 : 0.95,
+                  }}
+                >
+                  <Image
+                    src={letter.image}
+                    alt={letter.char}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
               </span>
             ))}
           </h1>
@@ -196,20 +179,14 @@ export default function Footer() {
             </div>
 
             <div className="flex gap-6 flex-wrap justify-center md:justify-start">
-              <a href="https://www.instagram.com/ragam_nitc/" target="_blank" rel="noopener noreferrer">
-                <FaInstagram className="text-xl md:text-3xl hover:text-gray-400 transition" />
-              </a>
-              <a href="https://www.facebook.com/Ragam.nitc/" target="_blank" rel="noopener noreferrer">
-                <FaFacebook className="text-xl md:text-3xl hover:text-gray-400 transition" />
-              </a>
-              <a href="https://in.linkedin.com/company/ragam-national-institute-of-technology-calicut" target="_blank" rel="noopener noreferrer">
-                <FaLinkedinIn className="text-xl md:text-3xl hover:text-gray-400 transition" />
-              </a>
+              <FaInstagram className="text-xl md:text-3xl hover:text-gray-400 transition" />
+              <FaFacebook className="text-xl md:text-3xl hover:text-gray-400 transition" />
+              <FaLinkedinIn className="text-xl md:text-3xl hover:text-gray-400 transition" />
             </div>
           </div>
 
           <div className="order-1 md:order-2 grid grid-cols-3 md:gap-x-24 gap-x-6 gap-y-3 w-full md:w-auto text-center md:text-left text-sm md:text-base md:translate-x-10 translate-x-1">
-             <div className="flex flex-col gap-3 order-3 md:order-1">
+            <div className="flex flex-col gap-3 order-3 md:order-1">
               <a href="#" className="hover:text-gray-400 transition">
                 Home
               </a>
