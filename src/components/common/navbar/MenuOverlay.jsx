@@ -113,7 +113,7 @@ export default function MenuOverlay({ isOpen }) {
       className="
         fixed inset-0
         opacity-0 pointer-events-none
-        flex justify-end
+        flex
         z-[800]
       "
     >
@@ -124,7 +124,7 @@ export default function MenuOverlay({ isOpen }) {
       />
 
       {/* Menu Items */}
-      <div ref={itemsRef} className="relative h-full flex flex-col justify-center w-full lg:w-[45%]">
+      <div ref={itemsRef} className="relative h-full flex flex-col justify-center sm:ml-auto w-full sm:w-1/2 items-start pl-5 md:pl-0 pt-10 md:pt-20">
         {menuItems.map((item, i) => (
           <MenuItem key={item} index={i + 1} title={item} />
         ))}

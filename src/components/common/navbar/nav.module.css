@@ -1,7 +1,5 @@
 .menuSweep{
-  display: inline-block;
-  font-size: 32px;
-  font-weight: 600;
+  display: inline-flex;
   cursor: pointer;
 
   /* gradient split */

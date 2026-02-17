@@ -5,7 +5,7 @@ import { reykjavik } from "../../../lib/fonts";
 
 export default function MenuItem({ index, title }) {
   return (
-    <div className="px-8 cursor-pointer select-none">
+    <div className="pr-8 cursor-pointer select-none text-left menu-item">
       <h1 data-text={title}>
         <span
           className={`
@@ -15,8 +15,8 @@ export default function MenuItem({ index, title }) {
             uppercase
             font-semibold
             tracking-wide
-            text-2xl md:text-7xl
-            leading-[1.5]
+            text-3xl md:text-4xl
+            leading-[1.2]
           `}
         >
           {title}
