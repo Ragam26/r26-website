@@ -22,43 +22,55 @@ export default function MenuOverlay({ isOpen }) {
 
   // GSAP open / close animation
   useEffect(() => {
-    if (!overlayRef.current || !bgRef.current) return;
+  if (!overlayRef.current || !bgRef.current) return;
 
-    const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+  // kill previous animations safely
+  gsap.killTweensOf([overlayRef.current, bgRef.current]);
 
-    if (isOpen) {
-      tl.set(overlayRef.current, { pointerEvents: "all" })
-        // fade overlay container
-        .to(overlayRef.current, {
-          opacity: 1,
-          duration: 0.3,
-        })
-        // cinematic darkening effect
-        .to(
-          bgRef.current,
-          {
-            opacity: 1,
-            duration: 0.6,
-          },
-          0 // start at same time
-        );
-    } else {
-      tl.to(bgRef.current, {
-        opacity: 0,
-        duration: 0.4,
-      })
-        .to(
-          overlayRef.current,
-          {
-            opacity: 0,
-            duration: 0.3,
-            onComplete: () =>
-              gsap.set(overlayRef.current, { pointerEvents: "none" }),
-          },
-          "-=0.2"
-        );
-    }
-  }, [isOpen]);
+  if (isOpen) {
+    // ensure overlay is above everything immediately
+    gsap.set(overlayRef.current, {
+      pointerEvents: "all",
+      visibility: "visible",
+    });
+
+    gsap.to(overlayRef.current, {
+      opacity: 1,
+      duration: 0.35,
+      ease: "power2.out",
+      overwrite: "auto",
+    });
+
+    gsap.to(bgRef.current, {
+      opacity: 1,
+      duration: 0.45,
+      ease: "power2.out",
+      overwrite: "auto",
+    });
+
+  } else {
+    gsap.to(bgRef.current, {
+      opacity: 0,
+      duration: 0.35,
+      ease: "power2.in",
+      overwrite: "auto",
+    });
+
+    gsap.to(overlayRef.current, {
+      opacity: 0,
+      duration: 0.3,
+      ease: "power2.in",
+      overwrite: "auto",
+      onComplete: () => {
+        gsap.set(overlayRef.current, {
+          pointerEvents: "none",
+          visibility: "hidden",
+        });
+      },
+    });
+  }
+}, [isOpen]);
+
 
   return (
     <div

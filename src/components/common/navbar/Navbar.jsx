@@ -68,9 +68,9 @@ export default function Navbar() {
 
     return (
         <>
-            <nav id="global-navbar"className="fixed top-0 left-0 w-full box-border z-[2000] text-white pointer-events-none opacity-0 backdrop-blur-lg bg-black/30 border-b border-b border-white/20">
+            <nav id="global-navbar"className="fixed top-0 inset-x-0 w-full max-w-[100vw] overflow-x-hidden box-border z-[2000] text-white pointer-events-none opacity-0 backdrop-blur-lg bg-black/30 border-b border-b border-white/20">
                 <div className="px-6 py-5">
-                    <div className="grid grid-cols-3 items-center">
+                    <div className="grid grid-cols-3 items-center min-w-0">
                         {/* Left Side */}
                         <div/>
 
