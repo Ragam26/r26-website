@@ -54,7 +54,6 @@ export default function LandingPage() {
 
     let ctx = gsap.context(() => {
       const navbar = document.getElementById("global-navbar");
-      console.log("Navbar element:", navbar);
       // INFINITE SPIN
       const spinTl = gsap.timeline({ paused: true });
       LOOPS_CONFIG.forEach((loop, index) => {

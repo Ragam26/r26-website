@@ -67,7 +67,7 @@ export default function MenuOverlay({ isOpen }) {
         fixed inset-0
         opacity-0 pointer-events-none
         flex justify-end
-        z-40
+        z-[800]
       "
     >
       {/* Animated Dark Background */}
