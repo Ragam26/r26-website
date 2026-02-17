@@ -24,47 +24,80 @@ export default function MenuOverlay({ isOpen }) {
 
   // GSAP open / close animation
   useEffect(() => {
-  if (!overlayRef.current || !bgRef.current) return;
+  if (!overlayRef.current || !bgRef.current || !itemsRef) return;
+
+  const overlay = overlayRef.current;
+  const bg = bgRef.current;
+  const items = itemsRef.current?.children;
 
   // kill previous animations safely
-  gsap.killTweensOf([overlayRef.current, bgRef.current, itemsRef.current?.children]);
+  gsap.killTweensOf([overlay, bg, items]);
   
+  gsap.set(items, {
+    x: -60,
+    opacity: 0,
+    filter: "blur(4px)",
+  });
+
   if (isOpen) {
     // ensure overlay is above everything immediately
-    gsap.set(overlayRef.current, {
+    gsap.set(overlay, {
       pointerEvents: "all",
       visibility: "visible",
     });
 
-    gsap.to(overlayRef.current, {
+    gsap.to(overlay, {
       opacity: 1,
       duration: 0.3,
       ease: "power2.out",
       overwrite: "auto",
     });
 
-    gsap.to(bgRef.current, {
+    gsap.to(bg, {
       opacity: 1,
       duration: 0.45,
       ease: "power2.out",
       overwrite: "auto",
     });
 
+    gsap.to(items, {
+      x: 0,
+      opacity: 1,
+      duration: 0.7,
+      ease: "power3.out",
+      stagger: 0.1,
+      overwrite: "auto",
+      delay: 0.2,
+      filter: "blur(0px)",
+    });
+
   } else {
-    gsap.to(bgRef.current, {
+
+    gsap.to(items, {
+      x: -60,
+      opacity: 0,
+      duration: 0.25,
+      ease: "power2.in",
+      stagger: {
+        each: 0.05,
+        from: "end",
+      },
+    });
+
+    gsap.to(bg, {
       opacity: 0,
       duration: 0.45,
       ease: "power2.in",
       overwrite: "auto",
     });
 
-    gsap.to(overlayRef.current, {
+    gsap.to(overlay, {
       opacity: 0,
       duration: 0.3,
       ease: "power2.in",
       overwrite: "auto",
       onComplete: () => {
-        gsap.set(overlayRef.current, {
+        gsap.set(overlay, {
           pointerEvents: "none",
           visibility: "hidden",
         });
