@@ -70,7 +70,7 @@ export default function Footer() {
       <div className="relative max-w-7xl mx-auto md:mt-2 mt-20 pt-5 pb-5">
         {/* Huge RAGAM Text */}
         <div className="w-full text-center md:mb-20 md:mt-30 mb-10 -mt-10 ml-5">
-          <h1 className="text-[clamp(6rem,18vw,16rem)] md:font-bold font-extrabold tracking-normal leading-none flex justify-center md:gap-0 gap-11 md:scale-y-100 scale-y-150 scale-x-130 md:scale-x-100 origin-bottom">
+          <h1 className="text-[clamp(6rem,18vw,16rem)] md:font-bold font-extrabold tracking-normal leading-none flex justify-center md:gap-0 gap-10 md:scale-y-100 scale-y-150 scale-x-130 md:scale-x-100 origin-bottom -translate-x-5 md:translate-x-0">
             {letters.map((letter) => (
               <span
                 key={letter.id}
@@ -116,7 +116,6 @@ export default function Footer() {
                     maskRepeat: "no-repeat",
                     maskSize: "contain",
                     maskPosition: "center",
-
                     backgroundColor:
                       hoverData?.id === letter.id
                         ? letter.color
@@ -159,7 +158,7 @@ export default function Footer() {
               />
             </div>
 
-            <div className="flex gap-4 gap-6 flex-wrap justify-center md:justify-start">
+            <div className="flex gap-4 gap-6 flex-wrap justify-center md:translate-x-0 -translate-x-3 md:justify-start">
               <a
                 href="https://www.instagram.com/ragam_nitc/"
                 target="_blank"
@@ -188,7 +187,7 @@ export default function Footer() {
           </div>
 
           {/* Right Section */}
-          <div className="order-1 md:order-2 grid grid-cols-3 md:gap-x-24 gap-x-6 gap-y-3 w-full md:w-auto text-center md:text-left text-sm md:text-base md:translate-x-10 translate-x-5">
+          <div className="order-1 md:order-2 grid grid-cols-3 md:gap-x-24 gap-x-6 gap-y-3 w-full md:w-auto text-center md:text-left text-sm md:text-base md:translate-x-10 translate-x-1">
             <div className="flex flex-col gap-3 order-3 md:order-1">
               <a href="#" className="hover:text-gray-400 transition">
                 Home
