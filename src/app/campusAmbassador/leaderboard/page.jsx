@@ -1,5 +1,5 @@
 "use client";
-import RankCard from "@/pages/campusAmbassador/rankCard";
+import RankCard from "./rankCard";
 import React, { useState } from "react";
 export default function CA() {
   const [copied, setCopied] = useState(false);
@@ -43,7 +43,7 @@ export default function CA() {
     }, 2000);
   };
   return (
-    <div className=" relative flex w-full h-screen flex-col items-center  justify-center gap-4 bg-[url('/images/flames.png')] bg-contain bg-no-repeat bg-bottom-left">
+    <div className=" relative flex w-full h-screen flex-col items-center  justify-center gap-4 bg-[url('/images/flames.png')] bg-contain bg-no-repeat bg-bottom-left pt-8 md:pt-12 lg:pt-20">
       <img
         src={"/images/tathva.png"}
         alt=""
