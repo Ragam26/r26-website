@@ -1,33 +1,33 @@
-"use client";
+'use client'
 
-import { useState, useEffect } from "react";
-import { FaInstagram, FaFacebook, FaLinkedinIn } from "react-icons/fa";
-import Image from "next/image";
+import { useState, useEffect } from 'react'
+import { FaInstagram, FaFacebook, FaLinkedinIn } from 'react-icons/fa'
+import Image from 'next/image'
 
 export default function Footer() {
-  const [hoverData, setHoverData] = useState(null);
-  const [activeMobileLetter, setActiveMobileLetter] = useState(null);
-  const [showRoast, setShowRoast] = useState(false);
+  const [hoverData, setHoverData] = useState(null)
+  const [activeMobileLetter, setActiveMobileLetter] = useState(null)
+  const [showRoast, setShowRoast] = useState(false)
 
   /* ---------------- MOBILE TAP RESET ---------------- */
   useEffect(() => {
     if (activeMobileLetter !== null) {
       const timer = setTimeout(() => {
-        setActiveMobileLetter(null);
-      }, 600);
-      return () => clearTimeout(timer);
+        setActiveMobileLetter(null)
+      }, 600)
+      return () => clearTimeout(timer)
     }
-  }, [activeMobileLetter]);
+  }, [activeMobileLetter])
 
   /* ---------------- ROAST RESET ---------------- */
   useEffect(() => {
     if (showRoast) {
       const timer = setTimeout(() => {
-        setShowRoast(false);
-      }, 1500);
-      return () => clearTimeout(timer);
+        setShowRoast(false)
+      }, 1500)
+      return () => clearTimeout(timer)
     }
-  }, [showRoast]);
+  }, [showRoast])
 
   const letters = [
     {
@@ -65,7 +65,7 @@ export default function Footer() {
       image: "/images/footer/footer-5.svg",
       hoverOffset: { x: "-120%", y: "36%" },
     },
-  ];
+  ]
 
   return (
     <footer className="bg-black text-white">
@@ -81,29 +81,29 @@ export default function Footer() {
                 className="cursor-pointer -mx-9 relative"
 
                 onPointerEnter={(e) => {
-                  if (e.pointerType === "mouse") {
-                    setHoverData(letter);
+                  if (e.pointerType === 'mouse') {
+                    setHoverData(letter)
                   }
                 }}
 
                 onPointerLeave={(e) => {
-                  if (e.pointerType === "mouse") {
-                    setHoverData(null);
+                  if (e.pointerType === 'mouse') {
+                    setHoverData(null)
                   }
                 }}
 
                 onPointerDown={(e) => {
-                  if (e.pointerType === "touch") {
-                    setActiveMobileLetter(letter.id);
+                  if (e.pointerType === 'touch') {
+                    setActiveMobileLetter(letter.id)
                   }
                 }}
               >
                 {/* LETTER SHAPE */}
                 <div
-                  className="transition-all duration-300"
+                  className='transition-all duration-300'
                   style={{
-                    width: "1em",
-                    height: "1em",
+                    width: '1em',
+                    height: '1em',
                     transform:
                       activeMobileLetter === letter.id
                         ? "scale(1.05)"
@@ -118,14 +118,14 @@ export default function Footer() {
                     backgroundPosition: "center",
 
                     WebKitMaskImage: `url(${letter.char})`,
-                    WebkitMaskRepeat: "no-repeat",
-                    WebkitMaskSize: "contain",
-                    WebkitMaskPosition: "center",
+                    WebkitMaskRepeat: 'no-repeat',
+                    WebkitMaskSize: 'contain',
+                    WebkitMaskPosition: 'center',
 
                     maskImage: `url(${letter.char})`,
-                    maskRepeat: "no-repeat",
-                    maskSize: "contain",
-                    maskPosition: "center",
+                    maskRepeat: 'no-repeat',
+                    maskSize: 'contain',
+                    maskPosition: 'center',
 
                     backgroundColor:
                       hoverData?.id === letter.id
@@ -170,11 +170,11 @@ export default function Footer() {
           <div className="order-2 md:order-1 flex flex-col gap-6 items-center md:items-start w-full md:w-auto translate-x-5 md:translate-x-0">
             <div className="font-bold pl-5">
               <Image
-                src="/images/footer/ragam-logo.svg"
-                alt="Ragam Logo"
+                src='/images/footer/ragam-logo.svg'
+                alt='Ragam Logo'
                 width={100}
                 height={100}
-                className="w-24 h-24 hidden md:block"
+                className='w-24 h-24 hidden md:block'
               />
             </div>
 
@@ -190,40 +190,40 @@ export default function Footer() {
               <a href="#" className="hover:text-gray-400 transition">
                 Home
               </a>
-              <a href="#" className="hover:text-gray-400 transition">
+              <a href='#' className='hover:text-gray-400 transition'>
                 Team
               </a>
-              <a href="#" className="hover:text-gray-400 transition">
+              <a href='#' className='hover:text-gray-400 transition'>
                 Sponsors
               </a>
-              <a href="#" className="hover:text-gray-400 transition">
+              <a href='#' className='hover:text-gray-400 transition'>
                 Contact Us
               </a>
             </div>
 
-            <div className="flex flex-col gap-3 order-2 md:order-2">
-              <a href="#" className="hover:text-gray-400 transition">
+            <div className='flex flex-col gap-3 order-2 md:order-2'>
+              <a href='#' className='hover:text-gray-400 transition'>
                 Ragnarok
               </a>
-              <a href="#" className="hover:text-gray-400 transition">
+              <a href='#' className='hover:text-gray-400 transition'>
                 Proshow
               </a>
-              <a href="#" className="hover:text-gray-400 transition">
+              <a href='#' className='hover:text-gray-400 transition'>
                 Prodezza
               </a>
             </div>
 
-            <div className="flex flex-col gap-3 order-1 md:order-3">
-              <a href="#" className="hover:text-gray-400 transition">
+            <div className='flex flex-col gap-3 order-1 md:order-3'>
+              <a href='#' className='hover:text-gray-400 transition'>
                 Certificates
               </a>
-              <a href="#" className="hover:text-gray-400 transition">
+              <a href='#' className='hover:text-gray-400 transition'>
                 Events
               </a>
-              <a href="#" className="hover:text-gray-400 transition">
+              <a href='#' className='hover:text-gray-400 transition'>
                 Workshops
               </a>
-              <a href="#" className="hover:text-gray-400 transition">
+              <a href='#' className='hover:text-gray-400 transition'>
                 Sports
               </a>
             </div>
@@ -232,14 +232,14 @@ export default function Footer() {
 
         <div
           onClick={() => setShowRoast(true)}
-          className="mt-6 md:text-center text-[10px] text-gray-400 md:text-sm text-right cursor-pointer"
+          className='mt-6 md:text-center text-[10px] text-gray-400 md:text-sm text-right cursor-pointer'
         >
           © 2026 - Ragam NITC
         </div>
       </div>
 
       {showRoast && (
-        <div className="fixed bottom-4 right-4 bg-white text-black text-xs md:text-sm px-4 py-2 rounded-lg shadow-lg z-100 animate-fade-in">
+        <div className='fixed bottom-4 right-4 bg-white text-black text-xs md:text-sm px-4 py-2 rounded-lg shadow-lg z-100 animate-fade-in'>
           stop tripping bro
         </div>
       )}
