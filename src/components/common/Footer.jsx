@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { FaInstagram, FaFacebook, FaLinkedinIn } from 'react-icons/fa'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default function Footer() {
   const [hoverData, setHoverData] = useState(null)
@@ -180,53 +181,59 @@ export default function Footer() {
             </div>
 
             <div className="flex gap-6 flex-wrap justify-center md:justify-start">
-              <FaInstagram className="text-xl md:text-3xl hover:text-gray-400 transition" />
-              <FaFacebook className="text-xl md:text-3xl hover:text-gray-400 transition" />
-              <FaLinkedinIn className="text-xl md:text-3xl hover:text-gray-400 transition" />
+              <a href="https://www.instagram.com/ragam_nitc/" target="_blank" rel="noopener noreferrer">
+                <FaInstagram className="text-xl md:text-3xl hover:text-gray-400 transition" />
+              </a>
+              <a href="https://www.facebook.com/Ragam.nitc" target="_blank" rel="noopener noreferrer">
+                <FaFacebook className="text-xl md:text-3xl hover:text-gray-400 transition" />
+              </a>
+              <a href="https://in.linkedin.com/company/ragam-national-institute-of-technology-calicut" target="_blank" rel="noopener noreferrer">
+                <FaLinkedinIn className="text-xl md:text-3xl hover:text-gray-400 transition" />
+              </a>
             </div>
           </div>
 
           <div className="order-1 md:order-2 grid grid-cols-3 z-20 lg:gap-x-24 md:gap-x-12 gap-y-3 w-full md:w-auto text-center md:text-left text-sm md:text-base pr-5">
             <div className="flex flex-col gap-3 order-3 md:order-1">
-              <a href="#" className="hover:text-gray-400 transition">
+              <Link href="/" className="hover:text-gray-400 transition">
                 Home
-              </a>
-              <a href='#' className='hover:text-gray-400 transition'>
+              </Link>
+              <Link href="/notFound" className="hover:text-gray-400 transition">
                 Team
-              </a>
-              <a href='#' className='hover:text-gray-400 transition'>
+              </Link>
+              <Link href="/notFound" className="hover:text-gray-400 transition">
                 Sponsors
-              </a>
-              <a href='#' className='hover:text-gray-400 transition'>
+              </Link>
+              <Link href="/notFound" className="hover:text-gray-400 transition">
                 Contact Us
-              </a>
+              </Link>
             </div>
 
             <div className='flex flex-col gap-3 order-2 md:order-2'>
-              <a href='#' className='hover:text-gray-400 transition'>
+              <Link href="/notFound" className='hover:text-gray-400 transition'>
                 Ragnarok
-              </a>
-              <a href='#' className='hover:text-gray-400 transition'>
+              </Link>
+              <Link href="/notFound" className='hover:text-gray-400 transition'>
                 Proshow
-              </a>
-              <a href='#' className='hover:text-gray-400 transition'>
+              </Link>
+              <Link href="/notFound" className='hover:text-gray-400 transition'>
                 Prodezza
-              </a>
+              </Link>
             </div>
 
             <div className='flex flex-col gap-3 order-1 md:order-3'>
-              <a href='#' className='hover:text-gray-400 transition'>
+              <Link href="/notFound" className='hover:text-gray-400 transition'>
                 Certificates
-              </a>
-              <a href='#' className='hover:text-gray-400 transition'>
+              </Link>
+              <Link href="/events" className='hover:text-gray-400 transition'>
                 Events
-              </a>
-              <a href='#' className='hover:text-gray-400 transition'>
+              </Link>
+              <Link href="/workshops" className='hover:text-gray-400 transition'>
                 Workshops
-              </a>
-              <a href='#' className='hover:text-gray-400 transition'>
+              </Link>
+              <Link href="/notFound" className='hover:text-gray-400 transition'>
                 Sports
-              </a>
+              </Link>
             </div>
           </div>
         </div>

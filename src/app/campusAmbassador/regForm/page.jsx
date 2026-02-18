@@ -83,6 +83,14 @@ function ContactForm() {
       placeholder: 'Your year (e.g., 2nd, 3rd)',
       required: true,
     },
+    {
+      label: 'Email',
+      id: 'email',
+      name: 'email',
+      type: 'email',
+      placeholder: 'Your email address',
+      required: true,
+    },
   ]
 
   const rightFields = [
@@ -118,9 +126,9 @@ function ContactForm() {
   ]
 
   return (
-    <div className='w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-      <h1 className='text-4xl sm:text-5xl lg:text-6xl font-bold text-white text-center mb-8 lg:mb-12'>
-        CONTACT US
+    <div className='w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 md:pt-12 lg:pt-22'>
+      <h1 className='text-4xl sm:text-5xl lg:text-6xl font-bold text-white text-center mb-8 lg:mb-10'>
+        REGISTER FOR CAMPUS AMBASSADOR
       </h1>
 
       <div className='flex flex-col lg:flex-row gap-6 lg:gap-8 bg-white/5 rounded-2xl lg:rounded-4xl p-4 sm:p-6 lg:p-8 shadow-[0_1px_0_rgba(255,255,255,0.07)_inset,0_2px_4px_rgba(0,0,0,0.3),0_30px_80px_rgba(0,0,0,0.5)]'>
