@@ -87,12 +87,14 @@ export default function Navbar() {
                     <div className="grid grid-cols-3 items-center min-w-0">
                         {/* Left Side */}
                         <div className="flex items-center select-none">
-                            <div className="flex items-center gap-2 cursor-pointer 
-                                            transition-transform duration-200
-                                            hover:scale-105 origin-center">
-                                <span className="text-white font-medium text-xl">Login</span>
-                                <MdLogin className="text-white text-xl" />
-                            </div>
+                            <Link href="/login" scroll={true} className="block">
+                                <div className="flex items-center gap-2 cursor-pointer 
+                                                transition-transform duration-200
+                                                hover:scale-105 origin-center">
+                                    <span className="text-white font-medium text-xl">Login</span>
+                                    <MdLogin className="text-white text-xl" />
+                                </div>
+                            </Link>
                         </div>
 
                         {/* Center Logo */}
