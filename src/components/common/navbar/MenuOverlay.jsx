@@ -129,7 +129,7 @@ export default function MenuOverlay({ isOpen }) {
       <div ref={itemsRef} className="relative h-full flex flex-col justify-center sm:ml-auto w-full sm:w-1/2 items-start pl-5 md:pl-0 pt-10 md:pt-20">
         {menuItems.map((item, i) => (
           <Link
-            key={item.href}
+            key={item.title}
             href={item.href}
             onClick={() => {
             // close overlay after clicking

@@ -6,9 +6,21 @@ import gsap from "gsap";
 import { CustomEase } from "gsap/CustomEase";
 import { slideData, slideTitles } from "./slideData";
 import { kiwi } from "@/lib/fonts";
+import { useRouter } from "next/navigation";
 gsap.registerPlugin(CustomEase);
 
 const ProgramCarousel = () => {
+  const router = useRouter();
+  const slideRoutes = [
+    "/events",
+    "/workshops",
+    "/notFound",
+    "/notFound",
+    "/notFound",
+    "/notFound",
+    "/campusAmbassador/regForm",
+    "/notFound",
+  ];
   const totalSlides = 8;
   const [currentSlide, setCurrentSlide] = useState(1);
   const isAnimating = useRef(false);
@@ -386,7 +398,7 @@ const ProgramCarousel = () => {
         {/* Container positioned to the center, containing all three cards */}
         <div className="absolute top-1/2 left-1/2 -translate-x-[50%] md:-translate-x-[23%] -translate-y-34 md:-translate-y-28 flex items-end gap-8 z-10 w-max ">
           {/* 1. MAIN CENTRE CARD (Your exact size) */}
-          <div className="slide-main-img relative w-76 h-114 md:w-70 md:h-105 rounded-2xl border-3 border-[#DFB385] overflow-hidden shadow-2xl cursor-pointer transition-transform duration-300 hover:-translate-y-3">
+          <div onClick={() => router.push(slideRoutes[currentSlide - 1], {scroll : true})} className="slide-main-img relative w-76 h-114 md:w-70 md:h-105 rounded-2xl border-3 border-[#DFB385] overflow-hidden shadow-2xl cursor-pointer transition-transform duration-300 hover:-translate-y-3">
             <div className="slide-main-img-wrapper h-full w-full">
               <img
                 src={`/images/programCarousel/img${currentSlide}.png`}
