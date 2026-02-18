@@ -1,8 +1,8 @@
-import "./globals.css";
-import "./globals.css";
-import Footer from "@/components/common/Footer";
-import SmoothScroll from "@/components/common/SmoothScroll";
-import ScrollReset from "@/components/common/ScrollReset";
+import './globals.css'
+import './globals.css'
+import Footer from '@/components/common/Footer'
+import SmoothScroll from '@/components/common/SmoothScroll'
+import ScrollReset from '@/components/common/ScrollReset'
 import {
   brixton,
   calfine,
@@ -14,17 +14,17 @@ import {
   slackey,
   leagueGothic,
   kiwi,
-} from "@/lib/fonts";
+} from '@/lib/fonts'
 
 export const metadata = {
-  title: "Ragam 2026",
+  title: 'Ragam 2026',
   description:
     "Official website of Ragam 2026, South India's biggest cultural fest!",
-};
+}
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang='en'>
       <body
         className={`
           ${leagueGothic.variable}
@@ -41,8 +41,8 @@ export default function RootLayout({ children }) {
         `}
         suppressHydrationWarning
       >
-        {" "}
-        <ScrollReset />{" "}
+        {' '}
+        <ScrollReset />{' '}
         <SmoothScroll>
           {children}
           <Footer />
@@ -50,5 +50,5 @@ export default function RootLayout({ children }) {
         <ScrollReset />
       </body>
     </html>
-  );
+  )
 }
