@@ -10,7 +10,7 @@ import Image from "next/image";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { FaRegCircleUser } from "react-icons/fa6";
 import { MdLogin } from "react-icons/md";
-import styles from "./nav.module.css";
+import Link from "next/link";
 
 export default function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -97,15 +97,17 @@ export default function Navbar() {
 
                         {/* Center Logo */}
                         <div className="flex justify-center">
-                            <div className="transition-transform duration-200 hover:scale-105">
-                                <Image
-                                    src="/images/ragam-logo.svg"
-                                    alt="Logo"
-                                    width={100}
-                                    height={100}
-                                    className="w-auto h-12 object-contain select-none"
-                                />
-                            </div>
+                            <Link href="/" className="block">
+                                <div className="transition-transform duration-200 hover:scale-105">
+                                    <Image
+                                        src="/images/ragam-logo.svg"
+                                        alt="Logo"
+                                        width={100}
+                                        height={100}
+                                        className="w-auto h-12 object-contain select-none"
+                                    />
+                                </div>
+                            </Link>
                         </div>
 
 
