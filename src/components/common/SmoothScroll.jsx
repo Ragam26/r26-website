@@ -1,12 +1,14 @@
 "use client";
 
 import { ReactLenis } from "lenis/react";
-import { useEffect, useRef } from "react";
+import { use, useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export default function SmoothScroll({ children }) {
   const lenisRef = useRef();
+  const pathname = usePathname();
 
   useEffect(() => {
     function update(time) {
@@ -19,6 +21,17 @@ export default function SmoothScroll({ children }) {
       gsap.ticker.remove(update);
     };
   }, []);
+
+  useEffect(() => {
+    const lenis = lenisRef.current?.lenis;
+    if(!lenis) return;
+
+    requestAnimationFrame(() => {
+      lenis.scrollTo(0, {
+        imediate: true,
+      });
+    });
+  }, [pathname]);
 
   return (
     <ReactLenis
