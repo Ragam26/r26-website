@@ -25,6 +25,10 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
+<<<<<<< mann/ca-page
+    <html lang="en">
+      <body className="antialiased" suppressHydrationWarning>{children}</body>
+=======
     <html lang='en'>
       <body
         className={`
@@ -51,6 +55,7 @@ export default function RootLayout({ children }) {
         </SmoothScroll>
         <ScrollReset />
       </body>
+>>>>>>> main
     </html>
   )
 }
