@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import MenuItem from "./MenuItem";
 import ThreeScene from "./ThreeScene";
+import Link from "next/link";
 
 export default function MenuOverlay({ isOpen }) {
   const overlayRef = useRef(null);
@@ -11,16 +12,17 @@ export default function MenuOverlay({ isOpen }) {
   const itemsRef = useRef(null);
 
   const menuItems = [
-    "Home",
-    "Certificates",
-    "Workshops",
-    "Events",
-    "Prodezza",
-    "Proshows",
-    "Campus Ambassador",
-    "Team",
-    "Sponsors",
-  ];
+  { title: "Home", href: "/" },
+  { title: "Certificates", href: "/notFound" },
+  { title: "Workshops", href: "/workshops" },
+  { title: "Events", href: "/events" },
+  { title: "Prodezza", href: "/notFound" },
+  { title: "Proshows", href: "/notFound" },
+  { title: "Campus Ambassador", href: "/campusAmbassador/regForm" },
+  { title: "Team", href: "/notFound" },
+  { title: "Sponsors", href: "/notFound" },
+];
+
 
   // GSAP open / close animation
   useEffect(() => {
@@ -126,7 +128,18 @@ export default function MenuOverlay({ isOpen }) {
       {/* Menu Items */}
       <div ref={itemsRef} className="relative h-full flex flex-col justify-center sm:ml-auto w-full sm:w-1/2 items-start pl-5 md:pl-0 pt-10 md:pt-20">
         {menuItems.map((item, i) => (
-          <MenuItem key={item} index={i + 1} title={item} />
+          <Link
+            key={item.title}
+            href={item.href}
+            onClick={() => {
+            // close overlay after clicking
+            const event = new Event("closeMenu");
+            window.dispatchEvent(event);
+            }}
+            className="w-full"
+          >
+            <MenuItem index={i + 1} title={item.title} />
+          </Link>
         ))}
       </div>
       {/* <ThreeScene/> */}

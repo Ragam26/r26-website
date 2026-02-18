@@ -1,6 +1,6 @@
 "use client";
 
-import {use, useEffect, useState} from "react";
+import { useEffect, useState} from "react";
 import { usePathname } from "next/navigation";
 import MenuOverlay from "./MenuOverlay";
 import { MdOutlineMenu } from "react-icons/md";
@@ -8,6 +8,9 @@ import { IoMdClose } from "react-icons/io";
 import { gsap } from "gsap";
 import Image from "next/image";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { FaRegCircleUser } from "react-icons/fa6";
+import { MdLogin } from "react-icons/md";
+import Link from "next/link";
 
 export default function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -22,6 +25,13 @@ export default function Navbar() {
             });
         }
     }, [pathname]);
+
+    useEffect(() => {
+        const closeMenu = () => setIsMenuOpen(false);
+        window.addEventListener("closeMenu", closeMenu);
+        return () => window.removeEventListener("closeMenu", closeMenu);
+    }, []);
+
 
     useEffect(() => {
         const navbar = document.querySelector("#global-navbar");
@@ -76,33 +86,41 @@ export default function Navbar() {
                 <div className="px-6 py-5">
                     <div className="grid grid-cols-3 items-center min-w-0">
                         {/* Left Side */}
-                        <div/>
+                        <div className="flex items-center select-none">
+                            <div className="flex items-center gap-2 cursor-pointer 
+                                            transition-transform duration-200
+                                            hover:scale-105 origin-center">
+                                <span className="text-white font-medium text-xl">Login</span>
+                                <MdLogin className="text-white text-xl" />
+                            </div>
+                        </div>
 
                         {/* Center Logo */}
                         <div className="flex justify-center">
-                            <Image
-                                src="/images/ragam-logo.svg"
-                                alt="Logo"
-                                width={100}
-                                height={100}
-                                className="w-auto h-12 object-contain select-none"
-                            />
+                            <Link href="/" className="block">
+                                <div className="transition-transform duration-200 hover:scale-105">
+                                    <Image
+                                        src="/images/ragam-logo.svg"
+                                        alt="Logo"
+                                        width={100}
+                                        height={100}
+                                        className="w-auto h-12 object-contain select-none"
+                                    />
+                                </div>
+                            </Link>
                         </div>
+
 
                         {/* Right Side */}
                         <div className="flex justify-end">
-                            <button
-                                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                                className="
-                                    uppercase
-                                    text-sm
-                                    tracking-wide
-                                    cursor-pointer
-                                    select-none
-                                "
-                            >
-                                {isMenuOpen ? <IoMdClose size={30} /> : <MdOutlineMenu size={30} />}
-                            </button>
+                            <div className="transition-transform duration-200 hover:scale-105">
+                                <button
+                                    onClick={() => setIsMenuOpen(!isMenuOpen)}
+                                    className="uppercase text-sm tracking-wide cursor-pointer select-none"
+                                >
+                                    {isMenuOpen ? <IoMdClose size={30} /> : <MdOutlineMenu size={30} />}
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
