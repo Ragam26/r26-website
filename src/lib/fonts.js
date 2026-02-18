@@ -59,3 +59,8 @@ export const leagueGothic = localFont({
   src: "../../public/fonts/leagueGothic-Regular-VariableFont_wdth.ttf",
   variable: "--font-league-gothic",
 });
+
+export const reykjavik = localFont({
+  src: "../../public/fonts/SK-Reykjavik-Rounded-Regular.ttf",
+  variable: "--font-reykjavik",
+});

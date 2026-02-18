@@ -1,8 +1,9 @@
-import './globals.css'
-import './globals.css'
-import Footer from '@/components/common/Footer'
-import SmoothScroll from '@/components/common/SmoothScroll'
-import ScrollReset from '@/components/common/ScrollReset'
+import "./globals.css";
+import "./globals.css";
+import Footer from "@/components/common/Footer";
+import Navbar from "@/components/common/Navbar/Navbar";
+import SmoothScroll from "@/components/common/SmoothScroll";
+import ScrollReset from "@/components/common/ScrollReset";
 import {
   brixton,
   calfine,
@@ -44,6 +45,7 @@ export default function RootLayout({ children }) {
         {' '}
         <ScrollReset />{' '}
         <SmoothScroll>
+          <Navbar />
           {children}
           <Footer />
         </SmoothScroll>
