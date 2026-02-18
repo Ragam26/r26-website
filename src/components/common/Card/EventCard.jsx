@@ -2,6 +2,7 @@ import Image from "next/image";
 import localFont from "next/font/local";
 
 import { Abril_Fatface, Playfair, Prompt } from "next/font/google";
+import Link from "next/link";
 const abril = Abril_Fatface({
   subsets: ["latin"],
   weight: "400",
@@ -25,6 +26,7 @@ export default function GpcCard({
   regFee,
   expDate,
   description,
+  regUrl,
 }) {
   return (
     <div className="bg-[#FFDEAC] w-75 h-130 p-3 flex flex-col gap-2">
@@ -78,12 +80,14 @@ export default function GpcCard({
           </span>
         </div>
         <div className="w-12.5 relative flex items-center justify-center bg-[#FFDEAC]">
-          <Image
-            src="/images/gpcDesign3.svg"
-            alt="Design3"
-            fill
-            className="object-contain"
-          />
+          <Link href={regUrl} target="_blank">
+            <Image
+              src="/images/gpcDesign3.svg"
+              alt="Design3"
+              fill
+              className="object-contain"
+            />
+          </Link>
         </div>
       </div>
 
