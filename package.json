@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
+    "axios": "^1.13.5",
     "flubber": "^0.4.2",
     "gsap": "^3.14.2",
     "lenis": "^1.3.17",
