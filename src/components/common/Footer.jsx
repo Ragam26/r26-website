@@ -68,17 +68,17 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-black text-white">
-      <div className="relative max-w-7xl mx-auto md:mt-2 mt-20 pt-5 pb-5">
+    <footer className="bg-black text-white relative inset-x-0 w-full overflow-x-clip z-0">
+      <div className="relative max-w-7xl w-full mx-auto box-border md:mt-2 mt-20 pt-5 pb-5">
 
         {/* ---------- HUGE RAGAM TEXT ---------- */}
-        <div className="w-full text-center md:mb-20 md:mt-30 mb-10 -mt-10 ml-5">
-          <h1 className="text-[clamp(6rem,18vw,16rem)] md:font-bold font-extrabold leading-none flex justify-center md:gap-0 gap-10 md:scale-y-100 scale-y-150 scale-x-130 md:scale-x-100 origin-bottom -translate-x-5 md:translate-x-0">
+        <div className="relative w-full h-[clamp(220px,32vw,420px)] flex items-center justify-center overflow-visible">
+          <h1 className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-[clamp(5rem,18vw,16rem)] md:font-bold font-extrabold leading-none inline-flex max-w-full justify-center md:scale-y-100 scale-y-130  origin-center select-none">
 
             {letters.map((letter) => (
               <span
                 key={letter.id}
-                className="cursor-pointer -mx-9 relative"
+                className="cursor-pointer relative"
 
                 onPointerEnter={(e) => {
                   if (e.pointerType === "mouse") {
@@ -139,8 +139,7 @@ export default function Footer() {
                   className="
                     absolute
                     pointer-events-none
-                    z-50
-                    w-52 h-36
+                    z-[100]
                     transition-all duration-500
                     ease-[cubic-bezier(0.22,1,0.36,1)]
                     will-change-[opacity,transform]
@@ -151,6 +150,8 @@ export default function Footer() {
                     transform: `translate(${letter.hoverOffset.x}, ${letter.hoverOffset.y})`,
                     opacity: hoverData?.id === letter.id ? 1 : 0,
                     scale: hoverData?.id === letter.id ? 1 : 0.95,
+                    width: "0.8em",
+                    height: "0.5em",
                   }}
                 >
                   <Image
@@ -167,7 +168,7 @@ export default function Footer() {
 
         {/* ---------- BOTTOM SECTION (UNCHANGED) ---------- */}
         <div className="flex flex-col md:flex-row md:justify-between items-center md:items-start gap-1 md:gap-6 w-full">
-          <div className="order-2 md:order-1 flex flex-col gap-6 items-center md:items-start w-full md:w-auto translate-x-5 md:translate-x-0">
+          <div className="order-2 md:order-1 flex flex-col gap-6 items-center md:items-start w-full md:w-auto pl-6">
             <div className="font-bold pl-5">
               <Image
                 src="/images/footer/ragam-logo.svg"
@@ -185,7 +186,7 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="order-1 md:order-2 grid grid-cols-3 md:gap-x-24 gap-x-6 gap-y-3 w-full md:w-auto text-center md:text-left text-sm md:text-base md:translate-x-10 translate-x-1">
+          <div className="order-1 md:order-2 grid grid-cols-3 z-20 lg:gap-x-24 md:gap-x-12 gap-y-3 w-full md:w-auto text-center md:text-left text-sm md:text-base pr-5">
             <div className="flex flex-col gap-3 order-3 md:order-1">
               <a href="#" className="hover:text-gray-400 transition">
                 Home
