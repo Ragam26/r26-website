@@ -46,9 +46,16 @@ export default function GpcCard({ date, eventName, regFee, expDate, description 
                 </div>
             </div>
             {/* Event Name Section */}
-            <div className="flex gap-2 h-[11.5%]">
-                <div className="flex-1 border-2 border-[#730000] flex items-center justify-center">
-                    <span className={`${abril.className} text-[clamp(14px,4vw,25px)] text-[#730000]`}>{eventName}</span>
+            <div className="flex gap-2 h-[10%]">
+                <div className="flex-1 border-2 border-[#730000] flex items-center justify-center overflow-hidden px-1">
+                    <span
+                        className={`${abril.className} text-[#730000] whitespace-nowrap w-full text-center`}
+                        style={{
+                            fontSize: `clamp(8px, ${Math.max(8, 22 - eventName.length * 0.8)}px, 25px)`,
+                        }}
+                    >
+                        {eventName}
+                    </span>
                 </div>
                 <div className="w-[16.5%] relative flex items-center justify-center bg-[#FFDEAC]">
                     <Image
