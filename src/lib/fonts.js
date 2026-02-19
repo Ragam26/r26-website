@@ -1,5 +1,5 @@
 import localFont from "next/font/local";
-import { Slackey } from "next/font/google";
+import { Slackey,Abril_Fatface, Playfair, Prompt } from "next/font/google";
 
 export const brixton = localFont({
   src: "../../public/fonts/brixton.otf",
@@ -63,4 +63,22 @@ export const leagueGothic = localFont({
 export const reykjavik = localFont({
   src: "../../public/fonts/SK-Reykjavik-Rounded-Regular.ttf",
   variable: "--font-reykjavik",
+});
+
+
+export const abril = Abril_Fatface({
+  subsets: ["latin"],
+  weight: "400",
+});
+
+export const playfair = Playfair({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  style: ["normal", "italic"],
+});
+
+export const prompt = Prompt({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800"],
+  style: ["normal", "italic"],
 });

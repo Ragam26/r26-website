@@ -1,58 +1,44 @@
 import Image from "next/image";
-import localFont from "next/font/local";
 
-import { Abril_Fatface, Playfair, Prompt } from "next/font/google";
 import Link from "next/link";
-const abril = Abril_Fatface({
-  subsets: ["latin"],
-  weight: "400",
-});
+import {abril, playfair, prompt} from "@/lib/fonts";
 
-const playfair = Playfair({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
-  style: ["normal", "italic"],
-});
+const commonBorderStyle =
+  "border border-[#730000] group-hover:border-[#FFDEAC] transition-colors";
 
-const prompt = Prompt({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
-  style: ["normal", "italic"],
-});
-
-export default function GpcCard({
-  date,
-  eventName,
-  regFee,
-  expDate,
-  description,
-  regUrl,
+export default function EventCard({
+  date = "29", // DD format
+  eventName = "Event Name",
+  eventimage = "/images/gpcDesign2.svg",
+  regFee = "000", // in INR
+  expDate = "00/00",
+  regUrl = "https://www.google.com",
 }) {
   return (
-    <div className="bg-[#FFDEAC] w-75 h-130 p-3 flex flex-col gap-2">
+    <div className="group bg-[#FFDEAC] hover:bg-[#730000] transition-colors w-100 h-130 p-3 flex flex-col gap-2">
       <div className="flex gap-2 flex-1">
-        <div className="flex flex-[1.2] flex-col w-22.5 gap-2">
+        <div className=" w-5 flex flex-[1.2] flex-col gap-2">
           <div
-            className="flex-1 relative border-2 border-[#730000] bg-cover bg-center"
+            className={`${commonBorderStyle} flex-1 relative bg-cover bg-center`}
             style={{ backgroundImage: "url(/images/gpcDesign1.svg)" }}
           ></div>
 
           {/* Date and Fee Box */}
-          <div className="flex-1 border-2 border-[#730000] flex flex-col justify-between items-center text-[#730000] py-4">
+          <div className={`${commonBorderStyle} flex-1 flex flex-col justify-between items-center text-[#730000] group-hover:text-[#FFDEAC] py-4 transition-colors`}>
             <div className="flex flex-col items-center leading-none">
-              <span className={`${playfair.className} text-[22px]`}>FEB</span>
-              <span className={`${playfair.className} text-[28px]`}>
-                {date}
+              <span className={`${playfair.className} text-[22px]`}>MAR</span>
+              <span className={`${playfair.className} text-[30px]`}>
+                {date}<sup className="text-[12px] ">{date%10 === 1 ? "st" : date%10 === 2 ? "nd" : date%10 === 3 ? "rd" : "th"}</sup>
               </span>
             </div>
 
             <div className="relative w-full flex justify-center">
-              <div className="w-[70%] h-0.5 bg-[#730000] rotate-35"></div>
+              <div className="w-[70%] h-px bg-[#730000] group-hover:bg-[#FFDEAC] transition-colors rotate-35"></div>
             </div>
 
             <div className="flex flex-col items-center leading-none">
               <span className={`${prompt.className} text-[20px] font-bold`}>
-                {regFee}
+                ₹{regFee}
               </span>
               <span
                 className={`${playfair.className} text-[12px] font-semibold`}
@@ -69,32 +55,39 @@ export default function GpcCard({
         </div>
 
         {/* Main Image */}
-        <div className="flex-3 relative h-full border-2 border-[#730000] bg-[url('/images/gpcDesign2.svg')] bg-cover bg-center"></div>
+        <Link  className={`${commonBorderStyle} flex-3 relative h-full p-2`} href={regUrl} target="_blank">
+        <div
+          className={`flex-3 relative h-full bg-cover bg-center object-cover`}
+          style={{ backgroundImage: `url(${eventimage})` }}
+        ></div>
+        </Link>
       </div>
 
       {/* Event Name Section */}
       <div className="flex gap-2 h-15">
-        <div className="flex-1 border-2 border-[#730000] flex items-center justify-center">
-          <span className={`${abril.className} text-[25px] text-[#730000]`}>
+        <div className={`${commonBorderStyle} flex-1 flex items-center justify-center`}>
+          <span className={`${abril.className} text-[25px] text-[#730000] group-hover:text-[#FFDEAC] transition-colors`}>
             {eventName}
           </span>
         </div>
-        <div className="w-12.5 relative flex items-center justify-center bg-[#FFDEAC]">
-          <Link href={regUrl} target="_blank">
-            <Image
+        <div className="w-12.5 relative flex items-center justify-center bg-[#FFDEAC] group-hover:bg-[#730000] transition-colors bg-cover bg-center">
+          <Link 
+            href={regUrl} 
+            target="_blank" className=" bg-[url(/images/gpcDesign3.svg)] group-hover:bg-[url(/images/gpcDesign4.svg)] group-hover:rotate-12 transition-500 transition-all bg-fit bg-no-repeat bg-center w-full h-full flex items-center justify-center">
+            {/* <Image
               src="/images/gpcDesign3.svg"
               alt="Design3"
               fill
               className="object-contain"
-            />
+            /> */}
           </Link>
         </div>
       </div>
 
       {/* Closing Date */}
-      <div className="h-7.5 border-2 border-[#730000] flex items-center justify-center">
+      <div className="h-7.5 border border-[#730000] group-hover:border-[#FFDEAC] transition-colors flex items-center justify-center">
         <span
-          className={`${playfair.className} text-[10px] text-[#730000] font-medium`}
+          className={`${playfair.className} text-[14px] text-[#730000] group-hover:text-[#FFDEAC] transition-colors font-medium`}
         >
           Closing date : {expDate}
         </span>
