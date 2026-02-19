@@ -1,9 +1,9 @@
-.menuSweep{
+.menuSweep {
   display: inline-flex;
   cursor: pointer;
 
   /* gradient split */
-  background: linear-gradient(to right, #D44A47 50%, white 50%);
+  background: linear-gradient(to right, #dfb385 50%, white 50%);
   background-size: 200% 100%;
   background-position: right bottom;
 
@@ -20,5 +20,4 @@
 
 .menuSweep:hover {
   background-position: left bottom;
-
 }

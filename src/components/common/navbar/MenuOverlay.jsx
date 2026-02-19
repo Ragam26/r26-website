@@ -116,15 +116,12 @@ export default function MenuOverlay({ isOpen }) {
       "
     >
       {/* Animated Dark Background */}
-      <div
-        ref={bgRef}
-        className="absolute inset-0 bg-black opacity-0 backdrop-blur-sm"
-      />
+      <div ref={bgRef} className="absolute inset- opacity-0 backdrop-blur-sm" />
 
       {/* Menu Items */}
       <div
         ref={itemsRef}
-        className="relative h-full flex flex-col justify-center sm:ml-auto w-full sm:w-1/2 items-start pl-5 md:pl-0 pt-10 md:pt-20"
+        className="relative h-full flex flex-col justify-center sm:ml-auto w-full sm:w-1/2 items-start pl-5 md:pl-0 pt-10 md:pt-20 z-[850]"
       >
         {menuItems.map((item, i) => (
           <Link

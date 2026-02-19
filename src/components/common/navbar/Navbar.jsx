@@ -26,6 +26,29 @@ export default function Navbar() {
     }
   }, [pathname]);
 
+  const handleToggleMenu = async () => {
+    // iOS 13+ requires a user gesture to request orientation permission
+    if (
+      typeof DeviceOrientationEvent !== "undefined" &&
+      typeof DeviceOrientationEvent.requestPermission === "function"
+    ) {
+      try {
+        const permission = await DeviceOrientationEvent.requestPermission();
+        if (permission === "granted") {
+          // Dispatch custom event to notify ThreeScene.js
+          window.dispatchEvent(new Event("gyroAllowed"));
+        }
+      } catch (error) {
+        console.error("DeviceOrientation permission denied:", error);
+      }
+    } else {
+      // For Android or non-iOS devices, permission is usually granted by default
+      window.dispatchEvent(new Event("gyroAllowed"));
+    }
+
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   useEffect(() => {
     const closeMenu = () => setIsMenuOpen(false);
     window.addEventListener("closeMenu", closeMenu);
@@ -115,7 +138,7 @@ export default function Navbar() {
             <div className="flex justify-end">
               <div className="transition-transform duration-200 hover:scale-105">
                 <button
-                  onClick={() => setIsMenuOpen(!isMenuOpen)}
+                  onClick={handleToggleMenu}
                   className="uppercase text-sm tracking-wide cursor-pointer select-none"
                 >
                   {isMenuOpen ? (

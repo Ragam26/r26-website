@@ -162,12 +162,30 @@ export default function ThreeScene() {
     // 5. Mouse & Animation Logic
     let mouseX = 0;
     let mouseY = 0;
+    let gyroX = 0;
+    let gyroY = 0;
     let targetRotationX = 0;
     let targetRotationY = 0;
     let currentRotationX = 0;
     let currentRotationY = 0;
     let cursorLightTargetX = 0;
     let cursorLightTargetY = 0;
+
+    const onDeviceOrientation = (event) => {
+      const beta = event.beta ?? 0;
+      const gamma = event.gamma ?? 0;
+
+      gyroY = (gamma / 90) * config.parallaxSensitivityX;
+      gyroX = ((beta - 45) / 90) * config.parallaxSensitivityY;
+
+      cursorLightTargetX = (gamma / 90) * config.cursorLightScale;
+      cursorLightTargetY = -((beta - 45) / 90) * config.cursorLightScale;
+    };
+
+    const onGyroAllowed = () => {
+      window.addEventListener("deviceorientation", onDeviceOrientation);
+    };
+    window.addEventListener("gyroAllowed", onGyroAllowed);
 
     const onMouseMove = (event) => {
       mouseX = (event.clientX / window.innerWidth) * 2 - 1;
@@ -192,12 +210,18 @@ export default function ThreeScene() {
       animationFrameId = requestAnimationFrame(animate);
 
       if (model) {
-        // Parallax rotation
-        targetRotationY = mouseX * config.parallaxSensitivityX;
-        targetRotationX = -mouseY * config.parallaxSensitivityY;
+        // parallax roation use mouse / gyro
+        const isMobile = window.innerWidth < 1000;
 
-        currentRotationX += (targetRotationX - currentRotationX) * 0.05;
-        currentRotationY += (targetRotationY - currentRotationY) * 0.05;
+        if (isMobile) {
+          currentRotationX += (gyroX - currentRotationX) * 0.05;
+          currentRotationY += (gyroY - currentRotationY) * 0.05;
+        } else {
+          targetRotationY = mouseX * config.parallaxSensitivityX;
+          targetRotationX = -mouseY * config.parallaxSensitivityY;
+          currentRotationX += (targetRotationX - currentRotationX) * 0.05;
+          currentRotationY += (targetRotationY - currentRotationY) * 0.05;
+        }
 
         model.rotation.x = config.baseRotationX + currentRotationX;
         model.rotation.y = config.baseRotationY + currentRotationY;
@@ -219,7 +243,9 @@ export default function ThreeScene() {
     // Cleanup
     return () => {
       window.removeEventListener("mousemove", onMouseMove);
+      window.removeEventListener("deviceorientation", onDeviceOrientation);
       window.removeEventListener("resize", onResize);
+      window.removeEventListener("gyroAllowed", onGyroAllowed);
       cancelAnimationFrame(animationFrameId);
       renderer.dispose();
       scene.clear();
