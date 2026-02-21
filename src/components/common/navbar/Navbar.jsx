@@ -106,18 +106,7 @@ export default function Navbar() {
         <div className="px-6 py-3">
           <div className="grid grid-cols-3 items-center min-w-0">
             {/* Left Side */}
-            <div className="flex items-center select-none">
-              <Link href="/login" scroll={true} className="block">
-                <div
-                  className="flex items-center gap-2 cursor-pointer 
-                                                transition-transform duration-200
-                                                hover:scale-105 origin-center"
-                >
-                  <span className="text-white font-medium text-md">Login</span>
-                  <MdLogin className="text-white text-lg" />
-                </div>
-              </Link>
-            </div>
+            <div/>
 
             {/* Center Logo */}
             <div className="flex justify-center">
