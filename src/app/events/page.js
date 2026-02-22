@@ -2,24 +2,43 @@
 import React, { useEffect, useState } from "react";
 import EventCard from "@/components/common/Card/EventCard";
 import EventCardPrem from "@/components/common/Card/EventCardPrem";
-import { api } from "../api/axiox";
+import CategoryBanner from "@/components/common/categoryBanner/CategoryBanner";
+import { fetchAllEventsCached } from "@/lib/fetchAllEventsCached";
+
+const CATEGORY_CONFIG = [
+  { name: "Flagship Events ", banner: "/images/banner/banner1.svg", textColor: "#730000" },
+  { name: "Dramatics ", banner: "/images/banner/banner2.svg", textColor: "#FFDEAC" },
+  { name: "Kalolsavam (group)", banner: "/images/banner/banner1.svg", textColor: "#730000" },
+  { name: "Kalolsavam -solo-pass", banner: "/images/banner/banner2.svg", textColor: "#FFDEAC" },
+  { name: "M&D-pass", banner: "/images/banner/banner1.svg", textColor: "#730000" },
+  { name: "General-Pass", banner: "/images/banner/banner2.svg", textColor: "#FFDEAC" },
+  { name: "Other", banner: "/images/banner/banner1.svg", textColor: "#730000" },
+];
+
 
 export default function EventsPage() {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
     const getEvents = async () => {
-      const response = await api.get("/api/events");
-      setEvents(response.data.data);
-      console.log(response.data.data);
+      const response = await fetchAllEventsCached();
+      setEvents(response);
     };
-
+    
     getEvents();
+    console.log(events);
   }, []);
+
+  const groupedEvents = CATEGORY_CONFIG.map((category) => ({
+    ...category,
+    events: events.filter(
+      (event) => event.category === category.name
+    ),
+  }));
 
   return (
     <main
-      className="min-h-screen bg-black bg-top bg-no-repeat bg-fixed"
+      className="min-h-screen pb-12 md:pb-24 bg-black bg-top bg-no-repeat bg-fixed"
       style={{
         backgroundImage: "url('/images/events/bg.png')",
         backgroundSize: "100% 100%",
@@ -32,19 +51,43 @@ export default function EventsPage() {
         </h1>
       </div>
 
-      <div className="w-full max-w-350 mx-auto px-4 sm:px-6 lg:px-8 pb-20">
-        <div className="page pt-10 flex items-center justify-center gap-10 flex-wrap">
-          {events.map((eventData) => (
-            <EventCardPrem key={eventData.id} eventName={eventData.eventName} regUrl={eventData.makeMyPassUrl} />
-          ))}
-        </div>
+      {groupedEvents.map((category, index) => {
+        if (category.events.length === 0) return null;
 
-        {events.length === 0 && (
-          <p className="text-center text-gray-500 py-20 text-xl font-light tracking-widest">
-            NO EVENTS FOUND
-          </p>
-        )}
-      </div>
+        const isFlagship = category.name === "Flagship Events ";
+        const align = index % 2 === 0 ? "left" : "right";
+
+        return (
+          <section key={category.name} className="mb-10">
+            <CategoryBanner
+              title={category.name.toUpperCase()}
+              image={category.banner}
+              align={align}
+              textColor={category.textColor}
+            />
+
+            <div className="w-full max-w-350 mx-auto px-4 sm:px-6 lg:px-8 pt-10">
+              <div className="flex items-center justify-center gap-10 flex-wrap">
+                {category.events.map((event) => 
+                  isFlagship ? (
+                    <EventCardPrem
+                      key={event.id}
+                      eventName={event.eventName}
+                      regUrl={event.makeMyPassUrl}
+                    />
+                  ) : (
+                    <EventCard
+                      key={event.id}
+                      eventName={event.eventName}
+                      regUrl={event.makeMyPassUrl}
+                    />
+                  )
+                )}
+              </div>
+            </div>
+          </section>
+        );
+      })}
     </main>
   );
 }

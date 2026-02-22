@@ -82,3 +82,9 @@ export const prompt = Prompt({
   weight: ["300", "400", "500", "600", "700", "800"],
   style: ["normal", "italic"],
 });
+
+export const liberationSerif = localFont({ 
+  src: "../../public/fonts/LiberationSerif-Bold.ttf",
+  variable: "--font-liberation-serif",
+  display: "swap",
+});
