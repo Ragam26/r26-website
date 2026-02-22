@@ -65,7 +65,7 @@ function MorphText({ texts = [], morphTime = 2.5, cooldownTime = 2 }) {
     playMorph()
     return () => {
       gsap.killTweensOf([el1, el2])
-      gsap.killDelayedCallsTo(playMorph)
+
     }
   }, [texts, morphTime, cooldownTime])
 
