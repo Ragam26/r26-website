@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import VinylDisc from "./vinylAnimation";
 import KathakaliEyes from "./eyesAnimation";
+import { slackey } from "@/lib/fonts";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -12,7 +13,8 @@ function Date({ date, index, datesRef }) {
   return (
     <div
       ref={(el) => (datesRef.current[index] = el)}
-      className="flex justify-between gap-1"
+      className={`flex select-none justify-between hover:text-amber-300 transition-colors gap-1 ${slackey.className} text-3xl md:text-4xl lg:text-5xl uppercase leading-none tracking-wide text-[#8F7B75]`}
+      
     >
       <span className="lowercase">march</span>
       <span>{date}</span>
@@ -50,6 +52,7 @@ function TV() {
       <img
         src="/images/polaroid_page/retro_tv.svg"
         alt="retro_tv"
+        draggable="false"
         className="max-w-45 sm:min-w-50 md:max-w-60 lg:min-w-80"
       />
 
@@ -107,21 +110,41 @@ function PolaroidPage() {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
+          start: "top 80%", // start when top of container hits 50% of viewport
+          end: "top 30%", // end when top of container hits 30% of viewport
+          scrub: true,
+          invalidateOnRefresh: true,
+        },
+      });
+
+      const rangoliTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 80%",
+          end: "top 30%",
+          scrub: true,
+          invalidateOnRefresh: true,
+        },
+      });
+
+      const datesTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
           start: "top 50%",
-          end: "top 0%",
+          end: "top 20%",
           scrub: true,
           invalidateOnRefresh: true,
         },
       });
 
       // xPercent: 100 to start from the right, 0 to end at its CSS position
-      tl.from(rangoli, {
+      rangoliTl.from(rangoli, {
         xPercent: 150,
         opacity: 0,
         ease: "none",
       });
 
-      tl.from(
+      datesTl.from(
         dates,
         {
           xPercent: 100,
@@ -143,13 +166,14 @@ function PolaroidPage() {
           y: 0,
           opacity: 1,
           scale: 1,
-          duration: 1.2,
+          duration: 0.5,
           stagger: 0.75,
           ease: "back.out(1.1)",
           scrollTrigger: {
             trigger: containerRef.current,
             start: "top 30%",
-            toggleActions: "play none none none",
+            end: "top 10%",
+            toggleActions: "play none none reverse",
           },
         },
       );
@@ -183,6 +207,7 @@ function PolaroidPage() {
               ref={rangoliRef}
               src="/images/polaroid_page/rangoli.svg"
               alt="rangoli"
+              draggable="false"
               className="h-[92%] md:h-full w-auto object-contain flex-shrink-0"
             />
 
@@ -210,19 +235,22 @@ function PolaroidPage() {
             <img
               src="/images/polaroid_page/camera.svg"
               alt="camera"
+              draggable="false"
               className="max-w-40 sm:min-w-35 md:max-w-45 lg:max-w-60 object-cover mt-[25%]"
             />
             <img
               ref={(el) => (framesRef.current[0] = el)}
               src={`/images/polaroid_page/polaroids/frame${selectedFrames[0]}.svg`}
               alt="frame1"
-              className="max-w-30 sm:max-w-25 md:max-w-30 lg:min-w-46 object-cover -mt-[25%]"
+              draggable="false"
+              className="max-w-30 sm:max-w-25 md:max-w-30 lg:min-w-46 object-cover -mt-[25%] hover:rotate-12"
             />
             <img
               ref={(el) => (framesRef.current[1] = el)}
               src={`/images/polaroid_page/polaroids/frame${selectedFrames[1]}.svg`}
               alt="frame2"
-              className="max-w-30 sm:max-w-25 md:max-w-30 lg:min-w-45 object-cover -mt-[30%]"
+              draggable="false"
+              className="max-w-30 sm:max-w-25 md:max-w-30 lg:min-w-45 object-cover -mt-[30%] hover:-rotate-12"
             />
           </div>
 
