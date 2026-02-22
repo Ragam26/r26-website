@@ -373,7 +373,7 @@ export default function LandingPage() {
           {/* Left Dancer */}
           <div className="absolute top-2 left-12 w-full h-[50vh] md:top-auto md:bottom-3 md:-left-25 md:h-screen md:w-auto overflow-visible">
             <img
-              src={`/images/landingAnimation/dancers/dancerLeft${leftDancer}.png`}
+              src={`/images/landingAnimation/dancers/dancerLeft${leftDancer}.webp`}
               alt="Dancer L"
               className="h-full w-full object-contain object-bottom scale-[1.7] origin-bottom md:scale-100 md:object-bottom-left mix-blend-screen opacity-90"
               style={{
@@ -388,7 +388,7 @@ export default function LandingPage() {
           {/* Right Dancer */}
           <div className="absolute -bottom-7 right-14 w-full h-[50vh] md:-right-25 md:h-screen md:w-auto overflow-visible">
             <img
-              src={`/images/landingAnimation/dancers/dancerRight${rightDancer}.png`}
+              src={`/images/landingAnimation/dancers/dancerRight${rightDancer}.webp`}
               alt="Dancer R"
               className="h-full w-full object-contain object-bottom scale-[1.7] origin-bottom md:scale-100 md:object-bottom-right mix-blend-screen opacity-90"
               style={{
