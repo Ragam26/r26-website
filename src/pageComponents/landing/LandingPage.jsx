@@ -307,7 +307,7 @@ export default function LandingPage() {
         </div>
 
         {/* Render loops */}
-        {activeLoops.map((loop, index) => (
+        {/* {activeLoops.map((loop, index) => (
           <div
             key={loop.id}
             ref={(el) => (loopsRef.current[index] = el)}
@@ -335,6 +335,29 @@ export default function LandingPage() {
                 WebkitMaskPosition: "center",
                 maskPosition: "center",
               }}
+            />
+          </div>
+        ))} */}
+
+        {/* uncomment hte blwop and comment the above to optimize by a ton */}
+
+        {activeLoops.map((loop, index) => (
+          <div
+            key={loop.id}
+            ref={(el) => (loopsRef.current[index] = el)}
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 origin-center will-change-transform"
+            style={{
+              width: loop.width,
+              zIndex: loop.zIndex,
+              aspectRatio: "1/1",
+              marginTop: "8px",
+              marginLeft: "-5px",
+            }}
+          >
+            <img
+              src={`/images/landingAnimation/${loop.src}`}
+              alt="Loop Decoration"
+              className="w-full h-full object-contain"
             />
           </div>
         ))}
