@@ -18,7 +18,7 @@ export default function MenuOverlay({ isOpen }) {
     { title: "Events", href: "/events" },
     { title: "Prodezza", href: "/notFound" },
     { title: "Proshows", href: "/notFound" },
-    { title: "Campus Ambassador", href: "/campusAmbassador/regForm" },
+    { title: "Campus Ambassador", href: "https://ca.ragam.co.in", external: true },
     { title: "Team", href: "/notFound" },
     { title: "Sponsors", href: "/notFound" },
   ];
@@ -123,20 +123,23 @@ export default function MenuOverlay({ isOpen }) {
         ref={itemsRef}
         className="relative h-full flex flex-col justify-center sm:ml-auto w-full sm:w-1/2 items-start pl-5 md:pl-0 pt-10 md:pt-20 z-[850]"
       >
-        {menuItems.map((item, i) => (
-          <Link
-            key={item.title}
-            href={item.href}
-            onClick={() => {
-              // close overlay after clicking
-              const event = new Event("closeMenu");
-              window.dispatchEvent(event);
-            }}
-            className="w-full"
-          >
-            <MenuItem index={i + 1} title={item.title} />
-          </Link>
-        ))}
+        {menuItems.map((item, i) => {
+          const handleClose = () => {
+            const closeEvent = new Event("closeMenu");
+            window.dispatchEvent(closeEvent);
+          };
+          return (
+            <Link
+              key={item.title}
+              href={item.href}
+              onClick={handleClose}
+              target={item.external ? "_blank" : "_self"}
+              className="w-full"
+            >
+              <MenuItem index={i + 1} title={item.title} />
+            </Link>
+          );
+        })}
       </div>
       <ThreeScene />
     </div>

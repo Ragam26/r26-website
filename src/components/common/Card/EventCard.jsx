@@ -7,7 +7,7 @@ const commonBorderStyle =
   "border border-[#730000] group-hover:border-[#FFDEAC] transition-colors";
 
 export default function EventCard({
-  date = "29", // DD format
+  date = "", // DD format
   eventName = "Event Name",
   eventimage = "/images/gpcDesign2.svg",
   regFee = "000", // in INR
@@ -28,7 +28,7 @@ export default function EventCard({
             <div className="flex flex-col items-center leading-none">
               <span className={`${playfair.className} text-[22px]`}>MAR</span>
               <span className={`${playfair.className} text-[30px]`}>
-                {date}<sup className="text-[12px] ">{date%10 === 1 ? "st" : date%10 === 2 ? "nd" : date%10 === 3 ? "rd" : "th"}</sup>
+                {/* {date}<sup className="text-[12px] ">{date%10 === 1 ? "st" : date%10 === 2 ? "nd" : date%10 === 3 ? "rd" : "th"}</sup> */}
               </span>
             </div>
 
