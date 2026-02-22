@@ -6,13 +6,13 @@ import CategoryBanner from "@/components/common/categoryBanner/CategoryBanner";
 import { useEvents } from "@/hooks/useEvents";
 
 const CATEGORY_CONFIG = [
-  { name: "Flagship Events", banner: "/images/banner/banner1.svg"},
-  { name: "Dramatics", banner: "/images/banner/banner2.svg"},
-  { name: "Kalolsavam (group)", banner: "/images/banner/banner1.svg"},
-  { name: "Kalolsavam -solo-pass", banner: "/images/banner/banner2.svg"},
-  { name: "M&D-pass", banner: "/images/banner/banner1.svg"},
-  { name: "General-Pass", banner: "/images/banner/banner2.svg"},
-  { name: "Other", banner: "/images/banner/banner1.svg"},
+  { name: "Flagship Events", label: "Flagship Events", banner: "/images/banner/banner1.svg"},
+  { name: "Dramatics", label: "Dramatics", banner: "/images/banner/banner2.svg"},
+  { name: "Kalolsavam (group)", label: "Kalolsavam (group)", banner: "/images/banner/banner1.svg"},
+  { name: "Kalolsavam -solo-pass", label: "Kalolsavam (solo)", banner: "/images/banner/banner2.svg"},
+  { name: "M&D-pass", label: "Music & Dance", banner: "/images/banner/banner1.svg"},
+  { name: "General-Pass", label: "General", banner: "/images/banner/banner2.svg"},
+  { name: "Other", label: "Other", banner: "/images/banner/banner1.svg"},
 ];
 
   
@@ -64,7 +64,7 @@ export default function EventsPage() {
         return (
           <section key={category.name} className="mb-10">
             <CategoryBanner
-              title={category.name.toUpperCase()}
+              title={category.label.toUpperCase()}
               image={category.banner}
               align={align}
               variant={variant}
