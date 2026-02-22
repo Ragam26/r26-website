@@ -18,7 +18,11 @@ export default function MenuOverlay({ isOpen }) {
     { title: "Events", href: "/events" },
     { title: "Prodezza", href: "/notFound" },
     { title: "Proshows", href: "/notFound" },
-    { title: "Campus Ambassador", href: "https://ca.ragam.co.in", external: true },
+    {
+      title: "Campus Ambassador",
+      href: "https://ca.ragam.co.in",
+      external: true,
+    },
     { title: "Team", href: "/notFound" },
     { title: "Sponsors", href: "/notFound" },
   ];
@@ -141,7 +145,7 @@ export default function MenuOverlay({ isOpen }) {
           );
         })}
       </div>
-      <ThreeScene />
+      {/* <ThreeScene /> */}
     </div>
   );
 }
