@@ -10,10 +10,10 @@ export default function EventCard({
   eventimage = "/images/card/dancerBg.svg",
   regFee = "000", // in INR
   expDate = "00/00",
-  regUrl = "https://www.google.com",
+  regUrl = "",
 }) {
   return (
-    <div className="group bg-[#FFDEAC] hover:bg-[#730000] transition-colors w-100 h-130 p-3 flex flex-col gap-2">
+    <div className="group bg-[#FFDEAC] hover:bg-[#730000] transition-colors md:w-100 w-80 md:h-130 h-110 p-3 flex flex-col gap-2">
       <div className="flex gap-2 flex-1">
         <div className=" w-5 flex flex-[1.2] flex-col gap-2">
           <div
@@ -24,31 +24,45 @@ export default function EventCard({
           {/* Date and Fee Box */}
           <div className={`${commonBorderStyle} flex-1 flex flex-col justify-between items-center text-[#730000] group-hover:text-[#FFDEAC] py-4 transition-colors`}>
             <div className="flex flex-col items-center leading-none">
-              <span className={`${playfair.className} text-[22px]`}></span>
-              <span className={`${playfair.className} text-[30px]`}>
-                {/* {date}<sup className="text-[12px] ">{date%10 === 1 ? "st" : date%10 === 2 ? "nd" : date%10 === 3 ? "rd" : "th"}</sup> */}
-              </span>
+              {date && (
+                <>
+                  <span className={`${playfair.className} text-[22px]`}>MAR</span>
+                  <span className={`${playfair.className} text-[30px]`}>
+                    {date } <sup className="text-[12px] ">{date%10 === 1 ? "st" : date%10 === 2 ? "nd" : date%10 === 3 ? "rd" : "th"}</sup>
+                  </span>
+                </>
+              )}
             </div>
+            
 
             <div className="relative w-full flex justify-center">
-              <div className="w-[70%] h-px bg-[#730000] group-hover:bg-[#FFDEAC] transition-colors rotate-35"></div>
+              <div className="w-[80%] h-px bg-[#730000] group-hover:bg-[#FFDEAC] transition-colors -rotate-45"></div>
             </div>
 
-            <div className="flex flex-col items-center leading-none">
-              <span className={`${prompt.className} text-[20px] font-bold`}>
-                {/* ₹{regFee} */}
+            {regFee !== 0 && regFee !== null ? (
+            <div className="flex flex-col items-center leading-none gap-1">
+              <span className={`${prompt.className} text-[20px]`}>
+                ₹<bold className="font-bold">{regFee}</bold>
               </span>
               <span
                 className={`${playfair.className} text-[12px] font-semibold`}
               >
-                {/* {expDate} */}
+                Registration Fee
               </span>
-              <span
-                className={`${playfair.className} text-[12px] font-semibold`}
-              >
-                {/* fee */}
-              </span>
+
             </div>
+            ) 
+            : (
+              <div className="flex flex-col items-center leading-none gap-1 text-wrap p-1">
+              <span
+                className={`${playfair.className} md:text-[24px] text-[20px] font-semibold text-wrap text-center`}
+              >
+               Register Now! 
+              </span>
+
+              </div>
+            )
+          }
           </div>
         </div>
 
@@ -63,8 +77,8 @@ export default function EventCard({
 
       {/* Event Name Section */}
       <div className="flex gap-2 h-15">
-        <div className={`${commonBorderStyle} flex-1 flex items-center justify-center`}>
-          <span className={`${abril.className} text-[25px] text-[#730000] group-hover:text-[#FFDEAC] transition-colors`}>
+        <div className={`${commonBorderStyle} flex-1 flex items-center justify-center p-2`}>
+          <span className={`${abril.className} ${eventName.length > 16 ? "text-[18px]" : "text-[25px]"} text-[#730000] group-hover:text-[#FFDEAC] transition-colors`}>
             {eventName}
           </span>
         </div>
@@ -83,6 +97,7 @@ export default function EventCard({
       </div>
 
       {/* Closing Date */}
+      { expDate && (
       <div className="h-7.5 border border-[#730000] group-hover:border-[#FFDEAC] transition-colors flex items-center justify-center">
         <span
           className={`${playfair.className} text-[14px] text-[#730000] group-hover:text-[#FFDEAC] transition-colors font-medium`}
@@ -91,6 +106,7 @@ export default function EventCard({
           Click to Register
         </span>
       </div>
+      )}
     </div>
   );
 }

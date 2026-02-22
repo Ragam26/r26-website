@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import EventCard from "@/components/common/Card/EventCard";
 import EventCardPrem from "@/components/common/Card/EventCardPrem";
 import CategoryBanner from "@/components/common/categoryBanner/CategoryBanner";
-import { fetchAllEventsCached } from "@/lib/fetchAllEventsCached";
+import { useEvents } from "@/hooks/useEvents";
 
 const CATEGORY_CONFIG = [
   { name: "Flagship Events ", banner: "/images/banner/banner1.svg"},
@@ -15,23 +15,13 @@ const CATEGORY_CONFIG = [
   { name: "Other", banner: "/images/banner/banner1.svg"},
 ];
 
-
+  
 export default function EventsPage() {
-  const [events, setEvents] = useState([]);
-
-  useEffect(() => {
-    const getEvents = async () => {
-      const response = await fetchAllEventsCached();
-      setEvents(response);
-    };
-    
-    getEvents();
-    console.log(events);
-  }, []);
+  let {data, isLoading, error} = useEvents("events");
 
   const groupedEvents = CATEGORY_CONFIG.map((category) => ({
     ...category,
-    events: events.filter(
+    events: data.filter(
       (event) => event.category === category.name
     ),
   }));
@@ -89,6 +79,36 @@ export default function EventsPage() {
           </section>
         );
       })}
+      {isLoading ? (
+        <p className="text-center text-gray-500 py-20 text-xl font-light tracking-widest">
+          LOADING...
+        </p>
+      ) : error ? (
+        <p className="text-center text-gray-500 py-20 text-xl font-light tracking-widest">
+          ERROR LOADING EVENTS. PLEASE TRY AGAIN LATER.
+        </p>
+      ) : (
+
+      <div className="w-full max-w-350 mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+        <div className="page pt-10 flex items-center md:justify-left justify-center gap-10 flex-wrap">
+          {data.map((eventData) => (
+            <EventCard 
+              key={eventData.id} 
+              date={eventData.eventDay}
+              eventName={eventData.eventName} 
+              regUrl={eventData.makeMyPassUrl} 
+              regFee={0}
+              eventimage={eventData.eventImage ?? "/images/gpcDesign2.svg"}
+            />
+          ))}
+        </div>
+
+        {data.length === 0 && (
+          <p className="text-center text-gray-500 py-20 text-xl font-light tracking-widest">
+            NO EVENTS FOUND
+          </p>
+        )}
+      </div> )}
     </main>
   );
 }

@@ -89,7 +89,7 @@ export default function LandingPage() {
         opacity: 0,
         scale: START_LOGO_SCALE,
       });
-      if(navbar) {
+      if (navbar) {
         gsap.set(navbar, {
           opacity: 0,
           y: -40,
@@ -221,10 +221,11 @@ export default function LandingPage() {
         TEXT_REVEAL_START,
       );
 
-      if(navbar) {
+      if (navbar) {
         // NAVBAR APPEAR
         scrollTl.to(
-          navbar, {
+          navbar,
+          {
             opacity: 1,
             y: 0,
             duration: 0.5,
@@ -266,9 +267,16 @@ export default function LandingPage() {
       );
     }, outerContainerRef);
 
+    // FIX FOR POSITIONING ON LOAD
+    const handleLoad = () => ScrollTrigger.refresh();
+    window.addEventListener("load", handleLoad);
+    const refreshTimer = setTimeout(() => ScrollTrigger.refresh(), 500);
+
     return () => {
       ctx.revert();
       document.body.style.overflow = "auto";
+      window.removeEventListener("load", handleLoad);
+      clearTimeout(refreshTimer);
     };
   }, [isMounted, isMobile, activeLoops, LOGO_MAX_SCALE]);
 
@@ -286,7 +294,7 @@ export default function LandingPage() {
 
       <main
         ref={stickyRef}
-        className="sticky top-0 flex h-screen w-full flex-col items-center justify-center overflow-hidden bg-black text-white"
+        className="sticky top-0 flex h-[100dvh] w-full flex-col items-center justify-center overflow-hidden bg-black text-white"
       >
         <div className="absolute inset-0 z-5 opacity-100 pointer-events-none mix-blend-overlay">
           <Image
@@ -299,7 +307,7 @@ export default function LandingPage() {
         </div>
 
         {/* Render loops */}
-        {activeLoops.map((loop, index) => (
+        {/* {activeLoops.map((loop, index) => (
           <div
             key={loop.id}
             ref={(el) => (loopsRef.current[index] = el)}
@@ -327,6 +335,29 @@ export default function LandingPage() {
                 WebkitMaskPosition: "center",
                 maskPosition: "center",
               }}
+            />
+          </div>
+        ))} */}
+
+        {/* uncomment hte blwop and comment the above to optimize by a ton */}
+
+        {activeLoops.map((loop, index) => (
+          <div
+            key={loop.id}
+            ref={(el) => (loopsRef.current[index] = el)}
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 origin-center will-change-transform"
+            style={{
+              width: loop.width,
+              zIndex: loop.zIndex,
+              aspectRatio: "1/1",
+              marginTop: "8px",
+              marginLeft: "-5px",
+            }}
+          >
+            <img
+              src={`/images/landingAnimation/${loop.src}`}
+              alt="Loop Decoration"
+              className="w-full h-full object-contain"
             />
           </div>
         ))}
@@ -373,7 +404,7 @@ export default function LandingPage() {
           {/* Left Dancer */}
           <div className="absolute top-2 left-12 w-full h-[50vh] md:top-auto md:bottom-3 md:-left-25 md:h-screen md:w-auto overflow-visible">
             <img
-              src={`/images/landingAnimation/dancers/dancerLeft${leftDancer}.png`}
+              src={`/images/landingAnimation/dancers/dancerLeft${leftDancer}.webp`}
               alt="Dancer L"
               className="h-full w-full object-contain object-bottom scale-[1.7] origin-bottom md:scale-100 md:object-bottom-left mix-blend-screen opacity-90"
               style={{
@@ -388,7 +419,7 @@ export default function LandingPage() {
           {/* Right Dancer */}
           <div className="absolute -bottom-7 right-14 w-full h-[50vh] md:-right-25 md:h-screen md:w-auto overflow-visible">
             <img
-              src={`/images/landingAnimation/dancers/dancerRight${rightDancer}.png`}
+              src={`/images/landingAnimation/dancers/dancerRight${rightDancer}.webp`}
               alt="Dancer R"
               className="h-full w-full object-contain object-bottom scale-[1.7] origin-bottom md:scale-100 md:object-bottom-right mix-blend-screen opacity-90"
               style={{
