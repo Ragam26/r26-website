@@ -89,7 +89,7 @@ export default function LandingPage() {
         opacity: 0,
         scale: START_LOGO_SCALE,
       });
-      if(navbar) {
+      if (navbar) {
         gsap.set(navbar, {
           opacity: 0,
           y: -40,
@@ -221,10 +221,11 @@ export default function LandingPage() {
         TEXT_REVEAL_START,
       );
 
-      if(navbar) {
+      if (navbar) {
         // NAVBAR APPEAR
         scrollTl.to(
-          navbar, {
+          navbar,
+          {
             opacity: 1,
             y: 0,
             duration: 0.5,
@@ -266,9 +267,16 @@ export default function LandingPage() {
       );
     }, outerContainerRef);
 
+    // FIX FOR POSITIONING ON LOAD
+    const handleLoad = () => ScrollTrigger.refresh();
+    window.addEventListener("load", handleLoad);
+    const refreshTimer = setTimeout(() => ScrollTrigger.refresh(), 500);
+
     return () => {
       ctx.revert();
       document.body.style.overflow = "auto";
+      window.removeEventListener("load", handleLoad);
+      clearTimeout(refreshTimer);
     };
   }, [isMounted, isMobile, activeLoops, LOGO_MAX_SCALE]);
 
@@ -286,7 +294,7 @@ export default function LandingPage() {
 
       <main
         ref={stickyRef}
-        className="sticky top-0 flex h-screen w-full flex-col items-center justify-center overflow-hidden bg-black text-white"
+        className="sticky top-0 flex h-[100dvh] w-full flex-col items-center justify-center overflow-hidden bg-black text-white"
       >
         <div className="absolute inset-0 z-5 opacity-100 pointer-events-none mix-blend-overlay">
           <Image
