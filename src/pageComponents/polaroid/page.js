@@ -98,51 +98,65 @@ function PolaroidPage() {
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
       const rangoli = rangoliRef.current;
-      const eyes = rangoli?.nextElementSibling;
       const dates = datesRef.current.filter(Boolean);
+      const frames = framesRef.current.filter(Boolean);
 
-      if (!rangoli || !eyes || dates.length === 0) return;
+      if (!rangoli || dates.length === 0) return;
 
-      gsap.set(rangoli, { x: 0 });
-      gsap.set(dates, { x: 0 });
-
-      const rangoliOffset =
-        eyes.offsetLeft - (rangoli.offsetLeft + rangoli.offsetWidth);
-
-      const firstDate = dates[0];
-      const parent = firstDate.parentElement;
-
-      // distance from right edge of parent
-      const datesOffset =
-        parent.offsetWidth - (firstDate.offsetLeft + firstDate.offsetWidth);
-
+      // rangoli & dates
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top 50%",
           end: "top 0%",
           scrub: true,
+          invalidateOnRefresh: true,
         },
       });
 
-      // rangoli
-      tl.fromTo(rangoli, { x: rangoliOffset || 200 }, { x: 20, ease: "none" });
+      // xPercent: 100 to start from the right, 0 to end at its CSS position
+      tl.from(rangoli, {
+        xPercent: 150,
+        opacity: 0,
+        ease: "none",
+      });
 
-      // dates
-      tl.fromTo(
+      tl.from(
         dates,
-        { x: datesOffset || 200 },
         {
-          x: 0,
+          xPercent: 100,
+          opacity: 0,
           stagger: 0.1,
           ease: "none",
         },
         "<0.1",
       );
+
+      gsap.fromTo(
+        frames,
+        {
+          y: -100,
+          opacity: 0,
+          scale: 0.9,
+        },
+        {
+          y: 0,
+          opacity: 1,
+          scale: 1,
+          duration: 1.2,
+          stagger: 0.75,
+          ease: "back.out(1.1)",
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top 30%",
+            toggleActions: "play none none none",
+          },
+        },
+      );
     }, containerRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [selectedFrames]);
 
   // bro im gonan crahs tf out if i fgix mobilem desktop breaks, fii  fix desktop, mobiel brkas like wtf do you want me to do
   return (
@@ -169,9 +183,10 @@ function PolaroidPage() {
               ref={rangoliRef}
               src="/images/polaroid_page/rangoli.svg"
               alt="rangoli"
-              className="h-[92%] md:h-full object-cover"
+              className="h-[92%] md:h-full w-auto object-contain flex-shrink-0"
             />
-            <div className="relative h-full w-full">
+
+            <div className="relative h-full w-fit flex-shrink-0">
               <KathakaliEyes />
             </div>
           </div>
