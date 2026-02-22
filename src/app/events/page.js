@@ -6,13 +6,13 @@ import CategoryBanner from "@/components/common/categoryBanner/CategoryBanner";
 import { fetchAllEventsCached } from "@/lib/fetchAllEventsCached";
 
 const CATEGORY_CONFIG = [
-  { name: "Flagship Events ", banner: "/images/banner/banner1.svg", textColor: "#730000" },
-  { name: "Dramatics ", banner: "/images/banner/banner2.svg", textColor: "#FFDEAC" },
-  { name: "Kalolsavam (group)", banner: "/images/banner/banner1.svg", textColor: "#730000" },
-  { name: "Kalolsavam -solo-pass", banner: "/images/banner/banner2.svg", textColor: "#FFDEAC" },
-  { name: "M&D-pass", banner: "/images/banner/banner1.svg", textColor: "#730000" },
-  { name: "General-Pass", banner: "/images/banner/banner2.svg", textColor: "#FFDEAC" },
-  { name: "Other", banner: "/images/banner/banner1.svg", textColor: "#730000" },
+  { name: "Flagship Events ", banner: "/images/banner/banner1.svg"},
+  { name: "Dramatics ", banner: "/images/banner/banner2.svg"},
+  { name: "Kalolsavam (group)", banner: "/images/banner/banner1.svg"},
+  { name: "Kalolsavam -solo-pass", banner: "/images/banner/banner2.svg"},
+  { name: "M&D-pass", banner: "/images/banner/banner1.svg"},
+  { name: "General-Pass", banner: "/images/banner/banner2.svg"},
+  { name: "Other", banner: "/images/banner/banner1.svg"},
 ];
 
 
@@ -56,6 +56,7 @@ export default function EventsPage() {
 
         const isFlagship = category.name === "Flagship Events ";
         const align = index % 2 === 0 ? "left" : "right";
+        const variant = index % 2 === 0 ? "light" : "dark";
 
         return (
           <section key={category.name} className="mb-10">
@@ -63,7 +64,7 @@ export default function EventsPage() {
               title={category.name.toUpperCase()}
               image={category.banner}
               align={align}
-              textColor={category.textColor}
+              variant={variant}
             />
 
             <div className="w-full max-w-350 mx-auto px-4 sm:px-6 lg:px-8 pt-10">
