@@ -146,6 +146,7 @@ export default function MenuOverlay({ isOpen }) {
         })}
       </div>
       {/* <ThreeScene /> */}
+      <div className="absolute w-full h-full bg-black"></div>
     </div>
   );
 }
