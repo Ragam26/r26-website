@@ -1,20 +1,10 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import EventCard from "@/components/common/Card/EventCard";
-import { api } from "../api/axiox";
+import { useEvents } from "@/hooks/useEvents";
 
 export default function EventsPage() {
-  const [events, setEvents] = useState([]);
-
-  useEffect(() => {
-    const getEvents = async () => {
-      const response = await api.get("/api/events");
-      setEvents(response.data.data);
-      console.log(response.data.data);
-    };
-
-    getEvents();
-  }, []);
+  let {data, isLoading, error} = useEvents("events");
 
   return (
     <main
@@ -31,19 +21,36 @@ export default function EventsPage() {
         </h1>
       </div>
 
+      {isLoading ? (
+        <p className="text-center text-gray-500 py-20 text-xl font-light tracking-widest">
+          LOADING...
+        </p>
+      ) : error ? (
+        <p className="text-center text-gray-500 py-20 text-xl font-light tracking-widest">
+          ERROR LOADING EVENTS. PLEASE TRY AGAIN LATER.
+        </p>
+      ) : (
+
       <div className="w-full max-w-350 mx-auto px-4 sm:px-6 lg:px-8 pb-20">
-        <div className="page pt-10 flex items-center justify-center gap-10 flex-wrap">
-          {events.map((eventData) => (
-            <EventCard key={eventData.id} eventName={eventData.eventName} regUrl={eventData.makeMyPassUrl} />
+        <div className="page pt-10 flex items-center md:justify-left justify-center gap-10 flex-wrap">
+          {data.map((eventData) => (
+            <EventCard 
+              key={eventData.id} 
+              date={eventData.eventDay}
+              eventName={eventData.eventName} 
+              regUrl={eventData.makeMyPassUrl} 
+              regFee={0}
+              eventimage={eventData.eventImage ?? "/images/gpcDesign2.svg"}
+            />
           ))}
         </div>
 
-        {events.length === 0 && (
+        {data.length === 0 && (
           <p className="text-center text-gray-500 py-20 text-xl font-light tracking-widest">
             NO EVENTS FOUND
           </p>
         )}
-      </div>
+      </div> )}
     </main>
   );
 }
