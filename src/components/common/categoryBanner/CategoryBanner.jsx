@@ -43,7 +43,7 @@ export default function CategoryBanner({
           absolute inset-0 flex items-center
           ${
             isRight
-              ? "justify-end pr-6 sm:pr-10 md:pr-15"
+              ? "justify-end pr-2 md:pr-5"
               : "justify-start pl-2 md:pl-2"
           }
         `}

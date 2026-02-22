@@ -6,8 +6,8 @@ import CategoryBanner from "@/components/common/categoryBanner/CategoryBanner";
 import { useEvents } from "@/hooks/useEvents";
 
 const CATEGORY_CONFIG = [
-  { name: "Flagship Events ", banner: "/images/banner/banner1.svg"},
-  { name: "Dramatics ", banner: "/images/banner/banner2.svg"},
+  { name: "Flagship Events", banner: "/images/banner/banner1.svg"},
+  { name: "Dramatics", banner: "/images/banner/banner2.svg"},
   { name: "Kalolsavam (group)", banner: "/images/banner/banner1.svg"},
   { name: "Kalolsavam -solo-pass", banner: "/images/banner/banner2.svg"},
   { name: "M&D-pass", banner: "/images/banner/banner1.svg"},
@@ -22,7 +22,7 @@ export default function EventsPage() {
   const groupedEvents = CATEGORY_CONFIG.map((category) => ({
     ...category,
     events: data.filter(
-      (event) => event.category === category.name
+      (event) => event.category?.trim() === category.name
     ),
   }));
 
@@ -41,12 +41,25 @@ export default function EventsPage() {
         </h1>
       </div>
 
-      {groupedEvents.map((category, index) => {
-        if (category.events.length === 0) return null;
+      {isLoading && (
+        <p className="text-center text-gray-500 py-20 text-xl font-light tracking-widest">
+          LOADING...
+        </p>
+      )}
 
-        const isFlagship = category.name === "Flagship Events ";
-        const align = index % 2 === 0 ? "left" : "right";
-        const variant = index % 2 === 0 ? "light" : "dark";
+      {error && (
+        <p className="text-center text-gray-500 py-20 text-xl font-light tracking-widest">
+          ERROR LOADING EVENTS. PLEASE TRY AGAIN LATER.
+        </p>
+      )}
+
+      {!isLoading && !error && 
+        groupedEvents.map((category, index) => {
+          if (category.events.length === 0) return null;
+
+          const isFlagship = category.name === "Flagship Events";
+          const align = index % 2 === 0 ? "left" : "right";
+          const variant = index % 2 === 0 ? "light" : "dark";
 
         return (
           <section key={category.name} className="mb-10">
@@ -58,57 +71,38 @@ export default function EventsPage() {
             />
 
             <div className="w-full max-w-350 mx-auto px-4 sm:px-6 lg:px-8 pt-10">
-              <div className="flex items-center justify-center gap-10 flex-wrap">
+              <div className="page pt-10 flex items-center md:justify-left justify-center gap-10 flex-wrap">
                 {category.events.map((event) => 
                   isFlagship ? (
                     <EventCardPrem
-                      key={event.id}
-                      eventName={event.eventName}
-                      regUrl={event.makeMyPassUrl}
+                      key={event.id} 
+                      date={event.eventDay}
+                      eventName={event.eventName} 
+                      regUrl={event.makeMyPassUrl} 
+                      regFee={0}
+                      eventimage={event.eventImage ?? "/images/card/dancerBg.svg"}
                     />
                   ) : (
                     <EventCard
-                      key={event.id}
-                      eventName={event.eventName}
-                      regUrl={event.makeMyPassUrl}
+                      key={event.id} 
+                      date={event.eventDay}
+                      eventName={event.eventName} 
+                      regUrl={event.makeMyPassUrl} 
+                      regFee={0}
+                      eventimage={event.eventImage ?? "/images/card/dancerBg.svg"}
                     />
-                  )
-                )}
+                   )
+                  )}
               </div>
             </div>
           </section>
         );
       })}
-      {isLoading ? (
+      {!isLoading && !error && data.length === 0 && (
         <p className="text-center text-gray-500 py-20 text-xl font-light tracking-widest">
-          LOADING...
+          NO EVENTS FOUND
         </p>
-      ) : error ? (
-        <p className="text-center text-gray-500 py-20 text-xl font-light tracking-widest">
-          ERROR LOADING EVENTS. PLEASE TRY AGAIN LATER.
-        </p>
-      ) : (
-
-      <div className="w-full max-w-350 mx-auto px-4 sm:px-6 lg:px-8 pb-20">
-        <div className="page pt-10 flex items-center md:justify-left justify-center gap-10 flex-wrap">
-          {data.map((eventData) => (
-            <EventCard 
-              key={eventData.id} 
-              date={eventData.eventDay}
-              eventName={eventData.eventName} 
-              regUrl={eventData.makeMyPassUrl} 
-              regFee={0}
-              eventimage={eventData.eventImage ?? "/images/gpcDesign2.svg"}
-            />
-          ))}
-        </div>
-
-        {data.length === 0 && (
-          <p className="text-center text-gray-500 py-20 text-xl font-light tracking-widest">
-            NO EVENTS FOUND
-          </p>
-        )}
-      </div> )}
+      )}
     </main>
   );
 }

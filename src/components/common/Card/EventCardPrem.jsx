@@ -12,7 +12,7 @@ export default function EventCard({
   eventimage = "/images/card/dancerBg.svg",
   regFee = "000", // in INR
   expDate = "00/00",
-  regUrl = "https://www.google.com",
+  regUrl = "",
 }) {
   return (
     <div className="group bg-[#730000] hover:bg-[#FFDEAC] transition-colors w-100 h-130 p-3 flex flex-col gap-2">
@@ -26,31 +26,40 @@ export default function EventCard({
           {/* Date and Fee Box */}
           <div className={`${commonBorderStyle} flex-1 flex flex-col justify-between items-center text-[#FFDEAC] group-hover:text-[#730000] py-4 transition-colors`}>
             <div className="flex flex-col items-center leading-none">
-              <span className={`${playfair.className} text-[22px]`}></span>
-              <span className={`${playfair.className} text-[30px]`}>
-                {/* {date}<sup className="text-[12px] ">{date%10 === 1 ? "st" : date%10 === 2 ? "nd" : date%10 === 3 ? "rd" : "th"}</sup> */}
-              </span>
+              {date && (
+                <>
+                  <span className={`${playfair.className} text-[22px]`}></span>
+                  <span className={`${playfair.className} text-[30px]`}>
+                    {date}<sup className="text-[12px] ">{date%10 === 1 ? "st" : date%10 === 2 ? "nd" : date%10 === 3 ? "rd" : "th"}</sup>
+                  </span>
+                </>
+              )}
             </div>
 
             <div className="relative w-full flex justify-center">
               <div className="w-[70%] h-px bg-[#FFDEAC] group-hover:bg-[#730000] transition-colors rotate-35"></div>
             </div>
 
-            <div className="flex flex-col items-center leading-none">
+            {regFee !== 0 && regFee !== null ? (
+            <div className="flex flex-col items-center leading-none gap-1">
               <span className={`${prompt.className} text-[20px] font-bold`}>
-                {/* ₹{regFee} */}
+                ₹{regFee}
               </span>
               <span
                 className={`${playfair.className} text-[12px] font-semibold`}
               >
-                {/* {expDate} */}
-              </span>
-              <span
-                className={`${playfair.className} text-[12px] font-semibold`}
-              >
-                
+                Registration Fee
               </span>
             </div>
+            ) : (
+              <div className="flex flex-col items-center leading-none gap-1 text-wrap p-1">
+              <span
+                className={`${playfair.className} md:text-[24px] text-[20px] font-semibold text-wrap text-center`}
+              >
+               Register Now!
+              </span>
+            </div>
+            )}
           </div>
         </div>
 
@@ -85,6 +94,7 @@ export default function EventCard({
       </div>
 
       {/* Closing Date */}
+      {expDate && (
       <div className="h-7.5 border border-[#FFDEAC] group-hover:border-[#730000] transition-colors flex items-center justify-center">
         <span
           className={`${playfair.className} text-[14px] text-[#FFDEAC] group-hover:text-[#730000] transition-colors font-medium`}
@@ -93,6 +103,7 @@ export default function EventCard({
           Click to Register
         </span>
       </div>
+      )}
     </div>
   );
 }
