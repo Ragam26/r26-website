@@ -4,7 +4,7 @@ import Link from "next/link";
 import {abril, playfair, prompt} from "@/lib/fonts";
 
 const commonBorderStyle =
-  "border border-[#730000] group-hover:border-[#FFDEAC] transition-colors";
+  "border border-[#FFDEAC] group-hover:border-[#730000] transition-colors";
 
 export default function EventCard({
   date = "", // DD format
@@ -15,16 +15,16 @@ export default function EventCard({
   regUrl = "https://www.google.com",
 }) {
   return (
-    <div className="group bg-[#FFDEAC] hover:bg-[#730000] transition-colors w-100 h-130 p-3 flex flex-col gap-2">
+    <div className="group bg-[#730000] hover:bg-[#FFDEAC] transition-colors w-100 h-130 p-3 flex flex-col gap-2">
       <div className="flex gap-2 flex-1">
         <div className=" w-5 flex flex-[1.2] flex-col gap-2">
           <div
             className={`${commonBorderStyle} flex-1 relative bg-cover bg-center`}
-            style={{ backgroundImage: "url(/images/card/normBg.svg)" }}
+            style={{ backgroundImage: "url(/images/card/premBg.svg)" }}
           ></div>
 
           {/* Date and Fee Box */}
-          <div className={`${commonBorderStyle} flex-1 flex flex-col justify-between items-center text-[#730000] group-hover:text-[#FFDEAC] py-4 transition-colors`}>
+          <div className={`${commonBorderStyle} flex-1 flex flex-col justify-between items-center text-[#FFDEAC] group-hover:text-[#730000] py-4 transition-colors`}>
             <div className="flex flex-col items-center leading-none">
               <span className={`${playfair.className} text-[22px]`}></span>
               <span className={`${playfair.className} text-[30px]`}>
@@ -33,7 +33,7 @@ export default function EventCard({
             </div>
 
             <div className="relative w-full flex justify-center">
-              <div className="w-[70%] h-px bg-[#730000] group-hover:bg-[#FFDEAC] transition-colors rotate-35"></div>
+              <div className="w-[70%] h-px bg-[#FFDEAC] group-hover:bg-[#730000] transition-colors rotate-35"></div>
             </div>
 
             <div className="flex flex-col items-center leading-none">
@@ -48,7 +48,7 @@ export default function EventCard({
               <span
                 className={`${playfair.className} text-[12px] font-semibold`}
               >
-                {/* fee */}
+                
               </span>
             </div>
           </div>
@@ -66,14 +66,14 @@ export default function EventCard({
       {/* Event Name Section */}
       <div className="flex gap-2 h-15">
         <div className={`${commonBorderStyle} flex-1 flex items-center justify-center`}>
-          <span className={`${abril.className} text-[25px] text-[#730000] group-hover:text-[#FFDEAC] transition-colors`}>
+          <span className={`${abril.className} text-[25px] text-[#FFDEAC] group-hover:text-[#730000] transition-colors`}>
             {eventName}
           </span>
         </div>
-        <div className="w-12.5 relative flex items-center justify-center bg-[#FFDEAC] group-hover:bg-[#730000] transition-colors bg-cover bg-center">
+        <div className="w-12.5 relative flex items-center justify-center bg-[#730000] group-hover:bg-[#FFDEAC] transition-colors bg-cover bg-center">
           <Link 
             href={regUrl} 
-            target="_blank" className=" bg-[url(/images/card/normArrow.svg)] group-hover:bg-[url(/images/card/premArrow.svg)] group-hover:rotate-12 transition-500 transition-all bg-fit bg-no-repeat bg-center w-full h-full flex items-center justify-center">
+            target="_blank" className=" bg-[url(/images/card/premArrow.svg)] group-hover:bg-[url(/images/card/normArrow.svg)] group-hover:rotate-12 transition-500 transition-all bg-fit bg-no-repeat bg-center w-full h-full flex items-center justify-center">
             {/* <Image
               src="/images/gpcDesign3.svg"
               alt="Design3"
@@ -85,9 +85,9 @@ export default function EventCard({
       </div>
 
       {/* Closing Date */}
-      <div className="h-7.5 border border-[#730000] group-hover:border-[#FFDEAC] transition-colors flex items-center justify-center">
+      <div className="h-7.5 border border-[#FFDEAC] group-hover:border-[#730000] transition-colors flex items-center justify-center">
         <span
-          className={`${playfair.className} text-[14px] text-[#730000] group-hover:text-[#FFDEAC] transition-colors font-medium`}
+          className={`${playfair.className} text-[14px] text-[#FFDEAC] group-hover:text-[#730000] transition-colors font-medium`}
         >
           {/* Closing date : {expDate} */}
           Click to Register

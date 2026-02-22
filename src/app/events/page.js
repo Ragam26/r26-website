@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import EventCard from "@/components/common/Card/EventCard";
+import EventCardPrem from "@/components/common/Card/EventCardPrem";
 import { api } from "../api/axiox";
 
 export default function EventsPage() {
@@ -34,7 +35,7 @@ export default function EventsPage() {
       <div className="w-full max-w-350 mx-auto px-4 sm:px-6 lg:px-8 pb-20">
         <div className="page pt-10 flex items-center justify-center gap-10 flex-wrap">
           {events.map((eventData) => (
-            <EventCard key={eventData.id} eventName={eventData.eventName} regUrl={eventData.makeMyPassUrl} />
+            <EventCardPrem key={eventData.id} eventName={eventData.eventName} regUrl={eventData.makeMyPassUrl} />
           ))}
         </div>
 
