@@ -1,14 +1,34 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import EventCard from "@/components/common/Card/EventCard";
+import EventCardPrem from "@/components/common/Card/EventCardPrem";
+import CategoryBanner from "@/components/common/categoryBanner/CategoryBanner";
 import { useEvents } from "@/hooks/useEvents";
 
+const CATEGORY_CONFIG = [
+  { name: "Flagship Events", banner: "/images/banner/banner1.svg"},
+  { name: "Dramatics", banner: "/images/banner/banner2.svg"},
+  { name: "Kalolsavam (group)", banner: "/images/banner/banner1.svg"},
+  { name: "Kalolsavam -solo-pass", banner: "/images/banner/banner2.svg"},
+  { name: "M&D-pass", banner: "/images/banner/banner1.svg"},
+  { name: "General-Pass", banner: "/images/banner/banner2.svg"},
+  { name: "Other", banner: "/images/banner/banner1.svg"},
+];
+
+  
 export default function EventsPage() {
   let {data, isLoading, error} = useEvents("events");
 
+  const groupedEvents = CATEGORY_CONFIG.map((category) => ({
+    ...category,
+    events: data.filter(
+      (event) => event.category?.trim() === category.name
+    ),
+  }));
+
   return (
     <main
-      className="min-h-screen bg-black bg-top bg-no-repeat bg-fixed"
+      className="min-h-screen pb-12 md:pb-24 bg-black bg-top bg-no-repeat bg-fixed"
       style={{
         backgroundImage: "url('/images/events/bg.png')",
         backgroundSize: "100% 100%",
@@ -21,36 +41,68 @@ export default function EventsPage() {
         </h1>
       </div>
 
-      {isLoading ? (
+      {isLoading && (
         <p className="text-center text-gray-500 py-20 text-xl font-light tracking-widest">
           LOADING...
         </p>
-      ) : error ? (
+      )}
+
+      {error && (
         <p className="text-center text-gray-500 py-20 text-xl font-light tracking-widest">
           ERROR LOADING EVENTS. PLEASE TRY AGAIN LATER.
         </p>
-      ) : (
+      )}
 
-      <div className="w-full max-w-350 mx-auto px-4 sm:px-6 lg:px-8 pb-20">
-        <div className="page pt-10 flex items-center md:justify-left justify-center gap-10 flex-wrap">
-          {data.map((eventData) => (
-            <EventCard 
-              key={eventData.id} 
-              date={eventData.eventDay}
-              eventName={eventData.eventName} 
-              regUrl={eventData.makeMyPassUrl} 
-              regFee={0}
-              eventimage={eventData.eventImage ?? "/images/gpcDesign2.svg"}
+      {!isLoading && !error && 
+        groupedEvents.map((category, index) => {
+          if (category.events.length === 0) return null;
+
+          const isFlagship = category.name === "Flagship Events";
+          const align = index % 2 === 0 ? "left" : "right";
+          const variant = index % 2 === 0 ? "light" : "dark";
+
+        return (
+          <section key={category.name} className="mb-10">
+            <CategoryBanner
+              title={category.name.toUpperCase()}
+              image={category.banner}
+              align={align}
+              variant={variant}
             />
-          ))}
-        </div>
 
-        {data.length === 0 && (
-          <p className="text-center text-gray-500 py-20 text-xl font-light tracking-widest">
-            NO EVENTS FOUND
-          </p>
-        )}
-      </div> )}
+            <div className="w-full max-w-350 mx-auto px-4 sm:px-6 lg:px-8 pt-10">
+              <div className="page pt-10 flex items-center md:justify-left justify-center gap-10 flex-wrap">
+                {category.events.map((event) => 
+                  isFlagship ? (
+                    <EventCardPrem
+                      key={event.id} 
+                      date={event.eventDay}
+                      eventName={event.eventName} 
+                      regUrl={event.makeMyPassUrl} 
+                      regFee={0}
+                      eventimage={event.eventImage ?? "/images/card/dancerBg.svg"}
+                    />
+                  ) : (
+                    <EventCard
+                      key={event.id} 
+                      date={event.eventDay}
+                      eventName={event.eventName} 
+                      regUrl={event.makeMyPassUrl} 
+                      regFee={0}
+                      eventimage={event.eventImage ?? "/images/card/dancerBg.svg"}
+                    />
+                   )
+                  )}
+              </div>
+            </div>
+          </section>
+        );
+      })}
+      {!isLoading && !error && data.length === 0 && (
+        <p className="text-center text-gray-500 py-20 text-xl font-light tracking-widest">
+          NO EVENTS FOUND
+        </p>
+      )}
     </main>
   );
 }

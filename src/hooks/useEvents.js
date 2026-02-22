@@ -18,10 +18,51 @@ export function useEvents(eventType="events") {
     const [error, setError] = useState(null);
   
     useEffect(() => {
+      const STORAGE_KEY = `events_${eventType}`;
+      const CACHE_DURATION = 60 * 60 * 1000; // 1 hour
       const getEvents = async () => {
         try {
-          const response = await api.get(`/api/${eventType}`);
-          setData(response.data.data);
+
+          if (typeof window !== "undefined") {
+            const cached = localStorage.getItem(STORAGE_KEY);
+            if (cached) {
+              const { timestamp, data } = JSON.parse(cached);
+              if (Date.now() - timestamp < CACHE_DURATION) {
+                setData(data);
+                setIsLoading(false);
+                return;
+              }
+            }
+          }
+          
+          const response = await api.get(`/api/${eventType}`,{
+            params: {
+              "pagination[pageSize]": 25, 
+              "pagination[page]": 1,
+              populate: "*",
+            },
+          });
+          let allEvents = [...response.data.data];
+          const { pageCount } = response.data.meta.pagination;
+          
+          const requests = [];
+          for (let page = 2; page <= pageCount; page++) {
+            requests.push(
+              api.get(`/api/${eventType}`, {
+                params: {
+                  "pagination[pageSize]": 25,
+                  "pagination[page]": page,
+                  populate: "*",
+                },
+              })
+            );
+          }
+
+          const responses = await Promise.all(requests);
+          allEvents.push(...responses.flatMap(res => res.data.data));
+
+          sessionStorage.setItem(STORAGE_KEY, JSON.stringify({ timestamp: Date.now(), data: allEvents }));
+          setData(allEvents);
         } catch (err) {
           setError(err);
         } finally {
@@ -30,7 +71,7 @@ export function useEvents(eventType="events") {
       };
   
       getEvents();
-    }, []);
+    }, [eventType]);
 
     const processedData = data.map(event => ({
       ...event,
