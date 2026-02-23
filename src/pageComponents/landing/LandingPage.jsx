@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { useRef, useLayoutEffect, useState } from "react";
@@ -311,21 +310,21 @@ export default function LandingPage() {
           <div
             key={loop.id}
             ref={(el) => (loopsRef.current[index] = el)}
-            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 origin-center will-change-transform"
+            className="absolute left-1/2 top-1/2 origin-center will-change-transform"
             style={{
               width: loop.width,
               zIndex: loop.zIndex,
               aspectRatio: "1/1",
               marginTop: "8px",
               marginLeft: "-5px",
+              transform: "translate(-50%, -50%) translateZ(0)",
+              WebkitBackfaceVisibility: "hidden",
+              backfaceVisibility: "hidden",
             }}
           >
             <div
-              className="w-full h-full"
+              className="relative w-full h-full"
               style={{
-                backgroundImage: `url('/images/landingAnimation/loops/gradient.png')`,
-                backgroundSize: "135% 135%",
-                backgroundPosition: "center",
                 WebkitMaskImage: `url('/images/landingAnimation/${loop.src}')`,
                 maskImage: `url('/images/landingAnimation/${loop.src}')`,
                 WebkitMaskRepeat: "no-repeat",
@@ -335,7 +334,16 @@ export default function LandingPage() {
                 WebkitMaskPosition: "center",
                 maskPosition: "center",
               }}
-            />
+            >
+              <Image
+                src="/images/landingAnimation/loops/gradient.png"
+                alt={`Loop Decoration ${index + 1}`}
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover scale-[1.35]"
+                priority={index < 3}
+              />
+            </div>
           </div>
         ))}
 
@@ -365,36 +373,50 @@ export default function LandingPage() {
         {/* White Logo */}
         <div
           ref={logoWhiteRef}
-          className="pointer-events-none absolute left-1/2 top-1/2 z-101 h-auto w-[12vmin] -translate-x-1/2 -translate-y-1/2 opacity-0 will-change-transform"
+          className="pointer-events-none absolute left-1/2 top-1/2 z-[101]
+             w-[12vmin] h-[12vmin]
+             -translate-x-1/2 -translate-y-1/2
+             opacity-0 will-change-transform"
         >
-          <img
-            src="/images/landingAnimation/ragamLogoWhite.svg"
-            alt="White Logo"
-            className="h-full w-full object-contain"
-          />
+          <div className="relative w-full h-full">
+            <Image
+              src="/images/landingAnimation/ragamLogoWhite.svg"
+              alt="White Logo"
+              fill
+              className="object-contain"
+              priority
+            />
+          </div>
         </div>
 
         {/* Red Logo */}
         <div
           ref={logoRef}
-          className="absolute left-1/2 top-1/2 z-100 h-auto w-[64vmin] md:w-[44vmin] -translate-x-1/2 -translate-y-1/2 opacity-0 will-change-transform"
+          className="absolute left-1/2 top-1/2 z-100 aspect-square w-[64vmin] md:w-[44vmin] -translate-x-1/2 -translate-y-1/2 opacity-0 will-change-transform"
         >
-          <img
-            src="/images/landingAnimation/ragamLogo.svg"
-            alt="Red Logo"
-            className="h-full w-full object-contain"
-          />
+          <div className="relative w-full h-full">
+            <Image
+              src="/images/landingAnimation/ragamLogo.svg"
+              alt="Red Logo"
+              fill
+              className="object-contain"
+            />
+          </div>
         </div>
 
+        {/* Text */}
         <div
           ref={textRef}
-          className="absolute left-1/2 top-1/2 z-102 h-auto w-[64vmin] md:w-[44vmin] -translate-x-1/2 -translate-y-1/2 opacity-0 will-change-transform"
+          className="absolute left-1/2 top-1/2 z-102 aspect-video w-[64vmin] md:w-[44vmin] -translate-x-1/2 -translate-y-1/2 opacity-0 will-change-transform"
         >
-          <img
-            src="/images/landingAnimation/ragamText.svg"
-            alt="Ragam 2026"
-            className="h-full w-full object-contain"
-          />
+          <div className="relative w-full h-full">
+            <Image
+              src="/images/landingAnimation/ragamText.svg"
+              alt="Ragam 2026"
+              fill
+              className="object-contain"
+            />
+          </div>
         </div>
 
         <div
@@ -403,10 +425,12 @@ export default function LandingPage() {
         >
           {/* Left Dancer */}
           <div className="absolute top-2 left-12 w-full h-[50vh] md:top-auto md:bottom-3 md:-left-25 md:h-screen md:w-auto overflow-visible">
-            <img
+            <Image
               src={`/images/landingAnimation/dancers/dancerLeft${leftDancer}.webp`}
               alt="Dancer L"
-              className="h-full w-full object-contain object-bottom scale-[1.7] origin-bottom md:scale-100 md:object-bottom-left mix-blend-screen opacity-100"
+              width={1000}
+              height={1500}
+              className="h-full w-full object-contain object-bottom scale-[1.7] origin-bottom md:scale-100 md:w-auto md:object-bottom-left mix-blend-screen opacity-100"
               style={{
                 WebkitMaskImage:
                   "linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)",
@@ -418,10 +442,12 @@ export default function LandingPage() {
 
           {/* Right Dancer */}
           <div className="absolute -bottom-7 right-14 w-full h-[50vh] md:-right-25 md:h-screen md:w-auto overflow-visible">
-            <img
+            <Image
               src={`/images/landingAnimation/dancers/dancerRight${rightDancer}.webp`}
               alt="Dancer R"
-              className="h-full w-full object-contain object-bottom scale-[1.7] origin-bottom md:scale-100 md:object-bottom-right mix-blend-screen opacity-100"
+              width={1000}
+              height={1500}
+              className="h-full w-full object-contain object-bottom scale-[1.7] origin-bottom md:scale-100 md:w-auto md:object-bottom-right mix-blend-screen opacity-100"
               style={{
                 WebkitMaskImage:
                   "linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)",
