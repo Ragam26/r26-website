@@ -8,8 +8,6 @@ import Image from 'next/image'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const MTX = '1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 190 -120'
-
 function MorphText({ texts = [], morphTime = 2.5, cooldownTime = 2 }) {
   const containerRef = useRef(null)
   const t1 = useRef(null)
@@ -19,29 +17,28 @@ function MorphText({ texts = [], morphTime = 2.5, cooldownTime = 2 }) {
     if (texts.length < 2) return
 
     let idx = 0
+    let cancelled = false
     const el1 = t1.current
     const el2 = t2.current
 
     const playMorph = () => {
-      // Set text content
+      if (cancelled) return
+
       el1.textContent = texts[idx % texts.length]
       el2.textContent = texts[(idx + 1) % texts.length]
 
       const tl = gsap.timeline({
         onComplete: () => {
           idx = (idx + 1) % texts.length
-          // Use a longer delay between morphs for a relaxed feel
           gsap.delayedCall(cooldownTime, playMorph)
         },
       })
 
-      // SLOWER & SMOOTHER EASING: "expo.inOut" or "sine.inOut"
-      // is much smoother than "power1" for long transitions
       tl.fromTo(
         el1,
         { filter: 'blur(0px)', opacity: 1 },
         {
-          filter: 'blur(12px)', // Increased blur for a better "melt"
+          filter: 'blur(12px)',
           opacity: 0,
           duration: morphTime,
           ease: 'sine.inOut',
@@ -64,8 +61,8 @@ function MorphText({ texts = [], morphTime = 2.5, cooldownTime = 2 }) {
 
     playMorph()
     return () => {
+      cancelled = true
       gsap.killTweensOf([el1, el2])
-
     }
   }, [texts, morphTime, cooldownTime])
 
@@ -82,26 +79,25 @@ function MorphText({ texts = [], morphTime = 2.5, cooldownTime = 2 }) {
           display: grid;
           place-items: center;
           will-change: filter;
-          /* Subpixel rendering boost */
           -webkit-font-smoothing: antialiased;
+          min-width: 1px;
+          min-height: 1px;
         }
         .morph-text {
           grid-area: 1/1;
           position: relative;
           display: inline-block;
           user-select: none;
-          /* Ensure the text is high-quality during transform */
           transform: translateZ(0);
         }
       `}</style>
 
       <svg style={{ position: 'absolute', width: 0, height: 0 }}>
         <filter id='threshold'>
-          {/* Slightly softer alpha threshold for a smoother "ooze" */}
           <feColorMatrix
             in='SourceGraphic'
             type='matrix'
-            values='1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 18 -7'
+            values='1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 14 -5'
           />
         </filter>
       </svg>
@@ -328,7 +324,7 @@ export default function Legacy() {
         style={{ zIndex: 5, pointerEvents: 'none' }}
       >
         <RadialDots
-          count={isMobile ? 0 : 0.4}
+          count={isMobile ? 0.2 : 0.4}
           maxDistance={3000}
           originY={0.85}
         />
@@ -366,30 +362,22 @@ export default function Legacy() {
             className='w-auto flex self-start justify-center text-white font-bold -mr-8 left-text'
             style={{ fontSize: 'max(10vw, 6rem)', willChange: 'filter' }}
           >
-            {isMobile ? (
-              <span>THE</span>
-            ) : (
-              <MorphText
-                texts={['THE', 'STILL']}
-                morphTime={1.5}
-                cooldownTime={1}
-              />
-            )}
+            <MorphText
+              texts={['THE', 'STILL']}
+              morphTime={1.5}
+              cooldownTime={1}
+            />
           </div>
 
           <div
             className='w-auto flex self-start -mt-[8%] sm:-mt-[6%] justify-center text-orange-500 font-bold right-text'
             style={{ fontSize: 'max(24vw, 12rem)', willChange: 'filter' }}
           >
-            {isMobile ? (
-              <span>FLAME</span>
-            ) : (
-              <MorphText
-                texts={['FLAME', 'BURNS']}
-                morphTime={1.5}
-                cooldownTime={1}
-              />
-            )}
+            <MorphText
+              texts={['FLAME', 'BURNS']}
+              morphTime={1.5}
+              cooldownTime={1}
+            />
           </div>
         </div>
 
