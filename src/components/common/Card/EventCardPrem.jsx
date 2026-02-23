@@ -1,13 +1,14 @@
 import Image from "next/image";
 
 import Link from "next/link";
-import {abril, playfair, prompt} from "@/lib/fonts";
+import { abril, playfair, prompt } from "@/lib/fonts";
 
 const commonBorderStyle =
   "border border-[#FFDEAC] group-hover:border-[#730000] transition-colors";
 
 export default function EventCard({
-  date = "", // DD format
+  day = "", // DD format,
+  month = "", // "FEB" or "MAR" 
   eventName = "Event Name",
   eventimage = "/images/card/dancerBg.svg",
   regFee = "000", // in INR
@@ -26,11 +27,11 @@ export default function EventCard({
           {/* Date and Fee Box */}
           <div className={`${commonBorderStyle} flex-1 flex flex-col justify-between items-center text-[#FFDEAC] group-hover:text-[#730000] py-4 transition-colors`}>
             <div className="flex flex-col items-center leading-none">
-              {date && (
+              {day && (
                 <>
-                  <span className={`${playfair.className} text-[22px]`}></span>
-                  <span className={`${playfair.className} text-[30px]`}>
-                    {date}<sup className="text-[12px] ">{date%10 === 1 ? "st" : date%10 === 2 ? "nd" : date%10 === 3 ? "rd" : "th"}</sup>
+                  <span className={`${playfair.className} md:text-[22px] text-[18px]`}>{month}</span>
+                  <span className={`${playfair.className} md:text-[30px] text-[24px] font-bold`}>
+                    {day} <sup className="text-[12px] ">{day % 10 === 1 ? "st" : day % 10 === 2 ? "nd" : day % 10 === 3 ? "rd" : "th"}</sup>
                   </span>
                 </>
               )}
@@ -41,34 +42,34 @@ export default function EventCard({
             </div>
 
             {regFee !== 0 && regFee !== null ? (
-            <div className="flex flex-col items-center leading-none gap-1">
-              <span className={`${prompt.className} text-[20px] font-bold`}>
-                ₹{regFee}
-              </span>
-              <span
-                className={`${playfair.className} text-[12px] font-semibold`}
-              >
-                Registration Fee
-              </span>
-            </div>
+              <div className="flex flex-col items-center leading-none gap-1">
+                <span className={`${prompt.className} text-[20px] font-bold`}>
+                  ₹{regFee}
+                </span>
+                <span
+                  className={`${playfair.className} text-[12px] font-semibold`}
+                >
+                  Registration Fee
+                </span>
+              </div>
             ) : (
               <div className="flex flex-col items-center leading-none gap-1 text-wrap p-1">
-              <span
-                className={`${playfair.className} md:text-[24px] text-[20px] font-semibold text-wrap text-center`}
-              >
-               Register Now!
-              </span>
-            </div>
+                <span
+                  className={`${playfair.className} md:text-[24px] text-[20px] font-semibold text-wrap text-center`}
+                >
+                  Register Now!
+                </span>
+              </div>
             )}
           </div>
         </div>
 
         {/* Main Image */}
-        <Link  className={`${commonBorderStyle} flex-3 relative h-full p-2`} href={regUrl} target="_blank">
-        <div
-          className={`flex-3 relative h-full bg-cover bg-center object-cover`}
-          style={{ backgroundImage: `url(${eventimage})` }}
-        ></div>
+        <Link className={`${commonBorderStyle} flex-3 relative h-full p-2`} href={regUrl} target="_blank">
+          <div
+            className={`flex-3 relative h-full bg-cover bg-center object-cover`}
+            style={{ backgroundImage: `url(${eventimage})` }}
+          ></div>
         </Link>
       </div>
 
@@ -80,8 +81,8 @@ export default function EventCard({
           </span>
         </div>
         <div className="w-12.5 relative flex items-center justify-center bg-[#730000] group-hover:bg-[#FFDEAC] transition-colors bg-cover bg-center">
-          <Link 
-            href={regUrl} 
+          <Link
+            href={regUrl}
             target="_blank" className=" bg-[url(/images/card/premArrow.svg)] group-hover:bg-[url(/images/card/normArrow.svg)] group-hover:rotate-12 transition-500 transition-all bg-fit bg-no-repeat bg-center w-full h-full flex items-center justify-center">
             {/* <Image
               src="/images/gpcDesign3.svg"
@@ -95,14 +96,14 @@ export default function EventCard({
 
       {/* Closing Date */}
       {expDate && (
-      <div className="h-7.5 border border-[#FFDEAC] group-hover:border-[#730000] transition-colors flex items-center justify-center">
-        <span
-          className={`${playfair.className} text-[14px] text-[#FFDEAC] group-hover:text-[#730000] transition-colors font-medium`}
-        >
-          {/* Closing date : {expDate} */}
-          Click to Register
-        </span>
-      </div>
+        <div className="h-7.5 border border-[#FFDEAC] group-hover:border-[#730000] transition-colors flex items-center justify-center">
+          <span
+            className={`${playfair.className} text-[14px] text-[#FFDEAC] group-hover:text-[#730000] transition-colors font-medium`}
+          >
+            {/* Closing date : {expDate} */}
+            Click to Register
+          </span>
+        </div>
       )}
     </div>
   );

@@ -6,18 +6,18 @@ import CategoryBanner from "@/components/common/categoryBanner/CategoryBanner";
 import { useEvents } from "@/hooks/useEvents";
 
 const CATEGORY_CONFIG = [
-  { name: "Flagship Events", label: "Flagship Events", banner: "/images/banner/banner1.svg"},
-  { name: "Dramatics", label: "Dramatics", banner: "/images/banner/banner2.svg"},
-  { name: "Kalolsavam (group)", label: "Kalolsavam (group)", banner: "/images/banner/banner1.svg"},
-  { name: "Kalolsavam -solo-pass", label: "Kalolsavam (solo)", banner: "/images/banner/banner2.svg"},
-  { name: "M&D-pass", label: "Music & Dance", banner: "/images/banner/banner1.svg"},
-  { name: "General-Pass", label: "General", banner: "/images/banner/banner2.svg"},
-  { name: "Other", label: "Other", banner: "/images/banner/banner1.svg"},
+  { name: "Flagship Events", label: "Flagship Events", banner: "/images/banner/banner1.svg" },
+  { name: "Dramatics", label: "Dramatics", banner: "/images/banner/banner2.svg" },
+  { name: "Kalolsavam (group)", label: "Kalolsavam (group)", banner: "/images/banner/banner1.svg" },
+  { name: "Kalolsavam -solo-pass", label: "Kalolsavam (solo)", banner: "/images/banner/banner2.svg" },
+  { name: "M&D-pass", label: "Music & Dance", banner: "/images/banner/banner1.svg" },
+  { name: "General-Pass", label: "General", banner: "/images/banner/banner2.svg" },
+  { name: "Other", label: "Other", banner: "/images/banner/banner1.svg" },
 ];
 
-  
+
 export default function EventsPage() {
-  let {data, isLoading, error} = useEvents("events");
+  let { data, isLoading, error } = useEvents("events");
 
   const groupedEvents = CATEGORY_CONFIG.map((category) => ({
     ...category,
@@ -53,7 +53,7 @@ export default function EventsPage() {
         </p>
       )}
 
-      {!isLoading && !error && 
+      {!isLoading && !error &&
         groupedEvents.map((category, index) => {
           if (category.events.length === 0) return null;
 
@@ -61,44 +61,45 @@ export default function EventsPage() {
           const align = index % 2 === 0 ? "left" : "right";
           const variant = index % 2 === 0 ? "light" : "dark";
 
-        return (
-          <section key={category.name} className="mb-10">
-            <CategoryBanner
-              title={category.label.toUpperCase()}
-              image={category.banner}
-              align={align}
-              variant={variant}
-            />
+          return (
+            <section key={category.name} className="mb-10">
+              <CategoryBanner
+                title={category.label.toUpperCase()}
+                image={category.banner}
+                align={align}
+                variant={variant}
+              />
 
-            <div className="w-full max-w-350 mx-auto px-4 sm:px-6 lg:px-8 pt-10">
-              <div className="page pt-10 flex items-center md:justify-left justify-center gap-10 flex-wrap">
-                {category.events.map((event) => 
-                  isFlagship ? (
-                    <EventCardPrem
-                      key={event.id} 
-                      date={event.eventDay}
-                      eventName={event.eventName} 
-                      regUrl={event.makeMyPassUrl} 
-                      regFee={0}
-                      eventimage={event.eventImage ?? "/images/card/dancerBg.svg"}
-                    />
-                  ) : (
-                    <EventCard
-                      key={event.id} 
-                      day={event.eventDay}
-                      month={event.eventMonth}
-                      eventName={event.eventName} 
-                      regUrl={event.makeMyPassUrl} 
-                      regFee={0}
-                      eventimage={event.eventCover ?? "/images/card/dancerBg.svg"}
-                    />
-                   )
+              <div className="w-full max-w-350 mx-auto px-4 sm:px-6 lg:px-8 pt-10">
+                <div className="page pt-10 flex items-center md:justify-left justify-center gap-10 flex-wrap">
+                  {category.events.map((event) =>
+                    isFlagship ? (
+                      <EventCardPrem
+                        key={event.id}
+                        day={event.eventDay}
+                        month={event.eventMonth}
+                        eventName={event.eventName}
+                        regUrl={event.makeMyPassUrl}
+                        regFee={0}
+                        eventimage={event.eventCover ?? "/images/card/dancerBg.svg"}
+                      />
+                    ) : (
+                      <EventCard
+                        key={event.id}
+                        day={event.eventDay}
+                        month={event.eventMonth}
+                        eventName={event.eventName}
+                        regUrl={event.makeMyPassUrl}
+                        regFee={0}
+                        eventimage={event.eventCover ?? "/images/card/dancerBg.svg"}
+                      />
+                    )
                   )}
+                </div>
               </div>
-            </div>
-          </section>
-        );
-      })}
+            </section>
+          );
+        })}
       {!isLoading && !error && data.length === 0 && (
         <p className="text-center text-gray-500 py-20 text-xl font-light tracking-widest">
           NO EVENTS FOUND
