@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import MenuOverlay from "./MenuOverlay";
 import { MdOutlineMenu } from "react-icons/md";
@@ -12,8 +12,9 @@ import { FaRegCircleUser } from "react-icons/fa6";
 import { MdLogin } from "react-icons/md";
 import Link from "next/link";
 
-export default function Navbar() {
+function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [closeOnNextPathChange, setCloseOnNextPathChange] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -25,6 +26,17 @@ export default function Navbar() {
       });
     }
   }, [pathname]);
+
+  useEffect(() => {
+    if (isMenuOpen && closeOnNextPathChange) {
+      const timer = setTimeout(() => {
+        setIsMenuOpen(false);
+        setCloseOnNextPathChange(false);
+      }, 120);
+
+      return () => clearTimeout(timer);
+    }
+  }, [pathname, isMenuOpen, closeOnNextPathChange]);
 
   const handleToggleMenu = async () => {
     // iOS 13+ requires a user gesture to request orientation permission
@@ -46,14 +58,40 @@ export default function Navbar() {
       window.dispatchEvent(new Event("gyroAllowed"));
     }
 
-    setIsMenuOpen(!isMenuOpen);
+    setIsMenuOpen((prev) => {
+      const next = !prev;
+      if (!next) setCloseOnNextPathChange(false);
+      return next;
+    });
   };
 
   useEffect(() => {
-    const closeMenu = () => setIsMenuOpen(false);
+    const closeMenu = () => {
+      setIsMenuOpen(false);
+      setCloseOnNextPathChange(false);
+    };
     window.addEventListener("closeMenu", closeMenu);
     return () => window.removeEventListener("closeMenu", closeMenu);
   }, []);
+
+  const handleMenuItemClick = (item) => {
+    if (item.external) {
+      setIsMenuOpen(false);
+      setCloseOnNextPathChange(false);
+      return;
+    }
+
+    // Same-page navigation won't trigger a pathname change, so close immediately.
+    if (item.href === pathname) {
+      setIsMenuOpen(false);
+      setCloseOnNextPathChange(false);
+      return;
+    }
+
+    // Keep overlay/navbar open while the next page starts loading,
+    // then close after pathname changes to reveal the new page.
+    setCloseOnNextPathChange(true);
+  };
 
   useEffect(() => {
     const navbar = document.querySelector("#global-navbar");
@@ -143,7 +181,11 @@ export default function Navbar() {
         <div className="w-full h-px bg-white/20" />
       </nav>
 
-      <MenuOverlay isOpen={isMenuOpen} />
+      <MenuOverlay isOpen={isMenuOpen} onMenuItemClick={handleMenuItemClick} />
     </>
   );
 }
+
+Navbar.displayName = "Navbar";
+
+export default memo(Navbar);

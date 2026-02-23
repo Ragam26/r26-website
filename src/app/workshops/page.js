@@ -1,10 +1,10 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import EventCard from "@/components/common/Card/EventCard";
-import { useEvents } from "@/hooks/useEvents";
+import {  useWorkshops } from "@/hooks/useEvents";
 
 export default function EventsPage() {
-  let {data, isLoading, error} = useEvents("workshops");
+  let {data, isLoading, error} = useWorkshops();
 
   return (
     <main
@@ -16,8 +16,8 @@ export default function EventsPage() {
       }}
     >
       <div className="pt-20 md:pt-32 pb-12 md:pb-16 flex flex-col items-center justify-center px-4">
-        <h1 className="text-white text-5xl md:text-7xl lg:text-8xl font-serif tracking-[0.3em] mt-20 mb-8 md:mb-12">
-          W O R K S H O P S
+        <h1 className="text-white text-4xl md:text-7xl lg:text-8xl font-serif tracking-[0.3em] mt-20 mb-8 md:mb-12">
+          WORKSHOPS
         </h1>
       </div>
       
@@ -40,7 +40,7 @@ export default function EventsPage() {
               eventName={eventData.eventName} 
               regUrl={eventData.makeMyPassUrl} 
               regFee={eventData.regFee}
-              eventimage={eventData.eventImage ?? "/images/gpcDesign2.svg"}
+              eventimage={eventData.eventCover ?? "/images/gpcDesign2.svg"}
             />
           ))}
         </div>

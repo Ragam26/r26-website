@@ -37,7 +37,7 @@ export default function EventsPage() {
     >
       <div className="pt-20 md:pt-32 pb-12 md:pb-16 flex flex-col items-center justify-center px-4">
         <h1 className="text-white text-5xl md:text-7xl lg:text-8xl font-serif tracking-[0.3em] mt-20 mb-8 md:mb-12">
-          E V E N T S
+          EVENTS
         </h1>
       </div>
 
@@ -89,7 +89,7 @@ export default function EventsPage() {
                       eventName={event.eventName} 
                       regUrl={event.makeMyPassUrl} 
                       regFee={0}
-                      eventimage={event.eventImage ?? "/images/card/dancerBg.svg"}
+                      eventimage={event.eventCover ?? "/images/card/dancerBg.svg"}
                     />
                    )
                   )}

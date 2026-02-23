@@ -2,6 +2,7 @@ import './globals.css'
 import './globals.css'
 import Footer from '@/components/common/Footer'
 import Navbar from '@/components/common/navbar/Navbar'
+import PageTransition from '@/components/common/PageTransition'
 import SmoothScroll from '@/components/common/SmoothScroll'
 import ScrollReset from '@/components/common/ScrollReset'
 import { Analytics } from '@vercel/analytics/next'
@@ -44,6 +45,7 @@ export default function RootLayout({ children }) {
         suppressHydrationWarning
       >
         {' '}
+        <PageTransition />
         <ScrollReset />{' '}
         <SmoothScroll>
           <Navbar />

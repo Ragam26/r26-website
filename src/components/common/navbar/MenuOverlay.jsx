@@ -6,7 +6,7 @@ import MenuItem from "./MenuItem";
 import ThreeScene from "./ThreeScene";
 import Link from "next/link";
 
-export default function MenuOverlay({ isOpen }) {
+export default function MenuOverlay({ isOpen, onMenuItemClick }) {
   const overlayRef = useRef(null);
   const bgRef = useRef(null);
   const itemsRef = useRef(null);
@@ -128,15 +128,11 @@ export default function MenuOverlay({ isOpen }) {
         className="relative h-full flex flex-col justify-center sm:ml-auto w-full sm:w-1/2 items-start pl-5 md:pl-0 pt-10 md:pt-20 z-[850]"
       >
         {menuItems.map((item, i) => {
-          const handleClose = () => {
-            const closeEvent = new Event("closeMenu");
-            window.dispatchEvent(closeEvent);
-          };
           return (
             <Link
               key={item.title}
               href={item.href}
-              onClick={handleClose}
+              onClick={() => onMenuItemClick?.(item)}
               target={item.external ? "_blank" : "_self"}
               className="w-full"
             >
