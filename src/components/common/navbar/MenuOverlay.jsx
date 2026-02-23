@@ -116,16 +116,18 @@ export default function MenuOverlay({ isOpen, onMenuItemClick }) {
         fixed inset-0
         opacity-0 pointer-events-none
         flex
-        z-[800]
+        z-800
       "
     >
       {/* Animated Dark Background */}
       <div ref={bgRef} className="absolute inset- opacity-0 backdrop-blur-sm" />
 
+      <div className="md:hidden absolute inset-0 bg-black z-800" />
+
       {/* Menu Items */}
       <div
         ref={itemsRef}
-        className="relative h-full flex flex-col justify-center sm:ml-auto w-full sm:w-1/2 items-start pl-5 md:pl-0 pt-10 md:pt-20 z-[850]"
+        className="relative h-full flex flex-col justify-center sm:ml-auto w-full sm:w-1/2 items-start pl-5 md:pl-0 pt-10 md:pt-20 z-850"
       >
         {menuItems.map((item, i) => {
           return (
@@ -145,7 +147,6 @@ export default function MenuOverlay({ isOpen, onMenuItemClick }) {
         {" "}
         <ThreeScene />
       </div>
-      <div className="md:hidden w-full h-full bg-black"></div>
     </div>
   );
 }
