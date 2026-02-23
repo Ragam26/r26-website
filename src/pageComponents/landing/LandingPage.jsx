@@ -307,7 +307,7 @@ export default function LandingPage() {
         </div>
 
         {/* Render loops */}
-        {/* {activeLoops.map((loop, index) => (
+        {activeLoops.map((loop, index) => (
           <div
             key={loop.id}
             ref={(el) => (loopsRef.current[index] = el)}
@@ -337,11 +337,11 @@ export default function LandingPage() {
               }}
             />
           </div>
-        ))} */}
+        ))}
 
         {/* uncomment hte blwop and comment the above to optimize by a ton */}
 
-        {activeLoops.map((loop, index) => (
+        {/* {activeLoops.map((loop, index) => (
           <div
             key={loop.id}
             ref={(el) => (loopsRef.current[index] = el)}
@@ -360,7 +360,7 @@ export default function LandingPage() {
               className="w-full h-full object-contain"
             />
           </div>
-        ))}
+        ))} */}
 
         {/* White Logo */}
         <div
@@ -406,7 +406,7 @@ export default function LandingPage() {
             <img
               src={`/images/landingAnimation/dancers/dancerLeft${leftDancer}.webp`}
               alt="Dancer L"
-              className="h-full w-full object-contain object-bottom scale-[1.7] origin-bottom md:scale-100 md:object-bottom-left mix-blend-screen opacity-90"
+              className="h-full w-full object-contain object-bottom scale-[1.7] origin-bottom md:scale-100 md:object-bottom-left mix-blend-screen opacity-100"
               style={{
                 WebkitMaskImage:
                   "linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)",
@@ -421,7 +421,7 @@ export default function LandingPage() {
             <img
               src={`/images/landingAnimation/dancers/dancerRight${rightDancer}.webp`}
               alt="Dancer R"
-              className="h-full w-full object-contain object-bottom scale-[1.7] origin-bottom md:scale-100 md:object-bottom-right mix-blend-screen opacity-90"
+              className="h-full w-full object-contain object-bottom scale-[1.7] origin-bottom md:scale-100 md:object-bottom-right mix-blend-screen opacity-100"
               style={{
                 WebkitMaskImage:
                   "linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)",
