@@ -141,8 +141,8 @@ export default function MenuOverlay({ isOpen, onMenuItemClick }) {
           );
         })}
       </div>
-      {/* <ThreeScene /> */}
-      <div className="absolute w-full h-full bg-black"></div>
+      <ThreeScene />
+      {/* <div className="absolute w-full h-full bg-black"></div> */}
     </div>
   );
 }

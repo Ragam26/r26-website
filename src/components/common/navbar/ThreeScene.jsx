@@ -3,10 +3,11 @@
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
 
 const config = {
   canvasBg: "#0a0a0a",
-  modelPath: "models/modelTexutre.glb",
+  modelPath: "models/model-optimized.glb",
   metalness: 0.55,
   roughness: 0.15,
   baseZoom: 0.625,
@@ -17,7 +18,7 @@ const config = {
   baseRotationX: -0.1,
   baseRotationY: 0.45,
   baseRotationZ: 0.1,
-  ambientIntensity: 0.75,
+  ambientIntensity: 1.25,
   keyIntensity: 0.85,
   keyPosX: 2.5,
   keyPosY: 10,
@@ -35,9 +36,9 @@ const config = {
   topPosY: 15,
   topPosZ: 0,
   cursorLightEnabled: true,
-  cursorLightIntensity: 2,
+  cursorLightIntensity: 2.5,
   cursorLightColor: 0xffffff,
-  cursorLightDistance: 7.5,
+  cursorLightDistance: 3.5,
   cursorLightDecay: 1.5,
   cursorLightPosZ: 1,
   cursorLightSmoothness: 0.5,
@@ -70,12 +71,12 @@ export default function ThreeScene() {
       antialias: true,
     });
     renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1));
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     // Note: sRGBEncoding is default in newer Three.js versions, but we add ToneMapping
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 2.0;
+    renderer.toneMappingExposure = 1.2;
 
     // 3. Lighting Setup
     const ambientLight = new THREE.AmbientLight(
@@ -86,25 +87,27 @@ export default function ThreeScene() {
 
     const keyLight = new THREE.DirectionalLight(0xffffff, config.keyIntensity);
     keyLight.position.set(config.keyPosX, config.keyPosY, config.keyPosZ);
-    keyLight.castShadow = true;
-    keyLight.shadow.mapSize.width = 4096;
-    keyLight.shadow.mapSize.height = 4096;
+    keyLight.castShadow = false;
+    // keyLight.shadow.mapSize.width = 4096;
+    // keyLight.shadow.mapSize.height = 4096;
     scene.add(keyLight);
 
-    const fillLight = new THREE.DirectionalLight(
-      0xffffff,
-      config.fillIntensity,
-    );
-    fillLight.position.set(config.fillPosX, config.fillPosY, config.fillPosZ);
-    scene.add(fillLight);
+    // got rid og a lioght of lights
 
-    const rimLight = new THREE.DirectionalLight(0xffffff, config.rimIntensity);
-    rimLight.position.set(config.rimPosX, config.rimPosY, config.rimPosZ);
-    scene.add(rimLight);
+    // const fillLight = new THREE.DirectionalLight(
+    //   0xffffff,
+    //   config.fillIntensity,
+    // );
+    // fillLight.position.set(config.fillPosX, config.fillPosY, config.fillPosZ);
+    // scene.add(fillLight);
 
-    const topLight = new THREE.DirectionalLight(0xffffff, config.topIntensity);
-    topLight.position.set(config.topPosX, config.topPosY, config.topPosZ);
-    scene.add(topLight);
+    // const rimLight = new THREE.DirectionalLight(0xffffff, config.rimIntensity);
+    // rimLight.position.set(config.rimPosX, config.rimPosY, config.rimPosZ);
+    // scene.add(rimLight);
+
+    // const topLight = new THREE.DirectionalLight(0xffffff, config.topIntensity);
+    // topLight.position.set(config.topPosX, config.topPosY, config.topPosZ);
+    // scene.add(topLight);
 
     // Cursor Light
     const cursorLight = new THREE.PointLight(
@@ -119,6 +122,11 @@ export default function ThreeScene() {
 
     // 4. Load & Center Model
     const loader = new GLTFLoader();
+
+    const dracoLoader = new DRACOLoader();
+    dracoLoader.setDecoderPath("/draco/");
+    loader.setDRACOLoader(dracoLoader);
+
     let model;
     let modelCenter = new THREE.Vector3();
 
