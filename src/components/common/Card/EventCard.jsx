@@ -26,8 +26,8 @@ export default function EventCard({
             <div className="flex flex-col items-center leading-none">
               {date && (
                 <>
-                  <span className={`${playfair.className} text-[22px]`}>MAR</span>
-                  <span className={`${playfair.className} text-[30px]`}>
+                  <span className={`${playfair.className} md:text-[22px] text-[18px]`}>MAR</span>
+                  <span className={`${playfair.className} md:text-[30px] text-[24px] font-bold`}>
                     {date } <sup className="text-[12px] ">{date%10 === 1 ? "st" : date%10 === 2 ? "nd" : date%10 === 3 ? "rd" : "th"}</sup>
                   </span>
                 </>
@@ -36,11 +36,11 @@ export default function EventCard({
             
 
             <div className="relative w-full flex justify-center">
-              <div className="w-[80%] h-px bg-[#730000] group-hover:bg-[#FFDEAC] transition-colors -rotate-45"></div>
+              <div className="w-[70%] md:flex hidden h-px bg-[#730000] group-hover:bg-[#FFDEAC] transition-colors -rotate-45"></div>
             </div>
 
             {regFee !== 0 && regFee !== null ? (
-            <div className="flex flex-col items-center leading-none gap-1">
+            <div className="flex flex-col items-center leading-none gap-1 text-center">
               <span className={`${prompt.className} text-[20px]`}>
                 ₹<bold className="font-bold">{regFee}</bold>
               </span>
