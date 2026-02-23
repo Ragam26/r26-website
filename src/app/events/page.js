@@ -85,7 +85,8 @@ export default function EventsPage() {
                   ) : (
                     <EventCard
                       key={event.id} 
-                      date={event.eventDay}
+                      day={event.eventDay}
+                      month={event.eventMonth}
                       eventName={event.eventName} 
                       regUrl={event.makeMyPassUrl} 
                       regFee={0}

@@ -5,7 +5,8 @@ const commonBorderStyle =
   "border border-[#730000] group-hover:border-[#FFDEAC] transition-colors";
 
 export default function EventCard({
-  date = "", // DD format
+  day = "", // DD format,
+  month = "", // "FEB" or "MAR" 
   eventName = "Event Name",
   eventimage = "/images/card/dancerBg.svg",
   regFee = "000", // in INR
@@ -24,11 +25,11 @@ export default function EventCard({
           {/* Date and Fee Box */}
           <div className={`${commonBorderStyle} flex-1 flex flex-col justify-between items-center text-[#730000] group-hover:text-[#FFDEAC] py-4 transition-colors`}>
             <div className="flex flex-col items-center leading-none">
-              {date && (
+              {day && (
                 <>
-                  <span className={`${playfair.className} md:text-[22px] text-[18px]`}>MAR</span>
+                  <span className={`${playfair.className} md:text-[22px] text-[18px]`}>{month}</span>
                   <span className={`${playfair.className} md:text-[30px] text-[24px] font-bold`}>
-                    {date } <sup className="text-[12px] ">{date%10 === 1 ? "st" : date%10 === 2 ? "nd" : date%10 === 3 ? "rd" : "th"}</sup>
+                    {day } <sup className="text-[12px] ">{day%10 === 1 ? "st" : day%10 === 2 ? "nd" : day%10 === 3 ? "rd" : "th"}</sup>
                   </span>
                 </>
               )}

@@ -36,7 +36,8 @@ export default function EventsPage() {
           {data.map((eventData) => (
             <EventCard 
               key={eventData.id} 
-              date={eventData.eventDay}
+              day={eventData.eventDay}
+              month={eventData.eventMonth}
               eventName={eventData.eventName} 
               regUrl={eventData.makeMyPassUrl} 
               regFee={eventData.regFee}

@@ -3,8 +3,6 @@ import { useState, useEffect } from "react";
 import { api } from "@/app/api/axiox";
 import getImageUrl from "@/lib/strapiImg";
 
-//Docs
-
 /**
  * @param {string} eventType - The type of events to fetch (default: "events")
  * @returns {Object} An object containing the events, loading state, and error (if any)
@@ -12,6 +10,11 @@ import getImageUrl from "@/lib/strapiImg";
  * const { events, isLoading, error } = useEvents("events");
  * @author Vinit K
  */
+
+const getMonthName = (monthNumber) => {
+  const monthNames = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+  return monthNames[monthNumber - 1] || "";
+};
 
 export function useEvents(eventType="events") {
     const [data, setData] = useState([]);
@@ -78,7 +81,9 @@ export function useEvents(eventType="events") {
       ...event,
       // Just passing the day part of the date to the EventCard, since that's all it needs
       eventDay: event.date ? event.date.substring(8,10) : null,
+      eventMonth: event.date ? getMonthName(parseInt(event.date.substring(5,7))) : null,
       eventCover: event.cover ? getImageUrl(event.cover) : null,
+
     }));
 
     return { data: processedData, isLoading, error };
@@ -134,6 +139,8 @@ export function useWorkshops() {
     // Just passing the day part of the date to the EventCard, since that's all it needs
     eventDay: workshop.date ? workshop.date.substring(8,10) : null,
     eventCover: workshop.cover ? getImageUrl(workshop.cover) : null,
+    eventMonth: workshop.date ? getMonthName(parseInt(workshop.date.substring(5,7))) : null,
+
   }));
 
   return { data: processedData, isLoading, error };
