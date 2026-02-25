@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { abril, playfair, prompt } from "@/lib/fonts";
 
 const commonBorderStyle =
@@ -68,11 +69,18 @@ export default function EventCard({
         </div>
 
         {/* Main Image */}
-        <Link className={`${commonBorderStyle} flex-3 relative h-full p-2`} href={regUrl} target="_blank">
+        <Link className={`${commonBorderStyle} flex-3 relative h-full pl-1 pr-1`} href={regUrl} target="_blank">
           <div
-            className={`flex-3 relative h-full bg-cover bg-center object-cover`}
-            style={{ backgroundImage: `url(${eventimage})` }}
-          ></div>
+            className={`flex items-center justify-center relative w-full h-full bg-neutral bg-center`}
+          >
+            <Image
+              src={eventimage}
+              alt={eventName}
+              fill
+              sizes="(max-width: 768px) 100vw, 33vw"
+              className="object-contain object-center"
+            />
+          </div>
         </Link>
       </div>
 

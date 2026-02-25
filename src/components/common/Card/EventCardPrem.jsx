@@ -1,6 +1,5 @@
-import Image from "next/image";
-
 import Link from "next/link";
+import Image from "next/image";
 import { abril, playfair, prompt } from "@/lib/fonts";
 
 const commonBorderStyle =
@@ -16,7 +15,7 @@ export default function EventCard({
   regUrl = "",
 }) {
   return (
-    <div className="group bg-[#730000] hover:bg-[#FFDEAC] transition-colors w-100 h-130 p-3 flex flex-col gap-2">
+    <div className="group bg-[#730000] hover:bg-[#FFDEAC] transition-colors md:w-100 w-80 md:h-130 h-110 p-3 flex flex-col gap-2">
       <div className="flex gap-2 flex-1">
         <div className=" w-5 flex flex-[1.2] flex-col gap-2">
           <div
@@ -38,13 +37,13 @@ export default function EventCard({
             </div>
 
             <div className="relative w-full flex justify-center">
-              <div className="w-[70%] h-px bg-[#FFDEAC] group-hover:bg-[#730000] transition-colors rotate-35"></div>
+              <div className="w-[70%] md:flex hidden h-px bg-[#FFDEAC] group-hover:bg-[#730000] transition-colors rotate-45"></div>
             </div>
 
             {regFee !== 0 && regFee !== null ? (
-              <div className="flex flex-col items-center leading-none gap-1">
-                <span className={`${prompt.className} text-[20px] font-bold`}>
-                  ₹{regFee}
+              <div className="flex flex-col items-center leading-none gap-1 text-center">
+                <span className={`${prompt.className} text-[20px]`}>
+                  ₹<bold className="font-bold">{regFee}</bold>
                 </span>
                 <span
                   className={`${playfair.className} text-[12px] font-semibold`}
@@ -65,11 +64,18 @@ export default function EventCard({
         </div>
 
         {/* Main Image */}
-        <Link className={`${commonBorderStyle} flex-3 relative h-full p-2`} href={regUrl} target="_blank">
+        <Link className={`${commonBorderStyle} flex-3 relative h-full pl-1 pr-1`} href={regUrl} target="_blank">
           <div
-            className={`flex-3 relative h-full bg-cover bg-center object-cover`}
-            style={{ backgroundImage: `url(${eventimage})` }}
-          ></div>
+            className={`flex items-center justify-center relative w-full h-full bg-neutral bg-center`}
+          >
+            <Image
+              src={eventimage}
+              alt={eventName}
+              fill
+              sizes="(max-width: 768px) 100vw, 33vw"
+              className="object-contain object-center"
+            />
+          </div>
         </Link>
       </div>
 
