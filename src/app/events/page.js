@@ -2,8 +2,8 @@
 import React, { useEffect, useState } from "react";
 import EventCard from "@/components/common/Card/EventCard";
 import EventCardPrem from "@/components/common/Card/EventCardPrem";
-import CategoryBanner from "@/components/common/categoryBanner/CategoryBanner";
 import { useEvents } from "@/hooks/useEvents";
+import CategoryMenu from "@/components/common/categoryMenu/CategoryMenu";
 
 const CATEGORY_CONFIG = [
   { name: "Flagship Events", label: "Flagship Events", banner: "/images/banner/banner1.svg" },
@@ -19,12 +19,14 @@ const CATEGORY_CONFIG = [
 export default function EventsPage() {
   let { data, isLoading, error } = useEvents("events");
 
-  const groupedEvents = CATEGORY_CONFIG.map((category) => ({
-    ...category,
-    events: data.filter(
-      (event) => event.category?.trim() === category.name
-    ),
-  }));
+  const [activeCategory, setActiveCategory] = useState(CATEGORY_CONFIG[0].name);
+  const selectedCategory = CATEGORY_CONFIG.find(
+    (category) => category.name === activeCategory
+  );
+
+  const filteredEvents = data.filter(
+    (event) => event.category?.trim() === activeCategory
+  )
 
   return (
     <main
@@ -41,6 +43,14 @@ export default function EventsPage() {
         </h1>
       </div>
 
+      <div className="flex justify-center">
+        <CategoryMenu
+          categories={CATEGORY_CONFIG}
+          activeCategory={activeCategory}
+          setActiveCategory={setActiveCategory}
+        />
+      </div>
+
       {isLoading && (
         <p className="text-center text-gray-500 py-20 text-xl font-light tracking-widest">
           LOADING...
@@ -53,53 +63,38 @@ export default function EventsPage() {
         </p>
       )}
 
-      {!isLoading && !error &&
-        groupedEvents.map((category, index) => {
-          if (category.events.length === 0) return null;
-
-          const isFlagship = category.name === "Flagship Events";
-          const align = index % 2 === 0 ? "left" : "right";
-          const variant = index % 2 === 0 ? "light" : "dark";
-
-          return (
-            <section key={category.name} className="mb-10">
-              <CategoryBanner
-                title={category.label.toUpperCase()}
-                image={category.banner}
-                align={align}
-                variant={variant}
-              />
-
-              <div className="w-full max-w-350 mx-auto px-4 sm:px-6 lg:px-8 pt-10">
-                <div className="page pt-10 flex items-center md:justify-left justify-center gap-10 flex-wrap">
-                  {category.events.map((event) =>
-                    isFlagship ? (
-                      <EventCardPrem
-                        key={event.id}
-                        day={event.eventDay}
-                        month={event.eventMonth}
-                        eventName={event.eventName}
-                        regUrl={event.makeMyPassUrl}
-                        regFee={0}
-                        eventimage={event.eventCover ?? "/images/card/dancerBg.svg"}
-                      />
-                    ) : (
-                      <EventCard
-                        key={event.id}
-                        day={event.eventDay}
-                        month={event.eventMonth}
-                        eventName={event.eventName}
-                        regUrl={event.makeMyPassUrl}
-                        regFee={0}
-                        eventimage={event.eventCover ?? "/images/card/dancerBg.svg"}
-                      />
-                    )
-                  )}
-                </div>
-              </div>
-            </section>
-          );
-        })}
+      {!isLoading && !error && selectedCategory && (
+        <section className="mb-10">
+          <div className="w-full max-w-350 mx-auto px-4 sm:px-6 lg:px-8 pt-10">
+            <div className="page pt-10 flex items-center md:justify-left justify-center gap-10 flex-wrap">
+              {filteredEvents.map((event) => 
+                activeCategory === "Flagship Events" ? (
+                  <EventCardPrem
+                    key={event.id}
+                    day={event.eventDay}
+                    month={event.eventMonth}
+                    eventName={event.eventName}
+                    regUrl={event.makeMyPassUrl}
+                    regFee={0}
+                    eventimage={event.eventCover ?? "/images/card/dancerBg.svg"}
+                  />
+                ) : (
+                  <EventCard
+                    key={event.id}
+                    day={event.eventDay}
+                    month={event.eventMonth}
+                    eventName={event.eventName}
+                    regUrl={event.makeMyPassUrl}
+                    regFee={0}
+                    eventimage={event.eventCover ?? "/images/card/dancerBg.svg"}
+                  />
+                )
+              )}
+            </div>
+          </div>
+        </section>  
+      )
+      }
       {!isLoading && !error && data.length === 0 && (
         <p className="text-center text-gray-500 py-20 text-xl font-light tracking-widest">
           NO EVENTS FOUND
