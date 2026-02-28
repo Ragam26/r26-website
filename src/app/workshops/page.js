@@ -41,7 +41,7 @@ export default function EventsPage() {
               eventName={eventData.eventName} 
               regUrl={eventData.makeMyPassUrl} 
               regFee={eventData.regFee}
-              eventimage={eventData.eventCover ?? "/images/gpcDesign2.svg"}
+              eventimage={eventData.eventCover ?? "/images/card/dancerBg.svg"}
             />
           ))}
         </div>
