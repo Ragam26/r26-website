@@ -19,7 +19,7 @@ const ProgramCarousel = () => {
     "/notFound",
     "/notFound",
     "/notFound",
-    "/campusAmbassador/regForm",
+    "/i-ink",
     "/notFound",
   ];
   const totalSlides = 8;
