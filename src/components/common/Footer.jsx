@@ -219,6 +219,9 @@ export default function Footer() {
               <Link href="/notFound" className='hover:text-gray-400 transition'>
                 Prodezza
               </Link>
+              <Link href="/i-ink" className='hover:text-gray-400 transition'>
+                I-Ink
+              </Link>
             </div>
 
             <div className='flex flex-col gap-3 order-1 md:order-3'>

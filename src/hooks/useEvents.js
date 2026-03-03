@@ -145,3 +145,60 @@ export function useWorkshops() {
 
   return { data: processedData, isLoading, error };
 }
+
+export function useIInks() {
+  const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const getWorkshops = async () => {
+      try {
+        const response = await api.get("/api/i-inks", {
+          params: {
+            "pagination[pageSize]": 25, 
+            "pagination[page]": 1,
+            populate: "*",
+          },
+        });
+        let allWorkshops = [...response.data.data];
+        const { pageCount } = response.data.meta.pagination;
+        const requests = [];
+        for (let page = 2; page <= pageCount; page++) {
+          requests.push(
+            api.get("/api/i-inks", {
+              params: {
+                "pagination[pageSize]": 25,
+                "pagination[page]": page,
+                populate: "*",
+              },
+            })
+          );
+        }
+
+        const responses = await Promise.all(requests);
+        allWorkshops.push(...responses.flatMap(res => res.data.data));
+        setData(allWorkshops);
+      }
+      catch (err) {
+        setError(err);
+      }
+      finally {
+        setIsLoading(false);
+      }
+    };
+
+    getWorkshops();
+  }, []);
+
+  const processedData = data.map(workshop => ({
+    ...workshop,
+    // Just passing the day part of the date to the EventCard, since that's all it needs
+    eventDay: workshop.date ? workshop.date.substring(8,10) : null,
+    eventCover: workshop.cover ? getImageUrl(workshop.cover) : null,
+    eventMonth: workshop.date ? getMonthName(parseInt(workshop.date.substring(5,7))) : null,
+
+  }));
+
+  return { data: processedData, isLoading, error };
+}
