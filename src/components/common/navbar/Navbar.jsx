@@ -8,8 +8,6 @@ import { IoMdClose } from "react-icons/io";
 import { gsap } from "gsap";
 import Image from "next/image";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { FaRegCircleUser } from "react-icons/fa6";
-import { MdLogin } from "react-icons/md";
 import Link from "next/link";
 
 function Navbar() {
