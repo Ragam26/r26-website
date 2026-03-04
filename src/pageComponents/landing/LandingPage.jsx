@@ -306,74 +306,79 @@ export default function LandingPage() {
         </div>
 
         {/* Render loops */}
-        {activeLoops.map((loop, index) => (
-          <div
-            key={loop.id}
-            ref={(el) => (loopsRef.current[index] = el)}
-            className="absolute left-1/2 top-1/2 origin-center will-change-transform"
-            style={{
-              width: loop.width,
-              zIndex: loop.zIndex,
-              aspectRatio: "1/1",
-              marginTop: "8px",
-              marginLeft: "-5px",
-              transform: "translate(-50%, -50%) translateZ(0)",
-              WebkitBackfaceVisibility: "hidden",
-              backfaceVisibility: "hidden",
-            }}
-          >
+        {!isMobile &&
+          activeLoops.map((loop, index) => (
             <div
-              className="relative w-full h-full"
+              key={loop.id}
+              ref={(el) => (loopsRef.current[index] = el)}
+              className="absolute left-1/2 top-1/2 origin-center will-change-transform"
               style={{
-                WebkitMaskImage: `url('/images/landingAnimation/${loop.src}')`,
-                maskImage: `url('/images/landingAnimation/${loop.src}')`,
-                WebkitMaskRepeat: "no-repeat",
-                maskRepeat: "no-repeat",
-                WebkitMaskSize: "contain",
-                maskSize: "contain",
-                WebkitMaskPosition: "center",
-                maskPosition: "center",
+                width: loop.width,
+                zIndex: loop.zIndex,
+                aspectRatio: "1/1",
+                marginTop: "8px",
+                marginLeft: "-5px",
+                transform: "translate(-50%, -50%) translateZ(0)",
+                WebkitBackfaceVisibility: "hidden",
+                backfaceVisibility: "hidden",
               }}
             >
-              <Image
-                src="/images/landingAnimation/loops/gradient.png"
-                alt={`Loop Decoration ${index + 1}`}
-                fill
-                sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover scale-[1.35]"
-                priority={index < 3}
-              />
+              <div
+                className="relative w-full h-full"
+                style={{
+                  WebkitMaskImage: `url('/images/landingAnimation/${loop.src}')`,
+                  maskImage: `url('/images/landingAnimation/${loop.src}')`,
+                  WebkitMaskRepeat: "no-repeat",
+                  maskRepeat: "no-repeat",
+                  WebkitMaskSize: "contain",
+                  maskSize: "contain",
+                  WebkitMaskPosition: "center",
+                  maskPosition: "center",
+                }}
+              >
+                <Image
+                  src="/images/landingAnimation/loops/gradient.png"
+                  alt={`Loop Decoration ${index + 1}`}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover scale-[1.35]"
+                  priority={index < 3}
+                />
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
 
         {/* uncomment hte blwop and comment the above to optimize by a ton */}
 
-        {/* {activeLoops.map((loop, index) => (
-          <div
-            key={loop.id}
-            ref={(el) => (loopsRef.current[index] = el)}
-            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 origin-center will-change-transform"
-            style={{
-              width: loop.width,
-              zIndex: loop.zIndex,
-              aspectRatio: "1/1",
-              marginTop: "8px",
-              marginLeft: "-5px",
-            }}
-          >
-            <img
-              src={`/images/landingAnimation/${loop.src}`}
-              alt="Loop Decoration"
-              className="w-full h-full object-contain"
-            />
-          </div>
-        ))} */}
+        {isMobile &&
+          activeLoops.map((loop, index) => (
+            <div
+              key={loop.id}
+              ref={(el) => (loopsRef.current[index] = el)}
+              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 origin-center will-change-transform"
+              style={{
+                width: loop.width,
+                zIndex: loop.zIndex,
+                aspectRatio: "1/1",
+                marginTop: "8px",
+                marginLeft: "-5px",
+              }}
+            >
+              <Image
+                src={`/images/landingAnimation/${loop.src}`}
+                alt={`Loop Decoration ${index + 1}`}
+                fill
+                className="object-contain"
+                sizes="(max-width: 768px) 100vw, 50vw"
+                priority={index < 3} // optional: prioritize first few images
+              />
+            </div>
+          ))}
 
         {/* White Logo */}
         <div
           ref={logoWhiteRef}
-          className="pointer-events-none absolute left-1/2 top-1/2 z-[101]
+          className="pointer-events-none absolute left-1/2 top-1/2 z-101
              w-[12vmin] h-[12vmin]
              -translate-x-1/2 -translate-y-1/2
              opacity-0 will-change-transform"
