@@ -1,10 +1,10 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import EventCard from "@/components/common/Card/EventCard";
-import {  useWorkshops } from "@/hooks/useEvents";
+import {  useIInks } from "@/hooks/useEvents";
 
 export default function EventsPage() {
-  let {data, isLoading, error} = useWorkshops();
+  let {data, isLoading, error} = useIInks();
 
   return (
     <main
@@ -17,7 +17,7 @@ export default function EventsPage() {
     >
       <div className="pt-20 md:pt-32 pb-12 md:pb-16 flex flex-col items-center justify-center px-4">
         <h1 className="text-white text-4xl md:text-7xl lg:text-8xl font-serif tracking-[0.3em] mt-20 mb-8 md:mb-12">
-          WORKSHOPS
+          I-INK
         </h1>
       </div>
       
@@ -27,7 +27,7 @@ export default function EventsPage() {
         </p>
       ) : error ? (
         <p className="text-center text-gray-500 py-20 text-xl font-light tracking-widest">
-          ERROR LOADING WORKSHOPS. PLEASE TRY AGAIN LATER.
+          ERROR LOADING EVENTS. PLEASE TRY AGAIN LATER.
         </p>
       ) : (
 
@@ -48,7 +48,7 @@ export default function EventsPage() {
 
         {data.length === 0 && (
           <p className="text-center text-gray-500 py-20 text-xl font-light tracking-widest">
-            NO WORKSHOPS FOUND
+            NO EVENTS FOUND
           </p>
         )}
       </div> )}

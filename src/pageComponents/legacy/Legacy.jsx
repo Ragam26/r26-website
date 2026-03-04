@@ -1,121 +1,103 @@
 'use client'
 
-import { useEffect, useRef, useState, useMemo, useCallback } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { brixton } from '@/lib/fonts'
 import Image from 'next/image'
 
-const mtxValues = [
-  '1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 255 -120',
-  '1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 190 -140',
-]
-
 gsap.registerPlugin(ScrollTrigger)
 
-function Test({ texts = [], morphTime = 1, cooldownTime = 2 }) {
-  const text1Ref = useRef(null)
-  const text2Ref = useRef(null)
-  const animationRef = useRef(null)
+function MorphText({ texts = [], morphTime = 2.5, cooldownTime = 2 }) {
+  const containerRef = useRef(null)
+  const t1 = useRef(null)
+  const t2 = useRef(null)
 
   useEffect(() => {
-    if (!texts || texts.length < 2) return
+    if (texts.length < 2) return
 
-    let textIndex = 0
-    let morph = 0
-    let cooldown = 0
-    let lastTime = performance.now()
+    let idx = 0
+    let cancelled = false
+    const el1 = t1.current
+    const el2 = t2.current
 
-    function setMorph(fraction) {
-      const t1 = text1Ref.current
-      const t2 = text2Ref.current
-      if (!t1 || !t2) return
+    const playMorph = () => {
+      if (cancelled) return
 
-      fraction = Math.max(0, Math.min(fraction, 1))
+      el1.textContent = texts[idx % texts.length]
+      el2.textContent = texts[(idx + 1) % texts.length]
 
-      // Use transform instead of filter for better performance
-      const blur2 = fraction === 0 ? 100 : Math.min(8 / fraction - 8, 100)
-      const blur1 = fraction === 1 ? 100 : Math.min(8 / (1 - fraction) - 8, 100)
+      const tl = gsap.timeline({
+        onComplete: () => {
+          idx = (idx + 1) % texts.length
+          gsap.delayedCall(cooldownTime, playMorph)
+        },
+      })
 
-      // Batch DOM updates
-      const opacity2 = Math.pow(fraction, 0.4)
-      const opacity1 = Math.pow(1 - fraction, 0.4)
+      tl.fromTo(
+        el1,
+        { filter: 'blur(0px)', opacity: 1 },
+        {
+          filter: 'blur(12px)',
+          opacity: 0,
+          duration: morphTime,
+          ease: 'sine.inOut',
+        },
+        0,
+      )
 
-      t2.style.cssText = `filter: blur(${blur2}px); opacity: ${opacity2}; grid-area: 1/1; position: relative; display: inline-block;`
-      t1.style.cssText = `filter: blur(${blur1}px); opacity: ${opacity1}; grid-area: 1/1; position: relative; display: inline-block;`
-
-      // Update text content
-      t1.textContent = texts[textIndex % texts.length]
-      t2.textContent = texts[(textIndex + 1) % texts.length]
+      tl.fromTo(
+        el2,
+        { filter: 'blur(12px)', opacity: 0 },
+        {
+          filter: 'blur(0px)',
+          opacity: 1,
+          duration: morphTime,
+          ease: 'sine.inOut',
+        },
+        0,
+      )
     }
 
-    function animate(now) {
-      animationRef.current = requestAnimationFrame(animate)
-      const dt = (now - lastTime) / 1000
-      lastTime = now
-
-      if (cooldown > 0) {
-        cooldown -= dt
-        setMorph(1)
-        if (cooldown <= 0) {
-          textIndex = (textIndex + 1) % texts.length
-          morph = 0
-        }
-        return
-      }
-
-      morph += dt
-      let fraction = morph / morphTime
-      fraction = Math.min(fraction, 1)
-      setMorph(fraction)
-
-      if (fraction >= 1) {
-        cooldown = cooldownTime
-      }
+    playMorph()
+    return () => {
+      cancelled = true
+      gsap.killTweensOf([el1, el2])
     }
-
-    animationRef.current = requestAnimationFrame(animate)
-
-    return () => cancelAnimationFrame(animationRef.current)
   }, [texts, morphTime, cooldownTime])
 
   return (
     <>
-      <div
-        style={{
-          filter: 'url(#threshold)',
-          display: 'grid',
-          placeItems: 'center',
-          fontSize: 'inherit',
-          fontFamily: 'inherit',
-          color: 'inherit',
-          willChange: 'filter',
-        }}
-      >
-        <span
-          ref={text1Ref}
-          style={{
-            gridArea: '1/1',
-            position: 'relative',
-            display: 'inline-block',
-          }}
-        />
-        <span
-          ref={text2Ref}
-          style={{
-            gridArea: '1/1',
-            position: 'relative',
-            display: 'inline-block',
-          }}
-        />
+      <div ref={containerRef} className='morph-container'>
+        <span ref={t1} className='morph-text' />
+        <span ref={t2} className='morph-text' />
       </div>
 
-      <svg style={{ width: 0, height: 0, position: 'absolute' }}>
+      <style jsx>{`
+        .morph-container {
+          filter: url(#threshold);
+          display: grid;
+          place-items: center;
+          will-change: filter;
+          -webkit-font-smoothing: antialiased;
+          min-width: 1px;
+          min-height: 1px;
+        }
+        .morph-text {
+          grid-area: 1/1;
+          position: relative;
+          display: inline-block;
+          user-select: none;
+          transform: translateZ(0);
+        }
+      `}</style>
+
+      <svg style={{ position: 'absolute', width: 0, height: 0 }}>
         <filter id='threshold'>
           <feColorMatrix
             in='SourceGraphic'
             type='matrix'
-            values={mtxValues[1]}
+            values='1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 14 -5'
           />
         </filter>
       </svg>
@@ -123,125 +105,192 @@ function Test({ texts = [], morphTime = 1, cooldownTime = 2 }) {
   )
 }
 
-function RadialDots({ count = 0.7, maxDistance = 5100 }) {
+const DOT_COLORS = ['#fef08a', '#fde68a', '#fdba74', '#fb923c']
+
+function RadialDots({ count = 0.8, maxDistance = 3000, originY = 0.85 }) {
+  const canvasRef = useRef(null)
   const containerRef = useRef(null)
-  const dotsRef = useRef([]) // stores active dots
 
   useEffect(() => {
-    const container = containerRef.current
-    if (!container) return
+    if (count === 0) return
+    const canvas = canvasRef.current
+    const wrap = containerRef.current
+    if (!canvas || !wrap) return
 
-    const rect = container.getBoundingClientRect()
-    const centerX = rect.width / 2
-    const centerY = rect.height / 2
+    const ctx = canvas.getContext('2d')
+    let dots = [],
+      lastEmit = 0,
+      rafId
 
-    const presets = [
-      'absolute w-[2px] h-[2px] bg-yellow-200 rounded-full',
-      'absolute w-[2px] h-[2px] bg-yellow-300 rounded-full',
-      'absolute w-[1px] h-[1px] bg-yellow-400 rounded-full',
-      'absolute w-1 h-1 bg-orange-300 rounded-full',
-    ]
+    function resize() {
+      const r = wrap.getBoundingClientRect()
+      canvas.width = Math.max(r.width, 1)
+      canvas.height = Math.max(r.height, 1)
+    }
+    resize()
+    const ro = new ResizeObserver(resize)
+    ro.observe(wrap)
 
-    const DOT_LIFETIME = 6000
-
-    function createDot() {
-      const dot = document.createElement('span')
-      dot.className = presets[Math.floor(Math.random() * presets.length)]
-
-      const angle = Math.random() * 2 * Math.PI
-      const duration = 10 + Math.random() * 0.5
-
-      dot.style.left = `${centerX}px`
-      dot.style.top = `${centerY}px`
-      dot.style.transform = 'translate(-50%, -50%)'
-      dot.style.opacity = '1'
-
-      container.appendChild(dot)
-
-      const createdAt = performance.now()
-
-      // Push into registry
-      dotsRef.current.push({ element: dot, createdAt })
-
-      function animate(time) {
-        const t = (time - createdAt) / (duration * 1000)
-
-        if (t < 1) {
-          const x = Math.cos(angle) * maxDistance * t
-          const y = Math.sin(angle) * maxDistance * t
-
-          dot.style.transform = `translate(${x}px, ${y}px)`
-          dot.style.opacity = `${1 - t}`
-
-          requestAnimationFrame(animate)
-        }
+    function emit(now) {
+      const cx = canvas.width * 0.5
+      const cy = canvas.height * originY
+      const n = Math.floor(count) + (Math.random() < count % 1 ? 1 : 0)
+      for (let i = 0; i < n; i++) {
+        dots.push({
+          angle: Math.random() * 2 * Math.PI,
+          born: now,
+          duration: (10 + Math.random() * 0.5) * 1000,
+          size: Math.random() > 0.5 ? 1 : 2,
+          color: DOT_COLORS[Math.floor(Math.random() * DOT_COLORS.length)],
+          cx,
+          cy,
+        })
       }
-
-      requestAnimationFrame(animate)
     }
 
-    // Emit dots
-    const interval = setInterval(() => {
-      for (let i = 0; i < count; i++) createDot()
-    }, 100)
+    function draw(now) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      if (now - lastEmit > 28) {
+        emit(now)
+        lastEmit = now
+      }
+      const alive = []
+      for (const d of dots) {
+        const t = (now - d.born) / d.duration
+        if (t >= 1) continue
+        alive.push(d)
+        ctx.globalAlpha = 1 - t
+        ctx.fillStyle = d.color
+        ctx.fillRect(
+          d.cx + Math.cos(d.angle) * maxDistance * t,
+          d.cy + Math.sin(d.angle) * maxDistance * t,
+          d.size,
+          d.size,
+        )
+      }
+      dots = alive
+      ctx.globalAlpha = 1
+      rafId = requestAnimationFrame(draw)
+    }
 
-    // Cleanup old dots periodically
-    const cleanupInterval = setInterval(() => {
-      const now = performance.now()
-
-      dotsRef.current = dotsRef.current.filter(({ element, createdAt }) => {
-        if (now - createdAt > DOT_LIFETIME) {
-          if (element.parentNode === container) {
-            container.removeChild(element)
-          }
-          return false
-        }
-        return true
-      })
-    }, 500)
-
+    rafId = requestAnimationFrame(draw)
     return () => {
-      clearInterval(interval)
-      clearInterval(cleanupInterval)
-
-      // Remove all remaining dots
-      dotsRef.current.forEach(({ element }) => {
-        if (element.parentNode === container) {
-          container.removeChild(element)
-        }
-      })
-
-      dotsRef.current = []
+      cancelAnimationFrame(rafId)
+      ro.disconnect()
     }
-  }, [count, maxDistance])
+  }, [count, maxDistance, originY])
 
   return (
     <div
       ref={containerRef}
-      className='absolute inset-0 pointer-events-none z-5'
-      style={{ overflow: 'visible' }}
-    />
+      style={{
+        position: 'absolute',
+        inset: 0,
+        pointerEvents: 'none',
+        overflow: 'visible',
+      }}
+    >
+      {count > 0 && (
+        <canvas
+          ref={canvasRef}
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            pointerEvents: 'none',
+            overflow: 'visible',
+          }}
+        />
+      )}
+    </div>
   )
 }
 
 export default function Legacy() {
-  const [swap, setSwap] = useState(false)
-
+  const sectionRef = useRef(null)
   const mobileRef = useRef(null)
   const desktopRef = useRef(null)
-  const sectionRef = useRef(null)
   const linkRef = useRef(null)
 
+  const [isMobile, setIsMobile] = useState(false)
+
   useEffect(() => {
-    const interval = setInterval(() => {
-      setSwap((prev) => !prev)
-    }, 5000)
-    return () => clearInterval(interval)
+    const mq = window.matchMedia('(max-width: 768px)')
+    setIsMobile(mq.matches)
+    const handler = (e) => setIsMobile(e.matches)
+    mq.addEventListener('change', handler)
+    return () => mq.removeEventListener('change', handler)
   }, [])
 
   useEffect(() => {
-    if (!linkRef.current || !sectionRef.current) return
+    if (!sectionRef.current) return
+    const mm = gsap.matchMedia()
 
+    mm.add('(max-width: 400px)', () => {
+      const el = mobileRef.current
+      if (!el) return
+      gsap.fromTo(
+        el,
+        { y: 100, scale: 1.2 },
+        {
+          y: 0,
+          scale: 1.8,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top bottom',
+            end: '+=120%',
+            scrub: 1,
+          },
+        },
+      )
+    })
+
+    mm.add('(min-width: 401px) and (max-width: 768px)', () => {
+      const el = mobileRef.current
+      if (!el) return
+      gsap.fromTo(
+        el,
+        { y: 150, scale: 0.6 },
+        {
+          y: 0,
+          scale: 1,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top bottom',
+            end: '+=120%',
+            scrub: 1,
+          },
+        },
+      )
+    })
+
+    mm.add('(min-width: 769px)', () => {
+      const el = desktopRef.current
+      if (!el) return
+      gsap.fromTo(
+        el,
+        { y: 250, scale: 0.6 },
+        {
+          y: 0,
+          scale: 1,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top bottom',
+            end: '+=90%',
+            scrub: true,
+          },
+        },
+      )
+    })
+
+    return () => mm.revert()
+  }, [])
+
+  useEffect(() => {
+    if (!linkRef.current) return
     gsap.from(linkRef.current, {
       y: 100,
       opacity: 0,
@@ -256,131 +305,55 @@ export default function Legacy() {
     })
   }, [])
 
-  useEffect(() => {
-    if (!sectionRef.current) return
-
-    const mm = gsap.matchMedia()
-
-    mm.add('(max-width: 400px)', () => {
-      const ctx = gsap.context(() => {
-        const el = mobileRef.current
-        if (!el) return
-        gsap.fromTo(
-          el,
-          { y: 100, scale: 1.2 },
-          {
-            y: 0,
-            scale: 1.8,
-            ease: 'none',
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: 'top bottom',
-              end: '+=120%',
-              scrub: 1, // Add smoothing
-            },
-          },
-        )
-      }, sectionRef.current)
-      return () => ctx.revert()
-    })
-
-    mm.add('(min-width: 401px) and (max-width: 768px)', () => {
-      const ctx = gsap.context(() => {
-        const el = mobileRef.current
-        if (!el) return
-        gsap.fromTo(
-          el,
-          { y: 150, scale: 0.6 },
-          {
-            y: 0,
-            scale: 1,
-            ease: 'none',
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: 'top bottom',
-              end: '+=120%',
-              scrub: 1, // Add smoothing
-            },
-          },
-        )
-      }, sectionRef.current)
-      return () => ctx.revert()
-    })
-
-    mm.add('(min-width: 769px)', () => {
-      const ctx = gsap.context(() => {
-        const targets = [desktopRef.current]
-        targets.forEach((el) => {
-          if (!el) return
-          gsap.fromTo(
-            el,
-            { y: 250, scale: 0.6 },
-            {
-              y: 0,
-              scale: 1,
-              ease: 'none',
-              scrollTrigger: {
-                trigger: sectionRef.current,
-                start: 'top bottom',
-                end: '+=90%',
-                scrub: true,
-              },
-            },
-          )
-        })
-      }, sectionRef.current)
-      return () => ctx.revert()
-    })
-
-    return () => mm.revert()
-  }, [])
-
   return (
     <div
       ref={sectionRef}
       className={`relative ${brixton.className} h-[65vh] sm:min-h-screen w-full bg-cover bg-center bg-no-repeat overflow-hidden`}
       style={{
         backgroundImage: `
-          radial-gradient(
-            ellipse at center,
+          radial-gradient(ellipse at center,
             rgba(0,0,0,0) 25%,
             rgba(0,0,0,0.8) 50%,
-            rgba(0,0,0,0.9) 100%
-          ),
+            rgba(0,0,0,0.9) 100%),
           url('/images/legacy/fire-background.png')
         `,
-        willChange: 'transform',
       }}
     >
-      <div className='absolute inset-0 z-10 flex items-end justify-center overflow-hidden pointer-events-none'>
+      <div
+        className='absolute inset-0'
+        style={{ zIndex: 5, pointerEvents: 'none' }}
+      >
+        <RadialDots
+          count={isMobile ? 0.2 : 0.4}
+          maxDistance={3000}
+          originY={0.85}
+        />
+      </div>
+
+      <div className='absolute inset-x-0 bottom-0 z-10 flex items-end justify-center pointer-events-none'>
         <Image
           src='/images/legacy/fire.svg'
           alt='fire'
-          className='hidden lg:block absolute bottom-0 rounded-full scale-100 bg-transparent w-auto translate-x-60'
+          className='hidden lg:block w-auto translate-x-60'
           width={800}
           height={800}
           priority
           loading='eager'
         />
         <Image
-          alt='fire'
           src='/images/legacy/fire2.svg'
-          className='block lg:hidden object-cover absolute bottom-0 rounded-full opacity-85 scale-30 sm:scale-40 md:scale-50 w-auto'
-          height={600}
+          alt='fire'
+          className='block lg:hidden w-auto'
           width={600}
+          height={600}
           priority
           loading='eager'
+          style={{
+            height: 'clamp(180px, 52vw, 420px)',
+            objectFit: 'contain',
+            objectPosition: 'bottom center',
+          }}
         />
-      </div>
-
-      <div className='absolute bottom-0 right-[40%]'>
-        <RadialDots />
-      </div>
-      <div className='absolute bottom-[20%] right-[40%]'>
-        <RadialDots />
-      </div>
-      <div className='absolute bottom-[50%] right-[40%]'>
-        <RadialDots />
       </div>
 
       <div className='relative z-20 md:py-16 mt-0 md:mt-18 lg:mt-0 sm:py-8 sm:px-2'>
@@ -389,17 +362,22 @@ export default function Legacy() {
             className='w-auto flex self-start justify-center text-white font-bold -mr-8 left-text'
             style={{ fontSize: 'max(10vw, 6rem)', willChange: 'filter' }}
           >
-            <Test texts={['THE', 'STILL']} morphTime={1.5} cooldownTime={1} />
+            <MorphText
+              texts={['THE', 'STILL']}
+              morphTime={1.5}
+              cooldownTime={1}
+            />
           </div>
 
           <div
             className='w-auto flex self-start -mt-[8%] sm:-mt-[6%] justify-center text-orange-500 font-bold right-text'
-            style={{
-              fontSize: 'max(24vw, 12rem)',
-              willChange: 'filter',
-            }}
+            style={{ fontSize: 'max(24vw, 12rem)', willChange: 'filter' }}
           >
-            <Test texts={['FLAME', 'BURNS']} morphTime={1.5} cooldownTime={1} />
+            <MorphText
+              texts={['FLAME', 'BURNS']}
+              morphTime={1.5}
+              cooldownTime={1}
+            />
           </div>
         </div>
 
@@ -417,21 +395,20 @@ export default function Legacy() {
 
       <div className='absolute inset-0 z-30 flex items-end justify-center overflow-hidden pointer-events-none'>
         <Image
-          alt='character'
           ref={mobileRef}
           src='/images/legacy/Rajan2.svg'
+          alt='character'
           width={500}
           height={800}
-          className='block lg:hidden object-cover w-auto
-                     max-h-[60vh] sm:max-h-[75vh] md:max-h-[95vh]'
+          className='block lg:hidden object-cover w-auto max-h-[60vh] sm:max-h-[75vh] md:max-h-[95vh]'
           priority
           loading='eager'
           style={{ willChange: 'transform' }}
         />
         <Image
           ref={desktopRef}
-          alt='character'
           src='/images/legacy/Rajan.svg'
+          alt='character'
           width={800}
           height={1200}
           className='hidden lg:block h-full w-auto translate-x-60'
@@ -442,8 +419,8 @@ export default function Legacy() {
       </div>
 
       <div
-        className={`${brixton.className} absolute z-40 bottom-10 left-0 right-0 text-4xl sm:text-6xl md:text-6xl lg:text-6xl text-white p-4 text-center cursor-pointer`}
         ref={linkRef}
+        className={`${brixton.className} absolute z-40 bottom-10 left-0 right-0 text-4xl sm:text-6xl md:text-6xl lg:text-6xl text-white p-4 text-center cursor-pointer`}
         style={{ willChange: 'transform, opacity' }}
       >
         <a href='https://youtu.be/1GmHRscNl6I?si=hOJsFpYVWrjwvgua'>
@@ -451,7 +428,6 @@ export default function Legacy() {
         </a>
       </div>
 
-      {/* feather fade out */}
       <div
         className='absolute bottom-0 left-0 w-full h-32 z-50 pointer-events-none'
         style={{
