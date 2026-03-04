@@ -11,7 +11,6 @@ const CATEGORY_CONFIG = [
   { name: "Kalolsavam (group)", label: "Kalolsavam (group)", banner: "/images/banner/banner1.svg" },
   { name: "Kalolsavam -solo-pass", label: "Kalolsavam (solo)", banner: "/images/banner/banner2.svg" },
   { name: "M&D-pass", label: "Music & Dance", banner: "/images/banner/banner1.svg" },
-  { name: "General-Pass", label: "General", banner: "/images/banner/banner2.svg" },
   { name: "Other", label: "Other", banner: "/images/banner/banner1.svg" },
 ];
 
