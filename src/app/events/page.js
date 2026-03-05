@@ -3,7 +3,9 @@ import React, { useEffect, useState } from "react";
 import EventCard from "@/components/common/Card/EventCard";
 import EventCardPrem from "@/components/common/Card/EventCardPrem";
 import { useEvents } from "@/hooks/useEvents";
+import { useCommittees } from "@/hooks/useCommittees";
 import CategoryMenu from "@/components/common/categoryMenu/CategoryMenu";
+import InfoCard from "@/components/common/infoCard/infoCard";
 
 const CATEGORY_CONFIG = [
   { name: "Flagship Events", label: "Flagship Events", banner: "/images/banner/banner1.svg" },
@@ -18,7 +20,10 @@ const CATEGORY_CONFIG = [
 export default function EventsPage() {
   let { data, isLoading, error } = useEvents("events");
 
+  let { committeeData, isCommitteeLoading, committeeError } = useCommittees("Events");
+
   const [activeCategory, setActiveCategory] = useState(CATEGORY_CONFIG[0].name);
+  const [isInfoOpen, setIsInfoOpen] = useState(false);
   const selectedCategory = CATEGORY_CONFIG.find(
     (category) => category.name === activeCategory
   );
@@ -36,10 +41,15 @@ export default function EventsPage() {
         backgroundPosition: "top center",
       }}
     >
-      <div className="pt-20 md:pt-32 pb-12 md:pb-16 flex flex-col items-center justify-center px-4">
+      <div className="pt-20 md:pt-32 pb-12 md:pb-16 flex flex-col items-center justify-center px-4 gap-6">
         <h1 className="text-white text-5xl md:text-7xl lg:text-8xl font-serif tracking-[0.3em] mt-20 mb-8 md:mb-12">
           EVENTS
         </h1>
+        <button
+          onClick={() => setIsInfoOpen(true)}
+          className="px-6 py-2 border border-white text-white hover:bg-white hover:text-black transition">
+            Click for more info
+        </button>
       </div>
 
       <div className="flex justify-center">
@@ -99,6 +109,17 @@ export default function EventsPage() {
           NO EVENTS FOUND
         </p>
       )}
+      <InfoCard
+        isOpen={isInfoOpen}
+        onClose={() => setIsInfoOpen(false)}
+        title={committeeData?.Name}
+        description={committeeData?.description}
+        pocList={committeeData?.contact?.map((contact) => ({
+          name: contact.name,
+          phone: contact.phoneNo,
+        })) ?? []}
+        brochure={committeeData?.brochureUrl}
+      />
     </main>
   );
 }

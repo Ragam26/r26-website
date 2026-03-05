@@ -1,88 +1,118 @@
-import { Bix } from "react-icons/bi";
+import { BiX } from "react-icons/bi";
+import { useEffect, useRef } from "react";
 
 export default function InfoCard({
-    isOpen,
-    onClose,
-    title,
-    description,
-    image,
-    pocList = [],
-    brochure
-})  {
-    if (!isOpen) return null;
+  isOpen,
+  onClose,
+  title,
+  description,
+  pocList = [],
+  brochure
+}) {
+  const modalRef = useRef(null);
 
-    return ( 
-        <div className ="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
+  useEffect(() => {
+    if (isOpen) {
+        const scrollY = window.scrollY;
+        document.body.dataset.scrollY = scrollY;
+        document.body.style.position = "fixed";
+        document.body.style.top = `-${scrollY}px`;
+        document.body.style.left = "0";
+        document.body.style.right = "0";
+        document.body.style.width = "100%";
+    } else {
+        const scrollY = document.body.dataset.scrollY || 0;
+        document.body.style.position = "";
+        document.body.style.top = "";
+        document.body.style.left = "";
+        document.body.style.right = "";
+        document.body.style.width = "";
+        window.scrollTo(0, parseInt(scrollY));
+    }
+  }, [isOpen]);
 
-            {/* Main Container */}
-            <div className="relative w-[90%] max-w-5xl max-h-[85vh] overflow-hidden rounded-xl bg-white shadow-2xl">
+  const handleOverLayClick = (e) => {
+    if (modalRef.current && !modalRef.current.contains(e.target)) {
+      onClose();
+    }
+  };
 
-                {/* Close Button */}
-                <button
-                    onClick={onClose}
-                    className="absolute right-4 top-4 text-2xl text-gray-600 hover:text-black"
-                >
-                    <Bix />
-                </button>
+  if (!isOpen) return null;
 
-                {/* Title */}
-                <h2 className="px-8 pt-6 text-2xl font-semibold">
-                    {title}
-                </h2>
+  return (
+    <div
+      onMouseDown={handleOverLayClick}
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm"
+    >
+      {/* Modal Container */}
+      <div
+        ref={modalRef}
+        className="relative w-[90%] max-w-4xl bg-white rounded-xl shadow-2xl"
+      >
 
-                {/* Content */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 p-8 overflow-y-auto max-h-[70vh]">
+        {/* Close Button */}
+        <button
+          onClick={onClose}
+          className="absolute right-4 top-4 text-2xl text-gray-600 hover:text-black"
+        >
+          <BiX />
+        </button>
 
-                    {/* Left Side */}
-                    <div className="md:col-span-2 space-y-6">
+        {/* Title */}
+        <h2 className="px-8 pt-6 pb-4 text-2xl font-semibold border-b">
+          {title}
+        </h2>
 
-                        {/* Description */}
-                        <div className="text-gray-700 leading-relaxed">
-                            {description}
-                        </div>
+        {/* Body */}
+        <div className="flex">
+        
+          {/* LEFT COLUMN */}
+          <div className="flex-1 max-h-[60vh] p-8 space-y-6 border-r overflow-y-auto" onWheel={(e) => e.currentTarget.scrollTop += e.deltaY}>
 
-                        {/* Image */}
-                        {image && (
-                            <img
-                                src={image}
-                                alt={title}
-                                className="w-full rounded-lg shadow-md"
-                            />
-                        )}
-                    </div>
-
-                    {/* Right Side */}
-                    <div className="space-y-6 md:sticky md:top-4 h-fit">
-
-                        {/* POC List */}
-                        <div className="rounded-lg border p-4">
-                            <h3 className="mb-3 font-semibold text-lg">
-                                Contact Us
-                            </h3>
-
-                            <div className="space-y-3">
-                                {pocList.map((poc, index) => (
-                                    <div key={index} className="flex flex-col text-md">
-                                        <span className="font-medium">
-                                            {poc.name}
-                                        </span>
-                                        <span className="text-gray-600">
-                                            {poc.phone}
-                                        </span>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-
-                        {/* Brochure */}
-                        {brochure && (
-                            <a href={brochure} download className="block text-center rounded-lg bg-black text-white py-3 font-medium hover:bg-gray-800 transition">
-                                Download Brochure
-                            </a>
-                        )}
-                    </div>
-                </div>
+            <div className="text-gray-700 leading-relaxed">
+              {description}
             </div>
+
+          </div>
+
+          {/* RIGHT COLUMN */}
+          <div className="p-8 space-y-6 w-[33%]">
+
+            {/* POC */}
+            <div className="rounded-lg border p-4">
+              <h3 className="mb-3 font-semibold text-lg">
+                Contact Us
+              </h3>
+
+              <div className="space-y-3">
+                {pocList.map((poc, index) => (
+                  <div key={index} className="flex flex-col text-md">
+                    <span className="font-medium">
+                      {poc.name}
+                    </span>
+                    <span className="text-gray-600">
+                      {poc.phone}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Brochure */}
+            {brochure && (
+              <a
+                href={brochure}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block text-center rounded-lg bg-black text-white py-3 font-medium hover:bg-gray-800 transition"
+              >
+                Download Brochure
+              </a>
+            )}
+
         </div>
-    );
+        </div>
+      </div>
+    </div>
+  );
 }
