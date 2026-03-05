@@ -1,34 +1,51 @@
-'use client'
+"use client";
 
-import { useState, useEffect } from 'react'
-import { FaInstagram, FaFacebook, FaLinkedinIn } from 'react-icons/fa'
-import Image from 'next/image'
-import Link from 'next/link'
+import { useState, useEffect, useRef } from "react";
+import { FaInstagram, FaFacebook, FaLinkedinIn } from "react-icons/fa";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function Footer() {
-  const [hoverData, setHoverData] = useState(null)
-  const [activeMobileLetter, setActiveMobileLetter] = useState(null)
-  const [showRoast, setShowRoast] = useState(false)
+  const [hoverData, setHoverData] = useState(null);
+  const [activeMobileLetter, setActiveMobileLetter] = useState(null);
+  const [showRoast, setShowRoast] = useState(false);
 
-  /* ---------------- MOBILE TAP RESET ---------------- */
+  // ref to measure the footer's DOM element
+  const footerRef = useRef(null);
+
+  // dynamically calculate height
+  useEffect(() => {
+    const el = footerRef.current;
+    if (!el) return;
+
+    const observer = new ResizeObserver(() => {
+      document.documentElement.style.setProperty(
+        "--footer-height",
+        `${el.offsetHeight}px`,
+      );
+    });
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   useEffect(() => {
     if (activeMobileLetter !== null) {
       const timer = setTimeout(() => {
-        setActiveMobileLetter(null)
-      }, 600)
-      return () => clearTimeout(timer)
+        setActiveMobileLetter(null);
+      }, 600);
+      return () => clearTimeout(timer);
     }
-  }, [activeMobileLetter])
+  }, [activeMobileLetter]);
 
-  /* ---------------- ROAST RESET ---------------- */
   useEffect(() => {
     if (showRoast) {
       const timer = setTimeout(() => {
-        setShowRoast(false)
-      }, 1500)
-      return () => clearTimeout(timer)
+        setShowRoast(false);
+      }, 1500);
+      return () => clearTimeout(timer);
     }
-  }, [showRoast])
+  }, [showRoast]);
 
   const letters = [
     {
@@ -66,45 +83,43 @@ export default function Footer() {
       image: "/images/footer/footer-5.svg",
       hoverOffset: { x: "-120%", y: "36%" },
     },
-  ]
+  ];
 
   return (
-    <footer className="bg-black text-white relative inset-x-0 w-full overflow-x-clip z-0">
+    <footer
+      ref={footerRef} // attach the ref to the root footer element
+      className="bg-black text-white relative inset-x-0 w-full overflow-x-clip z-0"
+    >
       <div className="relative max-w-7xl w-full mx-auto box-border md:mt-2 mt-20 pt-5 pb-5">
-
-        {/* ---------- HUGE RAGAM TEXT ---------- */}
         <div className="relative w-full h-[clamp(220px,32vw,420px)] flex items-center justify-center overflow-visible">
+          {" "}
           <h1 className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-[clamp(5rem,18vw,16rem)] md:font-bold font-extrabold leading-none inline-flex max-w-full justify-center md:scale-y-100 scale-y-130  origin-center select-none">
-
             {letters.map((letter) => (
               <span
                 key={letter.id}
                 className="cursor-pointer relative"
-
                 onPointerEnter={(e) => {
-                  if (e.pointerType === 'mouse') {
-                    setHoverData(letter)
+                  if (e.pointerType === "mouse") {
+                    setHoverData(letter);
                   }
                 }}
-
                 onPointerLeave={(e) => {
-                  if (e.pointerType === 'mouse') {
-                    setHoverData(null)
+                  if (e.pointerType === "mouse") {
+                    setHoverData(null);
                   }
                 }}
-
                 onPointerDown={(e) => {
-                  if (e.pointerType === 'touch') {
-                    setActiveMobileLetter(letter.id)
+                  if (e.pointerType === "touch") {
+                    setActiveMobileLetter(letter.id);
                   }
                 }}
               >
                 {/* LETTER SHAPE */}
                 <div
-                  className='transition-all duration-300'
+                  className="transition-all duration-300"
                   style={{
-                    width: '1em',
-                    height: '1em',
+                    width: "1em",
+                    height: "1em",
                     transform:
                       activeMobileLetter === letter.id
                         ? "scale(1.05)"
@@ -119,19 +134,17 @@ export default function Footer() {
                     backgroundPosition: "center",
 
                     WebKitMaskImage: `url(${letter.char})`,
-                    WebkitMaskRepeat: 'no-repeat',
-                    WebkitMaskSize: 'contain',
-                    WebkitMaskPosition: 'center',
+                    WebkitMaskRepeat: "no-repeat",
+                    WebkitMaskSize: "contain",
+                    WebkitMaskPosition: "center",
 
                     maskImage: `url(${letter.char})`,
-                    maskRepeat: 'no-repeat',
-                    maskSize: 'contain',
-                    maskPosition: 'center',
+                    maskRepeat: "no-repeat",
+                    maskSize: "contain",
+                    maskPosition: "center",
 
                     backgroundColor:
-                      hoverData?.id === letter.id
-                        ? letter.color
-                        : "white",
+                      hoverData?.id === letter.id ? letter.color : "white",
                   }}
                 />
 
@@ -172,22 +185,34 @@ export default function Footer() {
           <div className="order-2 md:order-1 flex flex-col gap-6 items-center md:items-start w-full md:w-auto pl-6">
             <div className="font-bold pl-5">
               <Image
-                src='/images/footer/ragam-logo.svg'
-                alt='Ragam Logo'
+                src="/images/footer/ragam-logo.svg"
+                alt="Ragam Logo"
                 width={100}
                 height={100}
-                className='w-24 h-24 hidden md:block'
+                className="w-24 h-24 hidden md:block"
               />
             </div>
 
             <div className="flex gap-6 flex-wrap justify-center md:justify-start">
-              <a href="https://www.instagram.com/ragam_nitc/" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://www.instagram.com/ragam_nitc/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <FaInstagram className="text-xl md:text-3xl hover:text-gray-400 transition" />
               </a>
-              <a href="https://www.facebook.com/Ragam.nitc" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://www.facebook.com/Ragam.nitc"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <FaFacebook className="text-xl md:text-3xl hover:text-gray-400 transition" />
               </a>
-              <a href="https://in.linkedin.com/company/ragam-national-institute-of-technology-calicut" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://in.linkedin.com/company/ragam-national-institute-of-technology-calicut"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <FaLinkedinIn className="text-xl md:text-3xl hover:text-gray-400 transition" />
               </a>
             </div>
@@ -209,32 +234,35 @@ export default function Footer() {
               </Link>
             </div>
 
-            <div className='flex flex-col gap-3 order-2 md:order-2'>
-              <Link href="/notFound" className='hover:text-gray-400 transition'>
+            <div className="flex flex-col gap-3 order-2 md:order-2">
+              <Link href="/notFound" className="hover:text-gray-400 transition">
                 Ragnarok
               </Link>
-              <Link href="/notFound" className='hover:text-gray-400 transition'>
+              <Link href="/notFound" className="hover:text-gray-400 transition">
                 Proshow
               </Link>
-              <Link href="/notFound" className='hover:text-gray-400 transition'>
+              <Link href="/notFound" className="hover:text-gray-400 transition">
                 Prodezza
               </Link>
-              <Link href="/i-ink" className='hover:text-gray-400 transition'>
+              <Link href="/i-ink" className="hover:text-gray-400 transition">
                 I-Ink
               </Link>
             </div>
 
-            <div className='flex flex-col gap-3 order-1 md:order-3'>
-              <Link href="/notFound" className='hover:text-gray-400 transition'>
+            <div className="flex flex-col gap-3 order-1 md:order-3">
+              <Link href="/notFound" className="hover:text-gray-400 transition">
                 Certificates
               </Link>
-              <Link href="/events" className='hover:text-gray-400 transition'>
+              <Link href="/events" className="hover:text-gray-400 transition">
                 Events
               </Link>
-              <Link href="/workshops" className='hover:text-gray-400 transition'>
+              <Link
+                href="/workshops"
+                className="hover:text-gray-400 transition"
+              >
                 Workshops
               </Link>
-              <Link href="/notFound" className='hover:text-gray-400 transition'>
+              <Link href="/notFound" className="hover:text-gray-400 transition">
                 Sports
               </Link>
             </div>
@@ -243,14 +271,14 @@ export default function Footer() {
 
         <div
           onClick={() => setShowRoast(true)}
-          className='mt-6 md:text-center text-[10px] text-gray-400 md:text-sm text-right cursor-pointer'
+          className="mt-6 md:text-center text-[10px] text-gray-400 md:text-sm text-right cursor-pointer"
         >
           © 2026 - Ragam NITC
         </div>
       </div>
 
       {showRoast && (
-        <div className='fixed bottom-4 right-4 bg-white text-black text-xs md:text-sm px-4 py-2 rounded-lg shadow-lg z-100 animate-fade-in'>
+        <div className="fixed bottom-4 right-4 bg-white text-black text-xs md:text-sm px-4 py-2 rounded-lg shadow-lg z-100 animate-fade-in">
           stop tripping bro
         </div>
       )}

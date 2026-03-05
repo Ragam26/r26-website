@@ -74,8 +74,10 @@ function Navbar() {
 
   const handleMenuItemClick = (item) => {
     if (item.external) {
-      setIsMenuOpen(false);
-      setCloseOnNextPathChange(false);
+      setTimeout(() => {
+        setIsMenuOpen(false);
+        setCloseOnNextPathChange(false);
+      }, 400);
       return;
     }
 
@@ -142,7 +144,7 @@ function Navbar() {
         <div className="px-6 py-3">
           <div className="grid grid-cols-3 items-center min-w-0">
             {/* Left Side */}
-            <div/>
+            <div />
 
             {/* Center Logo */}
             <div className="flex justify-center">

@@ -16,7 +16,7 @@ export default function MenuOverlay({ isOpen, onMenuItemClick }) {
     { title: "Certificates", href: "/notFound" },
     { title: "Workshops", href: "/workshops" },
     { title: "Events", href: "/events" },
-    { title : "I-Ink", href : "/i-ink" },
+    { title: "I-Ink", href: "/i-ink" },
     { title: "Prodezza", href: "/notFound" },
     { title: "Proshows", href: "/notFound" },
     {
@@ -26,9 +26,28 @@ export default function MenuOverlay({ isOpen, onMenuItemClick }) {
     },
     { title: "Team", href: "/notFound" },
     { title: "Sponsors", href: "/notFound" },
+    { title: "Contact", href: "contact" },
   ];
 
-  // GSAP open / close animation
+  // Helper to handle the delay on click
+  const handleItemClick = (e, item) => {
+    // If it's an external link, we don't want to prevent default,
+    // but we still want to trigger the close after a delay.
+    if (item.external) {
+      setTimeout(() => {
+        onMenuItemClick?.(item);
+      }, 400);
+      return;
+    }
+
+    // For internal links:
+    // 1. We let the Link component handle the pre-fetching/navigation
+    // 2. We trigger the close signal after your 400ms delay
+    setTimeout(() => {
+      onMenuItemClick?.(item);
+    }, 400);
+  };
+
   useEffect(() => {
     if (!overlayRef.current || !bgRef.current || !itemsRef) return;
 
@@ -36,75 +55,40 @@ export default function MenuOverlay({ isOpen, onMenuItemClick }) {
     const bg = bgRef.current;
     const items = itemsRef.current?.children;
 
-    // kill previous animations safely
     gsap.killTweensOf([overlay, bg, items]);
 
-    gsap.set(items, {
-      x: -60,
-      opacity: 0,
-      filter: "blur(4px)",
-    });
-
     if (isOpen) {
-      // ensure overlay is above everything immediately
-      gsap.set(overlay, {
-        pointerEvents: "all",
-        visibility: "visible",
-      });
+      gsap.set(overlay, { pointerEvents: "all", visibility: "visible" });
 
-      gsap.to(overlay, {
-        opacity: 1,
-        duration: 0.3,
-        ease: "power2.out",
-        overwrite: "auto",
-      });
-
-      gsap.to(bg, {
-        opacity: 1,
-        duration: 0.45,
-        ease: "power2.out",
-        overwrite: "auto",
-      });
-
+      gsap.to(overlay, { opacity: 1, duration: 0.3, ease: "power2.out" });
+      gsap.to(bg, { opacity: 1, duration: 0.45, ease: "power2.out" });
       gsap.to(items, {
         x: 0,
         opacity: 1,
         duration: 0.7,
         ease: "power3.out",
         stagger: 0.1,
-        overwrite: "auto",
         delay: 0.2,
         filter: "blur(0px)",
       });
     } else {
+      // Outward animations
       gsap.to(items, {
         x: -60,
         opacity: 0,
         duration: 0.25,
         ease: "power2.in",
-        stagger: {
-          each: 0.05,
-          from: "end",
-        },
+        stagger: { each: 0.05, from: "end" },
       });
 
-      gsap.to(bg, {
-        opacity: 0,
-        duration: 0.45,
-        ease: "power2.in",
-        overwrite: "auto",
-      });
+      gsap.to(bg, { opacity: 0, duration: 0.45, ease: "power2.in" });
 
       gsap.to(overlay, {
         opacity: 0,
         duration: 0.3,
         ease: "power2.in",
-        overwrite: "auto",
         onComplete: () => {
-          gsap.set(overlay, {
-            pointerEvents: "none",
-            visibility: "hidden",
-          });
+          gsap.set(overlay, { pointerEvents: "none", visibility: "hidden" });
         },
       });
     }
@@ -113,39 +97,32 @@ export default function MenuOverlay({ isOpen, onMenuItemClick }) {
   return (
     <div
       ref={overlayRef}
-      className="
-        fixed inset-0
-        opacity-0 pointer-events-none
-        flex
-        z-800
-      "
+      className="fixed inset-0 opacity-0 pointer-events-none flex z-800"
     >
-      {/* Animated Dark Background */}
-      <div ref={bgRef} className="absolute inset- opacity-0 backdrop-blur-sm" />
-
+      <div
+        ref={bgRef}
+        className="absolute inset-0 opacity-0 backdrop-blur-sm"
+      />
       <div className="md:hidden absolute inset-0 bg-black z-800" />
 
-      {/* Menu Items */}
       <div
         ref={itemsRef}
         className="relative h-full flex flex-col justify-center sm:ml-auto w-full sm:w-1/2 items-start pl-5 md:pl-0 pt-10 md:pt-20 z-850"
       >
-        {menuItems.map((item, i) => {
-          return (
-            <Link
-              key={item.title}
-              href={item.href}
-              onClick={() => onMenuItemClick?.(item)}
-              target={item.external ? "_blank" : "_self"}
-              className="w-full"
-            >
-              <MenuItem index={i + 1} title={item.title} />
-            </Link>
-          );
-        })}
+        {menuItems.map((item, i) => (
+          <Link
+            key={item.title}
+            href={item.href}
+            // Use our new handler for the delay
+            onClick={(e) => handleItemClick(e, item)}
+            target={item.external ? "_blank" : "_self"}
+            className="w-full"
+          >
+            <MenuItem index={i + 1} title={item.title} />
+          </Link>
+        ))}
       </div>
       <div className="hidden md:flex">
-        {" "}
         <ThreeScene />
       </div>
     </div>
