@@ -41,14 +41,15 @@ export default function EventsPage() {
         backgroundPosition: "top center",
       }}
     >
-      <div className="pt-20 md:pt-32 pb-12 md:pb-16 flex flex-col items-center justify-center px-4 gap-6">
-        <h1 className="text-white text-5xl md:text-7xl lg:text-8xl font-serif tracking-[0.3em] mt-20 mb-8 md:mb-12">
+      <div className="pt-20 md:pt-32 pb-6 md:pb-16 flex flex-col items-center justify-center px-4 gap-6">
+        <h1 className="text-white text-5xl md:text-7xl lg:text-8xl font-serif tracking-[0.3em] mt-20 mb-4 md:mb-12">
           EVENTS
         </h1>
         <button
           onClick={() => setIsInfoOpen(true)}
-          className="px-6 py-2 border border-white text-white hover:bg-white hover:text-black transition">
-            Click for more info
+          className="px-4 py-2 rounded-full bg-[#730000] text-[#FFDEAC] font-semibold hover:bg-[#FFDEAC] hover:text-[#730000] transition-all duration-200 hover:scale-105 active:scale-95 flex items-center justify-center text-sm md:text-lg whitespace-nowrap"
+        >
+          Know More
         </button>
       </div>
 
