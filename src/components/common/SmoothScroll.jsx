@@ -24,7 +24,7 @@ export default function SmoothScroll({ children }) {
 
   useEffect(() => {
     const lenis = lenisRef.current?.lenis;
-    if(!lenis) return;
+    if (!lenis) return;
 
     requestAnimationFrame(() => {
       lenis.scrollTo(0, {
