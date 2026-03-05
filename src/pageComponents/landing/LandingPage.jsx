@@ -306,50 +306,49 @@ export default function LandingPage() {
         </div>
 
         {/* Render loops */}
-        {!isMobile &&
-          activeLoops.map((loop, index) => (
+        {activeLoops.map((loop, index) => (
+          <div
+            key={loop.id}
+            ref={(el) => (loopsRef.current[index] = el)}
+            className="absolute left-1/2 top-1/2 origin-center will-change-transform"
+            style={{
+              width: loop.width,
+              zIndex: loop.zIndex,
+              aspectRatio: "1/1",
+              marginTop: "8px",
+              marginLeft: "-5px",
+              transform: "translate(-50%, -50%) translateZ(0)",
+              WebkitBackfaceVisibility: "hidden",
+              backfaceVisibility: "hidden",
+            }}
+          >
             <div
-              key={loop.id}
-              ref={(el) => (loopsRef.current[index] = el)}
-              className="absolute left-1/2 top-1/2 origin-center will-change-transform"
+              className="relative w-full h-full"
               style={{
-                width: loop.width,
-                zIndex: loop.zIndex,
-                aspectRatio: "1/1",
-                marginTop: "8px",
-                marginLeft: "-5px",
-                transform: "translate(-50%, -50%) translateZ(0)",
-                WebkitBackfaceVisibility: "hidden",
-                backfaceVisibility: "hidden",
+                WebkitMaskImage: `url('/images/landingAnimation/${loop.src}')`,
+                maskImage: `url('/images/landingAnimation/${loop.src}')`,
+                WebkitMaskRepeat: "no-repeat",
+                maskRepeat: "no-repeat",
+                WebkitMaskSize: "contain",
+                maskSize: "contain",
+                WebkitMaskPosition: "center",
+                maskPosition: "center",
               }}
             >
-              <div
-                className="relative w-full h-full"
-                style={{
-                  WebkitMaskImage: `url('/images/landingAnimation/${loop.src}')`,
-                  maskImage: `url('/images/landingAnimation/${loop.src}')`,
-                  WebkitMaskRepeat: "no-repeat",
-                  maskRepeat: "no-repeat",
-                  WebkitMaskSize: "contain",
-                  maskSize: "contain",
-                  WebkitMaskPosition: "center",
-                  maskPosition: "center",
-                }}
-              >
-                <Image
-                  src="/images/landingAnimation/loops/gradient.png"
-                  alt={`Loop Decoration ${index + 1}`}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover scale-[1.35]"
-                  priority={index < 3}
-                />
-              </div>
+              <Image
+                src="/images/landingAnimation/loops/gradient.png"
+                alt={`Loop Decoration ${index + 1}`}
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover scale-[1.35]"
+                priority={index < 3}
+              />
             </div>
-          ))}
+          </div>
+        ))}
 
         {/* uncomment hte blwop and comment the above to optimize by a ton */}
-
+        {/* 
         {isMobile &&
           activeLoops.map((loop, index) => (
             <div
@@ -373,7 +372,7 @@ export default function LandingPage() {
                 priority={index < 3} // optional: prioritize first few images
               />
             </div>
-          ))}
+          ))} */}
 
         {/* White Logo */}
         <div
