@@ -179,7 +179,41 @@ export default function LandingPage() {
           scrollTo: targetY,
           duration: 2.5,
           ease: "power2.inOut",
-          onComplete: unlockScroll,
+          onComplete: () => {
+            unlockScroll();
+
+            //Freeze animation before killing ScrollTrigger to prevent any jumpiness from scroll position reset
+            gsap.set(textRef.current,{
+              clipPath: MASK_OPEN,
+              scale: LOGO_MAX_SCALE,
+              clearProps: "willChange",
+            });
+            gsap.set(logoRef.current,{
+              scale: LOGO_MAX_SCALE,
+              clearProps: "willChange",
+            });
+            gsap.set(dancerContainerRef.current,{
+              clipPath: MASK_OPEN,
+              opacity: 1,
+            });
+            gsap.set(loopsRef.current, {
+              opacity: 0,
+            });
+
+            if(outerContainerRef.current) {
+              //Collapse evrything to the top
+              outerContainerRef.current.style.height = `${window.innerHeight}px`;
+              outerContainerRef.current.style.overflow = "hidden";
+              ScrollTrigger.getById("landing-scroll")?.kill(false);
+            }
+            
+            if(stickyRef.current) {
+              stickyRef.current.style.position = "relative";
+              stickyRef.current.style.top = "auto";
+            }
+
+            window.scrollTo({ top: 0, behavior: "instant" });
+          },
         });
       });
 
