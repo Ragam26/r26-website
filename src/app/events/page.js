@@ -6,27 +6,50 @@ import { useEvents } from "@/hooks/useEvents";
 import CategoryMenu from "@/components/common/categoryMenu/CategoryMenu";
 
 const CATEGORY_CONFIG = [
-  { name: "Flagship Events", label: "Flagship Events", banner: "/images/banner/banner1.svg" },
-  { name: "Dramatics", label: "Dramatics", banner: "/images/banner/banner2.svg" },
-  { name: "Kalolsavam (group)", label: "Kalolsavam (group)", banner: "/images/banner/banner1.svg" },
-  { name: "Kalolsavam -solo-pass", label: "Kalolsavam (solo)", banner: "/images/banner/banner2.svg" },
-  { name: "M&D-pass", label: "Music & Dance", banner: "/images/banner/banner1.svg" },
-  { name: "General-Pass", label: "General", banner: "/images/banner/banner2.svg" },
+  {
+    name: "Flagship Events",
+    label: "Flagship Events",
+    banner: "/images/banner/banner1.svg",
+  },
+  {
+    name: "Dramatics",
+    label: "Dramatics",
+    banner: "/images/banner/banner2.svg",
+  },
+  {
+    name: "Kalolsavam (group)",
+    label: "Kalolsavam (group)",
+    banner: "/images/banner/banner1.svg",
+  },
+  {
+    name: "Kalolsavam -solo-pass",
+    label: "Kalolsavam (solo)",
+    banner: "/images/banner/banner2.svg",
+  },
+  {
+    name: "M&D-pass",
+    label: "Music & Dance",
+    banner: "/images/banner/banner1.svg",
+  },
+  {
+    name: "General-Pass",
+    label: "General",
+    banner: "/images/banner/banner2.svg",
+  },
   { name: "Other", label: "Other", banner: "/images/banner/banner1.svg" },
 ];
-
 
 export default function EventsPage() {
   let { data, isLoading, error } = useEvents("events");
 
   const [activeCategory, setActiveCategory] = useState(CATEGORY_CONFIG[0].name);
   const selectedCategory = CATEGORY_CONFIG.find(
-    (category) => category.name === activeCategory
+    (category) => category.name === activeCategory,
   );
 
   const filteredEvents = data.filter(
-    (event) => event.category?.trim() === activeCategory
-  )
+    (event) => event.category?.trim() === activeCategory,
+  );
 
   return (
     <main
@@ -67,7 +90,7 @@ export default function EventsPage() {
         <section className="mb-10">
           <div className="w-full max-w-350 mx-auto px-4 sm:px-6 lg:px-8 pt-10">
             <div className="page pt-10 flex items-center md:justify-left justify-center gap-10 flex-wrap">
-              {filteredEvents.map((event) => 
+              {filteredEvents.map((event) =>
                 activeCategory === "Flagship Events" ? (
                   <EventCardPrem
                     key={event.id}
@@ -88,13 +111,12 @@ export default function EventsPage() {
                     regFee={0}
                     eventimage={event.eventCover ?? "/images/card/dancerBg.svg"}
                   />
-                )
+                ),
               )}
             </div>
           </div>
-        </section>  
-      )
-      }
+        </section>
+      )}
       {!isLoading && !error && data.length === 0 && (
         <p className="text-center text-gray-500 py-20 text-xl font-light tracking-widest">
           NO EVENTS FOUND

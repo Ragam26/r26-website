@@ -10,10 +10,11 @@ export default function ProshowSection({ isMobile }) {
     {
       id: 1,
       tilt: -15,
-      name: "COMING SOON",
+      name: "AMIT MISHRA",
       date: "27",
       month: "MARCH",
-      image: "/images/proshow/proshowArtist_2.png",
+      image: "/images/proshow/amit4.png",
+      song: "/images/proshow/bulleya.mp3",
     },
     {
       id: 2,
