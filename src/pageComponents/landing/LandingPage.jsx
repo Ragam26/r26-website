@@ -48,9 +48,6 @@ export default function LandingPage() {
   useLayoutEffect(() => {
     if (!isMounted) return;
 
-    // ;ock scroll during the intro animation
-    document.body.style.overflow = "hidden";
-
     let ctx = gsap.context(() => {
       const navbar = document.getElementById("global-navbar");
       // INFINITE SPIN
@@ -74,8 +71,9 @@ export default function LandingPage() {
       // INTRO SEQUENCE
       const introTl = gsap.timeline({
         onComplete: () => {
-          // unlock scroll once the logo and loops are settled
-          document.body.style.overflow = "auto";
+          gsap.delayedCall(0.8, () => {
+            onIntroComplete?.();
+          });
         },
       });
 
