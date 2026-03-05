@@ -2,6 +2,8 @@
 import { useState, useEffect } from "react";
 import { api } from "@/app/api/axiox";
 
+const cache = {};
+
 export function useCommittees(committeeName) {
     const [committeeData, setData] = useState(null);
     const [isCommitteeLoading, setIsLoading] = useState(true);
@@ -9,6 +11,13 @@ export function useCommittees(committeeName) {
   
     useEffect(() => {
       if(!committeeName) return;
+
+      const cacheKey = committeeName.trim().toLowerCase();
+      if (cache[cacheKey]) {
+        setData(cache[cacheKey]);
+        setIsLoading(false);
+        return;
+      }
 
       const getCommitteeData = async () => {
           try {
@@ -19,10 +28,10 @@ export function useCommittees(committeeName) {
                 populate: "*",
               },
             });
-            console.log("Committees Response:", response.data.data);
             const committee = response.data.data.find(
               (c) => c.Name.trim().toLowerCase() === committeeName.trim().toLowerCase()
             );
+            cache[cacheKey] = committee;
             setData(committee);
           } catch (err) {
             setError(err);
