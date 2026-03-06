@@ -14,7 +14,7 @@ export default function ProshowCard({
   transition-transform 
   duration-300 
   ease-in-out 
-  hover:-translate-y-3
+  
 "
     >
       {" "}
