@@ -1,8 +1,11 @@
-export default function EventCard({ alignment }) {
-  const LETTERS_ARR = ['D', 'A', 'Y', '1']
-  const TITLE = 'Event Name'
-  const DESCRIPTION =
-    'Lorem ipsum dolor sit amet. Ataperiamratione nam aspernatur galisum et corruptidignissimos. Non quis unde ut quas minimased explicabo sint sed voluptatem Lorem ipsum dolor sit amet. Ataperiamratione nam aspernatur galisum et corruptidignissimos. Non quis unde ut quas minimased explicabo sint sed voluptatem'
+export default function EventCard({
+  alignment,
+  imageURL,
+  day,
+  description,
+  name,
+}) {
+  const LETTERS_ARR = ['D', 'A', 'Y', day]
   const reverse = alignment === 'right'
   return (
     <div className='max-w-6xl w-full mx-auto p-1.5 bg-[#fdebc8] font-serif text-[#7d1912]'>
@@ -30,7 +33,11 @@ export default function EventCard({ alignment }) {
           className='w-[calc(35%-0.25rem)] md:w-[15%] min-h-[250px] md:min-h-[150px] bg-cover bg-center border border-[#7d1912] order-2 md:order-3'
         ></div>
         <div
-          style={{ backgroundImage: "url('/images/card/dancerBg.svg')" }}
+          style={{
+            backgroundImage: imageURL
+              ? `url('${imageURL}')`
+              : "url('/images/card/dancerBg.svg')",
+          }}
           className='w-[calc(65%-0.25rem)] md:w-[25%] min-h-[250px] md:min-h-[250px] bg-cover bg-center bg-black border border-[#7d1912] order-3 md:order-2'
         ></div>
         <div className='w-full md:flex-1 p-6 md:p-8 flex flex-col justify-between border border-[#7d1912] order-4 text-right md:text-left'>
@@ -43,10 +50,10 @@ export default function EventCard({ alignment }) {
           </div>
           <div className='mt-8 md:mt-auto'>
             <h1 className='text-4xl sm:text-5xl md:text-6xl font-extrabold mb-4 tracking-wide'>
-              {TITLE}
+              {name}
             </h1>
             <p className='text-sm font-medium leading-5 md:max-w-lg ml-auto md:ml-0'>
-              {DESCRIPTION}
+              {description}
             </p>
           </div>
         </div>
