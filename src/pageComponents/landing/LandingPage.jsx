@@ -172,7 +172,7 @@ export default function LandingPage() {
       introTl.call(() => {
         const trigger = ScrollTrigger.getById("landing-scroll");
         const targetY = trigger.end * AUTOSCROLL_TARGET_PROGRESS;
-        
+
         lockScroll();
         gsap.to(window, {
           scrollTo: targetY,
@@ -323,6 +323,15 @@ export default function LandingPage() {
 
     return () => {
       ctx.revert();
+      const navbar = document.getElementById("global-navbar");
+      if (navbar) {
+        gsap.set(navbar, {
+          opacity: 1,
+          y: 0,
+          pointerEvents: "auto",
+          clearProps: "transform",
+        });
+      }
       document.body.style.overflow = "auto";
       window.removeEventListener("load", handleLoad);
       clearTimeout(refreshTimer);
