@@ -28,7 +28,7 @@ export default function Hospitality() {
                 <h1 className="relative text-[#FFE7C0] font-bold text-5xl md:text-7xl px-8 text-center tracking-widest"
                     style={{ fontFamily: magilio.style.fontFamily }}
                 >
-                    FOOD AND ACCOMODATION
+                    FOOD AND ACCOMMODATION
                 </h1>
             </div>
             <div className="pt-5 md:pt-12 pb-6 md:pb-12 flex flex-col items-center justify-center px-4 gap-6">
