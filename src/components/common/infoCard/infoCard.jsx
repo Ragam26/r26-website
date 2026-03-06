@@ -47,7 +47,7 @@ export default function InfoCard({
       {/* Modal Container */}
       <div
         ref={modalRef}
-        className="relative w-[90%] max-w-4xl bg-[#1e0b0b]/50 shadow-2xl overflow-hidden border-r border-l border-b border-white/20 rounded-lg"
+        className={`relative ${description ? "max-w-4xl" : "max-w-sm"} w-[90%] bg-[#1e0b0b]/50 shadow-2xl overflow-hidden border-r border-l border-b border-white/20 rounded-lg transition-all`}
       >
 
         <div className ="relative px-8 py-2 bg-[url('/images/infoCard/banner.svg')] h-15 bg-cover bg-center">
@@ -65,7 +65,7 @@ export default function InfoCard({
         </div>
 
         {/* Body */}
-        <div className="flex flex-col md:flex-row max-h-[60vh] overflow-y-auto md:overflow-hidden"
+        <div className={`flex flex-col ${description? "md:flex-row" :"" } max-h-[60vh] overflow-y-auto md:overflow-hidden`}
           onWheel={(e) => {
             if (window.innerWidth < 768) e.currentTarget.scrollTop += e.deltaY;
           }}
@@ -73,7 +73,7 @@ export default function InfoCard({
 
           {/* RIGHT COLUMN */}
           <div
-            className="p-8 space-y-6 w-full md:w-[33%] md:order-2 md:max-h-[60vh] md:overflow-y-auto"
+            className={`p-8 space-y-6 w-full ${description ? "md:w-[33%] md:order-2" : ""} md:max-h-[60vh] md:overflow-y-auto`}
             onWheel={(e) => {
               if (window.innerWidth >= 768) e.currentTarget.scrollTop += e.deltaY;
             }}
@@ -109,14 +109,15 @@ export default function InfoCard({
           </div>
 
           {/* DIVIDER - mobile only (horizontal) */}
-          <div className="block md:hidden mx-8 border-t border-white/20" />
+          {description && <div className="block md:hidden mx-8 border-t border-white/20" />}
 
           {/* LEFT COLUMN */}
-          <div
-            className="md:order-1 flex-1 p-8 space-y-6 md:max-h-[60vh] md:overflow-y-auto md:border-r border-white"
-            onWheel={(e) => {
-              if (window.innerWidth >= 768) e.currentTarget.scrollTop += e.deltaY;
-            }}
+          {description && (
+            <div
+              className="md:order-1 flex-1 p-8 space-y-6 md:max-h-[60vh] md:overflow-y-auto md:border-r border-white"
+              onWheel={(e) => {
+                if (window.innerWidth >= 768) e.currentTarget.scrollTop += e.deltaY;
+              }}
           >
             <div className="text-white leading-relaxed" style={{ fontFamily: poppins.style.fontFamily }}>
               {description?.split("\n").map((line, index) => (
@@ -124,9 +125,9 @@ export default function InfoCard({
                 ))}
             </div>
           </div>
-
-        </div>
+          )}
       </div>
+    </div>
     </div>
   );
 }
