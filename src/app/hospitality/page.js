@@ -34,13 +34,13 @@ export default function Hospitality() {
             <div className="pt-5 md:pt-12 pb-6 md:pb-12 flex flex-col items-center justify-center px-4 gap-6">
                 <button
                     onClick={() => setIsInfoOpen(true)}
-                    className="px-4 py-2 rounded-full bg-[#730000] text-[#FFDEAC] font-semibold hover:bg-[#FFDEAC] hover:text-[#730000] transition-all duration-200 hover:scale-105 active:scale-95 flex items-center justify-center text-sm md:text-lg whitespace-nowrap"
+                    className="md:px-4 px-6 md:py-2 py-3 rounded-full bg-[#730000] text-[#FFDEAC] mt-10 md:mt-5 font-semibold hover:bg-[#FFDEAC] hover:text-[#730000] transition-all duration-200 hover:scale-105 active:scale-95 flex items-center justify-center text-lg md:text-xl whitespace-nowrap"
                 >
                     Contact for more details
                 </button>
             </div>
             </div>
-            <div className="flex flex-row items-center justify-center mb-8 md:mb-12 gap-8 mt-12 md:mt-12 px-4 md:px-12 overflow-x-auto">
+            <div className="flex flex-col md:flex-row items-center justify-center mb-8 md:mb-12 gap-8 mt-12 md:mt-12 px-4 md:px-12 overflow-x-auto">
                 <HospCard roomType="Dorm Rooms" priceList={[{ days: 1, price: 199, perPerson: 0 }, { days: 2, price: 359, perPerson: 0 }, { days: 3, price: 499, perPerson: 0 }, { days: 4, price: 679, perPerson: 0 }]} />
                 <HospCard roomType="3 Sharing Rooms" priceList={[{ days: 1, price: 1049, perPerson: 349 }, { days: 2, price: 1949, perPerson: 675 }, { days: 3, price: 2849, perPerson: 989 }, { days: 4, price: 3699, perPerson: 1299 }]} />
                 <HospCard roomType="4 Sharing Rooms" priceList={[{ days: 1, price: 1199, perPerson: 299 }, { days: 2, price: 2099, perPerson: 525 }, { days: 3, price: 2999, perPerson: 749 }, { days: 4, price: 3899, perPerson: 975 }]} />

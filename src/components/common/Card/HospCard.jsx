@@ -3,9 +3,9 @@ import { magilio } from "@/lib/fonts";
 
 const commonBorderStyle = "border border-[#730000] group-hover:border-[#FFDEAC] transition-colors";
 
-export default function HospCard({roomType = "3 Sharing Rooms",priceList = [{ days: 1, price: 180, perPerson: 0 }, { days: 2, price: 350, perPerson: 0 }, { days: 3, price: 500, perPerson: 0 }, { days: 4, price: 600, perPerson: 0 }]}) {
+export default function HospCard({roomType = "",priceList = []}) {
     return (
-        <div className="group bg-[#FFDEAC] hover:bg-[#730000] transition-colors md:w-110 w-60 md:h-80 h-40 p-3 flex flex-col gap-2">
+        <div className="group bg-[#FFDEAC] hover:bg-[#730000] transition-colors w-full md:w-110 p-3 flex flex-col gap-2">
             {/* Heading */}
             <div className={`${commonBorderStyle} flex items-center justify-center py-2`}>
                 <span className={`${magilio.className} text-[#730000] group-hover:text-[#FFDEAC] tracking-wider transition-colors text-center text-lg md:text-xl font-semibold`}>
@@ -16,7 +16,7 @@ export default function HospCard({roomType = "3 Sharing Rooms",priceList = [{ da
             {/* Body */}
             <div className={`${commonBorderStyle} flex flex-row flex-1`}>
 
-                <div className="w-1/3 relative min-h-40">
+                <div className="w-1/3 relative min-h-40 md:min-h-60">
                     <Image
                         src="/images/card/normBg.svg"
                         alt="design"
