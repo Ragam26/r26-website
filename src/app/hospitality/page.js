@@ -45,16 +45,15 @@ export default function Hospitality() {
                 <HospCard roomType="3 Sharing Rooms" priceList={[{ days: 1, price: 1049, perPerson: 349 }, { days: 2, price: 1949, perPerson: 675 }, { days: 3, price: 2849, perPerson: 989 }, { days: 4, price: 3699, perPerson: 1299 }]} />
                 <HospCard roomType="4 Sharing Rooms" priceList={[{ days: 1, price: 1199, perPerson: 299 }, { days: 2, price: 2099, perPerson: 525 }, { days: 3, price: 2999, perPerson: 749 }, { days: 4, price: 3899, perPerson: 975 }]} />
             </div>
-            <div className="w-full  bg-transparent">
-                <div className="w-full relative flex items-center">
-                <div className="w-full bg-[#854224] h-12 md:h-8 absolute top-1/2 -translate-y-1/2"/>
-
-                <button className="relative z-10 bg-[#D0995F] text-[#62161F] font-bold text-xl md:text-3xl px-8 py-4 md:px-6 md:py-2 rounded-full ml-4 md:ml-8 whitespace-nowrap hover:scale-105 transition-transform hover:bg-[#62161F] hover:text-[#D0995F]"
+            <button className="relative mb-15 z-10 bg-[#D0995F] text-[#62161F] font-bold text-2xl md:text-4xl px-10 py-4 md:px-10 md:py-4 rounded-full whitespace-nowrap hover:scale-105 transition-transform hover:bg-[#62161F] hover:text-[#D0995F] mx-auto block"
                     style={{ fontFamily: magilio.style.fontFamily }}
                     onClick={() => window.open('https://makemypass.com/event/ragam26-accommodation', '_blank')}
                 >
                     BOOK NOW
-                </button>
+            </button>
+            <div className="w-full  bg-transparent">
+                <div className="w-full relative flex items-center">
+                <div className="w-full bg-[#854224] h-12 md:h-8 absolute top-1/2 -translate-y-1/2"/>
 
                 {/* Text inside bar */}
                 <h1 className="relative text-[#D0995F] font-bold text-lg md:text-xl px-8 text-center md:tracking-[0.5em] flex-1"
