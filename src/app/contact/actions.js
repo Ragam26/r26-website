@@ -3,7 +3,7 @@
 import nodemailer from "nodemailer";
 
 export async function sendEmail(formData) {
-  const { firstName, lastName, email, story } = formData;
+  const { name, email, story } = formData;
 
   const transporter = nodemailer.createTransport({
     host: "smtp.zoho.in",
@@ -19,7 +19,7 @@ export async function sendEmail(formData) {
     await transporter.sendMail({
       from: `"Website Contact" <${process.env.EMAIL_USER}>`,
       to: "contact@ragam.co.in",
-      subject: `Ragam '26 | Inquiry: ${firstName} ${lastName}`,
+      subject: `Ragam '26 | Inquiry: ${name}`,
       replyTo: email,
       html: `
         <div style="font-family: sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: auto; border: 1px solid #eee; padding: 20px; border-radius: 10px;">
@@ -28,12 +28,8 @@ export async function sendEmail(formData) {
           
           <table style="width: 100%; border-collapse: collapse;">
             <tr>
-              <td style="padding: 8px 0; border-bottom: 1px solid #eee;"><strong>First Name:</strong></td>
-              <td style="padding: 8px 0; border-bottom: 1px solid #eee;">${firstName}</td>
-            </tr>
-            <tr>
-              <td style="padding: 8px 0; border-bottom: 1px solid #eee;"><strong>Last Name:</strong></td>
-              <td style="padding: 8px 0; border-bottom: 1px solid #eee;">${lastName}</td>
+              <td style="padding: 8px 0; border-bottom: 1px solid #eee;"><strong>Name:</strong></td>
+              <td style="padding: 8px 0; border-bottom: 1px solid #eee;">${name}</td>
             </tr>
             <tr>
               <td style="padding: 8px 0; border-bottom: 1px solid #eee;"><strong>Email:</strong></td>

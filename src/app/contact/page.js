@@ -28,7 +28,7 @@ export default function ContactPage() {
     try {
       const result = await sendEmail(formData);
       if (result.success) {
-        setStatus({ type: "success", message: "Message sent successfully!" });
+        setStatus({ type: "success", message: "Message sent successfully! We'll get back to you as soon as possible." });
         setFormData({ name: "", email: "", story: "" });
       } else {
         setStatus({ type: "error", message: result.error || "Failed to send message." });
@@ -210,7 +210,7 @@ export default function ContactPage() {
                   <div>
                     <label className="block text-white text-sm uppercase tracking-wider mb-3">
                       Name
-                    <span className="text-yellow-500">*</span>
+                      <span className="text-yellow-500">*</span>
                     </label>
                     <input
                       type="text"
@@ -250,7 +250,7 @@ export default function ContactPage() {
                       name="story"
                       value={formData.story}
                       onChange={handleChange}
-                      placeholder="We'll get back to you as soon as possible!"
+                      placeholder="Enter your message"
                       rows="6"
                       className="w-full bg-black/40 border border-yellow-500/20 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-yellow-500 transition-colors duration-300 resize-none"
                       required
