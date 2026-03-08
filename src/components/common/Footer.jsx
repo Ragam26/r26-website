@@ -229,7 +229,7 @@ export default function Footer() {
               <Link href='/notFound' className='hover:text-gray-400 transition'>
                 Sponsors
               </Link>
-              <Link href='/notFound' className='hover:text-gray-400 transition'>
+              <Link href="/contact" className="hover:text-gray-400 transition">
                 Contact Us
               </Link>
             </div>
