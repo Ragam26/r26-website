@@ -8,8 +8,11 @@ export default function TeamMemberCard({ name, image }) {
   return (
     <div
       style={{
-        background: "#ffffff",
-        borderRadius: 0,
+        backgroundColor: "#ffffff",
+        backgroundImage: "url('/images/meetheteam/cardBg.png')",
+        backgroundRepeat: "repeat",
+        backgroundSize: "auto",
+        borderRadius: 2,
         width: "100%",
         overflow: "hidden",
         display: "flex",
@@ -32,6 +35,7 @@ export default function TeamMemberCard({ name, image }) {
             aspectRatio: "1 / 1",
             position: "relative",
             overflow: "hidden",
+            borderRadius: 6,
           }}
         >
           {image && !imgError ? (
@@ -48,6 +52,7 @@ export default function TeamMemberCard({ name, image }) {
                 width: "100%",
                 height: "100%",
                 background: "#000000",
+                borderRadius: 2,
               }}
             />
           )}
@@ -57,7 +62,7 @@ export default function TeamMemberCard({ name, image }) {
       {/* Name area only */}
       <div
         style={{
-          background: "#ffffff",
+          background: "transparent",
           padding: "0.9rem 1rem",
           textAlign: "center",
         }}
@@ -65,8 +70,8 @@ export default function TeamMemberCard({ name, image }) {
         <p
           style={{
             margin: 0,
-            fontWeight: 700,
-            fontSize: "1rem",
+            fontWeight: 1000,
+            fontSize: "2rem",
             color: "#6b0000",
             letterSpacing: "0.03em",
             fontFamily: '"Anton", sans-serif',

@@ -22,8 +22,8 @@ export default function MeetTheTeamPage() {
       }}
     >
 
-      <div style={{ width: '100%', backgroundColor: '#ffbf83', display: 'flex', justifyContent: 'center', padding: '0.75rem 0', marginTop: '64px' }}>
-        <h1 style={{ fontSize: '4rem', fontWeight: 900, margin: 0, letterSpacing: '0.05em', textAlign: 'center', color: '#6b0000', fontFamily: '"Jersey 10", sans-serif' }}>
+      <div style={{ width: '100%', backgroundColor: '#ffbf83', display: 'flex', justifyContent: 'center', padding: 0, marginTop: '64px' }}>
+        <h1 style={{ fontSize: '4rem', fontWeight: 900, margin: 0, paddingTop: '1rem', letterSpacing: '0.05em', textAlign: 'center', color: '#6b0000', fontFamily: '"Jersey 10", sans-serif', lineHeight: 0.90 }}>
           MEET OUR TEAM
         </h1>
       </div>
