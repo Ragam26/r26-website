@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
-import { Phone, Mail, Instagram, Facebook, Linkedin } from "lucide-react";
+import { Phone, Mail, Instagram, Facebook, Linkedin, Loader2 } from "lucide-react";
+import { sendEmail } from "./actions";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -9,6 +10,8 @@ export default function ContactPage() {
     email: "",
     story: "",
   });
+  const [status, setStatus] = useState({ type: "", message: "" });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -18,9 +21,24 @@ export default function ContactPage() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // todo: add form submission logic
+    setIsSubmitting(true);
+    setStatus({ type: "", message: "" });
+
+    try {
+      const result = await sendEmail(formData);
+      if (result.success) {
+        setStatus({ type: "success", message: "Message sent successfully!" });
+        setFormData({ firstName: "", lastName: "", email: "", story: "" });
+      } else {
+        setStatus({ type: "error", message: result.error || "Failed to send message." });
+      }
+    } catch (error) {
+      setStatus({ type: "error", message: "An unexpected error occurred." });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -88,7 +106,7 @@ export default function ContactPage() {
                         Phone
                       </p>
                       <p className="text-white text-sm font-light tracking-wider">
-                        Sreehari - 8714815466
+                        Athul - 8089158295
                       </p>
                     </div>
                   </a>
@@ -258,12 +276,28 @@ export default function ContactPage() {
                   </div>
 
                   {/* Submit Button */}
-                  <button
-                    type="submit"
-                    className="w-full bg-yellow-500/60 hover:bg-yellow-500/40 border border-yellow-500/60 text-white uppercase tracking-wider font-light py-3 rounded-lg transition-all duration-300 hover:border-yellow-400"
-                  >
-                    Send Message
-                  </button>
+                  <div className="space-y-4">
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full bg-yellow-500/60 hover:bg-yellow-500/40 border border-yellow-500/60 text-white uppercase tracking-wider font-light py-3 rounded-lg transition-all duration-300 hover:border-yellow-400 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                          Sending...
+                        </>
+                      ) : (
+                        "Send Message"
+                      )}
+                    </button>
+
+                    {status.message && (
+                      <p className={`text-center text-sm ${status.type === 'success' ? 'text-green-400' : 'text-red-400'}`}>
+                        {status.message}
+                      </p>
+                    )}
+                  </div>
                 </form>
               </div>
             </div>
