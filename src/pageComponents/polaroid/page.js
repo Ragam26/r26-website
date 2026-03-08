@@ -14,7 +14,6 @@ function Date({ date, index, datesRef }) {
     <div
       ref={(el) => (datesRef.current[index] = el)}
       className={`flex select-none justify-between hover:text-amber-300 transition-colors gap-1 ${slackey.className} text-3xl md:text-4xl lg:text-5xl uppercase leading-none tracking-wide text-[#8F7B75]`}
-      
     >
       <span className="lowercase">march</span>
       <span>{date}</span>
@@ -173,7 +172,8 @@ function PolaroidPage() {
             trigger: containerRef.current,
             start: "top 30%",
             end: "top 10%",
-            toggleActions: "play none none reverse",
+            toggleActions: "play none none none",
+            once: true,
           },
         },
       );
