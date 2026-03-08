@@ -235,13 +235,13 @@ export default function Footer() {
             </div>
 
             <div className='flex flex-col gap-3 order-2 md:order-2'>
-              <Link href='/notFound' className='hover:text-gray-400 transition'>
+              <Link href='/ragnarok' className='hover:text-gray-400 transition'>
                 Ragnarok
               </Link>
-              <Link href='/notFound' className='hover:text-gray-400 transition'>
-                Proshow
+              <Link href='/proshows' className='hover:text-gray-400 transition'>
+                Proshows
               </Link>
-              <Link href='/notFound' className='hover:text-gray-400 transition'>
+              <Link href='/prodezza' className='hover:text-gray-400 transition'>
                 Prodezza
               </Link>
               <Link href='/i-ink' className='hover:text-gray-400 transition'>

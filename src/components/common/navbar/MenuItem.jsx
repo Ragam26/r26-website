@@ -15,7 +15,7 @@ export default function MenuItem({ index, title }) {
             uppercase
             font-semibold
             tracking-wide
-            text-4xl md:text-[44px]
+            text-4xl md:text-[38px]
             leading-[1.2]
           `}
         >

@@ -1,16 +1,16 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import EventCard from '@/components/common/Card/EventCard'
-import { useSports } from '@/hooks/useEvents'
+import { useRagnarok } from '@/hooks/useEvents'
 
 export default function EventsPage() {
-  let { data, isLoading, error } = useSports()
+  let { data, isLoading, error } = useRagnarok()
 
   return (
     <main
       className='min-h-screen bg-black bg-top bg-no-repeat bg-fixed'
       style={{
-        backgroundImage: "url('/images/sports/sports_bg.png')",
+        backgroundImage: "url('/images/ragnarok/ragnarok_bg.png')",
         backgroundSize: "cover",
         backgroundPosition: "top center",
         backgroundRepeat: "no-repeat",
@@ -19,7 +19,7 @@ export default function EventsPage() {
     >
       <div className='pt-20 md:pt-32 pb-12 md:pb-16 flex flex-col items-center justify-center px-4'>
         <h1 className='text-white text-4xl md:text-7xl lg:text-8xl font-serif tracking-[0.3em] mt-20 mb-8 md:mb-12'>
-          SPORTS
+          RAGNAROK
         </h1>
       </div>
 
