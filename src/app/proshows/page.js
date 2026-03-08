@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import EventCard from '@/components/common/Card/EventCard'
 import { useProshows } from '@/hooks/useEvents'
+import EventCardLong from '@/components/common/Card/EventCardLong'
 
 export default function EventsPage() {
   let { data, isLoading, error } = useProshows()
@@ -35,13 +36,16 @@ export default function EventsPage() {
         <div className='w-full max-w-350 mx-auto px-4 sm:px-6 lg:px-8 pb-20'>
           <div className='page pt-10 flex items-center md:justify-left justify-center gap-10 flex-wrap'>
             {data.map((eventData) => (
-              <EventCard
+              <EventCardLong
                 key={eventData.id}
-                day={eventData.eventDay}
+                day='1'
+                date={eventData.eventDay}
                 month={eventData.eventMonth}
-                eventName={eventData.eventName}
+                name={eventData.eventName}
                 regUrl={eventData.makeMyPassUrl}
                 regFee={eventData.regFee}
+                alignment="left"
+                description={eventData.description}
                 eventimage={eventData.eventCover ?? '/images/card/dancerBg.svg'}
               />
             ))}
