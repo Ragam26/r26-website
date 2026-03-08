@@ -17,9 +17,11 @@ export default function MenuOverlay({ isOpen, onMenuItemClick }) {
     { title: "Workshops", href: "workshops" },
     { title: "Events", href: "events" },
     { title: "I-Ink", href: "i-ink" },
+    { title: "Sports", href: "sports" },
     { title: "Accommodations", href: "hospitality" },
-    { title: "Prodezza", href: "notFound" },
-    { title: "Proshows", href: "notFound" },
+    { title: "Prodezza", href: "prodezza" },
+    { title: "Proshows", href: "proshows" },
+    { title: "Ragnarok", href: "ragnarok" },
     {
       title: "Campus Ambassador",
       href: "https://ca.ragam.co.in",
