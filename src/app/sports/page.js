@@ -10,9 +10,11 @@ export default function EventsPage() {
     <main
       className='min-h-screen bg-black bg-top bg-no-repeat bg-fixed'
       style={{
-        backgroundImage: "url('/images/events/bg.png')",
-        backgroundSize: '100% 100%',
-        backgroundPosition: 'top center',
+        backgroundImage: "url('/images/sports/sports_bg.png')",
+        backgroundSize: "cover",
+        backgroundPosition: "top center",
+        backgroundRepeat: "no-repeat",
+        minHeight: "100vh"
       }}
     >
       <div className='pt-20 md:pt-32 pb-12 md:pb-16 flex flex-col items-center justify-center px-4'>
