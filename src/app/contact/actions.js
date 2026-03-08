@@ -24,7 +24,7 @@ export async function sendEmail(formData) {
       html: `
         <div style="font-family: sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: auto; border: 1px solid #eee; padding: 20px; border-radius: 10px;">
           <h2 style="color: #d97706; border-bottom: 2px solid #f59e0b; padding-bottom: 10px;">Professional Inquiry - Ragam '26</h2>
-          <p>You have received a new contact submission from the Ragam official website.</p>
+          <p>You have received a new Email from the Ragam official website.</p>
           
           <table style="width: 100%; border-collapse: collapse;">
             <tr>
