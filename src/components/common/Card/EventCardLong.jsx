@@ -65,7 +65,7 @@ export default function EventCardLong({
             </div>
 
             <div className='text-xl md:text-2xl mt-1 font-light'>
-              Sunday
+              Friday
             </div>
           </div>
 
