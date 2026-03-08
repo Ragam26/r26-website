@@ -5,8 +5,7 @@ import { sendEmail } from "./actions";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
+    name: "",
     email: "",
     story: "",
   });
@@ -30,7 +29,7 @@ export default function ContactPage() {
       const result = await sendEmail(formData);
       if (result.success) {
         setStatus({ type: "success", message: "Message sent successfully!" });
-        setFormData({ firstName: "", lastName: "", email: "", story: "" });
+        setFormData({ name: "", email: "", story: "" });
       } else {
         setStatus({ type: "error", message: result.error || "Failed to send message." });
       }
@@ -207,35 +206,18 @@ export default function ContactPage() {
               {/* Right Column - Contact Form */}
               <div className="bg-gradient-to-br from-yellow-900/20 to-yellow-950/20 backdrop-blur-sm rounded-2xl p-8 sm:p-10 border border-yellow-500/40">
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  {/* First Name */}
+                  {/* Name */}
                   <div>
                     <label className="block text-white text-sm uppercase tracking-wider mb-3">
-                      First Name
-                      <span className="text-yellow-500">*</span>
+                      Name
+                    <span className="text-yellow-500">*</span>
                     </label>
                     <input
                       type="text"
-                      name="firstName"
-                      value={formData.firstName}
+                      name="name"
+                      value={formData.name}
                       onChange={handleChange}
-                      placeholder="Your First name"
-                      className="w-full bg-black/40 border border-yellow-500/20 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-yellow-500 transition-colors duration-300"
-                      required
-                    />
-                  </div>
-
-                  {/* Last Name */}
-                  <div>
-                    <label className="block text-white text-sm uppercase tracking-wider mb-3">
-                      Last Name
-                      <span className="text-yellow-500">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      name="lastName"
-                      value={formData.lastName}
-                      onChange={handleChange}
-                      placeholder="Your Last name"
+                      placeholder="Your Name"
                       className="w-full bg-black/40 border border-yellow-500/20 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-yellow-500 transition-colors duration-300"
                       required
                     />
@@ -261,7 +243,7 @@ export default function ContactPage() {
                   {/* Story Textarea */}
                   <div>
                     <label className="block text-white text-sm uppercase tracking-wider mb-3">
-                      Your Story
+                      Your Message
                       <span className="text-yellow-500">*</span>
                     </label>
                     <textarea
