@@ -16,6 +16,7 @@ export default function MenuOverlay({ isOpen, onMenuItemClick }) {
     { title: "Certificates", href: "notFound" },
     { title: "Workshops", href: "workshops" },
     { title: "Events", href: "events" },
+    { title: "Ragam Trophy", href: "ragam-trophy" },
     { title: "I-Ink", href: "i-ink" },
     { title: "Sports", href: "sports" },
     { title: "Accommodations", href: "hospitality" },
