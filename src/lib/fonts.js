@@ -1,5 +1,5 @@
 import localFont from "next/font/local";
-import { Slackey,Abril_Fatface, Playfair, Prompt } from "next/font/google";
+import { Slackey,Abril_Fatface, Playfair, Prompt, Poppins } from "next/font/google";
 
 export const brixton = localFont({
   src: "../../public/fonts/brixton.otf",
@@ -83,8 +83,20 @@ export const prompt = Prompt({
   style: ["normal", "italic"],
 });
 
+export const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800"],
+  style: ["normal", "italic"],
+});
+
 export const liberationSerif = localFont({ 
   src: "../../public/fonts/LiberationSerif-Bold.ttf",
   variable: "--font-liberation-serif",
+  display: "swap",
+});
+
+export const grotapDemo = localFont({
+  src: "../../public/fonts/GrotapDemo.otf",
+  variable: "--font-grotap-demo",
   display: "swap",
 });

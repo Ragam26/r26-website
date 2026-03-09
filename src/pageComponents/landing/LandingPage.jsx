@@ -3,11 +3,12 @@
 import { useRef, useLayoutEffect, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import Image from "next/image";
 import { LOOPS_CONFIG, LOOPS_CONFIG_MOBILE } from "./loopsConfig";
 import Loader from "@/components/common/Loader";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 const SCROLL_HEIGHT = "373vh";
 const LOOP_EXIT_SCALE = 18;
@@ -16,6 +17,8 @@ const DANCER_REVEAL_START = 0.55;
 
 const MASK_CLOSED = "polygon(0% 0%, 0% 0%, -20% 100%, -20% 100%)";
 const MASK_OPEN = "polygon(0% 0%, 120% 0%, 100% 100%, -20% 100%)";
+
+const AUTOSCROLL_TARGET_PROGRESS = DANCER_REVEAL_START + 0.37; // Scroll to a point after the dancers are revealed
 
 export default function LandingPage() {
   const outerContainerRef = useRef(null);
@@ -47,6 +50,17 @@ export default function LandingPage() {
 
   useLayoutEffect(() => {
     if (!isMounted) return;
+
+    //Prevent scrolling during intro
+    const preventScroll = (e) => e.preventDefault();
+    const lockScroll = () => {
+      window.addEventListener("wheel", preventScroll, { passive: false });
+      window.addEventListener("touchmove", preventScroll, { passive: false });
+    };
+    const unlockScroll = () => {
+      window.removeEventListener("wheel", preventScroll);
+      window.removeEventListener("touchmove", preventScroll);
+    };
 
     let ctx = gsap.context(() => {
       const navbar = document.getElementById("global-navbar");
@@ -153,6 +167,46 @@ export default function LandingPage() {
 
       // call infinite rotation logic mid-intro
       introTl.call(() => spinTl.play(), null, "-=0.9");
+
+      // //Trigger autoscroll after intro
+      introTl.call(() => {
+        const trigger = ScrollTrigger.getById("landing-scroll");
+        const targetY = trigger.end * AUTOSCROLL_TARGET_PROGRESS;
+
+        lockScroll();
+        gsap.to(window, {
+          scrollTo: targetY,
+          duration: 2.5,
+          ease: "power2.inOut",
+          onComplete: () => {
+            setLeftDancer(Math.floor(Math.random() * 3) + 1);
+            setRightDancer(Math.floor(Math.random() * 3) + 1)
+            unlockScroll();
+
+            //Freeze animation before killing ScrollTrigger to prevent any jumpiness from scroll position reset
+            gsap.set(textRef.current,{
+              clipPath: MASK_OPEN,
+              scale: LOGO_MAX_SCALE,
+              clearProps: "willChange",
+            });
+            gsap.set(logoRef.current,{
+              scale: LOGO_MAX_SCALE,
+              clearProps: "willChange",
+            });
+            gsap.set(dancerContainerRef.current,{
+              clipPath: MASK_OPEN,
+              opacity: 1,
+            });
+            gsap.set(loopsRef.current, {
+              opacity: 0,
+            });
+
+            ScrollTrigger.getById("landing-scroll")?.kill(false);
+            
+            ScrollTrigger.refresh();
+          },
+        });
+      });
 
       // BREATHING GLOW EFFECT
       gsap.set(logoRef.current, {
@@ -271,6 +325,15 @@ export default function LandingPage() {
 
     return () => {
       ctx.revert();
+      const navbar = document.getElementById("global-navbar");
+      if (navbar) {
+        gsap.set(navbar, {
+          opacity: 1,
+          y: 0,
+          pointerEvents: "auto",
+          clearProps: "transform",
+        });
+      }
       document.body.style.overflow = "auto";
       window.removeEventListener("load", handleLoad);
       clearTimeout(refreshTimer);
