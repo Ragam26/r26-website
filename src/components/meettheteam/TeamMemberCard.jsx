@@ -36,7 +36,7 @@ export default function TeamMemberCard({ name, image, hoverImage, position, link
         onMouseLeave={() => setIsHovered(false)}
         onClick={() => {
           setIsHovered(true);
-          setTimeout(() => setIsHovered(false), 2000);
+          setTimeout(() => setIsHovered(false), 1000);
         }}
       >
         <div

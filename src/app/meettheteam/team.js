@@ -19,14 +19,7 @@ export const techLeads = [
   
 ]
 
-export const techMembers = [
-    {
-    name: 'Anush P',
-    image: '/images/meetheteam/tech/Anush.png',
-    position: 'UI/UX Designer',
-    github: '',
-    linkedin: 'https://www.linkedin.com/in/anush-p-37317738b/',
-  },
+export const techTeam = [
   {
     name: 'Jiss Janex',
     image: '/images/meetheteam/tech/Jiss.png',
@@ -43,10 +36,19 @@ export const techMembers = [
   },
   {
     name: 'Simon',
-    image: '/images/meettheteam/tech/Simon.png',
+    image: '/images/meetheteam/tech/Simon.png',
     position: 'Frontend Developer',
     github: 'https://github.com/simonMat21',
     linkedin: 'https://www.linkedin.com/in/simon-mattekkatt-357620322/',
   }
 ]
 
+export const uiTeam = [
+    {
+    name: 'Anush P',
+    image: '/images/meetheteam/tech/Anush.png',
+    position: 'UI/UX Designer',
+    github: '',
+    linkedin: 'https://www.linkedin.com/in/anush-p-37317738b/',
+  },
+]
