@@ -179,6 +179,8 @@ export default function LandingPage() {
           duration: 2.5,
           ease: "power2.inOut",
           onComplete: () => {
+            setLeftDancer(Math.floor(Math.random() * 3) + 1);
+            setRightDancer(Math.floor(Math.random() * 3) + 1)
             unlockScroll();
 
             //Freeze animation before killing ScrollTrigger to prevent any jumpiness from scroll position reset
