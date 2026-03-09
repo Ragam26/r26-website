@@ -19,7 +19,9 @@ function SparkCanvas() {
     const wrap = containerRef.current;
     if (!canvas || !wrap) return;
     const ctx = canvas.getContext("2d");
-    let dots = [], lastEmit = 0, rafId;
+    let dots = [],
+      lastEmit = 0,
+      rafId;
 
     function resize() {
       const r = wrap.getBoundingClientRect();
@@ -40,14 +42,18 @@ function SparkCanvas() {
           duration: (8 + Math.random() * 4) * 1000,
           size: Math.random() > 0.5 ? 1 : 2,
           color: DOT_COLORS[Math.floor(Math.random() * DOT_COLORS.length)],
-          cx, cy,
+          cx,
+          cy,
         });
       }
     }
 
     function draw(now) {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      if (now - lastEmit > 35) { emit(now); lastEmit = now; }
+      if (now - lastEmit > 35) {
+        emit(now);
+        lastEmit = now;
+      }
       const alive = [];
       for (const d of dots) {
         const t = (now - d.born) / d.duration;
@@ -58,7 +64,8 @@ function SparkCanvas() {
         ctx.fillRect(
           d.cx + Math.cos(d.angle) * 2000 * t,
           d.cy + Math.sin(d.angle) * 2000 * t,
-          d.size, d.size,
+          d.size,
+          d.size,
         );
       }
       dots = alive;
@@ -66,12 +73,26 @@ function SparkCanvas() {
       rafId = requestAnimationFrame(draw);
     }
     rafId = requestAnimationFrame(draw);
-    return () => { cancelAnimationFrame(rafId); ro.disconnect(); };
+    return () => {
+      cancelAnimationFrame(rafId);
+      ro.disconnect();
+    };
   }, []);
 
   return (
-    <div ref={containerRef} style={{ position: "absolute", inset: 0, pointerEvents: "none", overflow: "hidden" }}>
-      <canvas ref={canvasRef} style={{ position: "absolute", top: 0, left: 0 }} />
+    <div
+      ref={containerRef}
+      style={{
+        position: "absolute",
+        inset: 0,
+        pointerEvents: "none",
+        overflow: "hidden",
+      }}
+    >
+      <canvas
+        ref={canvasRef}
+        style={{ position: "absolute", top: 0, left: 0 }}
+      />
     </div>
   );
 }
@@ -80,42 +101,50 @@ const HISTORY = [
   {
     year: "1978",
     winner: "NIT Calicut",
-    caption: "The very first Ragam Trophy was awarded in the inaugural edition — a fierce three-day battle of wit, art, and athleticism.",
+    caption:
+      "The very first Ragam Trophy was awarded in the inaugural edition — a fierce three-day battle of wit, art, and athleticism.",
   },
   {
     year: "1985",
     winner: "IIT Madras",
-    caption: "A legendary comeback — IIT Madras snatched the trophy on the final night with a jaw-dropping classical dance performance.",
+    caption:
+      "A legendary comeback — IIT Madras snatched the trophy on the final night with a jaw-dropping classical dance performance.",
   },
   {
     year: "1993",
     winner: "College of Engineering, Trivandrum",
-    caption: "CET swept every major category — from literary arts to fine arts — making it the most dominant Ragam Trophy run ever recorded.",
+    caption:
+      "CET swept every major category — from literary arts to fine arts — making it the most dominant Ragam Trophy run ever recorded.",
   },
   {
     year: "2001",
     winner: "NIT Calicut",
-    caption: "NIT Calicut reclaimed glory after a 12-year drought. The crowd's roar when the results were announced shook the auditorium.",
+    caption:
+      "NIT Calicut reclaimed glory after a 12-year drought. The crowd's roar when the results were announced shook the auditorium.",
   },
   {
     year: "2010",
     winner: "PSG College of Technology",
-    caption: "PSG's inter-collegiate literary team was unstoppable — they won 11 of 14 literary events, setting a record that still stands.",
+    caption:
+      "PSG's inter-collegiate literary team was unstoppable — they won 11 of 14 literary events, setting a record that still stands.",
   },
   {
     year: "2018",
     winner: "IIT Palakkad",
-    caption: "The newest entrant IIT Palakkad stunned all with a flawless street play and a dominating music programme lineup.",
+    caption:
+      "The newest entrant IIT Palakkad stunned all with a flawless street play and a dominating music programme lineup.",
   },
   {
     year: "2023",
     winner: "NIT Calicut",
-    caption: "NIT Calicut cemented their dynasty with a comprehensive victory — their third trophy in the 21st century.",
+    caption:
+      "NIT Calicut cemented their dynasty with a comprehensive victory — their third trophy in the 21st century.",
   },
   {
     year: "2025",
     winner: "IIT Madras",
-    caption: "A razor-thin margin decided it — IIT Madras edged NIT Calicut by 40 points in the most competitive Ragam in recent history.",
+    caption:
+      "A razor-thin margin decided it — IIT Madras edged NIT Calicut by 40 points in the most competitive Ragam in recent history.",
   },
 ];
 
@@ -161,7 +190,9 @@ function HistoryCard({ entry, index }) {
       cardRef.current,
       { opacity: 0, x: index % 2 === 0 ? -80 : 80, y: 30 },
       {
-        opacity: 1, x: 0, y: 0,
+        opacity: 1,
+        x: 0,
+        y: 0,
         duration: 0.9,
         ease: "power3.out",
         scrollTrigger: {
@@ -169,7 +200,7 @@ function HistoryCard({ entry, index }) {
           start: "top 85%",
           once: true,
         },
-      }
+      },
     );
   }, [index]);
 
@@ -184,18 +215,28 @@ function HistoryCard({ entry, index }) {
           className={`w-20 h-20 rounded-full flex items-center justify-center text-black font-bold text-sm border-4 border-orange-400 shadow-[0_0_24px_4px_rgba(251,146,60,0.5)]`}
           style={{ background: "linear-gradient(135deg,#fb923c,#fde68a)" }}
         >
-          <span className={`${brixton.className} text-xs leading-tight text-center`}>{entry.year}</span>
+          <span
+            className={`${brixton.className} text-xs leading-tight text-center`}
+          >
+            {entry.year}
+          </span>
         </div>
         <div className="w-0.5 h-full min-h-12 bg-linear-to-b from-orange-400/60 to-transparent mt-2" />
       </div>
 
       {/* Card */}
-      <div
-        className="flex-1 rounded-2xl border border-orange-400/20 bg-white/3 backdrop-blur-sm p-6 md:p-8 hover:border-orange-400/50 transition-all duration-300 hover:shadow-[0_0_32px_4px_rgba(251,146,60,0.15)]"
-      >
-        <p className="text-orange-400 text-xs tracking-[0.3em] uppercase mb-2 font-semibold">Winner</p>
-        <h3 className={`${brixton.className} text-white text-xl md:text-2xl mb-3`}>{entry.winner}</h3>
-        <p className={`${playfair.className} text-gray-400 text-sm md:text-base leading-relaxed italic`}>
+      <div className="flex-1 rounded-2xl border border-orange-400/20 bg-white/3 backdrop-blur-sm p-6 md:p-8 hover:border-orange-400/50 transition-all duration-300 hover:shadow-[0_0_32px_4px_rgba(251,146,60,0.15)]">
+        <p className="text-orange-400 text-xs tracking-[0.3em] uppercase mb-2 font-semibold">
+          Winner
+        </p>
+        <h3
+          className={`${brixton.className} text-white text-xl md:text-2xl mb-3`}
+        >
+          {entry.winner}
+        </h3>
+        <p
+          className={`${playfair.className} text-gray-400 text-sm md:text-base leading-relaxed italic`}
+        >
           &ldquo;{entry.caption}&rdquo;
         </p>
       </div>
@@ -212,7 +253,9 @@ function GuidelineCard({ item, index }) {
       cardRef.current,
       { opacity: 0, y: 60, scale: 0.95 },
       {
-        opacity: 1, y: 0, scale: 1,
+        opacity: 1,
+        y: 0,
+        scale: 1,
         duration: 0.8,
         ease: "power3.out",
         scrollTrigger: {
@@ -221,7 +264,7 @@ function GuidelineCard({ item, index }) {
           once: true,
         },
         delay: (index % 3) * 0.12,
-      }
+      },
     );
   }, [index]);
 
@@ -230,9 +273,17 @@ function GuidelineCard({ item, index }) {
       ref={cardRef}
       className="rounded-2xl border border-orange-500/20 bg-white/3 p-6 hover:bg-white/6 hover:border-orange-400/50 transition-all duration-300 hover:shadow-[0_0_24px_2px_rgba(251,146,60,0.1)] group"
     >
-      <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">{item.icon}</div>
-      <h3 className={`${brixton.className} text-orange-300 text-lg mb-3`}>{item.title}</h3>
-      <p className={`${playfair.className} text-gray-400 text-sm leading-relaxed`}>{item.body}</p>
+      <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">
+        {item.icon}
+      </div>
+      <h3 className={`${brixton.className} text-orange-300 text-lg mb-3`}>
+        {item.title}
+      </h3>
+      <p
+        className={`${playfair.className} text-gray-400 text-sm leading-relaxed`}
+      >
+        {item.body}
+      </p>
     </div>
   );
 }
@@ -251,17 +302,30 @@ export default function RagamTrophyPageContent() {
       gsap.fromTo(
         titleRef.current,
         { y: 80, opacity: 0, filter: "blur(20px)" },
-        { y: 0, opacity: 1, filter: "blur(0px)", duration: 1.4, ease: "power3.out", delay: 0.2 }
+        {
+          y: 0,
+          opacity: 1,
+          filter: "blur(0px)",
+          duration: 1.4,
+          ease: "power3.out",
+          delay: 0.2,
+        },
       );
       gsap.fromTo(
         subtitleRef.current,
         { y: 40, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1.2, ease: "power3.out", delay: 0.7 }
+        { y: 0, opacity: 1, duration: 1.2, ease: "power3.out", delay: 0.7 },
       );
       gsap.fromTo(
         dividerRef.current,
         { scaleX: 0 },
-        { scaleX: 1, duration: 1.2, ease: "power3.out", delay: 1.1, transformOrigin: "left" }
+        {
+          scaleX: 1,
+          duration: 1.2,
+          ease: "power3.out",
+          delay: 1.1,
+          transformOrigin: "left",
+        },
       );
 
       // Section titles
@@ -271,9 +335,16 @@ export default function RagamTrophyPageContent() {
           ref.current,
           { opacity: 0, y: 50 },
           {
-            opacity: 1, y: 0, duration: 0.9, ease: "power3.out",
-            scrollTrigger: { trigger: ref.current, start: "top 80%", once: true }
-          }
+            opacity: 1,
+            y: 0,
+            duration: 0.9,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: ref.current,
+              start: "top 80%",
+              once: true,
+            },
+          },
         );
       });
     }, heroRef);
@@ -310,7 +381,8 @@ export default function RagamTrophyPageContent() {
         <div
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-150 h-150 rounded-full pointer-events-none"
           style={{
-            background: "radial-gradient(circle, rgba(251,146,60,0.12) 0%, transparent 70%)",
+            background:
+              "radial-gradient(circle, rgba(251,146,60,0.12) 0%, transparent 70%)",
             filter: "blur(60px)",
           }}
         />
@@ -325,7 +397,10 @@ export default function RagamTrophyPageContent() {
           <h1
             ref={titleRef}
             className={`${brixton.className} text-white leading-none mb-6`}
-            style={{ fontSize: "clamp(3.5rem, 12vw, 9rem)", textShadow: "0 0 80px rgba(251,146,60,0.4)" }}
+            style={{
+              fontSize: "clamp(3.5rem, 12vw, 9rem)",
+              textShadow: "0 0 80px rgba(251,146,60,0.4)",
+            }}
           >
             RAGAM
             <br />
@@ -340,20 +415,28 @@ export default function RagamTrophyPageContent() {
             </span>
           </h1>
 
-          <div ref={dividerRef} className="h-px w-full bg-linear-to-r from-transparent via-orange-400 to-transparent mb-6" />
+          <div
+            ref={dividerRef}
+            className="h-px w-full bg-linear-to-r from-transparent via-orange-400 to-transparent mb-6"
+          />
 
           <p
             ref={subtitleRef}
             className={`${playfair.className} text-gray-300 text-lg md:text-xl lg:text-2xl max-w-2xl mx-auto leading-relaxed italic`}
           >
-            A legacy forged in passion, discipline, and the relentless pursuit of cultural excellence — earned, never given.
+            A legacy forged in passion, discipline, and the relentless pursuit
+            of cultural excellence — earned, never given.
           </p>
         </div>
 
         {/* Scroll cue */}
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
           <div className="w-px h-12 bg-linear-to-b from-orange-400 to-transparent" />
-          <span className={`${brixton.className} text-orange-400/60 text-xs tracking-widest`}>SCROLL</span>
+          <span
+            className={`${brixton.className} text-orange-400/60 text-xs tracking-widest`}
+          >
+            SCROLL
+          </span>
         </div>
       </section>
 
@@ -372,7 +455,9 @@ export default function RagamTrophyPageContent() {
           HALL OF
           <span className="text-orange-400"> CHAMPIONS</span>
         </h2>
-        <p className={`${playfair.className} text-gray-500 text-center italic mb-16`}>
+        <p
+          className={`${playfair.className} text-gray-500 text-center italic mb-16`}
+        >
           Past winners who wrote their names in Ragam history
         </p>
 
@@ -393,7 +478,9 @@ export default function RagamTrophyPageContent() {
           HOW TO
           <span className="text-orange-400"> WIN IT</span>
         </h2>
-        <p className={`${playfair.className} text-gray-500 text-center italic mb-16`}>
+        <p
+          className={`${playfair.className} text-gray-500 text-center italic mb-16`}
+        >
           The rules, scoring system, and everything you need to claim the trophy
         </p>
 
@@ -419,24 +506,41 @@ function AboutSection() {
       ref.current,
       { opacity: 0, y: 40 },
       {
-        opacity: 1, y: 0, duration: 1, ease: "power3.out",
-        scrollTrigger: { trigger: ref.current, start: "top 80%", once: true }
-      }
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: { trigger: ref.current, start: "top 80%", once: true },
+      },
     );
   }, []);
 
   return (
     <div ref={ref}>
-      <div
-        className="inline-block px-5 py-2 rounded-full border border-orange-400/30 bg-orange-400/5 mb-10"
-      >
-        <span className={`${brixton.className} text-orange-400 text-xs tracking-[0.4em]`}>SINCE 1978</span>
+      <div className="inline-block px-5 py-2 rounded-full border border-orange-400/30 bg-orange-400/5 mb-10">
+        <span
+          className={`${brixton.className} text-orange-400 text-xs tracking-[0.4em]`}
+        >
+          SINCE 1978
+        </span>
       </div>
-      <p className={`${playfair.className} text-gray-300 text-lg md:text-xl leading-relaxed mb-8`}>
-        The <span className="text-orange-400 font-semibold">Ragam Trophy</span> is the most prestigious inter-collegiate award in South India&apos;s cultural circuit. Instituted at the very first edition of Ragam in 1978, it recognises the institution that collectively excels across every pillar of the fest — arts, literature, music, dance, dramatics, and sports.
+      <p
+        className={`${playfair.className} text-gray-300 text-lg md:text-xl leading-relaxed mb-8`}
+      >
+        The <span className="text-orange-400 font-semibold">Ragam Trophy</span>{" "}
+        is the most prestigious inter-collegiate award in South India&apos;s
+        cultural circuit. Instituted at the very first edition of Ragam in 1978,
+        it recognises the institution that collectively excels across every
+        pillar of the fest — arts, literature, music, dance, dramatics, and
+        sports.
       </p>
-      <p className={`${playfair.className} text-gray-400 text-base md:text-lg leading-relaxed`}>
-        Unlike trophies that celebrate a single event, the Ragam Trophy demands consistent brilliance across days of competition. Institutions send their finest minds and greatest performers — and only the best, across all disciplines, earns the right to hoist the golden flame.
+      <p
+        className={`${playfair.className} text-gray-400 text-base md:text-lg leading-relaxed`}
+      >
+        Unlike trophies that celebrate a single event, the Ragam Trophy demands
+        consistent brilliance across days of competition. Institutions send
+        their finest minds and greatest performers — and only the best, across
+        all disciplines, earns the right to hoist the golden flame.
       </p>
 
       {/* Stats row */}
@@ -463,9 +567,12 @@ function StatPill({ value, label }) {
       ref.current,
       { scale: 0.8, opacity: 0 },
       {
-        scale: 1, opacity: 1, duration: 0.7, ease: "back.out(1.4)",
-        scrollTrigger: { trigger: ref.current, start: "top 90%", once: true }
-      }
+        scale: 1,
+        opacity: 1,
+        duration: 0.7,
+        ease: "back.out(1.4)",
+        scrollTrigger: { trigger: ref.current, start: "top 90%", once: true },
+      },
     );
   }, []);
 
@@ -480,7 +587,11 @@ function StatPill({ value, label }) {
       >
         {value}
       </span>
-      <span className={`${playfair.className} text-gray-500 text-xs tracking-widest uppercase`}>{label}</span>
+      <span
+        className={`${playfair.className} text-gray-500 text-xs tracking-widest uppercase`}
+      >
+        {label}
+      </span>
     </div>
   );
 }
@@ -494,9 +605,12 @@ function BottomCTA() {
       ref.current,
       { y: 60, opacity: 0 },
       {
-        y: 0, opacity: 1, duration: 1, ease: "power3.out",
-        scrollTrigger: { trigger: ref.current, start: "top 85%", once: true }
-      }
+        y: 0,
+        opacity: 1,
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: { trigger: ref.current, start: "top 85%", once: true },
+      },
     );
   }, []);
 
@@ -505,7 +619,8 @@ function BottomCTA() {
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: "radial-gradient(ellipse at 50% 50%, rgba(251,146,60,0.08) 0%, transparent 70%)",
+          background:
+            "radial-gradient(ellipse at 50% 50%, rgba(251,146,60,0.08) 0%, transparent 70%)",
         }}
       />
       <div ref={ref} className="relative z-10 max-w-2xl mx-auto">
@@ -517,8 +632,11 @@ function BottomCTA() {
           <br />
           <span className="text-orange-400">CLAIM IT IN 2026?</span>
         </h2>
-        <p className={`${playfair.className} text-gray-400 italic mb-10 text-lg`}>
-          Register your contingent and begin your journey to the most prized trophy in South Indian cultural history.
+        <p
+          className={`${playfair.className} text-gray-400 italic mb-10 text-lg`}
+        >
+          Register your contingent and begin your journey to the most prized
+          trophy in South Indian cultural history.
         </p>
         <Link
           href="/events"

@@ -400,7 +400,8 @@ export default function RagamTrophy() {
           className="mx-auto mt-2 sm:mt-4 divider-line"
           style={{
             height: "1px",
-            background: "linear-gradient(to right, transparent, #fb923c88, transparent)",
+            background:
+              "linear-gradient(to right, transparent, #fb923c88, transparent)",
             maxWidth: "clamp(160px, 40vw, 480px)",
           }}
         />
@@ -415,7 +416,8 @@ export default function RagamTrophy() {
             letterSpacing: "0.05em",
           }}
         >
-          Earned through excellence across every stage, every art, every discipline.
+          Earned through excellence across every stage, every art, every
+          discipline.
         </p>
 
         <style jsx>{`
@@ -472,7 +474,8 @@ export default function RagamTrophy() {
           style={{
             background: "linear-gradient(135deg,#fb923c,#fde68a)",
             fontSize: "clamp(0.75rem, 2.2vw, 1.1rem)",
-            boxShadow: "0 0 32px 4px rgba(251,146,60,0.45), 0 0 0 1px rgba(251,146,60,0.2)",
+            boxShadow:
+              "0 0 32px 4px rgba(251,146,60,0.45), 0 0 0 1px rgba(251,146,60,0.2)",
           }}
         >
           <span
