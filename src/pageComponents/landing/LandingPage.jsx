@@ -51,16 +51,16 @@ export default function LandingPage() {
   useLayoutEffect(() => {
     if (!isMounted) return;
 
-    //Prevent scrolling during intro
-    const preventScroll = (e) => e.preventDefault();
-    const lockScroll = () => {
-      window.addEventListener("wheel", preventScroll, { passive: false });
-      window.addEventListener("touchmove", preventScroll, { passive: false });
-    };
-    const unlockScroll = () => {
-      window.removeEventListener("wheel", preventScroll);
-      window.removeEventListener("touchmove", preventScroll);
-    };
+    // //Prevent scrolling during intro
+    // const preventScroll = (e) => e.preventDefault();
+    // const lockScroll = () => {
+    //   window.addEventListener("wheel", preventScroll, { passive: false });
+    //   window.addEventListener("touchmove", preventScroll, { passive: false });
+    // };
+    // const unlockScroll = () => {
+    //   window.removeEventListener("wheel", preventScroll);
+    //   window.removeEventListener("touchmove", preventScroll);
+    // };
 
     let ctx = gsap.context(() => {
       const navbar = document.getElementById("global-navbar");
@@ -173,7 +173,6 @@ export default function LandingPage() {
         const trigger = ScrollTrigger.getById("landing-scroll");
         const targetY = trigger.end * AUTOSCROLL_TARGET_PROGRESS;
 
-        lockScroll();
         gsap.to(window, {
           scrollTo: targetY,
           duration: 2.5,
@@ -181,7 +180,7 @@ export default function LandingPage() {
           onComplete: () => {
             setLeftDancer(Math.floor(Math.random() * 3) + 1);
             setRightDancer(Math.floor(Math.random() * 3) + 1)
-            unlockScroll();
+
 
             //Freeze animation before killing ScrollTrigger to prevent any jumpiness from scroll position reset
             gsap.set(textRef.current,{
