@@ -16,6 +16,8 @@ import {
   slackey,
   leagueGothic,
   kiwi,
+  archivo,
+  instrument,
 } from "@/lib/fonts";
 
 export const metadata = {
@@ -32,6 +34,8 @@ export default function RootLayout({ children }) {
           ${leagueGothic.variable}
           ${slackey.variable}
           ${brixton.variable}
+          ${archivo.variable}
+          ${instrument.variable}
           ${calfine.variable}
           ${elanor.variable}
           ${magilio.variable}

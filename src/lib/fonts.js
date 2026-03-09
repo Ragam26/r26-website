@@ -1,5 +1,23 @@
 import localFont from "next/font/local";
-import { Slackey,Abril_Fatface, Playfair, Prompt, Poppins } from "next/font/google";
+import {
+  Slackey,
+  Abril_Fatface,
+  Playfair,
+  Prompt,
+  Poppins,
+} from "next/font/google";
+
+export const archivo = localFont({
+  src: "../../public/fonts/ArchivoBlack.ttf",
+  variable: "--font-archivo",
+  display: "swap",
+});
+
+export const instrument = localFont({
+  src: "../../public/fonts/instrumentSerif.ttf",
+  variable: "--font-instrument",
+  display: "swap",
+});
 
 export const brixton = localFont({
   src: "../../public/fonts/brixton.otf",
@@ -65,7 +83,6 @@ export const reykjavik = localFont({
   variable: "--font-reykjavik",
 });
 
-
 export const abril = Abril_Fatface({
   subsets: ["latin"],
   weight: "400",
@@ -89,7 +106,7 @@ export const poppins = Poppins({
   style: ["normal", "italic"],
 });
 
-export const liberationSerif = localFont({ 
+export const liberationSerif = localFont({
   src: "../../public/fonts/LiberationSerif-Bold.ttf",
   variable: "--font-liberation-serif",
   display: "swap",
