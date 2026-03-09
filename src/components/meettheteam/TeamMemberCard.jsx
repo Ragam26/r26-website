@@ -13,7 +13,7 @@ export default function TeamMemberCard({ name, image, hoverImage, position, link
     <div
       style={{
         backgroundColor: "#ffffff",
-        backgroundImage: "url('/images/meetheteam/cardBg.png')",
+        backgroundImage: "url('/images/meettheteam/cardBg.png')",
         backgroundRepeat: "repeat",
         backgroundSize: "auto",
         borderRadius: 2,
@@ -81,7 +81,7 @@ export default function TeamMemberCard({ name, image, hoverImage, position, link
           style={{
             margin: 0,
             fontWeight: 1000,
-            fontSize: "2rem",
+            fontSize: "1.8rem",
             color: "#6b0000",
             letterSpacing: "0.03em",
             fontFamily: '"Anton", sans-serif',

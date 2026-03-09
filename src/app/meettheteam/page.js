@@ -3,26 +3,29 @@
 import { useState, useEffect, useRef } from 'react'
 import TeamMemberCard from '@/components/meettheteam/TeamMemberCard'
 import { techLeads, techTeam, uiTeam } from './team'
+import { cnr, content, design, gpc, hospitality, iink, informals, infra, judging, lasIn, lasOut, marketing, media, pad, pc, prc, prodezza } from './committee'
 
 const tabs = ['Council', 'Web Team', 'Committees']
 
 function CommitteesTab() {
   const committees = [
-    { name: 'C & R', members: []},
-    { name: 'Content', members: []},
-    { name: 'Design', members: []},
-    { name: 'GPC', members: []},
-    { name: 'Hospitality', members: []},
-    { name: 'I-Ink', members: []},
-    { name: 'Informals', members: []},
-    { name: 'Infra', members: []},
-    { name: 'Judging', members: []},
-    { name: 'LAS Out', members: []},
-    { name: 'Marketing', members: []},
-    { name: 'Media', members: []},
-    { name: 'PAD', members: []},
-    { name: 'PC', members: []},
-    { name: 'Prodezza', members: []},
+    { name: 'C & R', members: cnr},
+    { name: 'Content', members: content},
+    { name: 'Design', members: design},
+    { name: 'GPC', members: gpc},
+    { name: 'Hospitality', members: hospitality},
+    { name: 'I-Ink', members: iink},
+    { name: 'Informals', members: informals},
+    { name: 'Infra', members: infra},
+    { name: 'Judging', members: judging},
+    { name: 'LAS In', members: lasIn},
+    { name: 'LAS Out', members: lasOut},
+    { name: 'Marketing', members: marketing},
+    { name: 'Media', members: media},
+    { name: 'PAD', members: pad},
+    { name: 'PRC', members: prc},
+    { name: 'PC', members: pc},
+    { name: 'Prodezza', members: prodezza},
     { name: 'Proshow', members: []},
     { name: 'Social Media', members: []},
     { name: 'Sports', members: []},
@@ -117,9 +120,9 @@ function CommitteesTab() {
         )}
       </div>
 
-      <div className="meet-team-grid" style={{ display: 'flex', columnGap: '3rem', rowGap: '2rem', flexWrap: 'wrap', justifyContent: 'center', width: '100%', maxWidth: 1200 }}>
+      <div className="meet-team-grid" style={{ display: 'flex', columnGap: '3rem', rowGap: '2rem', flexWrap: 'wrap', justifyContent: 'center', width: '100%', maxWidth: 1300 }}>
         {current.members.length > 0 ? current.members.map((member, idx) => (
-          <div key={`committee-${idx}`} style={{ flex: '0 1 calc((100% - 6rem) / 3)', boxSizing: 'border-box', minWidth: 100, maxWidth: 320 }}>
+          <div key={`committee-${idx}`} style={{ flex: '0 1 calc((100% - 6rem) / 3)', boxSizing: 'border-box', minWidth: 100, maxWidth: 350 }}>
             <TeamMemberCard {...member} />
           </div>
         )) : (
@@ -131,13 +134,13 @@ function CommitteesTab() {
 }
 
 export default function MeetTheTeamPage() {
-  const [activeTab, setActiveTab] = useState('Web Team')
+  const [activeTab, setActiveTab] = useState('Council')
 
   return (
     <main
       style={{
         minHeight: '100vh',
-        backgroundImage: "url('/images/meetheteam/bg.png')",
+        backgroundImage: "url('/images/meettheteam/bg.png')",
         backgroundSize: '100% auto',
         backgroundPosition: 'center top',
         backgroundRepeat: 'repeat',
@@ -220,7 +223,7 @@ export default function MeetTheTeamPage() {
             </div>
 
             <div style={{ width: '100vw', margin: '2.5rem 0', lineHeight: 0 }}>
-              <img src="/images/meetheteam/divider.png" alt="divider" style={{ width: '100%', height: '40px', objectFit: 'cover', display: 'block' }} />
+              <img src="/images/meettheteam/divider.png" alt="divider" style={{ width: '100%', height: '40px', objectFit: 'cover', display: 'block' }} />
             </div>
 
             <div className="meet-team-grid" style={{ display: 'flex', columnGap: '3rem', rowGap: '2rem', flexWrap: 'wrap', justifyContent: 'center', width: '100%', maxWidth: 1200 }}>
@@ -232,7 +235,7 @@ export default function MeetTheTeamPage() {
             </div>
 
             <div style={{ width: '100vw', margin: '2.5rem 0', lineHeight: 0 }}>
-              <img src="/images/meetheteam/divider.png" alt="divider" style={{ width: '100%', height: '40px', objectFit: 'cover', display: 'block' }} />
+              <img src="/images/meettheteam/divider.png" alt="divider" style={{ width: '100%', height: '40px', objectFit: 'cover', display: 'block' }} />
             </div>
 
             <div className="meet-team-grid" style={{ display: 'flex', columnGap: '3rem', rowGap: '2rem', flexWrap: 'wrap', justifyContent: 'center', width: '100%', maxWidth: 1200 }}>
