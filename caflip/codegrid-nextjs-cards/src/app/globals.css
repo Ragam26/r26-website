@@ -1,0 +1,29 @@
+/* 1. Tailwind CSS import */
+@import "tailwindcss";
+
+/* 2. CSS custom properties (design tokens) */
+:root {
+  --card-bg: #ffffff;
+  --card-border: #e5e7eb;
+  --card-accent: #6366f1;
+  --card-text: #111827;
+  --card-muted: #6b7280;
+  --page-bg: #f9fafb;
+}
+
+/* 3. Tailwind v4 theme extension */
+@theme inline {
+  --color-card-bg: var(--card-bg);
+  --color-card-border: var(--card-border);
+  --color-card-accent: var(--card-accent);
+  --color-card-text: var(--card-text);
+  --color-card-muted: var(--card-muted);
+  --color-page-bg: var(--page-bg);
+}
+
+/* 4. Base body styles */
+body {
+  background: var(--page-bg);
+  color: var(--card-text);
+  font-family: Arial, Helvetica, sans-serif;
+}
