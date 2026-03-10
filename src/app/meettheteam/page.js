@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react'
 import TeamMemberCard from '@/components/meettheteam/TeamMemberCard'
 import { techLeads, techTeam, uiTeam } from './team'
 import { cnr, content, design, gpc, hospitality, iink, informals, infra, judging, lasIn, lasOut, marketing, media, pad, pc, prc, prodezza, proshow, social, sports, transportation, workshop } from './committee'
+import { council } from './council'
 
 const tabs = ['Council', 'Web Team', 'Committees']
 
@@ -250,8 +251,11 @@ export default function MeetTheTeamPage() {
 
         {activeTab === 'Council' && (
           <div className="meet-team-grid" style={{ display: 'flex', columnGap: '3rem', rowGap: '2rem', flexWrap: 'wrap', justifyContent: 'center', width: '100%', maxWidth: 1200 }}>
-            {/* Add council data here */}
-            <p style={{ color: '#fff', fontFamily: '"Anton", sans-serif' }}>COMING SOON</p>
+            {council.map((member, idx) => (
+              <div key={`council-${member.name}-${idx}`} style={{ flex: '0 1 calc((100% - 6rem) / 3)', boxSizing: 'border-box', minWidth: 100, maxWidth: 320 }}>
+                <TeamMemberCard {...member} />
+              </div>
+            ))}
           </div>
         )}
 
