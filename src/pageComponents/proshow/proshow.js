@@ -9,33 +9,65 @@ export default function ProshowSection({ isMobile }) {
   const artists = [
     {
       id: 1,
-      tilt: -15,
+      name: "COMING SOON",
+      date: "29",
+      month: "MARCH",
+      image: "/images/proshow/proshowArtist_3.png",
+      revealed: 0,
+    },
+    {
+      id: 2,
+      name: "COMING SOON",
+      date: "27",
+      month: "MARCH",
+      image: "/images/proshow/proshowArtist_1.png",
+      revealed: 0,
+    },
+    {
+      id: 3,
       name: "AMIT MISHRA",
       date: "27",
       month: "MARCH",
       image: "/images/proshow/amit4.png",
       song: "/images/proshow/bulleya.mp3",
+      revealed: 1,
     },
     {
-      id: 2,
-      tilt: 0,
+      id: 4,
       name: "COMING SOON",
       date: "28",
       month: "MARCH",
       image: "/images/proshow/proshowArtist_1.png",
+      revealed: 0,
     },
     {
-      id: 3,
-      tilt: 15,
+      id: 5,
+      name: "COMING SOON",
+      date: "28",
+      month: "MARCH",
+      image: "/images/proshow/proshowArtist_3.png",
+      revealed: 0,
+    },
+    {
+      id: 6,
+      name: "COMING SOON",
+      date: "29",
+      month: "MARCH",
+      image: "/images/proshow/proshowArtist_1.png",
+      revealed: 0,
+    },
+    {
+      id: 7,
       name: "COMING SOON",
       date: "29",
       month: "MARCH",
       image: "/images/proshow/proshowArtist_3.png",
+      revealed: 0,
     },
   ];
 
   return (
-    <section className="relative max-w-7xl mx-auto py-3 overflow-hidden h-screen md:h-[115vh]">
+    <section className="relative max-w-[100vw] mx-auto py-3 overflow-hidden md:h-[125vh]">
       {/* Water ripple filter */}
       <svg className="fixed top-0 left-0 w-0 h-0 invisible">
         <filter id="water-ripple">

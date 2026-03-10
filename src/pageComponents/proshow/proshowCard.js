@@ -1,6 +1,5 @@
 "use client";
 
-import { useRef } from "react";
 import Image from "next/image";
 
 export default function ProshowCard({
@@ -11,27 +10,8 @@ export default function ProshowCard({
   image = "/images/proshow/proshowArtist_1.png",
   song = null,
 }) {
-  const audioRef = useRef(null);
-
-  const handleClick = () => {
-    if (!song) return;
-
-    if (!audioRef.current) {
-      audioRef.current = new Audio(song);
-    }
-
-    if (audioRef.current.paused) {
-      audioRef.current.play().catch((err) => {
-        console.error("Playback failed:", err);
-      });
-    } else {
-      console.log("Audio is already playing, ignoring click.");
-    }
-  };
-
   return (
     <div
-      onClick={handleClick}
       className={`
         perspective-[1000px] 
         transition-transform 

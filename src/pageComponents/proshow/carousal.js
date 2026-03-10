@@ -1,129 +1,307 @@
 "use client";
 
-import { useRef, useState, useEffect, useLayoutEffect } from "react";
+import {
+  useState,
+  useRef,
+  useLayoutEffect,
+  useCallback,
+  useEffect,
+  useMemo,
+} from "react";
 import ProshowCard from "@/pageComponents/proshow/proshowCard";
 
+const TILT_PER_OFFSET = 10;
+const MAX_TILT = 25;
+const CARD_GAP_RATIO = 0.26;
+const SCALE_CENTER = 0.64;
+const SCALE_STEP = 0.12;
+const SCALE_MIN = 0.42;
+const BRIGHTNESS_CENTER = 1;
+const BRIGHTNESS_STEP = 0.3;
+const BRIGHTNESS_MIN = 0.2;
+const AUTO_SCROLL_INTERVAL = 2500;
+
 export default function FocusCarousel({ items = [] }) {
+  const n = items.length;
+  const [activeIndex, setActiveIndex] = useState(() => {
+    const revealed = items
+      .map((a, i) => (a.revealed ? i : -1))
+      .filter((i) => i >= 0);
+    return revealed.length > 0 ? revealed[0] : Math.floor(n / 2);
+  });
+  const [dragOffset, setDragOffset] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const [containerWidth, setContainerWidth] = useState(375);
+  const startXRef = useRef(0);
+  const startTimeRef = useRef(0);
   const containerRef = useRef(null);
-  // Start active state at the middle card (index 1 for 3 items)
-  const [active, setActive] = useState(Math.floor(items.length / 2));
-  const [spacer, setSpacer] = useState(0);
+  const autoScrollRef = useRef(null);
+  const userInteractedRef = useRef(false);
+  const audioRef = useRef(null);
 
-  const handleCardClick = (index) => {
-    const el = containerRef.current;
-    if (!el) return;
+  const cardGapPx = containerWidth * CARD_GAP_RATIO;
+  const wrap = useCallback((idx) => ((idx % n) + n) % n, [n]);
 
-    const children = Array.from(el.children);
-    const target = children[index + 1];
+  const revealedIndices = useMemo(() => {
+    return items.map((a, i) => (a.revealed ? i : -1)).filter((i) => i >= 0);
+  }, [items]);
 
-    if (target) {
-      el.scrollTo({
-        left: target.offsetLeft - spacer,
-        behavior: "smooth",
+  const hasRevealed = revealedIndices.length > 0;
+
+  const stopAutoScroll = useCallback(() => {
+    userInteractedRef.current = true;
+    if (autoScrollRef.current) {
+      clearInterval(autoScrollRef.current);
+      autoScrollRef.current = null;
+    }
+  }, []);
+
+  const stopOldAudio = useCallback(() => {
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+      audioRef.current = null;
+    }
+  }, []);
+
+  const playSong = useCallback(
+    (songUrl) => {
+      stopOldAudio();
+      if (songUrl) {
+        const audio = new Audio(songUrl);
+        audioRef.current = audio;
+        audio.play().catch((err) => console.error("Playback failed:", err));
+      }
+    },
+    [stopOldAudio],
+  );
+
+  useLayoutEffect(() => {
+    const measure = () => {
+      if (containerRef.current) {
+        setContainerWidth(containerRef.current.clientWidth);
+      }
+    };
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, []);
+
+  const goTo = useCallback(
+    (index) => {
+      setActiveIndex(wrap(index));
+      setDragOffset(0);
+      setIsDragging(false);
+    },
+    [wrap],
+  );
+
+  // Auto-scroll (No audio logic here!)
+  useEffect(() => {
+    if (!hasRevealed || userInteractedRef.current) return;
+
+    autoScrollRef.current = setInterval(() => {
+      setActiveIndex((prev) => {
+        const curPos = revealedIndices.indexOf(prev);
+        if (curPos === -1) return revealedIndices[0];
+        return revealedIndices[(curPos + 1) % revealedIndices.length];
       });
+    }, AUTO_SCROLL_INTERVAL);
+
+    return () => {
+      if (autoScrollRef.current) clearInterval(autoScrollRef.current);
+    };
+  }, [hasRevealed, revealedIndices]);
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => stopOldAudio();
+  }, [stopOldAudio]);
+
+  const handleTouchStart = (e) => {
+    stopAutoScroll();
+    startXRef.current = e.touches[0].clientX;
+    startTimeRef.current = Date.now();
+    setIsDragging(true);
+    setDragOffset(0);
+  };
+
+  const handleTouchMove = (e) => {
+    if (!isDragging) return;
+    const diff = e.touches[0].clientX - startXRef.current;
+    setDragOffset(diff);
+  };
+
+  const handleTouchEnd = () => {
+    const elapsed = Date.now() - startTimeRef.current;
+    const velocity = Math.abs(dragOffset) / Math.max(elapsed, 1);
+    const threshold = velocity > 0.4 ? 25 : 60;
+
+    if (dragOffset < -threshold) {
+      goTo(activeIndex + 1);
+    } else if (dragOffset > threshold) {
+      goTo(activeIndex - 1);
+    } else {
+      goTo(activeIndex);
     }
   };
 
-  useLayoutEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-
-    const updateLayout = () => {
-      const firstCard = el.querySelector("[data-card]");
-      if (!firstCard) return;
-
-      const containerWidth = el.clientWidth;
-      const cardWidth = firstCard.clientWidth;
-      const newSpacer = containerWidth / 2 - cardWidth / 2;
-      setSpacer(newSpacer);
-
-      const children = Array.from(el.children);
-      const target = children[active + 1];
-      if (target) {
-        el.scrollTo({
-          left: target.offsetLeft - newSpacer,
-          behavior: "instant",
-        });
+  const handleCardClick = (i) => {
+    // Only play if it's the center card being clicked
+    if (!isDragging) {
+      stopAutoScroll();
+      if (i !== activeIndex) {
+        goTo(i);
       }
-    };
+      // Play song on click regardless of whether it was already active
+      playSong(items[i]?.song);
+    }
+  };
 
-    updateLayout();
-    window.addEventListener("resize", updateLayout);
-    return () => window.removeEventListener("resize", updateLayout);
-  }, [active]);
+  const dragFraction = isDragging ? dragOffset / cardGapPx : 0;
 
-  useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-
-    const handleScroll = () => {
-      const children = Array.from(el.children).slice(1, -1);
-      const containerCenter = el.scrollLeft + el.clientWidth / 2;
-
-      let closest = 0;
-      let minDist = Infinity;
-
-      children.forEach((child, i) => {
-        const childCenter = child.offsetLeft + child.clientWidth / 2;
-        const dist = Math.abs(containerCenter - childCenter);
-        if (dist < minDist) {
-          minDist = dist;
-          closest = i;
-        }
-      });
-      setActive(closest);
-    };
-
-    el.addEventListener("scroll", handleScroll, { passive: true });
-    return () => el.removeEventListener("scroll", handleScroll);
-  }, []);
+  const ringOffset = useCallback(
+    (i) => {
+      let off = i - activeIndex;
+      if (off > n / 2) off -= n;
+      if (off < -n / 2) off += n;
+      return off;
+    },
+    [activeIndex, n],
+  );
 
   return (
-    <div className="relative w-full overflow-hidden">
+    <div
+      ref={containerRef}
+      className="relative w-full overflow-hidden flex flex-col"
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
       <div
-        ref={containerRef}
-        className="flex overflow-x-auto snap-x snap-mandatory no-scrollbar pb-10"
-        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+        className="relative w-full flex items-end justify-center"
+        style={{ height: "420px" }}
       >
-        {/* Lelt Spacer */}
-        <div style={{ minWidth: spacer }} className="shrink-0" />
-
         {items.map((item, i) => {
-          const isActive = i === active;
+          const baseOffset = ringOffset(i);
+          const effectiveOffset = baseOffset + dragFraction;
+          const absOffset = Math.abs(effectiveOffset);
+
+          const scale = Math.max(
+            SCALE_MIN,
+            SCALE_CENTER - absOffset * SCALE_STEP,
+          );
+          const brightness = Math.max(
+            BRIGHTNESS_MIN,
+            BRIGHTNESS_CENTER - absOffset * BRIGHTNESS_STEP,
+          );
+          const tiltDeg = Math.max(
+            -MAX_TILT,
+            Math.min(MAX_TILT, effectiveOffset * TILT_PER_OFFSET),
+          );
+          const translateX = effectiveOffset * cardGapPx;
+          const zIndex = Math.max(1, 10 - Math.round(absOffset * 3));
+          const isHidden = absOffset > 3;
+          const cardOpacity = isHidden ? 0 : Math.max(0.3, 1 - absOffset * 0.2);
 
           return (
             <div
               key={item.id ?? i}
-              data-card
-              onClick={() => handleCardClick(i)}
-              className="shrink-0 w-[60vw] snap-center transition-all duration-500 ease-out flex flex-col items-center"
+              className="absolute bottom-0 cursor-pointer"
               style={{
-                transform: `scale(${isActive ? 0.88 : 0.67})`,
-                filter: `brightness(${isActive ? 1 : 0.4})`,
-                zIndex: isActive ? 10 : 1,
+                transform: `translateX(${translateX}px) scale(${scale})`,
+                filter: `brightness(${brightness})`,
+                opacity: cardOpacity,
+                zIndex,
+                transition: isDragging
+                  ? "none"
+                  : "all 0.5s cubic-bezier(0.22, 0.61, 0.36, 1)",
+                willChange: "transform, filter",
               }}
+              onClick={() => handleCardClick(i)}
             >
-              <ProshowCard {...item} />
-
-              {/* Reflection matching the smaller scale */}
-              <div
-                className="scale-y-[-1] opacity-20 mt-2 pointer-events-none"
-                style={{
-                  filter: "url(#water-ripple) blur(2px)",
-                  maskImage:
-                    "linear-gradient(to top, rgba(0,0,0,1) 0%, transparent 40%)",
-                  WebkitMaskImage:
-                    "linear-gradient(to top, rgba(0,0,0,1) 0%, transparent 40%)",
-                }}
-              >
-                <ProshowCard {...item} />
-              </div>
+              <ProshowCard {...item} tilt={tiltDeg} />
             </div>
           );
         })}
+      </div>
 
-        {/* Right Spacer */}
-        <div style={{ minWidth: spacer }} className="shrink-0" />
+      {/* Navigation Controls */}
+      <div className="flex items-center justify-between px-6 py-2 z-30">
+        <button
+          onClick={() => {
+            stopAutoScroll();
+            goTo(activeIndex - 1);
+          }}
+          className="w-8 h-8 flex items-center justify-center text-[#F4EFCF]/70 active:text-[#F4EFCF] text-4xl select-none"
+        >
+          ‹
+        </button>
+        <span className="text-[#F4EFCF]/60 text-sm font-league-gothic tracking-widest select-none">
+          {activeIndex + 1}/{n}
+        </span>
+        <button
+          onClick={() => {
+            stopAutoScroll();
+            goTo(activeIndex + 1);
+          }}
+          className="w-8 h-8 flex items-center justify-center text-[#F4EFCF]/70 active:text-[#F4EFCF] text-4xl select-none"
+        >
+          ›
+        </button>
+      </div>
+
+      {/* Reflection */}
+      <div className="overflow-hidden w-full pointer-events-none select-none">
+        <div
+          className="relative flex items-start justify-center scale-y-[-1] opacity-30"
+          style={{
+            filter: "url(#water-ripple) blur(2px)",
+            maskImage:
+              "linear-gradient(to top, rgba(0,0,0,1) 0%, transparent 65%)",
+            WebkitMaskImage:
+              "linear-gradient(to top, rgba(0,0,0,1) 0%, transparent 65%)",
+            height: "250px",
+          }}
+        >
+          {items.map((item, i) => {
+            const baseOffset = ringOffset(i);
+            const effectiveOffset = baseOffset + dragFraction;
+            const absOffset = Math.abs(effectiveOffset);
+            const scale = Math.max(
+              SCALE_MIN,
+              SCALE_CENTER - absOffset * SCALE_STEP,
+            );
+            const brightness = Math.max(
+              BRIGHTNESS_MIN,
+              BRIGHTNESS_CENTER - absOffset * BRIGHTNESS_STEP,
+            );
+            const tiltDeg = Math.max(
+              -MAX_TILT,
+              Math.min(MAX_TILT, effectiveOffset * TILT_PER_OFFSET),
+            );
+            const translateX = effectiveOffset * cardGapPx;
+            const zIndex = Math.max(1, 10 - Math.round(absOffset * 3));
+
+            return (
+              <div
+                key={`ref-${item.id ?? i}`}
+                className="absolute bottom-0"
+                style={{
+                  transform: `translateX(${translateX}px) scale(${scale})`,
+                  filter: `brightness(${brightness})`,
+                  zIndex,
+                  opacity: absOffset > 3 ? 0 : 1,
+                  transition: isDragging
+                    ? "none"
+                    : "all 0.5s cubic-bezier(0.22, 0.61, 0.36, 1)",
+                }}
+              >
+                <ProshowCard {...item} tilt={tiltDeg} />
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
