@@ -7,6 +7,12 @@ import {
   Poppins,
 } from "next/font/google";
 
+export const impact = localFont({
+  src: "../../public/fonts/impact.ttf",
+  variable: "--font-impact",
+  display: "swap",
+});
+
 export const archivo = localFont({
   src: "../../public/fonts/ArchivoBlack.ttf",
   variable: "--font-archivo",

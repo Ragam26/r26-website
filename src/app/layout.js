@@ -18,6 +18,7 @@ import {
   kiwi,
   archivo,
   instrument,
+  impact,
 } from "@/lib/fonts";
 
 export const metadata = {
@@ -35,6 +36,7 @@ export default function RootLayout({ children }) {
           ${slackey.variable}
           ${brixton.variable}
           ${archivo.variable}
+          ${impact.variable}
           ${instrument.variable}
           ${calfine.variable}
           ${elanor.variable}
