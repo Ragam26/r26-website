@@ -29,8 +29,8 @@ export default function LandingPage() {
   const loopsRef = useRef([]);
   const dancerContainerRef = useRef(null);
   const loaderRef = useRef(null);
-  const [leftDancer, setLeftDancer] = useState(() => Math.floor(Math.random() * 3) + 1);
-  const [rightDancer, setRightDancer] = useState(() => Math.floor(Math.random() * 3) + 1);
+  const [leftDancer] = useState(() => Math.floor(Math.random() * 3) + 1);
+  const [rightDancer] = useState(() => Math.floor(Math.random() * 3) + 1);
   const [isMobile, setIsMobile] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const [showLoader, setShowLoader] = useState(true);
@@ -178,8 +178,8 @@ export default function LandingPage() {
           duration: 2.5,
           ease: "power2.inOut",
           onComplete: () => {
-            setLeftDancer(Math.floor(Math.random() * 3) + 1);
-            setRightDancer(Math.floor(Math.random() * 3) + 1);
+            leftDancer(Math.floor(Math.random() * 3) + 1);
+            rightDancer(Math.floor(Math.random() * 3) + 1)
 
 
             //Freeze animation before killing ScrollTrigger to prevent any jumpiness from scroll position reset
