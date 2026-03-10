@@ -9,6 +9,9 @@ export default function ProshowCard({
   tilt = 0,
   image = "/images/proshow/proshowArtist_1.png",
   song = null,
+  imageOffsetX = 0,
+  imageOffsetY = 0,
+  imageScale = 1,
 }) {
   return (
     <div
@@ -49,12 +52,18 @@ export default function ProshowCard({
             </div>
           </div>
 
-          <div className="flex flex-col p-4 flex-5 relative">
+          <div
+            className="flex flex-col p-4 flex-5 relative"
+            style={{ clipPath: "inset(-9999px 0 0 -9999px)" }}
+          >
             <Image
               src={image}
               alt={name}
               fill
-              className="-ml-15 mt-12 scale-100 overflow-visible object-contain"
+              className="-ml-15 mt-12 object-contain "
+              style={{
+                transform: `translate(${imageOffsetX}px, ${imageOffsetY}px) scale(${imageScale})`,
+              }}
             />
           </div>
         </div>

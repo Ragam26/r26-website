@@ -17,20 +17,27 @@ export default function ProshowSection({ isMobile }) {
     },
     {
       id: 2,
-      name: "COMING SOON",
-      date: "27",
-      month: "MARCH",
-      image: "/images/proshow/proshowArtist_1.png",
-      revealed: 0,
-    },
-    {
-      id: 3,
       name: "AMIT MISHRA",
       date: "27",
       month: "MARCH",
       image: "/images/proshow/amit4.png",
-      song: "/images/proshow/bulleya.mp3",
+      song: "/images/proshow/amit.mp3",
       revealed: 1,
+      imageOffsetX: 0,
+      imageOffsetY: 0,
+      imageScale: 1,
+    },
+    {
+      id: 3,
+      name: "W.i.S.H",
+      date: "27",
+      month: "MARCH",
+      image: "/images/proshow/wish3.png",
+      song: "/images/proshow/wish.mp3",
+      revealed: 1,
+      imageOffsetX: 35,
+      imageOffsetY: -90,
+      imageScale: 1.6,
     },
     {
       id: 4,
@@ -67,7 +74,7 @@ export default function ProshowSection({ isMobile }) {
   ];
 
   return (
-    <section className="relative max-w-[100vw] mx-auto py-3 overflow-hidden md:h-[125vh]">
+    <section className="relative max-w-[100vw] mx-auto py-3 overflow-hidden md:h-[125vh] mb-10">
       {/* Water ripple filter */}
       <svg className="fixed top-0 left-0 w-0 h-0 invisible">
         <filter id="water-ripple">
