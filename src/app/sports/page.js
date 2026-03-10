@@ -35,11 +35,12 @@ export default function EventsPage() {
         <div className='w-full max-w-350 mx-auto px-4 sm:px-6 lg:px-8 pb-20'>
           <div className='page pt-10 flex items-center md:justify-left justify-center gap-10 flex-wrap'>
             {data.map((eventData) => (
+              
               <EventCard
                 key={eventData.id}
                 day={eventData.eventDay}
                 month={eventData.eventMonth}
-                eventName={eventData.eventName}
+                eventName={eventData.eventName || eventData.name}
                 regUrl={eventData.makeMyPassUrl}
                 regFee={eventData.regFee}
                 eventimage={eventData.eventCover ?? '/images/card/dancerBg.svg'}
