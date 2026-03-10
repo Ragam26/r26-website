@@ -364,3 +364,102 @@ export const prodezza = [
     }
 ]
 
+export const proshow = [
+    {
+        name: 'Mohamed Hafees',
+        image: '/images/meettheteam/committees/proshow/Hafees.jpg',
+        position: 'Head',
+    },
+    {
+        name: 'Saneen N',
+        image: '/images/meettheteam/committees/proshow/Saneen.jpg',
+        position: 'Head',
+    }
+]
+
+export const social = [
+    {
+        name: 'Naahil Bin Niyas',
+        image: '/images/meettheteam/committees/social/Naahil.JPG',
+        position: 'Head',
+    },
+    {
+        name: 'Pavan',
+        image: '/images/meettheteam/committees/social/Pavan.JPG',
+        position: 'Head',
+    },
+    {
+        name: 'Vijay',
+        image: '/images/meettheteam/committees/social/Vijay.jpg',
+        position: 'Head',
+    },
+]
+
+export const sports = [
+    {
+        name: 'Ryan Anil',
+        image: '/images/meettheteam/committees/sports/Ryan.JPG',
+        position: 'Head',
+    },
+    {
+        name: 'Shaheem P',
+        image: '/images/meettheteam/committees/sports/Shaheem.jpg',
+        position: 'Head',
+    },
+]
+
+export const transportation = [
+    {
+        name: 'Mohamed Hanan',
+        image: '/images/meettheteam/committees/transportation/Hanan.jpg',
+        position: 'Head',
+    }
+]
+
+export const workshop = [
+    {
+        name: 'Abhinav Shibu',
+        image: '/images/meettheteam/committees/workshop/Abhinav.jpg',
+        position: 'Head',
+    },
+    {
+        name: 'Harika Ketavath',
+        image: '/images/meettheteam/committees/workshop/Harika.JPG',
+        position: 'Head',
+    },
+    {
+        name: 'Prithvi G Bhat',
+        image: '/images/meettheteam/committees/workshop/Prithvi.JPG',
+        position: 'Head',
+    },
+    {
+        name: 'Thomas Rahul',
+        image: '/images/meettheteam/committees/workshop/Thomas.jpg',
+        position: 'Head',
+    },
+    {
+        name: 'Hridya S Rajan',
+        image: '/images/meettheteam/committees/workshop/Hridya.jpg',
+        position: 'Associate Head',
+    },
+    {
+        name: 'Jeev Joe Jaison',
+        image: '/images/meettheteam/committees/workshop/Jeev.jpeg',
+        position: 'Associate Head',
+    },
+    {
+        name: 'Pranaya T P',
+        image: '/images/meettheteam/committees/workshop/Pranaya.jpg',
+        position: 'Associate Head',
+    },
+    {
+        name: 'Pooja K',
+        image: '/images/meettheteam/committees/workshop/Pooja.jpeg',
+        position: 'Associate Head',
+    },
+    {
+        name: 'Rohan K',
+        image: '/images/meettheteam/committees/workshop/Rohan.jpg',
+        position: 'Associate Head',
+    }
+]

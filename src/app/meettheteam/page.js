@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react'
 import TeamMemberCard from '@/components/meettheteam/TeamMemberCard'
 import { techLeads, techTeam, uiTeam } from './team'
-import { cnr, content, design, gpc, hospitality, iink, informals, infra, judging, lasIn, lasOut, marketing, media, pad, pc, prc, prodezza } from './committee'
+import { cnr, content, design, gpc, hospitality, iink, informals, infra, judging, lasIn, lasOut, marketing, media, pad, pc, prc, prodezza, proshow, social, sports, transportation, workshop } from './committee'
 
 const tabs = ['Council', 'Web Team', 'Committees']
 
@@ -26,11 +26,11 @@ function CommitteesTab() {
     { name: 'PRC', members: prc},
     { name: 'PC', members: pc},
     { name: 'Prodezza', members: prodezza},
-    { name: 'Proshow', members: []},
-    { name: 'Social Media', members: []},
-    { name: 'Sports', members: []},
-    { name: 'Transportation', members: []},
-    { name: 'Workshop', members: []},
+    { name: 'Proshow', members: proshow},
+    { name: 'Social Media', members: social},
+    { name: 'Sports', members: sports},
+    { name: 'Transportation', members: transportation},
+    { name: 'Workshop', members: workshop},
   ]
 
   const [currentIdx, setCurrentIdx] = useState(0)
@@ -120,7 +120,7 @@ function CommitteesTab() {
         )}
       </div>
 
-      <div className="meet-team-grid" style={{ display: 'flex', columnGap: '3rem', rowGap: '2rem', flexWrap: 'wrap', justifyContent: 'center', width: '100%', maxWidth: 1300 }}>
+      <div key={currentIdx} className="meet-team-grid" style={{ display: 'flex', columnGap: '3rem', rowGap: '2rem', flexWrap: 'wrap', justifyContent: 'center', width: '100%', maxWidth: 1300 }}>
         {current.members.length > 0 ? current.members.map((member, idx) => (
           <div key={`committee-${idx}`} style={{ flex: '0 1 calc((100% - 6rem) / 3)', boxSizing: 'border-box', minWidth: 100, maxWidth: 350 }}>
             <TeamMemberCard {...member} />
