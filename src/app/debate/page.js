@@ -1,5 +1,6 @@
 "use client";
 import { useRef } from "react";
+import Image from "next/image";
 import HeroSection from "./HeroSection";
 import PrizesSection from "./PrizesSection";
 import DetailsSection from "./DetailsSection";
@@ -25,6 +26,27 @@ export default function Home() {
 
   return (
     <div className="w-full bg-[#680B1D]" ref={container}>
+      <div className="fixed left-0 top-[10%] h-screen z-50 pointer-events-none select-none">
+        <Image
+          src="/images/debate/borderLeft.png"
+          alt=""
+          width={80}
+          height={1080}
+          className="h-[90%] w-auto object-cover"
+          priority
+        />
+      </div>
+      <div className="fixed right-0 top-[10%] h-screen z-50 pointer-events-none select-none">
+        <Image
+          src="/images/debate/borderRight.png"
+          alt=""
+          width={80}
+          height={1080}
+          className="h-[90%] w-auto object-cover"
+          priority
+        />
+      </div>
+
       <HeroSection
         titleRef={titleRef}
         panelTitleRef={panelTitleRef}

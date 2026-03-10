@@ -36,8 +36,9 @@ const contacts = [
   { name: "KUMAYL", phone: "+91 72639 27374" },
 ];
 
-const aboutText =
-  "Introducing the debut edition of Sahiti, the premier Asian Parliamentary Debate at Ragam '26. Organized by The Literary and Debating Club, this event marks a new chapter in our legacy, bringing the high-stakes Asian Parliamentary Debate format to NIT Calicut for the very first time. Sahiti is a sophisticated arena where logic meets persuasion, challenging the region's sharpest minds to tackle complex global issues with clinical precision and rapid-fire wit.";
+const INSTAGRAM_URL = "https://www.instagram.com/donttellthewarden/";
+
+const aboutText = null; // replaced by AboutText component below
 
 function SectionHeading({ children }) {
   return (
@@ -280,7 +281,7 @@ function RegisterCard() {
 
 export default function DetailsSection() {
   return (
-    <section className="relative w-full py-12 md:py-20 px-4 md:px-12 lg:px-20">
+    <section className="relative w-full py-12 md:py-20 px-4 md:px-12 lg:px-24">
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-10 lg:gap-16">
         {/* Mobile: Register card on top */}
         <div className="block lg:hidden">
@@ -341,7 +342,23 @@ export default function DetailsSection() {
             <p
               className={`${alata.className} text-white/60 text-sm leading-relaxed mt-2`}
             >
-              {aboutText}
+              Introducing the debut edition of Sahiti, the premier Asian
+              Parliamentary Debate at Ragam &apos;26. Organized in collaboration
+              with{" "}
+              <a
+                href={INSTAGRAM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white/80 hover:text-[#D4AF37] transition-colors duration-300 underline underline-offset-2"
+              >
+                The Literary and Debating Club
+              </a>
+              , this event marks a new chapter in our legacy, bringing the
+              high-stakes Asian Parliamentary Debate format to NIT Calicut for
+              the very first time. Sahiti is a sophisticated arena where logic
+              meets persuasion, challenging the region&apos;s sharpest minds to
+              tackle complex global issues with clinical precision and
+              rapid-fire wit.
             </p>
           </div>
 
