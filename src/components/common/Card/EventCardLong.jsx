@@ -2,12 +2,15 @@ import Link from "next/link";
 
 export default function EventCardLong({
   alignment,
-  imageURL,
+  eventImage,
   day,
+  divasam,
   description,
   name,
   date,
   regUrl,
+  regFee,
+  earlyBirdFee,
 }) {
   const LETTERS_ARR = ['D', 'A', 'Y', day]
   const reverse = alignment === 'right'
@@ -16,7 +19,7 @@ export default function EventCardLong({
     "border border-[#7d1912] group-hover:border-[#fdebc8] transition-colors"
 
   return (
-    <div className='group max-w-6xl w-full mx-auto p-1.5 bg-[#fdebc8] hover:bg-[#7d1912] font-serif text-[#7d1912] hover:text-[#fdebc8] transition-colors'>
+    <div className='group max-w-6xl w-[85%] mx-auto p-1.5 bg-[#fdebc8] hover:bg-[#7d1912] font-serif text-[#7d1912] hover:text-[#fdebc8] transition-colors'>
       <div
         className={`flex flex-wrap md:flex-nowrap gap-2 w-full md:min-h-[400px] ${
           reverse ? 'md:flex-row-reverse' : ''
@@ -45,40 +48,56 @@ export default function EventCardLong({
 
         <div
           style={{ backgroundImage: "url('/images/card/normBg.svg')" }}
-          className={`w-[calc(25%-0.25rem)] md:w-[10%] min-h-[250px] md:min-h-[150px] bg-cover bg-center ${commonBorderStyle} order-2 md:order-3`}
+          className={`w-[calc(25%-0.25rem)] md:w-[10%] min-h-[250px] md:min-h-[150px] bg-cover bg-center ${commonBorderStyle} ${reverse ? 'order-3 md:order-3' : 'order-2 md:order-3'}`}
         ></div>
 
-        <div
+        <Link
+          href={regUrl}
+          target="_blank"
           style={{
-            backgroundImage: imageURL
-              ? `url('${imageURL}')`
+            backgroundImage: eventImage
+              ? `url('${eventImage}')`
               : "url('/images/card/dancerBg.svg')",
           }}
-          className={`w-[calc(75%-0.25rem)] md:w-[35%] min-h-[300px] md:min-h-[250px] bg-cover bg-center bg-black ${commonBorderStyle} order-3 md:order-2`}
-        ></div>
+          className={`w-[calc(75%-0.25rem)] md:w-[35%] min-h-[300px] md:min-h-[250px] bg-cover bg-center bg-black ${commonBorderStyle} ${reverse? 'order-2 md:order-2' : 'order-3 md:order-2'}`}
+        />
 
-        <div className={`w-full md:flex-1 p-6 md:p-8 flex flex-col justify-between ${commonBorderStyle} order-4 text-right md:text-left`}>
+        <Link
+          href={regUrl}
+          target="_blank"
+          className={`w-full md:flex-1 p-6 md:p-8 flex flex-col justify-between ${commonBorderStyle} order-4 text-left`}
+        >
           <div>
             <div className='text-3xl md:text-4xl'>
               <span className='font-bold'>{date} </span>
               <span className='font-light'>MARCH</span>
             </div>
-
             <div className='text-xl md:text-2xl mt-1 font-light'>
-              Friday
+              {divasam}
             </div>
           </div>
 
           <div className='mt-8 md:mt-auto'>
-            <h1 className='text-4xl sm:text-5xl md:text-6xl font-extrabold mb-4 tracking-wide'>
+            <h1 className='text-3xl md:text-6xl font-extrabold mb-4 tracking-wide'>
               {name.toUpperCase()}
             </h1>
-
-            <p className='text-sm font-medium leading-5 md:max-w-lg ml-auto md:ml-0'>
-              {description}
-            </p>
+            <div className='flex items-center gap-3 ml-auto md:ml-0 mt-1'>
+              <span className={`text-lg md:text-xl font-medium ${earlyBirdFee ? 'line-through opacity-50' : 'text-2xl font-extrabold'}`}>
+                ₹{regFee}
+              </span>
+              {earlyBirdFee && (
+                <span className='text-xl md:text-2xl font-extrabold'>
+                  ₹{earlyBirdFee}
+                </span>
+              )}
+              {earlyBirdFee && (
+                <span className='text-xs md:text-md font-bold uppercase tracking-widest opacity-80'>
+                  (Early Bird Offer)
+                </span>
+              )}
+            </div>
           </div>
-        </div>
+        </Link>
       </div>
     </div>
   )
