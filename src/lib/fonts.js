@@ -5,7 +5,16 @@ import {
   Playfair,
   Prompt,
   Poppins,
+  Alata,
+  IBM_Plex_Mono,
+  Montserrat,
 } from "next/font/google";
+
+export const neuemachina = localFont({
+  src: "../../public/fonts/NeueMachina.otf",
+  variable: "--font-neuemachina",
+  display: "swap",
+});
 
 export const impact = localFont({
   src: "../../public/fonts/impact.ttf",
@@ -122,4 +131,21 @@ export const grotapDemo = localFont({
   src: "../../public/fonts/GrotapDemo.otf",
   variable: "--font-grotap-demo",
   display: "swap",
+});
+
+export const alata = Alata({
+  subsets: ["latin"],
+  weight: "400",
+});
+
+export const ibmPlexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700"],
+  style: ["normal", "italic"],
+});
+
+export const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  style: ["normal", "italic"],
 });

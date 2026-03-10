@@ -113,7 +113,7 @@ export default function useDebateAnimations({
         });
       });
 
-      // flip prize cards — scrubbed, fully reversible
+      // flip prize cards
       prizeCardInnerRefs.current.forEach((inner, i) => {
         if (!inner) return;
         gsap.fromTo(

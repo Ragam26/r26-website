@@ -19,6 +19,10 @@ import {
   archivo,
   instrument,
   impact,
+  montserrat,
+  ibmPlexMono,
+  alata,
+  neuemachina,
 } from "@/lib/fonts";
 
 export const metadata = {
@@ -45,6 +49,10 @@ export default function RootLayout({ children }) {
           ${moniqa.variable}
           ${scalter.variable}
           ${kiwi.variable}
+          ${montserrat.variable}
+          ${ibmPlexMono.variable}
+          ${alata.variable}
+          ${neuemachina.variable}
           antialiased
         `}
         suppressHydrationWarning

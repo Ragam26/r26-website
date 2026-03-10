@@ -2,6 +2,7 @@
 import { useRef } from "react";
 import HeroSection from "./HeroSection";
 import PrizesSection from "./PrizesSection";
+import DetailsSection from "./DetailsSection";
 import useDebateAnimations from "./useDebateAnimations";
 
 export default function Home() {
@@ -34,6 +35,7 @@ export default function Home() {
         prizeScrollRef={prizeScrollRef}
         prizeCardInnerRefs={prizeCardInnerRefs}
       />
+      <DetailsSection />
     </div>
   );
 }

@@ -14,7 +14,7 @@ export default function HeroSection({
         className="sticky top-0 w-screen h-screen overflow-hidden"
         ref={stickyRef}
       >
-        {/* title behind cards — starts centered, scrolls upward */}
+        {/* title behind cards */}
         <div
           ref={titleRef}
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[75%] z-0 select-none pointer-events-none flex flex-col items-center"
@@ -39,7 +39,7 @@ export default function HeroSection({
           </p>
         </div>
 
-        {/* Core Adjudication Panel label — rises up during flip, sits under cards */}
+        {/* cap label */}
         <div
           ref={panelTitleRef}
           className="absolute top-[20%] left-1/2 -translate-x-1/2 z-5 select-none pointer-events-none text-center w-full"
@@ -51,7 +51,7 @@ export default function HeroSection({
           </p>
         </div>
 
-        {/* cards on top — initial position slightly lower */}
+        {/* cards on top */}
         <div className="cards relative w-full h-full z-10 translate-y-65">
           {" "}
           {[...Array(3)].map((_, index) => (
