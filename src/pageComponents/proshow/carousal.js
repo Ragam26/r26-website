@@ -32,6 +32,7 @@ export default function FocusCarousel({ items = [] }) {
   const [dragOffset, setDragOffset] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [containerWidth, setContainerWidth] = useState(375);
+
   const startXRef = useRef(0);
   const startTimeRef = useRef(0);
   const containerRef = useRef(null);
@@ -42,10 +43,10 @@ export default function FocusCarousel({ items = [] }) {
   const cardGapPx = containerWidth * CARD_GAP_RATIO;
   const wrap = useCallback((idx) => ((idx % n) + n) % n, [n]);
 
-  const revealedIndices = useMemo(() => {
-    return items.map((a, i) => (a.revealed ? i : -1)).filter((i) => i >= 0);
-  }, [items]);
-
+  const revealedIndices = useMemo(
+    () => items.map((a, i) => (a.revealed ? i : -1)).filter((i) => i >= 0),
+    [items],
+  );
   const hasRevealed = revealedIndices.length > 0;
 
   const stopAutoScroll = useCallback(() => {
@@ -78,9 +79,8 @@ export default function FocusCarousel({ items = [] }) {
 
   useLayoutEffect(() => {
     const measure = () => {
-      if (containerRef.current) {
+      if (containerRef.current)
         setContainerWidth(containerRef.current.clientWidth);
-      }
     };
     measure();
     window.addEventListener("resize", measure);
@@ -96,10 +96,8 @@ export default function FocusCarousel({ items = [] }) {
     [wrap],
   );
 
-  // Auto-scroll (No audio logic here!)
   useEffect(() => {
     if (!hasRevealed || userInteractedRef.current) return;
-
     autoScrollRef.current = setInterval(() => {
       setActiveIndex((prev) => {
         const curPos = revealedIndices.indexOf(prev);
@@ -107,16 +105,12 @@ export default function FocusCarousel({ items = [] }) {
         return revealedIndices[(curPos + 1) % revealedIndices.length];
       });
     }, AUTO_SCROLL_INTERVAL);
-
     return () => {
       if (autoScrollRef.current) clearInterval(autoScrollRef.current);
     };
   }, [hasRevealed, revealedIndices]);
 
-  // Cleanup on unmount
-  useEffect(() => {
-    return () => stopOldAudio();
-  }, [stopOldAudio]);
+  useEffect(() => () => stopOldAudio(), [stopOldAudio]);
 
   const handleTouchStart = (e) => {
     stopAutoScroll();
@@ -128,32 +122,22 @@ export default function FocusCarousel({ items = [] }) {
 
   const handleTouchMove = (e) => {
     if (!isDragging) return;
-    const diff = e.touches[0].clientX - startXRef.current;
-    setDragOffset(diff);
+    setDragOffset(e.touches[0].clientX - startXRef.current);
   };
 
   const handleTouchEnd = () => {
     const elapsed = Date.now() - startTimeRef.current;
     const velocity = Math.abs(dragOffset) / Math.max(elapsed, 1);
     const threshold = velocity > 0.4 ? 25 : 60;
-
-    if (dragOffset < -threshold) {
-      goTo(activeIndex + 1);
-    } else if (dragOffset > threshold) {
-      goTo(activeIndex - 1);
-    } else {
-      goTo(activeIndex);
-    }
+    if (dragOffset < -threshold) goTo(activeIndex + 1);
+    else if (dragOffset > threshold) goTo(activeIndex - 1);
+    else goTo(activeIndex);
   };
 
   const handleCardClick = (i) => {
-    // Only play if it's the center card being clicked
     if (!isDragging) {
       stopAutoScroll();
-      if (i !== activeIndex) {
-        goTo(i);
-      }
-      // Play song on click regardless of whether it was already active
+      if (i !== activeIndex) goTo(i);
       playSong(items[i]?.song);
     }
   };
@@ -170,40 +154,80 @@ export default function FocusCarousel({ items = [] }) {
     [activeIndex, n],
   );
 
+  const getCardStyle = (i) => {
+    const baseOffset = ringOffset(i);
+    const effectiveOffset = baseOffset + dragFraction;
+    const absOffset = Math.abs(effectiveOffset);
+    const scale = Math.max(SCALE_MIN, SCALE_CENTER - absOffset * SCALE_STEP);
+    const brightness = Math.max(
+      BRIGHTNESS_MIN,
+      BRIGHTNESS_CENTER - absOffset * BRIGHTNESS_STEP,
+    );
+    const tiltDeg = Math.max(
+      -MAX_TILT,
+      Math.min(MAX_TILT, effectiveOffset * TILT_PER_OFFSET),
+    );
+    const translateX = effectiveOffset * cardGapPx;
+    const zIndex = Math.max(1, 10 - Math.round(absOffset * 3));
+    const isHidden = absOffset > 3;
+    const opacity = isHidden ? 0 : Math.max(0.3, 1 - absOffset * 0.2);
+
+    return {
+      scale,
+      brightness,
+      tiltDeg,
+      translateX,
+      zIndex,
+      opacity,
+      isHidden,
+    };
+  };
+
   return (
     <div
       ref={containerRef}
-      className="relative w-full overflow-hidden flex flex-col"
+      className="relative w-full overflow-hidden flex flex-col items-end"
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
     >
-      <div
-        className="relative w-full flex items-end justify-center"
-        style={{ height: "420px" }}
-      >
+      {/* Navigation Controls */}
+      <div className="absolute top-[85%] left-0 right-0 flex items-center justify-between px-6 z-30 pointer-events-none">
+        <button
+          onClick={() => {
+            stopAutoScroll();
+            goTo(activeIndex - 1);
+          }}
+          className="w-8 h-8 flex items-center justify-center text-[#F4EFCF]/70 active:text-[#F4EFCF] text-5xl select-none pointer-events-auto"
+        >
+          ‹
+        </button>
+        <span className="text-[#F4EFCF]/60 translate-y-1 text-md font-league-gothic tracking-widest select-none pointer-events-auto">
+          {activeIndex + 1}/{n}
+        </span>
+        <button
+          onClick={() => {
+            stopAutoScroll();
+            goTo(activeIndex + 1);
+          }}
+          className="w-8 h-8 flex items-center justify-center text-[#F4EFCF]/70 active:text-[#F4EFCF] text-5xl select-none pointer-events-auto"
+        >
+          ›
+        </button>
+      </div>
+
+      {/* Cards Stage */}
+      <div className="relative w-full flex items-end justify-center h-[400px] mt-10">
         {items.map((item, i) => {
-          const baseOffset = ringOffset(i);
-          const effectiveOffset = baseOffset + dragFraction;
-          const absOffset = Math.abs(effectiveOffset);
-
-          const scale = Math.max(
-            SCALE_MIN,
-            SCALE_CENTER - absOffset * SCALE_STEP,
-          );
-          const brightness = Math.max(
-            BRIGHTNESS_MIN,
-            BRIGHTNESS_CENTER - absOffset * BRIGHTNESS_STEP,
-          );
-          const tiltDeg = Math.max(
-            -MAX_TILT,
-            Math.min(MAX_TILT, effectiveOffset * TILT_PER_OFFSET),
-          );
-          const translateX = effectiveOffset * cardGapPx;
-          const zIndex = Math.max(1, 10 - Math.round(absOffset * 3));
-          const isHidden = absOffset > 3;
-          const cardOpacity = isHidden ? 0 : Math.max(0.3, 1 - absOffset * 0.2);
-
+          const {
+            scale,
+            brightness,
+            tiltDeg,
+            translateX,
+            zIndex,
+            opacity,
+            isHidden,
+          } = getCardStyle(i);
           return (
             <div
               key={item.id ?? i}
@@ -211,7 +235,7 @@ export default function FocusCarousel({ items = [] }) {
               style={{
                 transform: `translateX(${translateX}px) scale(${scale})`,
                 filter: `brightness(${brightness})`,
-                opacity: cardOpacity,
+                opacity,
                 zIndex,
                 transition: isDragging
                   ? "none"
@@ -226,63 +250,21 @@ export default function FocusCarousel({ items = [] }) {
         })}
       </div>
 
-      {/* Navigation Controls */}
-      <div className="flex items-center justify-between px-6 py-2 z-30">
-        <button
-          onClick={() => {
-            stopAutoScroll();
-            goTo(activeIndex - 1);
-          }}
-          className="w-8 h-8 flex items-center justify-center text-[#F4EFCF]/70 active:text-[#F4EFCF] text-4xl select-none"
-        >
-          ‹
-        </button>
-        <span className="text-[#F4EFCF]/60 text-sm font-league-gothic tracking-widest select-none">
-          {activeIndex + 1}/{n}
-        </span>
-        <button
-          onClick={() => {
-            stopAutoScroll();
-            goTo(activeIndex + 1);
-          }}
-          className="w-8 h-8 flex items-center justify-center text-[#F4EFCF]/70 active:text-[#F4EFCF] text-4xl select-none"
-        >
-          ›
-        </button>
-      </div>
-
       {/* Reflection */}
-      <div className="overflow-hidden w-full pointer-events-none select-none">
+      {/* <div className="overflow-hidden w-full pointer-events-none select-none">
         <div
-          className="relative flex items-start justify-center scale-y-[-1] opacity-30"
+          className="relative flex items-start justify-center scale-y-[-1] opacity-30 h-[300px]"
           style={{
             filter: "url(#water-ripple) blur(2px)",
             maskImage:
-              "linear-gradient(to top, rgba(0,0,0,1) 0%, transparent 65%)",
+              "linear-gradient(to top, rgba(0,0,0,1) 0%, transparent 85%)",
             WebkitMaskImage:
-              "linear-gradient(to top, rgba(0,0,0,1) 0%, transparent 65%)",
-            height: "250px",
+              "linear-gradient(to top, rgba(0,0,0,1) 0%, transparent 85%)",
           }}
         >
           {items.map((item, i) => {
-            const baseOffset = ringOffset(i);
-            const effectiveOffset = baseOffset + dragFraction;
-            const absOffset = Math.abs(effectiveOffset);
-            const scale = Math.max(
-              SCALE_MIN,
-              SCALE_CENTER - absOffset * SCALE_STEP,
-            );
-            const brightness = Math.max(
-              BRIGHTNESS_MIN,
-              BRIGHTNESS_CENTER - absOffset * BRIGHTNESS_STEP,
-            );
-            const tiltDeg = Math.max(
-              -MAX_TILT,
-              Math.min(MAX_TILT, effectiveOffset * TILT_PER_OFFSET),
-            );
-            const translateX = effectiveOffset * cardGapPx;
-            const zIndex = Math.max(1, 10 - Math.round(absOffset * 3));
-
+            const { scale, brightness, tiltDeg, translateX, zIndex, isHidden } =
+              getCardStyle(i);
             return (
               <div
                 key={`ref-${item.id ?? i}`}
@@ -291,7 +273,7 @@ export default function FocusCarousel({ items = [] }) {
                   transform: `translateX(${translateX}px) scale(${scale})`,
                   filter: `brightness(${brightness})`,
                   zIndex,
-                  opacity: absOffset > 3 ? 0 : 1,
+                  opacity: isHidden ? 0 : 1,
                   transition: isDragging
                     ? "none"
                     : "all 0.5s cubic-bezier(0.22, 0.61, 0.36, 1)",
@@ -302,7 +284,7 @@ export default function FocusCarousel({ items = [] }) {
             );
           })}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

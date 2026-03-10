@@ -91,7 +91,7 @@ export default function ProshowSection({ isMobile }) {
       {/* Title */}
       <h1
         className="font-bold flex justify-center items-center
-               translate-y-6 md:translate-0 text-[17vw] lg:text-[10vw]"
+               -translate-y-2 md:translate-0 text-[17vw] lg:text-[10vw]"
       >
         <span
           className={`${leagueGothic.className} text-[#F4EFCF]
