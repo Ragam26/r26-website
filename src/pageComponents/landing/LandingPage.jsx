@@ -29,8 +29,8 @@ export default function LandingPage() {
   const loopsRef = useRef([]);
   const dancerContainerRef = useRef(null);
   const loaderRef = useRef(null);
-  const [leftDancer] = useState(() => Math.floor(Math.random() * 3) + 1);
-  const [rightDancer] = useState(() => Math.floor(Math.random() * 3) + 1);
+  const leftDancerRef = useRef(Math.floor(Math.random() * 3) + 1);
+  const rightDancerRef = useRef(Math.floor(Math.random() * 3) + 1);
   const [isMobile, setIsMobile] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const [showLoader, setShowLoader] = useState(true);
@@ -178,9 +178,6 @@ export default function LandingPage() {
           duration: 2.5,
           ease: "power2.inOut",
           onComplete: () => {
-            setLeftDancer(Math.floor(Math.random() * 3) + 1);
-            setRightDancer(Math.floor(Math.random() * 3) + 1);
-
 
             //Freeze animation before killing ScrollTrigger to prevent any jumpiness from scroll position reset
             gsap.set(textRef.current,{
@@ -490,7 +487,7 @@ export default function LandingPage() {
           {/* Left Dancer */}
           <div className="absolute top-2 left-12 w-full h-[50vh] md:top-auto md:bottom-3 md:-left-25 md:h-screen md:w-auto overflow-visible">
             <Image
-              src={`/images/landingAnimation/dancers/dancerLeft${leftDancer}.webp`}
+              src={`/images/landingAnimation/dancers/dancerLeft${leftDancerRef.current}.webp`}
               alt="Dancer L"
               width={1000}
               height={1500}
@@ -507,7 +504,7 @@ export default function LandingPage() {
           {/* Right Dancer */}
           <div className="absolute -bottom-7 right-14 w-full h-[50vh] md:-right-25 md:h-screen md:w-auto overflow-visible">
             <Image
-              src={`/images/landingAnimation/dancers/dancerRight${rightDancer}.webp`}
+              src={`/images/landingAnimation/dancers/dancerRight${rightDancerRef.current}.webp`}
               alt="Dancer R"
               width={1000}
               height={1500}
