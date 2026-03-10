@@ -14,7 +14,7 @@ export const archivo = localFont({
 });
 
 export const instrument = localFont({
-  src: "../../public/fonts/instrumentSerif.ttf",
+  src: "../../public/fonts/InstrumentSerif.ttf",
   variable: "--font-instrument",
   display: "swap",
 });
