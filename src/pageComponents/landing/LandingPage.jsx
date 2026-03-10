@@ -29,8 +29,8 @@ export default function LandingPage() {
   const loopsRef = useRef([]);
   const dancerContainerRef = useRef(null);
   const loaderRef = useRef(null);
-  const leftDancerRef = useRef(Math.floor(Math.random() * 3) + 1);
-  const rightDancerRef = useRef(Math.floor(Math.random() * 3) + 1);
+  const [leftDancer, setLeftDancer] = useState(1);
+  const [rightDancer, setRightDancer] = useState(1);
   const [isMobile, setIsMobile] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const [showLoader, setShowLoader] = useState(true);
@@ -39,6 +39,8 @@ export default function LandingPage() {
   useLayoutEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsMounted(true);
+    setLeftDancer(Math.floor(Math.random() * 3) + 1);
+    setRightDancer(Math.floor(Math.random() * 3) + 1);
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile(); // check immediately
     window.addEventListener("resize", checkMobile);
@@ -487,7 +489,7 @@ export default function LandingPage() {
           {/* Left Dancer */}
           <div className="absolute top-2 left-12 w-full h-[50vh] md:top-auto md:bottom-3 md:-left-25 md:h-screen md:w-auto overflow-visible">
             <Image
-              src={`/images/landingAnimation/dancers/dancerLeft${leftDancerRef.current}.webp`}
+              src={`/images/landingAnimation/dancers/dancerLeft${leftDancer}.webp`}
               alt="Dancer L"
               width={1000}
               height={1500}
@@ -504,7 +506,7 @@ export default function LandingPage() {
           {/* Right Dancer */}
           <div className="absolute -bottom-7 right-14 w-full h-[50vh] md:-right-25 md:h-screen md:w-auto overflow-visible">
             <Image
-              src={`/images/landingAnimation/dancers/dancerRight${rightDancerRef.current}.webp`}
+              src={`/images/landingAnimation/dancers/dancerRight${rightDancer}.webp`}
               alt="Dancer R"
               width={1000}
               height={1500}
