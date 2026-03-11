@@ -21,18 +21,29 @@ export default function EventCardLong({
 
   const artistList = artists && artists.length > 0 ? artists : (name ? [name] : [])
 
-  const imageList = images && images.length > 0 ? images : (eventImage ? [eventImage] : [])
-  const [currentIdx, setCurrentIdx] = useState(0)
-  const [fading, setFading] = useState(false)
+  const imageList = images && images.length > 0 ? images : (eventImage ? [eventImage] : ['/images/card/dancerBg.svg'])
 
+  const [currentIdx, setCurrentIdx] = useState(0)
+
+  // -- CROSSFADE (commented out) --
+  // const [fading, setFading] = useState(false)
+  // useEffect(() => {
+  //   if (imageList.length <= 1) return;
+  //   const interval = setInterval(() => {
+  //     setFading(true)
+  //     setTimeout(() => {
+  //       setCurrentIdx((prev) => (prev + 1) % imageList.length)
+  //       setFading(false)
+  //     }, 500)
+  //   }, 3000)
+  //   return () => clearInterval(interval)
+  // }, [imageList.length])
+
+  // -- SLIDING --
   useEffect(() => {
     if (imageList.length <= 1) return;
     const interval = setInterval(() => {
-      setFading(true)
-      setTimeout(() => {
-        setCurrentIdx((prev) => (prev + 1) % imageList.length)
-        setFading(false)
-      }, 500)
+      setCurrentIdx((prev) => (prev + 1) % imageList.length)
     }, 3000)
     return () => clearInterval(interval)
   }, [imageList.length])
@@ -73,6 +84,7 @@ export default function EventCardLong({
           className={`w-[calc(25%-0.25rem)] md:w-[10%] min-h-[250px] md:min-h-[150px] bg-cover bg-center ${commonBorderStyle} ${reverse ? 'order-3 md:order-3' : 'order-2 md:order-3'}`}
         ></div>
 
+        {/* -- CROSSFADE image panel (commented out) --
         <Link
           href={regUrl}
           target="_blank"
@@ -82,7 +94,30 @@ export default function EventCardLong({
               : "url('/images/card/dancerBg.svg')",
           }}
           className={`w-[calc(75%-0.25rem)] md:w-[35%] min-h-[300px] md:min-h-[250px] bg-cover bg-center bg-black ${commonBorderStyle} ${reverse? 'order-2 md:order-2' : 'order-3 md:order-2'}`}
-        />
+        /> */}
+
+        {/* -- SLIDING image panel -- */}
+        <div
+          className={`relative overflow-hidden w-[calc(75%-0.25rem)] md:w-[35%] min-h-[300px] md:min-h-[250px] bg-black ${commonBorderStyle} ${reverse ? 'order-2 md:order-2' : 'order-3 md:order-2'}`}
+        >
+          {imageList.map((img, idx) => (
+            <Link
+              key={img}
+              href={regUrl}
+              target="_blank"
+              style={{
+                backgroundImage: `url('${img}')`,
+                transform: idx === currentIdx
+                  ? 'translateX(0%)'
+                  : idx < currentIdx
+                  ? 'translateX(-100%)'
+                  : 'translateX(100%)',
+                transition: 'transform 0.5s cubic-bezier(0.76, 0, 0.24, 1)',
+              }}
+              className="absolute inset-0 bg-cover bg-center"
+            />
+          ))}
+        </div>
 
         <Link
           href={regUrl}
@@ -100,14 +135,11 @@ export default function EventCardLong({
           </div>
 
           <div className='mt-8 md:mt-auto'>
-            {/* Artist list */}
             {artistList.length === 1 ? (
-              // Single artist — original large title style
               <h1 className='text-3xl md:text-6xl font-extrabold mb-4 tracking-wide'>
                 {artistList[0].toUpperCase()}
               </h1>
             ) : (
-              // Multiple artists — stacked list
               <div className='mb-4 flex flex-col gap-1'>
                 {artistList.map((artist, idx) => (
                   <div key={idx} className='flex items-baseline gap-3'>
