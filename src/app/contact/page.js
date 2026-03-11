@@ -13,46 +13,40 @@ import ContactInfoCard from '@/components/common/infoCard/ContactInfoCard'
 
 const CONTACT_COLUMNS = [
   {
-    heading: 'I-INK',
+    heading: 'Registration',
     pocs: [
-      { name: 'Sreehari', phone: '8714815466' },
-      { name: 'Athul', phone: '8089158295' },
+      { name: 'Afla', phone: '9645917769' },
+      { name: 'Kannan', phone: '8078126516' },
+      { name: 'Jasna', phone: '9846265747' },
     ],
   },
   {
-    heading: 'efwe',
+    heading: 'Proshow',
     pocs: [
-      { name: 'ewfw', phone: '8938294' },
-      { name: 'ewfw', phone: '8938294' },
+      { name: 'Hafees', phone: '9633652217' },
+      { name: 'Abhay', phone: '9400975527' },
     ],
   },
   {
-    heading: 'efwe',
+    heading: 'Workshop',
     pocs: [
-      { name: 'ewfw', phone: '8938294' },
-      { name: 'ewfw', phone: '8938294' },
-    ],
+      { name: 'Thomas', phone: '7736432411'},
+      { name: 'Abhinav', phone: '7510292011'},
+    ]
   },
   {
-    heading: 'efwe',
+    heading: 'Events',
     pocs: [
-      { name: 'ewfw', phone: '8938294' },
-      { name: 'ewfw', phone: '8938294' },
-    ],
+      { name: 'Habeeb', phone: '8606139046'},
+      { name: 'Anitta', phone: '8078746610'},
+    ]
   },
   {
-    heading: 'efwe',
+    heading: 'I-Ink',
     pocs: [
-      { name: 'ewfw', phone: '8938294' },
-      { name: 'ewfw', phone: '8938294' },
-    ],
-  },
-  {
-    heading: 'efwe',
-    pocs: [
-      { name: 'ewfw', phone: '8938294' },
-      { name: 'ewfw', phone: '8938294' },
-    ],
+      { name: 'Anugraha', phone: '8921913096'},
+      { name: 'Pratyush', phone: '9400156727'},
+    ]
   },
 ]
 
