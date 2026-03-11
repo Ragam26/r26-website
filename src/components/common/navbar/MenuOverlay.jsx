@@ -27,7 +27,7 @@ export default function MenuOverlay({ isOpen, onMenuItemClick }) {
       href: "https://ca.ragam.co.in",
       external: true,
     },
-    // { title: "Team", href: "notFound" },
+    { title: "Team", href: "meettheteam" },
     // { title: "Sponsors", href: "notFound" },
     { title: "Contact", href: "contact" },
   ];

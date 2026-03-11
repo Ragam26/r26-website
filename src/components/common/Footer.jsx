@@ -223,7 +223,7 @@ export default function Footer() {
               <Link href='/' className='hover:text-gray-400 transition'>
                 Home
               </Link>
-              <Link href='/notFound' className='hover:text-gray-400 transition'>
+              <Link href='/meettheteam' className='hover:text-gray-400 transition'>
                 Team
               </Link>
               {/* <Link href='/notFound' className='hover:text-gray-400 transition'>
