@@ -1,12 +1,16 @@
+'use client'
 import Link from "next/link";
+import { useState, useEffect } from "react";
 
 export default function EventCardLong({
   alignment,
   eventImage,
+  images,
   day,
   divasam,
   description,
   name,
+  artists,
   date,
   regUrl,
   regFee,
@@ -14,6 +18,24 @@ export default function EventCardLong({
 }) {
   const LETTERS_ARR = ['D', 'A', 'Y', day]
   const reverse = alignment === 'right'
+
+  const artistList = artists && artists.length > 0 ? artists : (name ? [name] : [])
+
+  const imageList = images && images.length > 0 ? images : (eventImage ? [eventImage] : [])
+  const [currentIdx, setCurrentIdx] = useState(0)
+  const [fading, setFading] = useState(false)
+
+  useEffect(() => {
+    if (imageList.length <= 1) return;
+    const interval = setInterval(() => {
+      setFading(true)
+      setTimeout(() => {
+        setCurrentIdx((prev) => (prev + 1) % imageList.length)
+        setFading(false)
+      }, 500)
+    }, 3000)
+    return () => clearInterval(interval)
+  }, [imageList.length])
 
   const commonBorderStyle =
     "border border-[#7d1912] group-hover:border-[#fdebc8] transition-colors"
@@ -56,7 +78,7 @@ export default function EventCardLong({
           target="_blank"
           style={{
             backgroundImage: eventImage
-              ? `url('${eventImage}')`
+              ? `url('${imageList[currentIdx]}')`
               : "url('/images/card/dancerBg.svg')",
           }}
           className={`w-[calc(75%-0.25rem)] md:w-[35%] min-h-[300px] md:min-h-[250px] bg-cover bg-center bg-black ${commonBorderStyle} ${reverse? 'order-2 md:order-2' : 'order-3 md:order-2'}`}
@@ -78,9 +100,33 @@ export default function EventCardLong({
           </div>
 
           <div className='mt-8 md:mt-auto'>
-            <h1 className='text-3xl md:text-6xl font-extrabold mb-4 tracking-wide'>
-              {name.toUpperCase()}
-            </h1>
+            {/* Artist list */}
+            {artistList.length === 1 ? (
+              // Single artist — original large title style
+              <h1 className='text-3xl md:text-6xl font-extrabold mb-4 tracking-wide'>
+                {artistList[0].toUpperCase()}
+              </h1>
+            ) : (
+              // Multiple artists — stacked list
+              <div className='mb-4 flex flex-col gap-1'>
+                {artistList.map((artist, idx) => (
+                  <div key={idx} className='flex items-baseline gap-3'>
+                    <span className='text-xs font-bold opacity-50 tabular-nums w-4 shrink-0'>
+                      {String(idx + 1).padStart(2, '0')}
+                    </span>
+                    <span
+                      className={`font-extrabold tracking-wide leading-tight ${
+                        artistList.length <= 3
+                          ? 'text-2xl md:text-4xl'
+                          : 'text-xl md:text-3xl'
+                      }`}
+                    >
+                      {artist.toUpperCase()}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            )}
             <div className='flex items-center gap-3 ml-auto md:ml-0 mt-1'>
               <span className={`text-lg md:text-xl font-medium ${earlyBirdFee ? 'line-through opacity-50' : 'text-2xl font-extrabold'}`}>
                 ₹{regFee}

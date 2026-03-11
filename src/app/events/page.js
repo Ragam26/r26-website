@@ -65,7 +65,7 @@ export default function EventsPage() {
           onClick={() => setIsInfoOpen(true)}
           className="px-4 py-2 rounded-full bg-[#730000] text-[#FFDEAC] font-semibold hover:bg-[#FFDEAC] hover:text-[#730000] transition-all duration-200 hover:scale-105 active:scale-95 flex items-center justify-center text-sm md:text-lg whitespace-nowrap"
         >
-          Know More
+          Contact Us
         </button>
       </div>
 
