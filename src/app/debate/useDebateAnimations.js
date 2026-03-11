@@ -20,6 +20,8 @@ export default function useDebateAnimations({
       const totalScrollHeight = window.innerHeight * 2.7;
       const positions = [30, 50, 70];
       const rotations = [-17, 0, 17];
+      const initialPositions = [44, 50, 56];
+      const initialRotations = [-7, 0, 7];
 
       // scroll title upward across the full scroll duration
       gsap.to(titleRef.current, {
@@ -46,18 +48,25 @@ export default function useDebateAnimations({
 
       // spread cards
       cards.forEach((card, index) => {
-        gsap.to(card, {
-          left: `${positions[index]}%`,
-          rotation: `${rotations[index]}`,
-          ease: "none",
-          scrollTrigger: {
-            trigger: container.current.querySelector(".scroll-track"),
-            start: "top top",
-            end: () => `+=${window.innerHeight}`,
-            scrub: 0.5,
-            id: `spread-${index}`,
+        gsap.fromTo(
+          card,
+          {
+            left: `${initialPositions[index]}%`,
+            rotation: initialRotations[index],
           },
-        });
+          {
+            left: `${positions[index]}%`,
+            rotation: rotations[index],
+            ease: "none",
+            scrollTrigger: {
+              trigger: container.current.querySelector(".scroll-track"),
+              start: "top top",
+              end: () => `+=${window.innerHeight}`,
+              scrub: 0.5,
+              id: `spread-${index}`,
+            },
+          },
+        );
       });
 
       // scroll "Core Adjudication Panel" label up during the flip phase

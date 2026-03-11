@@ -25,26 +25,31 @@ export default function Home() {
   });
 
   return (
-    <div className="w-full bg-[#680B1D]" ref={container}>
-      <div className="fixed left-0 top-0 h-screen z-50 pointer-events-none select-none">
-        <Image
-          src="/images/debate/borderLeft.png"
-          alt=""
-          width={80}
-          height={1080}
-          className="h-screen w-auto object-cover"
-          priority
-        />
+    <div className="relative w-full bg-[#680B1D]" ref={container}>
+      <div className="hidden md:block absolute inset-y-0 left-[92.8%] w-full z-50 pointer-events-none select-none">
+        <div className="sticky top-0 h-screen">
+          <Image
+            src="/images/debate/borderRight.png"
+            alt=""
+            width={80}
+            height={1080}
+            className="h-screen w-auto object-cover"
+            priority
+          />
+        </div>
       </div>
-      <div className="fixed right-0 top-0 h-screen z-50 pointer-events-none select-none">
-        <Image
-          src="/images/debate/borderRight.png"
-          alt=""
-          width={80}
-          height={1080}
-          className="h-screen w-auto object-cover"
-          priority
-        />
+
+      <div className="hidden md:block absolute inset-y-0 right-0 w-full z-50 pointer-events-none select-none">
+        <div className="sticky top-0 h-screen">
+          <Image
+            src="/images/debate/borderLeft.png"
+            alt=""
+            width={80}
+            height={1080}
+            className="h-screen w-auto object-cover"
+            priority
+          />
+        </div>
       </div>
 
       <HeroSection

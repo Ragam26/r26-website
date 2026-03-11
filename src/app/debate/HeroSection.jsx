@@ -75,7 +75,7 @@ export default function HeroSection({
             id="sahiti-title"
             onClick={handleTitleClick}
             className={`${archivo.className} text-white text-center font-light leading-none pointer-events-auto cursor-default select-none transition-none ${
-              titleText === "SAHITI" ? "text-[14vw]" : "text-[12vw]"
+              titleText === "SAHITI" ? "text-[14vw]" : "text-[10vw]"
             }`}
           >
             {titleText}

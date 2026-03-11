@@ -38,8 +38,6 @@ const contacts = [
 
 const INSTAGRAM_URL = "https://www.instagram.com/donttellthewarden/";
 
-const aboutText = null; // replaced by AboutText component below
-
 function SectionHeading({ children }) {
   return (
     <div className="flex items-end w-full mb-4">
@@ -249,7 +247,7 @@ function RegisterCard() {
   };
 
   return (
-    <div className="bg-[#BA9B64] rounded-xl p-6 md:p-8 px-2 flex flex-col gap-3 w-full lg:w-85 shrink-0">
+    <div className="bg-[#BA9B64] rounded-xl p-6 md:p-8 md:px-2 flex flex-col gap-3 w-full lg:w-85 shrink-0">
       <h2
         className={`${archivo.className} text-white text-2xl md:text-3xl  font-bold tracking-wide uppercase`}
       >
@@ -261,7 +259,7 @@ function RegisterCard() {
         <span
           className={`${neuemachina.className} text-[#560C00] text-2xl md:text-xl font-bold`}
         >
-          Rs. 1200 per person
+          Rs. 1400 per person
         </span>
       </div>
 
@@ -290,10 +288,9 @@ export default function DetailsSection() {
 
         {/* Left column */}
         <div className="flex-1 flex flex-col gap-8">
-          {/* Policies */}
           <div>
             <SectionHeading>TOURNAMENT INFO</SectionHeading>
-            <div className="grid grid-cols-3 gap-3 mt-2">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mt-2">
               {policyButtons.map((btn) => (
                 <a
                   key={btn.label}
