@@ -13,7 +13,7 @@ export default function MenuOverlay({ isOpen, onMenuItemClick }) {
 
   const menuItems = [
     { title: "Home", href: "/" },
-    { title: "Certificates", href: "notFound" },
+    // { title: "Certificates", href: "notFound" },
     { title: "Workshops", href: "workshops" },
     { title: "Events", href: "events" },
     { title: "I-Ink", href: "i-ink" },
@@ -28,7 +28,7 @@ export default function MenuOverlay({ isOpen, onMenuItemClick }) {
       external: true,
     },
     { title: "Team", href: "meettheteam" },
-    { title: "Sponsors", href: "notFound" },
+    // { title: "Sponsors", href: "notFound" },
     { title: "Contact", href: "contact" },
   ];
 

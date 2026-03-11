@@ -4,8 +4,37 @@ import EventCard from '@/components/common/Card/EventCard'
 import { useProshows } from '@/hooks/useEvents'
 import EventCardLong from '@/components/common/Card/EventCardLong'
 
+const registrationUrl = 'https://makemypass.com/event/early-bird-ragam-pass'
+
+const PROSHOW_EVENTS = [
+  {
+    id: 1,
+    day: '1',
+    divasam: 'FRIDAY',
+    date: '27',
+    alignment: 'left',
+    regUrl: registrationUrl,
+    regFee: '1199',
+    earlyBirdFee: '999',
+    artists: ['AMIT MISHRA', 'W.i.S.H'],
+    images: ['/images/proshow/day1/Amitbro.jpeg', '/images/proshow/day1/IWish.jpeg'],
+  },
+  {
+    id: 2,
+    day: '2',
+    divasam: 'SATURDAY',
+    date: '28',
+    alignment: 'right',
+    regUrl: registrationUrl,
+    regFee: '1499',
+    earlyBirdFee: '1199',
+    artists: ['DARSHAN RAVAL', 'VEDAN'],
+    images: ['/images/proshow/day2/Darshan.jpg', '/images/proshow/day2/Vedan.jpg'],
+  }
+  // Add more days here...
+]
+
 export default function EventsPage() {
-  let { data, isLoading, error } = useProshows()
 
   return (
     <main
@@ -24,44 +53,30 @@ export default function EventsPage() {
         </h1>
       </div>
 
-      {isLoading ? (
-        <p className='text-center text-gray-500 py-20 text-xl font-light tracking-widest'>
-          LOADING...
-        </p>
-      ) : error ? (
-        <p className='text-center text-gray-500 py-20 text-xl font-light tracking-widest'>
-          ERROR LOADING EVENTS. PLEASE TRY AGAIN LATER.
-        </p>
-      ) : (
         <div className='w-full max-w-350 mx-auto px-4 sm:px-6 lg:px-8 pb-20'>
           <div className='page pt-5 flex items-center md:justify-left justify-center gap-10 flex-wrap'>
-            {data.map((eventData) => (
+            {PROSHOW_EVENTS.map((event) => (
               <EventCardLong
-                key={eventData.id}
-                day='1'
-                divasam='FRIDAY'
-                date={eventData.eventDay}
-                month={eventData.eventMonth}
-                name={eventData.eventName}
-                regUrl={eventData.makeMyPassUrl}
-                regFee={eventData.regFee}
-                artists={[eventData.eventName, "W.I.S.H"]}
-                earlyBirdFee='999'
-                alignment="left"
-                description={eventData.description}
-                eventImage={eventData.eventCover ?? '/images/card/dancerBg.svg'}
-                images={['/images/proshow/Amitbro.jpeg', '/images/proshow/IWish.jpeg']}
+                key={event.id}
+                day={event.day}
+                divasam={event.divasam}
+                date={event.date}
+                alignment={event.alignment}
+                regUrl={event.regUrl}
+                regFee={event.regFee}
+                earlyBirdFee={event.earlyBirdFee}
+                artists={event.artists}
+                images={event.images}
               />
             ))}
           </div>
 
-          {data.length === 0 && (
+          {PROSHOW_EVENTS.length === 0 && (
             <p className='text-center text-gray-500 py-20 text-xl font-light tracking-widest'>
               NO EVENTS FOUND
             </p>
-          )}
-        </div>
-      )}
+            )}
+          </div>
     </main>
   )
 }

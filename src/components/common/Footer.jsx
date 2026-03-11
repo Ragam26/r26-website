@@ -223,12 +223,12 @@ export default function Footer() {
               <Link href='/' className='hover:text-gray-400 transition'>
                 Home
               </Link>
-              <Link href='/notFound' className='hover:text-gray-400 transition'>
+              <Link href='/meettheteam' className='hover:text-gray-400 transition'>
                 Team
               </Link>
-              <Link href='/notFound' className='hover:text-gray-400 transition'>
+              {/* <Link href='/notFound' className='hover:text-gray-400 transition'>
                 Sponsors
-              </Link>
+              </Link> */}
               <Link href="/contact" className="hover:text-gray-400 transition">
                 Contact Us
               </Link>
@@ -250,9 +250,9 @@ export default function Footer() {
             </div>
 
             <div className='flex flex-col gap-3 order-1 md:order-3'>
-              <Link href='/notFound' className='hover:text-gray-400 transition'>
+              {/* <Link href='/notFound' className='hover:text-gray-400 transition'>
                 Certificates
-              </Link>
+              </Link> */}
               <Link href='/events' className='hover:text-gray-400 transition'>
                 Events
               </Link>
