@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import ProshowCard from "@/pageComponents/proshow/proshowCard";
+import DayPassPanel from "@/pageComponents/proshow/DayPassPanel";
 
 const TILT_PER_OFFSET = 8;
 const MAX_TILT = 20;
@@ -21,7 +22,7 @@ function lerpFromTable(table, absOffset) {
   return lerp(table[idx], table[idx + 1], frac);
 }
 
-export default function ProshowDesktop({ artists }) {
+export default function ProshowDesktop({ artists, allDayPassLink }) {
   const n = artists.length;
   const [activeIndex, setActiveIndex] = useState(() => {
     const revealed = artists
@@ -117,6 +118,22 @@ export default function ProshowDesktop({ artists }) {
     };
   }, []);
 
+  const activeDay = artists[activeIndex]?.day ?? "DAY 1";
+
+  const handleDayClick = useCallback(
+    (dayLabel) => {
+      stopAutoScroll();
+      // Jump to the first revealed artist of that day, or first artist of that day
+      const revealedOfDay = artists.findIndex(
+        (a) => a.day === dayLabel && a.revealed,
+      );
+      const anyOfDay = artists.findIndex((a) => a.day === dayLabel);
+      const target = revealedOfDay >= 0 ? revealedOfDay : anyOfDay;
+      if (target >= 0) setActiveIndex(target);
+    },
+    [artists, stopAutoScroll],
+  );
+
   const getCardStyle = useCallback(
     (index) => {
       let offset = index - activeIndex;
@@ -210,10 +227,20 @@ export default function ProshowDesktop({ artists }) {
         })}
       </div>
 
+      {/* Day pass panel — floats over the gap / top of reflection */}
+      <div className="absolute left-0 right-0 z-20" style={{ top: "580px" }}>
+        <DayPassPanel
+          artists={artists}
+          activeDay={activeDay}
+          onDayClick={handleDayClick}
+          allDayPassLink={"https://makemypass.com/event/early-bird-ragam-pass"}
+        />
+      </div>
+
       {/* Reflection */}
       <div className="overflow-hidden w-full pointer-events-none select-none">
         <div
-          className="relative flex items-start justify-center scale-y-[-1] opacity-30 mt-[2vw]"
+          className="relative flex items-start justify-center scale-y-[-1] opacity-28 mt-[7vw]"
           style={{
             filter: "url(#water-ripple) blur(3px)",
             maskImage:

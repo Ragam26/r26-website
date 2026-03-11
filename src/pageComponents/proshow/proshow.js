@@ -10,6 +10,7 @@ export default function ProshowSection({ isMobile }) {
     {
       id: 1,
       name: "COMING SOON",
+      day: "DAY 3",
       date: "29",
       month: "MARCH",
       image: "/images/proshow/proshowArtist_3.png",
@@ -18,6 +19,7 @@ export default function ProshowSection({ isMobile }) {
     {
       id: 2,
       name: "AMIT MISHRA",
+      day: "DAY 1",
       date: "27",
       month: "MARCH",
       image: "/images/proshow/amit4.png",
@@ -26,10 +28,12 @@ export default function ProshowSection({ isMobile }) {
       imageOffsetX: 0,
       imageOffsetY: -20,
       imageScale: 1.2,
+      passLink: "https://makemypass.com/event/early-bird-ragam-pass",
     },
     {
       id: 3,
       name: "W.i.S.H",
+      day: "DAY 1",
       date: "27",
       month: "MARCH",
       image: "/images/proshow/wish3.png",
@@ -38,10 +42,12 @@ export default function ProshowSection({ isMobile }) {
       imageOffsetX: 35,
       imageOffsetY: -100,
       imageScale: 1.7,
+      passLink: "https://makemypass.com/event/early-bird-ragam-pass",
     },
     {
       id: 4,
-      name: "Darshan Raval",
+      name: "DARSHAN RAVAL",
+      day: "DAY 2",
       date: "28",
       month: "MARCH",
       image: "/images/proshow/darshan.png",
@@ -50,10 +56,12 @@ export default function ProshowSection({ isMobile }) {
       imageOffsetX: 35,
       imageOffsetY: -30,
       imageScale: 1.8,
+      passLink: "https://makemypass.com/event/early-bird-ragam-pass",
     },
     {
       id: 5,
       name: "COMING SOON",
+      day: "DAY 2",
       date: "28",
       month: "MARCH",
       image: "/images/proshow/proshowArtist_3.png",
@@ -62,6 +70,7 @@ export default function ProshowSection({ isMobile }) {
     {
       id: 6,
       name: "COMING SOON",
+      day: "DAY 3",
       date: "29",
       month: "MARCH",
       image: "/images/proshow/proshowArtist_2.png",
@@ -70,6 +79,7 @@ export default function ProshowSection({ isMobile }) {
     {
       id: 7,
       name: "COMING SOON",
+      day: "DAY 3",
       date: "29",
       month: "MARCH",
       image: "/images/proshow/proshowArtist_1.png",
@@ -78,7 +88,7 @@ export default function ProshowSection({ isMobile }) {
   ];
 
   return (
-    <section className="relative max-w-[100vw] mx-auto py-3 overflow-hidden md:h-[125vh] mb-10">
+    <section className="relative max-w-[100vw] mx-auto py-3 overflow-hidden md:h-[136vh] mb-10">
       {/* Water ripple filter */}
       <svg className="fixed top-0 left-0 w-0 h-0 invisible">
         <filter id="water-ripple">
@@ -124,7 +134,7 @@ export default function ProshowSection({ isMobile }) {
       </div>
 
       <div className="hidden lg:block">
-        <ProshowDesktop artists={artists} />
+        <ProshowDesktop artists={artists} allDayPassLink={null} />
       </div>
 
       <div
