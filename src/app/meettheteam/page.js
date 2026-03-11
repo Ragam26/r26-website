@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react'
 import TeamMemberCard from '@/components/meettheteam/TeamMemberCard'
 import { techLeads, techTeam, uiTeam } from './team'
-import { cnr, content, design, gpc, hospitality, iink, informals, infra, judging, lasIn, lasOut, marketing, media, pad, pc, prc, prodezza, proshow, social, sports, transportation, workshop } from './committee'
+import { cnr, content, design, food, gpc, hospitality, iink, informals, infra, judging, lasIn, lasOut, marketing, media, merchandise, pad, pc, prc, prodezza, proshow, social, sports, transportation, workshop } from './committee'
 import { council } from './council'
 
 const tabs = ['Council', 'Web Team', 'Committees']
@@ -13,6 +13,7 @@ function CommitteesTab() {
     { name: 'C & R', members: cnr},
     { name: 'Content', members: content},
     { name: 'Design', members: design},
+    { name: 'Food', members: food},
     { name: 'GPC', members: gpc},
     { name: 'Hospitality', members: hospitality},
     { name: 'I-Ink', members: iink},
@@ -23,6 +24,7 @@ function CommitteesTab() {
     { name: 'LAS Out', members: lasOut},
     { name: 'Marketing', members: marketing},
     { name: 'Media', members: media},
+    { name: 'Merchandise', members: merchandise},
     { name: 'PAD', members: pad},
     { name: 'PRC', members: prc},
     { name: 'PC', members: pc},

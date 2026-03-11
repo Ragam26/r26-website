@@ -57,6 +57,14 @@ export const design = [
     },
 ]
 
+export const food = [
+    {
+        name: 'Mohammed Bilal',
+        image: '/images/meettheteam/committees/food/Bilal.jpeg',
+        position: 'Head',
+    },
+]
+
 export const gpc = [
     {
         name: 'Anaan M',
@@ -135,6 +143,11 @@ export const iink = [
         position: 'Associate Head',
     },
     {
+        name: 'Sarah Paul',
+        image: '/images/meettheteam/committees/i-ink/Sarah.jpg',
+        position: 'Associate Head',
+    },
+    {
         name: 'Swathy V R',
         image: '/images/meettheteam/committees/i-ink/Swathy_VR.jpeg',
         position: 'Associate Head',
@@ -143,8 +156,18 @@ export const iink = [
 
 export const informals = [
     {
+        name: 'Afna M',
+        image: '/images/meettheteam/committees/informals/Afna.jpg',
+        position: 'Head',
+    },
+    {
         name: 'Himajala Reddy',
         image: '/images/meettheteam/committees/informals/Himu.JPG',
+        position: 'Head',
+    },
+    {
+        name: 'Mehsana N',
+        image: '/images/meettheteam/committees/informals/Mehsana.jpeg',
         position: 'Head',
     },
     {
@@ -186,6 +209,11 @@ export const judging = [
 ]
 
 export const lasIn = [
+    {
+        name: 'Aravind S',
+        image: '/images/meettheteam/committees/las-in/Aravind.jpeg',
+        position: 'Head',
+    },
     {
         name: 'Varun T',
         image: '/images/meettheteam/committees/las-in/Varun.jpg',
@@ -238,6 +266,14 @@ export const media = [
     {
         name: 'Mobasshir Hasan Mahin',
         image: '/images/meettheteam/committees/media/Mahin.JPG',
+        position: 'Head',
+    },
+]
+
+export const merchandise = [
+    {
+        name: 'Bazim Mohamed',
+        image: '/images/meettheteam/committees/merchandise/Bazim.jpeg',
         position: 'Head',
     },
 ]
@@ -296,6 +332,11 @@ export const pc = [
         image: '/images/meettheteam/committees/pc/Pranav.jpg',
         position: 'Head',
     },
+    {
+        name: 'Fathima Dhiya',
+        image: '/images/meettheteam/committees/pc/Fathima.jpeg',
+        position: 'Associate Head',
+    }
 ]
 
 export const prc = [
@@ -309,6 +350,11 @@ export const prc = [
         image: '/images/meettheteam/committees/prc/Athulya.jpg',
         position: 'Head',
     },
+    {
+        name: 'Sreeraj A',
+        image: '/images/meettheteam/committees/prc/Sreeraj.jpg',
+        position: 'Head',
+    }
 ]
 
 export const prodezza = [

@@ -1,7 +1,12 @@
 export const council = [
     {
         name: "Adhil Hussain",
-        images: "/images/meettheteam/council/Adhil.jpeg",
+        image: "/images/meettheteam/council/Adhil.jpeg",
         position: "Cultural Activities Secretary",
     },
+    {
+        name: "Gokul Krishna",
+        image: "/images/meettheteam/council/Gokul.jpeg",
+        position: "Treasurer",
+    }
 ]

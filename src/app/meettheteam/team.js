@@ -10,16 +10,37 @@ export const techLeads = [
     linkedin: 'https://www.linkedin.com/in/aravind-anil-92a96b27a/',
   },
   {
+    name: 'Arun Natarajan',
+    image: '/images/meettheteam/tech/Arun.jpg',
+    position: 'Lead Developer',
+    github: 'https://github.com/arunnats',
+    linkedin: 'https://www.linkedin.com/in/arunnats/',
+  },
+  {
     name: 'Fayis Rahman',
     image: '/images/meettheteam/tech/Fayis.png',
     position: 'Lead Developer',
-    github: 'aftsaas',
-    linkedin: 'asdasd',
+    github: 'https://github.com/FayisRahman',
+    linkedin: 'https://www.linkedin.com/in/fayis-rahman-thadathil-6644b9250/',
   },
   
 ]
 
 export const techTeam = [
+  {
+    name: 'Emir Ziyan',
+    image: '/images/meettheteam/tech/Emir.jpg',
+    position: 'Frontend Developer',
+    github: 'https://github.com/ze206',
+    linkedin: 'https://www.linkedin.com/in/emir-ziyan',
+  },
+  {
+    name: 'Irene R Susan',
+    image: '/images/meettheteam/tech/Irene.jpeg',
+    position: 'Frontend Developer',
+    github: 'https://github.com/irene-r-susan',
+    linkedin: 'https://www.linkedin.com/in/irene-r-susan-491573324',
+  },
   {
     name: 'Jiss Janex',
     image: '/images/meettheteam/tech/Jiss.png',
@@ -35,20 +56,63 @@ export const techTeam = [
     linkedin: 'https://www.linkedin.com/in/kamalesh-dhinesh-a976a0344/',
   },
   {
+    name: 'Varun',
+    image: '/images/meettheteam/tech/Varun.jpeg',
+    position: 'Frontend Developer',
+    github: 'https://github.com/varunmuthuram',
+    linkedin: 'https://in.linkedin.com/in/varunmuthuram',
+  },
+  {
     name: 'Simon',
     image: '/images/meettheteam/tech/Simon.png',
-    position: 'Frontend Developer',
+    position: 'Backend Developer',
     github: 'https://github.com/simonMat21',
     linkedin: 'https://www.linkedin.com/in/simon-mattekkatt-357620322/',
-  }
+  },
+  {
+    name: 'Nithin',
+    image: '/images/meettheteam/tech/Nithin.jpg',
+    position: 'Backend Developer',
+    github: 'https://github.com/nithinraj04',
+    linkedin: 'https://www.linkedin.com/in/nithinraj04',
+  },
+  {
+    name: 'Srinand E K',
+    image: '/images/meettheteam/tech/Srinand.jpg',
+    position: 'App Developer',
+    github: 'https://github.com/gamehackerever',
+    linkedin: 'https://www.linkedin.com/in/srinand-e-k-207a13139'
+  },
 ]
 
 export const uiTeam = [
-    {
+  {
+    name: 'Advaith',
+    image: '/images/meettheteam/tech/Advaith.jpg',
+    position: 'UI/UX Designer',
+    github: '',
+    linkedin: 'https://www.linkedin.com/in/advaith-madupathi-a7500220b/',
+  },
+  {
     name: 'Anush P',
     image: '/images/meettheteam/tech/Anush.png',
     position: 'UI/UX Designer',
     github: '',
     linkedin: 'https://www.linkedin.com/in/anush-p-37317738b/',
   },
+  {
+    name: 'Kavitha',
+    image: '/images/meettheteam/tech/Kavitha.JPG',
+    position: 'UI/UX Designer',
+    github: 'https://github.com/kavitharaghuram',
+    linkedin: 'www.linkedin.com/in/kavitharaghuram',
+  },
+  {
+    name: 'Sourav Sreedhar',
+    image: '/images/meettheteam/tech/Sourav.jpg',
+    position: 'UI/UX Designer',
+    github: '',
+    linkedin: 'https://www.linkedin.com/in/sourav-s-sreedhar-0102303b6/',
+  },
+  
 ]
