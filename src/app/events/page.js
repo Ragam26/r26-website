@@ -11,29 +11,24 @@ const CATEGORY_CONFIG = [
   {
     name: "Flagship Events",
     label: "Flagship Events",
-    banner: "/images/banner/banner1.svg",
   },
   {
     name: "Dramatics",
     label: "Dramatics",
-    banner: "/images/banner/banner2.svg",
   },
   {
     name: "Kalolsavam (group)",
     label: "Kalolsavam (group)",
-    banner: "/images/banner/banner1.svg",
   },
   {
     name: "Kalolsavam -solo-pass",
     label: "Kalolsavam (solo)",
-    banner: "/images/banner/banner2.svg",
   },
   {
     name: "M&D-pass",
     label: "Music & Dance",
-    banner: "/images/banner/banner1.svg",
   },
-  { name: "Other", label: "Other", banner: "/images/banner/banner1.svg" },
+  { name: "Other", label: "Other", },
 ];
 
 export default function EventsPage() {
@@ -70,7 +65,7 @@ export default function EventsPage() {
           onClick={() => setIsInfoOpen(true)}
           className="px-4 py-2 rounded-full bg-[#730000] text-[#FFDEAC] font-semibold hover:bg-[#FFDEAC] hover:text-[#730000] transition-all duration-200 hover:scale-105 active:scale-95 flex items-center justify-center text-sm md:text-lg whitespace-nowrap"
         >
-          Know More
+          Contact Us
         </button>
       </div>
 

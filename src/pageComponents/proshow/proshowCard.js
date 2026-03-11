@@ -1,6 +1,5 @@
 "use client";
 
-import { useRef } from "react";
 import Image from "next/image";
 
 export default function ProshowCard({
@@ -10,28 +9,12 @@ export default function ProshowCard({
   tilt = 0,
   image = "/images/proshow/proshowArtist_1.png",
   song = null,
+  imageOffsetX = 0,
+  imageOffsetY = 0,
+  imageScale = 1,
 }) {
-  const audioRef = useRef(null);
-
-  const handleClick = () => {
-    if (!song) return;
-
-    if (!audioRef.current) {
-      audioRef.current = new Audio(song);
-    }
-
-    if (audioRef.current.paused) {
-      audioRef.current.play().catch((err) => {
-        console.error("Playback failed:", err);
-      });
-    } else {
-      console.log("Audio is already playing, ignoring click.");
-    }
-  };
-
   return (
     <div
-      onClick={handleClick}
       className={`
         perspective-[1000px] 
         transition-transform 
@@ -69,12 +52,18 @@ export default function ProshowCard({
             </div>
           </div>
 
-          <div className="flex flex-col p-4 flex-5 relative">
+          <div
+            className="flex flex-col p-4 flex-5 relative"
+            style={{ clipPath: "inset(-9999px 0 0 -9999px)" }}
+          >
             <Image
               src={image}
               alt={name}
               fill
-              className="-ml-15 mt-12 scale-100 overflow-visible object-contain"
+              className="-ml-15 mt-12 object-contain "
+              style={{
+                transform: `translate(${imageOffsetX}px, ${imageOffsetY}px) scale(${imageScale})`,
+              }}
             />
           </div>
         </div>

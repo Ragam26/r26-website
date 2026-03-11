@@ -19,7 +19,7 @@ export default function EventsPage() {
       }}
     >
       <div className='pt-20 md:pt-32 pb-12 md:pb-16 flex flex-col items-center justify-center px-4'>
-        <h1 className='text-white text-4xl md:text-7xl lg:text-8xl font-serif tracking-[0.3em] mt-20 mb-8 md:mb-12'>
+        <h1 className='text-white text-4xl md:text-7xl lg:text-8xl font-serif tracking-[0.3em] mt-20 mb-8 md:mb-6'>
           PROSHOWS
         </h1>
       </div>
@@ -34,19 +34,23 @@ export default function EventsPage() {
         </p>
       ) : (
         <div className='w-full max-w-350 mx-auto px-4 sm:px-6 lg:px-8 pb-20'>
-          <div className='page pt-10 flex items-center md:justify-left justify-center gap-10 flex-wrap'>
+          <div className='page pt-5 flex items-center md:justify-left justify-center gap-10 flex-wrap'>
             {data.map((eventData) => (
               <EventCardLong
                 key={eventData.id}
                 day='1'
+                divasam='FRIDAY'
                 date={eventData.eventDay}
                 month={eventData.eventMonth}
                 name={eventData.eventName}
                 regUrl={eventData.makeMyPassUrl}
                 regFee={eventData.regFee}
+                artists={[eventData.eventName, "W.I.S.H"]}
+                earlyBirdFee='999'
                 alignment="left"
                 description={eventData.description}
-                eventimage={eventData.eventCover ?? '/images/card/dancerBg.svg'}
+                eventImage={eventData.eventCover ?? '/images/card/dancerBg.svg'}
+                images={['/images/proshow/Amitbro.jpeg', '/images/proshow/IWish.jpeg']}
               />
             ))}
           </div>

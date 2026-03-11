@@ -9,33 +9,72 @@ export default function ProshowSection({ isMobile }) {
   const artists = [
     {
       id: 1,
-      tilt: -15,
-      name: "AMIT MISHRA",
-      date: "27",
-      month: "MARCH",
-      image: "/images/proshow/amit4.png",
-      song: "/images/proshow/bulleya.mp3",
-    },
-    {
-      id: 2,
-      tilt: 0,
-      name: "COMING SOON",
-      date: "28",
-      month: "MARCH",
-      image: "/images/proshow/proshowArtist_1.png",
-    },
-    {
-      id: 3,
-      tilt: 15,
       name: "COMING SOON",
       date: "29",
       month: "MARCH",
       image: "/images/proshow/proshowArtist_3.png",
+      revealed: 0,
+    },
+    {
+      id: 2,
+      name: "AMIT MISHRA",
+      date: "27",
+      month: "MARCH",
+      image: "/images/proshow/amit4.png",
+      song: "/images/proshow/amit.mp3",
+      revealed: 1,
+      imageOffsetX: 0,
+      imageOffsetY: 0,
+      imageScale: 1,
+    },
+    {
+      id: 3,
+      name: "W.i.S.H",
+      date: "27",
+      month: "MARCH",
+      image: "/images/proshow/wish3.png",
+      song: "/images/proshow/wish.mp3",
+      revealed: 1,
+      imageOffsetX: 35,
+      imageOffsetY: -90,
+      imageScale: 1.6,
+    },
+    {
+      id: 4,
+      name: "COMING SOON",
+      date: "28",
+      month: "MARCH",
+      image: "/images/proshow/proshowArtist_1.png",
+      revealed: 0,
+    },
+    {
+      id: 5,
+      name: "COMING SOON",
+      date: "28",
+      month: "MARCH",
+      image: "/images/proshow/proshowArtist_3.png",
+      revealed: 0,
+    },
+    {
+      id: 6,
+      name: "COMING SOON",
+      date: "29",
+      month: "MARCH",
+      image: "/images/proshow/proshowArtist_1.png",
+      revealed: 0,
+    },
+    {
+      id: 7,
+      name: "COMING SOON",
+      date: "29",
+      month: "MARCH",
+      image: "/images/proshow/proshowArtist_3.png",
+      revealed: 0,
     },
   ];
 
   return (
-    <section className="relative max-w-7xl mx-auto py-3 overflow-hidden h-screen md:h-[115vh]">
+    <section className="relative max-w-[100vw] mx-auto py-3 overflow-hidden md:h-[125vh] mb-10">
       {/* Water ripple filter */}
       <svg className="fixed top-0 left-0 w-0 h-0 invisible">
         <filter id="water-ripple">
@@ -59,7 +98,7 @@ export default function ProshowSection({ isMobile }) {
       {/* Title */}
       <h1
         className="font-bold flex justify-center items-center
-               translate-y-6 md:translate-0 text-[17vw] lg:text-[10vw]"
+               -translate-y-2 md:translate-0 text-[17vw] lg:text-[10vw]"
       >
         <span
           className={`${leagueGothic.className} text-[#F4EFCF]
