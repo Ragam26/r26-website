@@ -31,6 +31,8 @@ export const metadata = {
     "Official website of Ragam 2026, South India's biggest cultural fest!",
 };
 
+const HIDE_ON_SCROLL_ROUTES = ["/debate"];
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
@@ -64,7 +66,7 @@ export default function RootLayout({ children }) {
             className="relative z-10 bg-black"
             style={{ marginBottom: "var(--footer-height, 0px)" }}
           >
-            <Navbar />
+            <Navbar routesToHide={HIDE_ON_SCROLL_ROUTES} />
             {children}
           </div>
 
