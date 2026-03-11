@@ -45,12 +45,12 @@ export default function EventsPage() {
                 name={eventData.eventName}
                 regUrl={eventData.makeMyPassUrl}
                 regFee={eventData.regFee}
-                artists={[eventData.eventName, "W.I.S.H"]}
+                artists={["AMIT MISHRA", "W.i.S.H"]}
                 earlyBirdFee='999'
                 alignment="left"
                 description={eventData.description}
                 eventImage={eventData.eventCover ?? '/images/card/dancerBg.svg'}
-                images={['/images/proshow/Amitbro.jpeg', '/images/proshow/IWish.jpeg']}
+                images={['/images/proshow/day1/Amitbro.jpeg', '/images/proshow/day1/IWish.jpeg']}
               />
             ))}
           </div>

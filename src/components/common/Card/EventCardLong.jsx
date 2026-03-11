@@ -25,7 +25,7 @@ export default function EventCardLong({
 
   const [currentIdx, setCurrentIdx] = useState(0)
 
-  // -- CROSSFADE (commented out) --
+  // -- CROSSFADE
   // const [fading, setFading] = useState(false)
   // useEffect(() => {
   //   if (imageList.length <= 1) return;
@@ -84,7 +84,7 @@ export default function EventCardLong({
           className={`w-[calc(25%-0.25rem)] md:w-[10%] min-h-[250px] md:min-h-[150px] bg-cover bg-center ${commonBorderStyle} ${reverse ? 'order-3 md:order-3' : 'order-2 md:order-3'}`}
         ></div>
 
-        {/* -- CROSSFADE image panel (commented out) --
+        {/* -- CROSSFADE image panel
         <Link
           href={regUrl}
           target="_blank"
@@ -153,7 +153,7 @@ export default function EventCardLong({
                           : 'text-xl md:text-3xl'
                       }`}
                     >
-                      {artist.toUpperCase()}
+                      {artist}
                     </span>
                   </div>
                 ))}
