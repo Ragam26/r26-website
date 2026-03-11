@@ -10,7 +10,6 @@ const tabs = ['Council', 'Web Team', 'Committees']
 
 function CommitteesTab() {
   const committees = [
-    { name: 'C & R', members: cnr},
     { name: 'Content', members: content},
     { name: 'Design', members: design},
     { name: 'Food', members: food},
@@ -30,6 +29,7 @@ function CommitteesTab() {
     { name: 'PC', members: pc},
     { name: 'Prodezza', members: prodezza},
     { name: 'Proshow', members: proshow},
+    { name: 'Registration', members: cnr},
     { name: 'Social Media', members: social},
     { name: 'Sports', members: sports},
     { name: 'Transportation', members: transportation},
