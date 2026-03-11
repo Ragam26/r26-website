@@ -1,14 +1,31 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { FaInstagram, FaFacebook, FaLinkedinIn } from "react-icons/fa";
 import Image from "next/image";
 import Link from "next/link";
+
+const FLOAT_W = 180; // px — floating image width
+const FLOAT_H = 110; // px — floating image height
+const CURSOR_GAP = 18; // px — gap between cursor and image edge
 
 export default function Footer() {
   const [hoverData, setHoverData] = useState(null);
   const [activeMobileLetter, setActiveMobileLetter] = useState(null);
   const [showRoast, setShowRoast] = useState(false);
+
+  // double-buffer crossfade: two image slots, we alternate which is "active"
+  const [slots, setSlots] = useState({ a: null, b: null, active: "a" });
+  const slotsRef = useRef(slots);
+
+  // ref to the single floating image container — we move it via direct DOM
+  const floatRef = useRef(null);
+
+  // lerp state
+  const targetPos = useRef({ x: 0, y: 0 });
+  const currentPos = useRef({ x: 0, y: 0 });
+  const rafId = useRef(null);
+  const isHovering = useRef(false);
 
   // ref to measure the footer's DOM element
   const footerRef = useRef(null);
@@ -47,49 +64,139 @@ export default function Footer() {
     }
   }, [showRoast]);
 
+  const calcTarget = useCallback((clientX, clientY) => {
+    const wouldOverflowRight =
+      clientX + CURSOR_GAP + FLOAT_W > window.innerWidth;
+    const x = wouldOverflowRight
+      ? clientX - FLOAT_W - CURSOR_GAP
+      : clientX + CURSOR_GAP;
+    const y = clientY - FLOAT_H / 2;
+    return { x, y };
+  }, []);
+
+  const animateRef = useRef(null);
+  useEffect(() => {
+    animateRef.current = () => {
+      const el = floatRef.current;
+      if (!el) return;
+      const LERP = 0.1;
+      currentPos.current.x +=
+        (targetPos.current.x - currentPos.current.x) * LERP;
+      currentPos.current.y +=
+        (targetPos.current.y - currentPos.current.y) * LERP;
+      el.style.left = `${currentPos.current.x}px`;
+      el.style.top = `${currentPos.current.y}px`;
+      if (isHovering.current) {
+        rafId.current = requestAnimationFrame(animateRef.current);
+      }
+    };
+  }, []);
+
+  const handleLetterMouseEnter = useCallback(
+    (e, letter) => {
+      setHoverData(letter);
+      // swap slots for crossfade
+      const prev = slotsRef.current;
+      const next = prev.active === "a" ? "b" : "a";
+      const updated = { ...prev, [next]: letter.image, active: next };
+      slotsRef.current = updated;
+      setSlots(updated);
+      isHovering.current = true;
+      const pos = calcTarget(e.clientX, e.clientY);
+      currentPos.current = { ...pos };
+      targetPos.current = { ...pos };
+      if (rafId.current) cancelAnimationFrame(rafId.current);
+      rafId.current = requestAnimationFrame(animateRef.current);
+    },
+    [calcTarget],
+  );
+
+  const handleLetterMouseMove = useCallback(
+    (e) => {
+      targetPos.current = calcTarget(e.clientX, e.clientY);
+    },
+    [calcTarget],
+  );
+
+  const handleLetterMouseLeave = useCallback(() => {
+    setHoverData(null);
+    isHovering.current = false;
+    if (rafId.current) cancelAnimationFrame(rafId.current);
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (rafId.current) cancelAnimationFrame(rafId.current);
+    };
+  }, []);
+
   const letters = [
     {
       id: 1,
       char: "/images/footer/R.svg",
       color: "#EC8047",
       image: "/images/footer/footer-1.svg",
-      hoverOffset: { x: "10%", y: "59%" },
     },
     {
       id: 2,
       char: "/images/footer/A1.svg",
       color: "#FAE4B2",
       image: "/images/footer/footer-2.svg",
-      hoverOffset: { x: "-5%", y: "-135%" },
     },
     {
       id: 3,
       char: "/images/footer/G.svg",
       color: "#850419",
       image: "/images/footer/footer-3.svg",
-      hoverOffset: { x: "-120%", y: "-50%" },
     },
     {
       id: 4,
       char: "/images/footer/A2.svg",
       color: "#F7BD73",
       image: "/images/footer/footer-4.svg",
-      hoverOffset: { x: "9%", y: "32%" },
     },
     {
       id: 5,
       char: "/images/footer/M.svg",
       color: "#768367",
       image: "/images/footer/footer-5.svg",
-      hoverOffset: { x: "-120%", y: "36%" },
     },
   ];
 
   return (
     <footer
-      ref={footerRef} // attach the ref to the root footer element
+      ref={footerRef}
       className="bg-black text-white relative inset-x-0 w-full overflow-x-clip z-0"
     >
+      {/* Cursor-following float — double-buffer crossfade between images */}
+      <div
+        ref={floatRef}
+        className="fixed pointer-events-none z-200"
+        style={{
+          width: `${FLOAT_W}px`,
+          height: `${FLOAT_H}px`,
+          top: 0,
+          left: 0,
+          opacity: hoverData ? 1 : 0,
+          transition: "opacity 0.25s ease",
+          willChange: "left, top",
+        }}
+      >
+        {["a", "b"].map((slot) =>
+          slots[slot] ? (
+            <div
+              key={slot}
+              className="absolute inset-0 rounded-sm overflow-hidden"
+              style={{
+                opacity: slots.active === slot ? 1 : 0,
+                transition: "opacity 0.3s ease",
+              }}
+            >
+              <Image src={slots[slot]} alt="" fill className="object-cover" />
+            </div>
+          ) : null,
+        )}
+      </div>
       <div className="relative max-w-7xl w-full mx-auto box-border md:mt-2 mt-20 pt-5 pb-5">
         <div className="relative w-full h-[clamp(220px,32vw,420px)] flex items-center justify-center overflow-visible">
           {" "}
@@ -98,16 +205,9 @@ export default function Footer() {
               <span
                 key={letter.id}
                 className="cursor-pointer relative"
-                onPointerEnter={(e) => {
-                  if (e.pointerType === "mouse") {
-                    setHoverData(letter);
-                  }
-                }}
-                onPointerLeave={(e) => {
-                  if (e.pointerType === "mouse") {
-                    setHoverData(null);
-                  }
-                }}
+                onMouseEnter={(e) => handleLetterMouseEnter(e, letter)}
+                onMouseMove={handleLetterMouseMove}
+                onMouseLeave={handleLetterMouseLeave}
                 onPointerDown={(e) => {
                   if (e.pointerType === "touch") {
                     setActiveMobileLetter(letter.id);
@@ -147,34 +247,6 @@ export default function Footer() {
                       hoverData?.id === letter.id ? letter.color : "white",
                   }}
                 />
-
-                {/* ✅ SMOOTH HOVER IMAGE (ALWAYS MOUNTED) */}
-                <div
-                  className="
-                    absolute
-                    pointer-events-none
-                    z-[100]
-                    transition-all duration-500
-                    ease-[cubic-bezier(0.22,1,0.36,1)]
-                    will-change-[opacity,transform]
-                  "
-                  style={{
-                    left: "50%",
-                    top: "50%",
-                    transform: `translate(${letter.hoverOffset.x}, ${letter.hoverOffset.y})`,
-                    opacity: hoverData?.id === letter.id ? 1 : 0,
-                    scale: hoverData?.id === letter.id ? 1 : 0.95,
-                    width: "0.8em",
-                    height: "0.5em",
-                  }}
-                >
-                  <Image
-                    src={letter.image}
-                    alt={letter.char}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
               </span>
             ))}
           </h1>

@@ -126,7 +126,7 @@ const GAVEL_CONFIG = {
   baseOffsetY: -30, // px
   // animation
   animDurationMs: 600, // total animation time before redirect
-  redirectUrl: "arunnats.com", // TODO CHAGNE THE LINK TO THE MAKEMYPASS
+  redirectUrl: "https://makemypass.com/event/sahitiparliamentarydebate",
 };
 
 const GavelAnimation = forwardRef(function GavelAnimation(
@@ -279,7 +279,7 @@ function RegisterCard() {
 
 export default function DetailsSection() {
   return (
-    <section className="relative w-full py-12 md:py-20 px-4 md:px-12 lg:px-24">
+    <section className="relative w-full py-12 md:py-20 px-4 md:px-12 lg:px-26">
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-10 lg:gap-16">
         {/* Mobile: Register card on top */}
         <div className="block lg:hidden">
@@ -372,8 +372,8 @@ export default function DetailsSection() {
         </div>
 
         {/* Desktop: Register card on right */}
-        <div className="hidden lg:block">
-          <div className="top-24">
+        <div className="hidden lg:block pt-2 pb-44">
+          <div className="top-24 sticky">
             <RegisterCard />
           </div>
         </div>

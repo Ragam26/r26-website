@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { impact } from "@/lib/fonts";
 
-export default function PrizesSection({ prizeScrollRef, prizeCardInnerRefs }) {
+export default function PrizesSection({ prizeScrollRef, prizeCardInnerRefs, prizeTitleRef }) {
   return (
     <section className="relative w-screen">
       <div
@@ -46,6 +46,7 @@ export default function PrizesSection({ prizeScrollRef, prizeCardInnerRefs }) {
           />
 
           <h1
+            ref={prizeTitleRef}
             className={`${impact.className} absolute top-[4%] left-1/2 -translate-x-1/2 z-40 text-white text-center text-[20vw] font-light leading-none select-none pointer-events-none whitespace-nowrap`}
           >
             PRIZES

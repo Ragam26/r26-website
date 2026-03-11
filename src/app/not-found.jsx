@@ -9,8 +9,13 @@ export default function NotFound() {
         Page Not Found
       </h2>
 
-      <p className="text-white/70 max-w-md mb-8">
-        The page you are looking for doesn’t exist or is still being prepared.
+      <p className="text-white/70 max-w-lg mb-2">
+        The page you are looking for doesn&apos;t exist or is still being
+        prepared.
+      </p>
+
+      <p className="text-white/40 max-w-md mb-8 text-sm italic">
+        It probably hasn&apos;t been pushed to prod yet.
       </p>
 
       <Link

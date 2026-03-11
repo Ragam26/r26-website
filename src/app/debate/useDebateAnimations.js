@@ -13,6 +13,7 @@ export default function useDebateAnimations({
   panelTitleRef,
   prizeCardInnerRefs,
   prizeScrollRef,
+  prizeTitleRef,
 }) {
   useGSAP(
     () => {
@@ -121,6 +122,23 @@ export default function useDebateAnimations({
           },
         });
       });
+
+      // animate prizes title — same length as panelTitleRef, starts early
+      gsap.fromTo(
+        prizeTitleRef.current,
+        { yPercent: 50, opacity: 0 },
+        {
+          yPercent: 0,
+          opacity: 1,
+          ease: "none",
+          scrollTrigger: {
+            trigger: prizeScrollRef.current,
+            start: "top 120%",
+            end: "top 60%",
+            scrub: 0.3,
+          },
+        },
+      );
 
       // flip prize cards
       prizeCardInnerRefs.current.forEach((inner, i) => {
