@@ -36,6 +36,18 @@ export const slideData = [
     descWeight: "font-normal",
   },
   {
+    title: "DEBATE",
+    titleFont: magilio.className,
+    titleSize: "text-8xl",
+    titleSizeMobile: "text-7xl",
+    titleWeight: "font-normal",
+
+    desc: "Sahiti Parliamentary Debate",
+    descFont: marko.className,
+    descSize: "text-xl",
+    descWeight: "font-normal",
+  },
+  {
     title: "GAMING",
     titleFont: scalter.className,
     titleSize: "text-8xl",

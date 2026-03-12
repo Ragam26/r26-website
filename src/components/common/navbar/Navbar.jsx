@@ -1,6 +1,6 @@
 "use client";
 
-import { memo, useEffect, useState } from "react";
+import { memo, useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import MenuOverlay from "./MenuOverlay";
 import { MdOutlineMenu } from "react-icons/md";
@@ -10,10 +10,16 @@ import Image from "next/image";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
 
-function Navbar() {
+function Navbar({ routesToHide }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [closeOnNextPathChange, setCloseOnNextPathChange] = useState(false);
   const pathname = usePathname();
+  const isMenuOpenRef = useRef(isMenuOpen);
+
+  // keep isMenuOpenRef in sync so scroll handler always reads the latest value
+  useEffect(() => {
+    isMenuOpenRef.current = isMenuOpen;
+  }, [isMenuOpen]);
 
   useEffect(() => {
     if (pathname !== "/") {
@@ -23,6 +29,78 @@ function Navbar() {
         pointerEvents: "auto",
       });
     }
+  }, [pathname]);
+
+  // hide on scroll behaviour for specific routes
+  useEffect(() => {
+    if (!routesToHide.includes(pathname)) return;
+
+    const navbar = document.querySelector("#global-navbar");
+    if (!navbar) return;
+
+    let lastScrollY = window.scrollY;
+    let hidden = false;
+    let ticking = false;
+
+    const showNavbar = () => {
+      if (hidden) {
+        hidden = false;
+        gsap.to(navbar, {
+          y: 0,
+          duration: 0.35,
+          ease: "power2.out",
+          overwrite: "auto",
+        });
+      }
+    };
+
+    const hideNavbar = () => {
+      if (!hidden) {
+        hidden = true;
+        gsap.to(navbar, {
+          y: "-100%",
+          duration: 0.35,
+          ease: "power2.in",
+          overwrite: "auto",
+        });
+      }
+    };
+
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const currentScrollY = window.scrollY;
+        const delta = currentScrollY - lastScrollY;
+
+        if (!isMenuOpenRef.current) {
+          if (delta > 5) {
+            hideNavbar();
+          } else if (delta < -5) {
+            showNavbar();
+          }
+        }
+
+        lastScrollY = currentScrollY;
+        ticking = false;
+      });
+    };
+
+    const onMouseMove = (e) => {
+      if (e.clientY < 80) {
+        showNavbar();
+      }
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("mousemove", onMouseMove);
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("mousemove", onMouseMove);
+      // reset when leaving the route
+      gsap.to(navbar, { y: 0, duration: 0.3, overwrite: "auto" });
+    };
   }, [pathname]);
 
   useEffect(() => {

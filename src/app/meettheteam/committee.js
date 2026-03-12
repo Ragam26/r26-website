@@ -328,7 +328,7 @@ export const pc = [
         position: 'Head',
     },
     {
-        name: 'Pranav Babu ANDY',
+        name: 'Pranav Babu Andy',
         image: '/images/meettheteam/committees/pc/Pranav.webp',
         position: 'Head',
     },
