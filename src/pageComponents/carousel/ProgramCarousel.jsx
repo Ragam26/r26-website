@@ -15,10 +15,11 @@ const ProgramCarousel = () => {
   const slideRoutes = [
     "/events",
     "/workshops",
-    "/ragnarok",
-    "/prodezza",
-    "/sports",
-    "/proshow",
+    "/sahiti",
+    "/notFound",
+    "/notFound",
+    "/notFound",
+    "/notFound",
     "/i-ink",
     "/notFound",
   ];

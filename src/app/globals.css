@@ -54,3 +54,41 @@ body,
 .animate-fade-in {
   animation: fade-in 0.2s ease-out;
 }
+
+.adjcard-wrapper {
+  animation: floating 3s infinite ease-in-out;
+}
+
+#card-1 .adjcard-wrapper {
+  animation-delay: 0s;
+}
+#card-2 .adjcard-wrapper {
+  animation-delay: 0.2s;
+}
+#card-3 .adjcard-wrapper {
+  animation-delay: 0.4s;
+}
+
+@keyframes floating {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes prize-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+.prize-card-bob {
+  animation: prize-bob 2.5s infinite ease-in-out;
+}

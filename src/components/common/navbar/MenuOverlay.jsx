@@ -125,9 +125,7 @@ export default function MenuOverlay({ isOpen, onMenuItemClick }) {
           </Link>
         ))}
       </div>
-      <div className="hidden md:flex">
-        <ThreeScene />
-      </div>
+      <div className="hidden md:flex">{/* <ThreeScene /> */}</div>
     </div>
   );
 }
