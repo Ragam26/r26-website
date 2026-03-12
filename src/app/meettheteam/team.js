@@ -21,7 +21,7 @@ export const techLeads = [
   },
   {
     name: "Fayis Rahman",
-    image: "/images/meettheteam/tech/Fayis.webp",
+    image: "/images/meettheteam/tech/fayis.webp",
     position: "Lead Developer",
     github: "https://github.com/FayisRahman",
     linkedin: "https://www.linkedin.com/in/fayis-rahman-thadathil-6644b9250/",
