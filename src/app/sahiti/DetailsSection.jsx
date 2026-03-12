@@ -14,9 +14,9 @@ import Image from "next/image";
 import { alata, ibmPlexMono, archivo, neuemachina } from "@/lib/fonts";
 
 const policyButtons = [
-  { label: "BROCHURE", href: null },
+  { label: "BROCHURE", href: "/images/debate/SahitiBrochure.pdf" },
   { label: "GUIDELINES", href: null },
-  { label: "ACCOMMODATION", href: null },
+  { label: "ACCOMMODATION", href: "/hospitality" },
   { label: "EQUITY POLICY", href: null },
   { label: "TAB POLICY", href: null },
   { label: "SCHEDULE", href: null },
@@ -247,11 +247,11 @@ function RegisterCard() {
   };
 
   return (
-    <div className="bg-[#BA9B64] rounded-xl p-6 md:p-8 md:px-2 flex flex-col gap-3 w-full lg:w-85 shrink-0">
+    <div className="bg-[#BA9B64] rounded-xl p-6 md:p-8 md:px-6 flex flex-col gap-3 w-full lg:w-85 shrink-0">
       <h2
-        className={`${archivo.className} text-white text-2xl md:text-3xl  font-bold tracking-wide uppercase`}
+        className={`${archivo.className} text-white text-lg md:text-xl  font-bold tracking-wide uppercase`}
       >
-        REGISTER
+        Team Registration
       </h2>
       <div className="h-px bg-[#560C00] w-[80%]" />
 
@@ -269,10 +269,24 @@ function RegisterCard() {
       <button
         onClick={handleRegisterClick}
         disabled={animating}
-        className={`${ibmPlexMono.className} relative overflow-hidden bg-[#560C00] rounded-full px-4 py-3 text-white/80 text-md uppercase text-center group cursor-pointer disabled:opacity-60`}
+        className={`${ibmPlexMono.className} relative overflow-hidden bg-[#560C00] rounded-full px-4 py-2 text-white/80 text-lg uppercase text-center group cursor-pointer disabled:opacity-60`}
       >
         <span className="relative z-10">{animating ? "..." : "REGISTER"}</span>
       </button>
+      <h2
+        className={`${archivo.className} text-white text-lg md:text-xl  font-bold tracking-wide uppercase mt-3`}
+      >
+        CA / IA Registration
+      </h2>
+      <div className="h-px bg-[#560C00] w-[80%]" />
+      <a
+        href="https://docs.google.com/forms/d/1h6LLf3rNCfAW7WINoOPuAcmp1SvgjxKGdF4HGgucFzw/edit"
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`${ibmPlexMono.className} relative overflow-hidden bg-[#560C00] rounded-full px-4 py-2 text-white/80 text-lg uppercase text-center group cursor-pointer block`}
+      >
+        <span className="relative z-10">REGISTER</span>
+      </a>
     </div>
   );
 }

@@ -15,7 +15,7 @@ const ProgramCarousel = () => {
   const slideRoutes = [
     "/events",
     "/workshops",
-    "/debate",
+    "/sahiti",
     "/notFound",
     "/notFound",
     "/notFound",

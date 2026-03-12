@@ -2,7 +2,11 @@
 import Image from "next/image";
 import { impact } from "@/lib/fonts";
 
-export default function PrizesSection({ prizeScrollRef, prizeCardInnerRefs, prizeTitleRef }) {
+export default function PrizesSection({
+  prizeScrollRef,
+  prizeCardInnerRefs,
+  prizeTitleRef,
+}) {
   return (
     <section className="relative w-screen">
       <div
@@ -78,10 +82,13 @@ export default function PrizesSection({ prizeScrollRef, prizeCardInnerRefs, priz
                       priority
                     />
                   </div>
-                  <div className="absolute w-full h-full backface-hidden rounded-[0.8em] overflow-hidden bg-white transform-[rotateY(180deg)] p-4 flex items-center justify-center">
-                    <p className="text-black text-center text-base font-bold">
-                      Prize {i + 1}
-                    </p>
+                  <div className="absolute w-full h-full backface-hidden rounded-[0.8em] overflow-hidden transform-[rotateY(180deg)]">
+                    <Image
+                      src={`/images/debate/prize${i + 1}.png`}
+                      alt={`Prize ${i + 1}`}
+                      fill
+                      className="object-cover"
+                    />
                   </div>
                 </div>
               </div>
