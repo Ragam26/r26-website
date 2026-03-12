@@ -130,16 +130,11 @@ export const EventModal = ({ event = {}, onClose, isOpen }) => {
             {/* Register card — mobile only, at top of scroll */}
             <div className="block md:hidden" style={{ paddingTop: "20px" }}>
               <div style={{ background: "#c9a84c", borderRadius: "12px", padding: "20px", textAlign: "left", marginBottom: "4px" }}>
-                <p style={{ margin: "0 0 16px", fontWeight: "800", fontSize: "16px", letterSpacing: "1.5px", color: "#1a0805", textTransform: "uppercase" }}>REGISTER</p>
-                <div style={{ background: "#fff", borderRadius: "8px", padding: "10px 14px", display: "inline-block", marginBottom: "16px" }}>
-                  <span style={{ fontSize: "20px", fontWeight: "800", color: "#2a0f0a" }}>{registrationFee}</span>
-                </div>
-                <br />
                 <button
                   style={{ background: "#2a0f0a", color: "#e8d5a3", border: "none", borderRadius: "6px", padding: "10px 20px", fontWeight: "700", fontSize: "13px", letterSpacing: "1.5px", cursor: "pointer", width: "100%", textTransform: "uppercase" }}
                   onMouseEnter={e => e.currentTarget.style.background = "#1a0805"}
                   onMouseLeave={e => e.currentTarget.style.background = "#2a0f0a"}
-                >REGISTER</button>
+                >REGISTER NOW</button>
               </div>
             </div>
             {/* Prizes Worth */}
@@ -158,12 +153,12 @@ export const EventModal = ({ event = {}, onClose, isOpen }) => {
             </Section>
 
             {/* About */}
-            <Section label="ABOUT">
+            <Section label="Guidelines">
               <div style={{ marginTop: "12px" }}>
                 {about.split("\n").map((line, i) =>
                   line.trim() === ""
                     ? <br key={i} />
-                    : <p key={i} style={{ fontSize: "12px", lineHeight: "1.7", color: "#c4aa7a", margin: "0 0 8px" }}>{line}</p>
+                    : <p key={i} style={{ fontSize: "16px", lineHeight: "1.7", color: "#c4aa7a", margin: "0 0 8px" }}>{line}</p>
                 )}
               </div>
             </Section>
@@ -206,7 +201,7 @@ export const EventModal = ({ event = {}, onClose, isOpen }) => {
               padding: "20px",
               textAlign: "left",
             }}>
-              <p style={{
+              {/* <p style={{
                 margin: "0 0 16px",
                 fontWeight: "800",
                 fontSize: "16px",
@@ -226,9 +221,7 @@ export const EventModal = ({ event = {}, onClose, isOpen }) => {
                   fontSize: "20px", fontWeight: "800",
                   color: "#2a0f0a",
                 }}>{registrationFee}</span>
-              </div>
-
-              <br />
+              </div> */}
               <button
                 style={{
                   background: "#2a0f0a",
@@ -246,7 +239,7 @@ export const EventModal = ({ event = {}, onClose, isOpen }) => {
                 onMouseEnter={e => e.currentTarget.style.background = "#1a0805"}
                 onMouseLeave={e => e.currentTarget.style.background = "#2a0f0a"}
               >
-                REGISTER
+                REGISTER NOW
               </button>
             </div>
 
