@@ -29,9 +29,21 @@ const PROSHOW_EVENTS = [
     regFee: '1499',
     earlyBirdFee: '1199',
     artists: ['DARSHAN RAVAL', 'VEDAN'],
-    images: ['/images/proshow/day2/Darshan.jpg', '/images/proshow/day2/Vedan.jpg'],
+    images: ['/images/proshow/day2/Darshan.jpg', '/images/proshow/day2/Vedan2.jpeg'],
+  },
+  {
+    id: 3,
+    day: '3',
+    divasam: 'SUNDAY',
+    date: '29',
+    alignment: 'left',
+    regUrl: registrationUrl,
+    regFee: '1499',
+    earlyBirdFee: '1199',
+    artists: ['JONITA GANDHI', 'VINEETH SREENIVASAN', 'YOGISEKAR'],
+    images: ['/images/proshow/day3/Jonita.webp', '/images/proshow/day3/Vineeth.webp','/images/proshow/day3/yogi.webp'],
   }
-  // Add more days here...
+  
 ]
 
 export default function EventsPage() {

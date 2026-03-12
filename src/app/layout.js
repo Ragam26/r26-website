@@ -16,6 +16,13 @@ import {
   slackey,
   leagueGothic,
   kiwi,
+  archivo,
+  instrument,
+  impact,
+  montserrat,
+  ibmPlexMono,
+  alata,
+  neuemachina,
 } from "@/lib/fonts";
 
 export const metadata = {
@@ -23,6 +30,8 @@ export const metadata = {
   description:
     "Official website of Ragam 2026, South India's biggest cultural fest!",
 };
+
+const HIDE_ON_SCROLL_ROUTES = ["/debate"];
 
 export default function RootLayout({ children }) {
   return (
@@ -32,6 +41,9 @@ export default function RootLayout({ children }) {
           ${leagueGothic.variable}
           ${slackey.variable}
           ${brixton.variable}
+          ${archivo.variable}
+          ${impact.variable}
+          ${instrument.variable}
           ${calfine.variable}
           ${elanor.variable}
           ${magilio.variable}
@@ -39,6 +51,10 @@ export default function RootLayout({ children }) {
           ${moniqa.variable}
           ${scalter.variable}
           ${kiwi.variable}
+          ${montserrat.variable}
+          ${ibmPlexMono.variable}
+          ${alata.variable}
+          ${neuemachina.variable}
           antialiased
         `}
         suppressHydrationWarning
@@ -50,7 +66,7 @@ export default function RootLayout({ children }) {
             className="relative z-10 bg-black"
             style={{ marginBottom: "var(--footer-height, 0px)" }}
           >
-            <Navbar />
+            <Navbar routesToHide={HIDE_ON_SCROLL_ROUTES} />
             {children}
           </div>
 

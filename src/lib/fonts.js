@@ -1,5 +1,38 @@
 import localFont from "next/font/local";
-import { Slackey,Abril_Fatface, Playfair, Prompt, Poppins } from "next/font/google";
+import {
+  Slackey,
+  Abril_Fatface,
+  Playfair,
+  Prompt,
+  Poppins,
+  Alata,
+  IBM_Plex_Mono,
+  Montserrat,
+} from "next/font/google";
+
+export const neuemachina = localFont({
+  src: "../../public/fonts/NeueMachina.otf",
+  variable: "--font-neuemachina",
+  display: "swap",
+});
+
+export const impact = localFont({
+  src: "../../public/fonts/impact.ttf",
+  variable: "--font-impact",
+  display: "swap",
+});
+
+export const archivo = localFont({
+  src: "../../public/fonts/ArchivoBlack.ttf",
+  variable: "--font-archivo",
+  display: "swap",
+});
+
+export const instrument = localFont({
+  src: "../../public/fonts/InstrumentSerif.ttf",
+  variable: "--font-instrument",
+  display: "swap",
+});
 
 export const brixton = localFont({
   src: "../../public/fonts/brixton.otf",
@@ -65,7 +98,6 @@ export const reykjavik = localFont({
   variable: "--font-reykjavik",
 });
 
-
 export const abril = Abril_Fatface({
   subsets: ["latin"],
   weight: "400",
@@ -89,7 +121,7 @@ export const poppins = Poppins({
   style: ["normal", "italic"],
 });
 
-export const liberationSerif = localFont({ 
+export const liberationSerif = localFont({
   src: "../../public/fonts/LiberationSerif-Bold.ttf",
   variable: "--font-liberation-serif",
   display: "swap",
@@ -99,4 +131,21 @@ export const grotapDemo = localFont({
   src: "../../public/fonts/GrotapDemo.otf",
   variable: "--font-grotap-demo",
   display: "swap",
+});
+
+export const alata = Alata({
+  subsets: ["latin"],
+  weight: "400",
+});
+
+export const ibmPlexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700"],
+  style: ["normal", "italic"],
+});
+
+export const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  style: ["normal", "italic"],
 });

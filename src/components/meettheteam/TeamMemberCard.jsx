@@ -2,11 +2,33 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { FaLinkedinIn } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
+import { FaGlobe } from "react-icons/fa";
 
-export default function TeamMemberCard({ name, image, hoverImage, position, linkedin, github }) {
+let currentAudio = null;
+
+function playSong(src) {
+  if (currentAudio) {
+    currentAudio.pause();
+    currentAudio.currentTime = 0;
+  }
+  currentAudio = new Audio(src);
+  currentAudio.play().catch(() => {});
+}
+
+export default function TeamMemberCard({
+  name,
+  image,
+  hoverImage,
+  position,
+  linkedin,
+  github,
+  website,
+  song,
+}) {
   const [imgError, setImgError] = useState(false);
   const displayName = name && name.toString().trim() ? name : "Name";
-  const displayPosition = position && position.toString().trim() ? position : null;
+  const displayPosition =
+    position && position.toString().trim() ? position : null;
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -37,6 +59,7 @@ export default function TeamMemberCard({ name, image, hoverImage, position, link
         onClick={() => {
           setIsHovered(true);
           setTimeout(() => setIsHovered(false), 1000);
+          if (song) playSong(song);
         }}
       >
         <div
@@ -106,7 +129,7 @@ export default function TeamMemberCard({ name, image, hoverImage, position, link
           </p>
         )}
 
-        {(linkedin || github) && (
+        {(linkedin || github || website) && (
           <div
             style={{
               display: "flex",
@@ -115,20 +138,35 @@ export default function TeamMemberCard({ name, image, hoverImage, position, link
               marginTop: "0.5rem",
             }}
           >
+            {website && (
+              <a
+                href={website}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  color: "#6b0000",
+                  display: "flex",
+                  alignItems: "center",
+                  fontSize: "1.65rem",
+                }}
+              >
+                <FaGlobe />
+              </a>
+            )}{" "}
             {github && (
-            <a
-              href={github}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                color: '#6b0000',
-                display: 'flex',
-                alignItems: 'center',
-                fontSize: '1.65rem',
-              }}
-            >
-              <FaGithub />
-            </a>
+              <a
+                href={github}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  color: "#6b0000",
+                  display: "flex",
+                  alignItems: "center",
+                  fontSize: "1.65rem",
+                }}
+              >
+                <FaGithub />
+              </a>
             )}
             {linkedin && (
               <a
@@ -136,17 +174,16 @@ export default function TeamMemberCard({ name, image, hoverImage, position, link
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
-                  color: '#6b0000',
-                  display: 'flex',
-                  alignItems: 'center',
-                  fontSize: '1.65rem',
+                  color: "#6b0000",
+                  display: "flex",
+                  alignItems: "center",
+                  fontSize: "1.65rem",
                 }}
               >
                 <FaLinkedinIn />
               </a>
-          )}
-          
-        </div>
+            )}
+          </div>
         )}
       </div>
     </div>
