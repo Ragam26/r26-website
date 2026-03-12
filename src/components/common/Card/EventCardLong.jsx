@@ -148,7 +148,7 @@ export default function EventCardLong({
                     </span>
                     <span
                       className={`font-extrabold tracking-wide leading-tight ${
-                        artistList.length <= 3
+                        artistList.length <= 2
                           ? 'text-2xl md:text-4xl'
                           : 'text-xl md:text-3xl'
                       }`}

@@ -29,7 +29,7 @@ const PROSHOW_EVENTS = [
     regFee: '1499',
     earlyBirdFee: '1199',
     artists: ['DARSHAN RAVAL', 'VEDAN'],
-    images: ['/images/proshow/day2/Darshan.jpg', '/images/proshow/day2/Vedan2.jpg'],
+    images: ['/images/proshow/day2/Darshan.jpg', '/images/proshow/day2/Vedan2.jpeg'],
   },
   {
     id: 3,
