@@ -1,8 +1,11 @@
+import Link from "next/link";
 import Image from "next/image";
 import { abril, playfair, prompt } from "@/lib/fonts";
 
 const commonBorderStyle =
   "border border-[#730000] group-hover:border-[#FFDEAC] transition-colors";
+
+const cardClass = "group bg-[#FFDEAC] hover:bg-[#730000] transition-colors md:w-100 w-80 md:h-130 h-110 p-3 flex flex-col gap-2 cursor-pointer";
 
 export default function EventCard({
   day = "",
@@ -14,11 +17,8 @@ export default function EventCard({
   regUrl = "",
   onClick,
 }) {
-  return (
-    <div
-      onClick={onClick}
-      className={`group bg-[#FFDEAC] hover:bg-[#730000] transition-colors md:w-100 w-80 md:h-130 h-110 p-3 flex flex-col gap-2 ${onClick ? "cursor-pointer" : ""}`}
-    >
+  const inner = (
+    <>
       <div className="flex gap-2 flex-1">
         <div className="w-5 flex flex-[1.2] flex-col gap-2">
           <div
@@ -98,6 +98,12 @@ export default function EventCard({
           </span>
         </div>
       )}
-    </div>
+    </>
   );
+
+  if (onClick) {
+    return <div onClick={onClick} className={cardClass}>{inner}</div>;
+  }
+
+  return <Link href={regUrl} target="_blank" className={cardClass}>{inner}</Link>;
 }
