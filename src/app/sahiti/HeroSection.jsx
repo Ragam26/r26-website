@@ -97,7 +97,7 @@ export default function HeroSection({
   return (
     <>
       {activeAdj && <AdjModal adj={activeAdj} onClose={handleCloseModal} />}
-      <div className="scroll-track relative" style={{ height: "400vh" }}>
+      <div className="scroll-track relative h-[300vh] md:h-[400vh]">
         <div
           className="sticky top-0 w-screen h-screen overflow-hidden"
           ref={stickyRef}
@@ -105,10 +105,10 @@ export default function HeroSection({
           {/* title behind cards */}
           <div
             ref={titleRef}
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[80%] z-0 select-none pointer-events-none flex flex-col items-center"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[140%] md:-translate-y-[80%] z-0 select-none pointer-events-none flex flex-col items-center"
           >
             <p
-              className={`${instrument.className} text-white text-[2vw] font-light self-start -mb-7 z-10 pointer-events-auto`}
+              className={`${instrument.className} text-white text-[4.5vw] md:text-[2vw] font-light self-center md:self-start -mb-2 md:-mb-7 z-10 pointer-events-auto text-center md:text-left`}
             >
               Ragam <span className="text-[#D4AF37]">X</span>{" "}
               <a
@@ -126,14 +126,16 @@ export default function HeroSection({
               id="sahiti-title"
               onClick={handleTitleClick}
               className={`${archivo.className} text-white text-center font-light leading-none pointer-events-auto cursor-default select-none transition-none ${
-                titleText === "SAHITI" ? "text-[14vw]" : "text-[10vw]"
+                titleText === "SAHITI"
+                  ? "text-[22vw] md:text-[14vw]"
+                  : "text-[12vw] md:text-[10vw]"
               }`}
             >
               {titleText}
             </h1>
 
             <p
-              className={`${instrument.className} text-white text-[2vw] font-light self-end -mt-7`}
+              className={`${instrument.className} text-white text-[7vw] md:text-[2vw] font-light self-center md:self-end -mt-3 md:-mt-7 text-center md:text-right`}
             >
               Asian Parliamentary Debate
             </p>
@@ -142,17 +144,17 @@ export default function HeroSection({
           {/* cap label */}
           <div
             ref={panelTitleRef}
-            className="absolute top-[20%] left-1/2 -translate-x-1/2 z-5 select-none pointer-events-none text-center w-full"
+            className="absolute top-[25%] md:top-[20%] left-1/2 -translate-x-1/2 z-5 select-none pointer-events-none text-center w-full"
           >
             <p
-              className={`${instrument.className}  text-white text-[4.5vw] font-medium tracking-normal `}
+              className={`${instrument.className}  text-white text-[10vw] md:text-[4.5vw] font-medium tracking-normal `}
             >
               Core Adjudication Panel
             </p>
           </div>
 
           {/* cards on top */}
-          <div className="cards relative w-full h-full z-10 translate-y-65 pointer-events-none">
+          <div className="cards relative w-full h-full z-10 translate-y-40 md:translate-y-65 pointer-events-none">
             {" "}
             {CA_DATA.map((adj, index) => (
               <AdjCard

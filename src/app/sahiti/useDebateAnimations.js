@@ -18,15 +18,19 @@ export default function useDebateAnimations({
   useGSAP(
     () => {
       const cards = cardRefs.current;
-      const totalScrollHeight = window.innerHeight * 2.7;
-      const positions = [30, 50, 70];
-      const rotations = [-17, 0, 17];
+      const isMobile = window.innerWidth < 768;
+      const totalScrollHeight = window.innerHeight * (isMobile ? 1.7 : 2.7);
+      const positions = isMobile ? [27, 73, 50] : [30, 50, 70];
+      const rotations = isMobile ? [-17, 17, 0] : [-17, 0, 17];
       const initialPositions = [44, 50, 56];
       const initialRotations = [-7, 0, 7];
+      // mobile: 2 rows — top row (cards 0,1) and bottom row (card 2)
+      const mobileTopInitial = ["48%", "48%", "48%"];
+      const mobileTopFinal = ["36%", "36%", "64%"];
 
       // scroll title upward across the full scroll duration
       gsap.to(titleRef.current, {
-        yPercent: -380,
+        yPercent: isMobile ? -250 : -380,
         ease: "none",
         scrollTrigger: {
           trigger: container.current.querySelector(".scroll-track"),
@@ -49,25 +53,27 @@ export default function useDebateAnimations({
 
       // spread cards
       cards.forEach((card, index) => {
-        gsap.fromTo(
-          card,
-          {
-            left: `${initialPositions[index]}%`,
-            rotation: initialRotations[index],
+        const fromProps = {
+          left: `${initialPositions[index]}%`,
+          rotation: initialRotations[index],
+        };
+        const toProps = {
+          left: `${positions[index]}%`,
+          rotation: rotations[index],
+          ease: "none",
+          scrollTrigger: {
+            trigger: container.current.querySelector(".scroll-track"),
+            start: "top top",
+            end: () => `+=${window.innerHeight}`,
+            scrub: 0.5,
+            id: `spread-${index}`,
           },
-          {
-            left: `${positions[index]}%`,
-            rotation: rotations[index],
-            ease: "none",
-            scrollTrigger: {
-              trigger: container.current.querySelector(".scroll-track"),
-              start: "top top",
-              end: () => `+=${window.innerHeight}`,
-              scrub: 0.5,
-              id: `spread-${index}`,
-            },
-          },
-        );
+        };
+        if (isMobile) {
+          fromProps.top = mobileTopInitial[index];
+          toProps.top = mobileTopFinal[index];
+        }
+        gsap.fromTo(card, fromProps, toProps);
       });
 
       // scroll "Core Adjudication Panel" label up during the flip phase
@@ -80,8 +86,10 @@ export default function useDebateAnimations({
           ease: "none",
           scrollTrigger: {
             trigger: container.current.querySelector(".scroll-track"),
-            start: () => `top+=${window.innerHeight} top`,
-            end: () => `top+=${window.innerHeight * 1.9} top`,
+            start: () =>
+              `top+=${window.innerHeight * (isMobile ? 0.85 : 1)} top`,
+            end: () =>
+              `top+=${window.innerHeight * (isMobile ? 1.4 : 1.9)} top`,
             scrub: 1,
           },
         },

@@ -17,7 +17,7 @@ const AdjCard = forwardRef(({ id, frontAlt, adjData, onOpenModal }, ref) => {
 
   return (
     <div
-      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-60 h-90 perspective-[1000px] pointer-events-auto"
+      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-36 h-54 md:w-60 md:h-90 perspective-[1000px] pointer-events-auto"
       id={id}
       ref={ref}
       onClick={handleClick}
