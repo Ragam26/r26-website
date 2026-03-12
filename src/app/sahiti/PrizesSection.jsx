@@ -57,15 +57,19 @@ export default function PrizesSection({
           </h1>
 
           <div
-            className="absolute inset-x-0 z-50 flex flex-row items-center justify-center gap-16"
-            style={{ top: "46%" }}
+            className="absolute inset-x-0 z-50 top-[16%] md:top-[46%]
+              flex flex-col w-[80%] mx-auto
+              md:w-auto md:flex-row md:items-center md:justify-center md:gap-16"
           >
             {[...Array(4)].map((_, i) => (
               <div
                 key={i}
-                className="prize-card-bob w-50 h-75 perspective-[1000px] shrink-0"
+                className={`prize-card-bob perspective-[1000px] shrink-0
+                  w-[47%] aspect-[2/3] md:w-50 md:h-75 md:aspect-auto
+                  ${i % 2 === 0 ? "self-start md:self-auto" : "self-end md:self-auto"}
+                  ${i === 0 ? "md:-mt-[5vh]" : `-mt-22 ${i % 2 === 0 ? "md:-mt-[5vh]" : "md:mt-[5vh]"}`}
+                `}
                 style={{
-                  marginTop: i % 2 === 0 ? "-5vh" : "5vh",
                   animationDelay: `${i % 2 === 0 ? 0 : -1.25}s`,
                 }}
               >
