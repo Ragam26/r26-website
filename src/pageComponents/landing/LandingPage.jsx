@@ -18,7 +18,7 @@ const DANCER_REVEAL_START = 0.55;
 const MASK_CLOSED = "polygon(0% 0%, 0% 0%, -20% 100%, -20% 100%)";
 const MASK_OPEN = "polygon(0% 0%, 120% 0%, 100% 100%, -20% 100%)";
 
-// const AUTOSCROLL_TARGET_PROGRESS = DANCER_REVEAL_START + 0.37; // Scroll to a point after the dancers are revealed
+const AUTOSCROLL_TARGET_PROGRESS = DANCER_REVEAL_START + 0.37; // Scroll to a point after the dancers are revealed
 
 export default function LandingPage() {
   const outerContainerRef = useRef(null);
@@ -29,8 +29,8 @@ export default function LandingPage() {
   const loopsRef = useRef([]);
   const dancerContainerRef = useRef(null);
   const loaderRef = useRef(null);
-  const [leftDancer] = useState(() => Math.floor(Math.random() * 3) + 1);
-  const [rightDancer] = useState(() => Math.floor(Math.random() * 3) + 1);
+  const [leftDancer, setLeftDancer] = useState(1);
+  const [rightDancer, setRightDancer] = useState(1);
   const [isMobile, setIsMobile] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const [showLoader, setShowLoader] = useState(true);
@@ -39,6 +39,8 @@ export default function LandingPage() {
   useLayoutEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsMounted(true);
+    setLeftDancer(Math.floor(Math.random() * 3) + 1);
+    setRightDancer(Math.floor(Math.random() * 3) + 1);
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile(); // check immediately
     window.addEventListener("resize", checkMobile);
@@ -169,53 +171,40 @@ export default function LandingPage() {
       introTl.call(() => spinTl.play(), null, "-=0.9");
 
       // //Trigger autoscroll after intro
-      // introTl.call(() => {
-      //   const totalScroll =
-      //     outerContainerRef.current.scrollHeight - window.innerHeight;
-      //   const targetY = totalScroll * AUTOSCROLL_TARGET_PROGRESS;
+      introTl.call(() => {
+        const trigger = ScrollTrigger.getById("landing-scroll");
+        const targetY = trigger.end * AUTOSCROLL_TARGET_PROGRESS;
 
-      //   lockScroll();
-      //   gsap.to(window, {
-      //     scrollTo: targetY,
-      //     duration: 2.5,
-      //     ease: "power2.inOut",
-      //     onComplete: () => {
-      //       unlockScroll();
+        gsap.to(window, {
+          scrollTo: targetY,
+          duration: 2.5,
+          ease: "power2.inOut",
+          onComplete: () => {
 
-      //       //Freeze animation before killing ScrollTrigger to prevent any jumpiness from scroll position reset
-      //       gsap.set(textRef.current,{
-      //         clipPath: MASK_OPEN,
-      //         scale: LOGO_MAX_SCALE,
-      //         clearProps: "willChange",
-      //       });
-      //       gsap.set(logoRef.current,{
-      //         scale: LOGO_MAX_SCALE,
-      //         clearProps: "willChange",
-      //       });
-      //       gsap.set(dancerContainerRef.current,{
-      //         clipPath: MASK_OPEN,
-      //         opacity: 1,
-      //       });
-      //       gsap.set(loopsRef.current, {
-      //         opacity: 0,
-      //       });
+            //Freeze animation before killing ScrollTrigger to prevent any jumpiness from scroll position reset
+            gsap.set(textRef.current,{
+              clipPath: MASK_OPEN,
+              scale: LOGO_MAX_SCALE,
+              clearProps: "willChange",
+            });
+            gsap.set(logoRef.current,{
+              scale: LOGO_MAX_SCALE,
+              clearProps: "willChange",
+            });
+            gsap.set(dancerContainerRef.current,{
+              clipPath: MASK_OPEN,
+              opacity: 1,
+            });
+            gsap.set(loopsRef.current, {
+              opacity: 0,
+            });
 
-      //       if(outerContainerRef.current) {
-      //         //Collapse evrything to the top
-      //         outerContainerRef.current.style.height = `${window.innerHeight}px`;
-      //         outerContainerRef.current.style.overflow = "hidden";
-      //         ScrollTrigger.getById("landing-scroll")?.kill(false);
-      //       }
+            ScrollTrigger.getById("landing-scroll")?.kill(false);
             
-      //       if(stickyRef.current) {
-      //         stickyRef.current.style.position = "relative";
-      //         stickyRef.current.style.top = "auto";
-      //       }
-
-      //       window.scrollTo({ top: 0, behavior: "instant" });
-      //     },
-      //   });
-      // });
+            ScrollTrigger.refresh();
+          },
+        });
+      });
 
       // BREATHING GLOW EFFECT
       gsap.set(logoRef.current, {
@@ -334,6 +323,15 @@ export default function LandingPage() {
 
     return () => {
       ctx.revert();
+      const navbar = document.getElementById("global-navbar");
+      if (navbar) {
+        gsap.set(navbar, {
+          opacity: 1,
+          y: 0,
+          pointerEvents: "auto",
+          clearProps: "transform",
+        });
+      }
       document.body.style.overflow = "auto";
       window.removeEventListener("load", handleLoad);
       clearTimeout(refreshTimer);

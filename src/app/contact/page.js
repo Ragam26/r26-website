@@ -1,275 +1,296 @@
-"use client";
-import React, { useState } from "react";
-import { Phone, Mail, Instagram, Facebook, Linkedin } from "lucide-react";
+'use client'
+import React, { useState } from 'react'
+import {
+  Phone,
+  Mail,
+  Instagram,
+  Facebook,
+  Linkedin,
+  Loader2,
+} from 'lucide-react'
+import { sendEmail } from './actions.js'
+import ContactInfoCard from '@/components/common/infoCard/ContactInfoCard'
+
+const CONTACT_COLUMNS = [
+  {
+    heading: 'Registration',
+    pocs: [
+      { name: 'Afla', phone: '9645917769' },
+      { name: 'Kannan', phone: '8078126516' },
+      { name: 'Jasna', phone: '9846265747' },
+    ],
+  },
+  {
+    heading: 'Proshow',
+    pocs: [
+      { name: 'Hafees', phone: '9633652217' },
+      { name: 'Abhay', phone: '9400975527' },
+    ],
+  },
+  {
+    heading: 'Workshop',
+    pocs: [
+      { name: 'Thomas', phone: '7736432411'},
+      { name: 'Abhinav', phone: '7510292011'},
+    ]
+  },
+  {
+    heading: 'Events',
+    pocs: [
+      { name: 'Habeeb', phone: '8606139046'},
+      { name: 'Anitta', phone: '8078746610'},
+    ]
+  },
+  {
+    heading: 'I-Ink',
+    pocs: [
+      { name: 'Anugraha', phone: '8921913096'},
+      { name: 'Pratyush', phone: '9400156727'},
+    ]
+  },
+]
 
 export default function ContactPage() {
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    story: "",
-  });
+  const [formData, setFormData] = useState({ name: '', email: '', story: '' })
+  const [status, setStatus] = useState({ type: '', message: '' })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isContactOpen, setIsContactOpen] = useState(false)
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
+    const { name, value } = e.target
+    setFormData((prev) => ({ ...prev, [name]: value }))
+  }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // todo: add form submission logic
-  };
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    setStatus({ type: '', message: '' })
+    try {
+      const result = await sendEmail(formData)
+      if (result.success) {
+        setStatus({
+          type: 'success',
+          message:
+            "Message sent successfully! We'll get back to you as soon as possible.",
+        })
+        setFormData({ name: '', email: '', story: '' })
+      } else {
+        setStatus({
+          type: 'error',
+          message: result.error || 'Failed to send message.',
+        })
+      }
+    } catch {
+      setStatus({ type: 'error', message: 'An unexpected error occurred.' })
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
 
   return (
     <main
-      className="min-h-screen bg-black bg-top bg-no-repeat bg-fixed relative"
+      className='min-h-screen bg-black bg-top bg-no-repeat bg-fixed relative'
       style={{
         backgroundImage: "url('/images/contact/contactbg.png')",
-        backgroundSize: "100% 100%",
-        backgroundPosition: "top center",
+        backgroundSize: '100% 100%',
+        backgroundPosition: 'top center',
       }}
     >
       <div
         style={{
-          position: "fixed",
+          position: 'fixed',
           inset: 0,
-          background: `
-            radial-gradient(
-              circle at center,
-              rgba(0,0,0,0) 25%,
-              rgba(0,0,0,0.4) 70%,
-              rgba(0,0,0,0.8) 100%
-            )
-          `,
+          background: `radial-gradient(circle at center, rgba(0,0,0,0.3) 25%, rgba(0,0,0,0.4) 70%, rgba(0,0,0,0.8) 100%)`,
           zIndex: 1,
-          pointerEvents: "none",
+          pointerEvents: 'none',
         }}
       />
 
-      <div style={{ position: "relative", zIndex: 2 }}>
-        <div className="pt-16 md:pt-24 pb-8 md:pb-0 flex flex-col items-center justify-center px-4">
-          <h1 className="text-white text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-serif tracking-[0.15em] sm:tracking-[0.2em] md:tracking-[0.3em] mt-8 sm:mt-10 md:mt-12 mb-4 md:mb-6 lg:mb-8 text-center">
+      <div style={{ position: 'relative', zIndex: 2 }}>
+        <div className='pt-16 md:pt-24 pb-8 md:pb-0 flex flex-col items-center justify-center px-4'>
+          <h1 className='text-white text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-serif tracking-[0.15em] sm:tracking-[0.2em] md:tracking-[0.3em] mt-8 sm:mt-10 md:mt-12 mb-4 md:mb-6 lg:mb-8 text-center'>
             CONTACT
           </h1>
         </div>
 
-        <div className="flex justify-center px-4 pb-16 md:pb-20">
-          <div className="max-w-6xl w-full">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-              <div className="bg-gray-800/20 backdrop-blur-sm rounded-2xl p-8 sm:p-10 border border-yellow-500/40">
-                <div className="mb-8">
-                  <a
-                    href="tel:8714815466"
-                    className="flex items-center gap-4 p-4 rounded-lg bg-black/40 border border-white/10 hover:border-[#dcbe11] transition-all duration-300 group"
+        <div className='flex justify-center px-4 pb-16 md:pb-20'>
+          <div className='max-w-6xl w-full'>
+            <div className='grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12'>
+              {/* ── Left column – contact details ── */}
+              <div className='bg-gray-800/20 backdrop-blur-sm rounded-2xl p-8 sm:p-10 border border-yellow-500/40'>
+                {/* ── MERGED CONTACT BUTTON ── */}
+                <div className='mb-8'>
+                  <button
+                    onClick={() => setIsContactOpen(true)}
+                    className='w-full flex items-center gap-4 p-4 rounded-lg bg-black/40 border border-white/10 hover:border-[#dcbe11] transition-all duration-300 group text-left cursor-pointer'
                   >
-                    <Phone className="w-6 h-6 text-white" />
+                    <Phone className='w-6 h-6 text-white shrink-0' />
                     <div>
-                      <p className="text-gray-400 text-xs uppercase tracking-wider">
+                      <p className='text-gray-400 text-xs uppercase tracking-wider'>
                         Phone
                       </p>
-                      <p className="text-white text-sm font-light tracking-wider">
-                        Sreehari - 8714815466
+                      <p className='text-white text-sm font-light tracking-wider'>
+                        Tap to view contacts
                       </p>
                     </div>
-                  </a>
+                  </button>
                 </div>
-
-                <div className="mb-8">
+                <div className='mb-12'>
                   <a
-                    href="tel:8714815466"
-                    className="flex items-center gap-4 p-4 rounded-lg bg-black/40 border border-white/10 hover:border-[#dcbe11] transition-all duration-300 group"
+                    href='mailto:ragam@nitc.ac.in'
+                    className='flex items-center gap-4 p-4 rounded-lg bg-black/40 border border-white/10 hover:border-[#dcbe11] transition-all duration-300 group'
                   >
-                    <Phone className="w-6 h-6 text-white" />
+                    <Mail className='w-6 h-6 text-white' />
                     <div>
-                      <p className="text-gray-400 text-xs uppercase tracking-wider">
-                        Phone
-                      </p>
-                      <p className="text-white text-sm font-light tracking-wider">
-                        Sreehari - 8714815466
-                      </p>
-                    </div>
-                  </a>
-                </div>
-
-                {/* CHANGE THIS */}
-                {/* <div className="mb-8">
-                  <div className="flex items-center gap-4 p-4 rounded-lg bg-black/40 border border-white/10">
-                    <div>
-                      <p className="text-gray-400 text-xs uppercase tracking-wider">
-                        Name
-                      </p>
-                      <p className="text-white text-sm font-light tracking-wider">
-                        Sreehari
-                      </p>
-                    </div>
-                  </div>
-                </div> */}
-
-                <div className="mb-12">
-                  <a
-                    href="mailto:ragam@nitc.ac.in"
-                    className="flex items-center gap-4 p-4 rounded-lg bg-black/40 border border-white/10 hover:border-[#dcbe11] transition-all duration-300 group"
-                  >
-                    <Mail className="w-6 h-6 text-white" />
-                    <div>
-                      <p className="text-gray-400 text-xs uppercase tracking-wider">
+                      <p className='text-gray-400 text-xs uppercase tracking-wider'>
                         Email
                       </p>
-                      <p className="text-white text-sm font-light tracking-wider">
+                      <p className='text-white text-sm font-light tracking-wider'>
                         ragam@nitc.ac.in
                       </p>
                     </div>
                   </a>
                 </div>
-
                 <div>
-                  <div className="flex items-center justify-center gap-2 mb-6">
-                    <div className="flex-1 h-px bg-gradient-to-r from-transparent to-white/20" />
-                    <p className="text-white text-sm uppercase tracking-wider px-4">
+                  <div className='flex items-center justify-center gap-2 mb-6'>
+                    <div className='flex-1 h-px bg-gradient-to-r from-transparent to-white/20' />
+                    <p className='text-white text-sm uppercase tracking-wider px-4'>
                       Social Media
                     </p>
-                    <div className="flex-1 h-px bg-gradient-to-l from-transparent to-white/20" />
+                    <div className='flex-1 h-px bg-gradient-to-l from-transparent to-white/20' />
                   </div>
 
-                  <div className="space-y-3">
+                  <div className='space-y-3'>
                     <a
-                      href="https://www.instagram.com/ragam_nitc/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-4 p-3 rounded-lg group"
+                      href='https://www.instagram.com/ragam_nitc/'
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      className='flex items-center gap-4 p-3 rounded-lg group'
                     >
-                      <Instagram className="w-6 h-6 text-white" />
-                      <p className="text-white text-sm uppercase tracking-wider group-hover:text-[#dcbe11]">
+                      <Instagram className='w-6 h-6 text-white' />
+                      <p className='text-white text-sm uppercase tracking-wider group-hover:text-[#dcbe11]'>
                         ragam_nitc
                       </p>
                     </a>
-
                     <a
-                      href="https://www.instagram.com/ragamlive/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-4 p-3 rounded-lg group"
+                      href='https://www.instagram.com/ragamlive/'
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      className='flex items-center gap-4 p-3 rounded-lg group'
                     >
-                      <Instagram className="w-6 h-6 text-white" />
-                      <p className="text-white text-sm uppercase tracking-wider group-hover:text-[#dcbe11]">
+                      <Instagram className='w-6 h-6 text-white' />
+                      <p className='text-white text-sm uppercase tracking-wider group-hover:text-[#dcbe11]'>
                         ragamlive
                       </p>
                     </a>
-
                     <a
-                      href="https://www.facebook.com/Ragam.nitc"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-4 p-3 rounded-lg group"
+                      href='https://www.facebook.com/Ragam.nitc'
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      className='flex items-center gap-4 p-3 rounded-lg group'
                     >
-                      <Facebook className="w-6 h-6 text-white" />
-                      <p className="text-white text-sm uppercase tracking-wider group-hover:text-[#dcbe11]">
+                      <Facebook className='w-6 h-6 text-white' />
+                      <p className='text-white text-sm uppercase tracking-wider group-hover:text-[#dcbe11]'>
                         Ragam.nitc
                       </p>
                     </a>
-
                     <a
-                      href="https://www.linkedin.com/company/ragam-national-institute-of-technology-calicut/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-4 p-3 rounded-lg group"
+                      href='https://www.linkedin.com/company/ragam-national-institute-of-technology-calicut/'
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      className='flex items-center gap-4 p-3 rounded-lg group'
                     >
-                      <Linkedin className="w-6 h-6 text-white" />
-                      <p className="text-white text-sm uppercase tracking-wider group-hover:text-[#dcbe11]">
+                      <Linkedin className='w-6 h-6 text-white' />
+                      <p className='text-white text-sm uppercase tracking-wider group-hover:text-[#dcbe11]'>
                         Ragam
                       </p>
                     </a>
                   </div>
                 </div>
               </div>
-
-              {/* Right Column - Contact Form */}
-              <div className="bg-gradient-to-br from-yellow-900/20 to-yellow-950/20 backdrop-blur-sm rounded-2xl p-8 sm:p-10 border border-yellow-500/40">
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  {/* First Name */}
+              <div className='bg-gradient-to-br from-yellow-900/20 to-yellow-950/20 backdrop-blur-sm rounded-2xl p-8 sm:p-10 border border-yellow-500/40'>
+                <form onSubmit={handleSubmit} className='space-y-6'>
                   <div>
-                    <label className="block text-white text-sm uppercase tracking-wider mb-3">
-                      First Name
-                      <span className="text-yellow-500">*</span>
+                    <label className='block text-white text-sm uppercase tracking-wider mb-3'>
+                      Name <span className='text-yellow-500'>*</span>
                     </label>
                     <input
-                      type="text"
-                      name="firstName"
-                      value={formData.firstName}
+                      type='text'
+                      name='name'
+                      value={formData.name}
                       onChange={handleChange}
-                      placeholder="Your First name"
-                      className="w-full bg-black/40 border border-yellow-500/20 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-yellow-500 transition-colors duration-300"
+                      placeholder='Your Name'
+                      className='w-full bg-black/40 border border-yellow-500/20 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-yellow-500 transition-colors duration-300'
                       required
                     />
                   </div>
 
-                  {/* Last Name */}
                   <div>
-                    <label className="block text-white text-sm uppercase tracking-wider mb-3">
-                      Last Name
-                      <span className="text-yellow-500">*</span>
+                    <label className='block text-white text-sm uppercase tracking-wider mb-3'>
+                      Email address <span className='text-yellow-500'>*</span>
                     </label>
                     <input
-                      type="text"
-                      name="lastName"
-                      value={formData.lastName}
-                      onChange={handleChange}
-                      placeholder="Your Last name"
-                      className="w-full bg-black/40 border border-yellow-500/20 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-yellow-500 transition-colors duration-300"
-                      required
-                    />
-                  </div>
-
-                  {/* Email */}
-                  <div>
-                    <label className="block text-white text-sm uppercase tracking-wider mb-3">
-                      Email address
-                      <span className="text-yellow-500">*</span>
-                    </label>
-                    <input
-                      type="email"
-                      name="email"
+                      type='email'
+                      name='email'
                       value={formData.email}
                       onChange={handleChange}
-                      placeholder="Your email address"
-                      className="w-full bg-black/40 border border-yellow-500/20 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-yellow-500 transition-colors duration-300"
+                      placeholder='Your email address'
+                      className='w-full bg-black/40 border border-yellow-500/20 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-yellow-500 transition-colors duration-300'
                       required
                     />
                   </div>
 
-                  {/* Story Textarea */}
                   <div>
-                    <label className="block text-white text-sm uppercase tracking-wider mb-3">
-                      Your Story
-                      <span className="text-yellow-500">*</span>
+                    <label className='block text-white text-sm uppercase tracking-wider mb-3'>
+                      Your Message <span className='text-yellow-500'>*</span>
                     </label>
                     <textarea
-                      name="story"
+                      name='story'
                       value={formData.story}
                       onChange={handleChange}
-                      placeholder="We'll get back to you as soon as possible!"
-                      rows="6"
-                      className="w-full bg-black/40 border border-yellow-500/20 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-yellow-500 transition-colors duration-300 resize-none"
+                      placeholder='Enter your message'
+                      rows='6'
+                      className='w-full bg-black/40 border border-yellow-500/20 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-yellow-500 transition-colors duration-300 resize-none'
                       required
                     />
                   </div>
 
-                  {/* Submit Button */}
-                  <button
-                    type="submit"
-                    className="w-full bg-yellow-500/60 hover:bg-yellow-500/40 border border-yellow-500/60 text-white uppercase tracking-wider font-light py-3 rounded-lg transition-all duration-300 hover:border-yellow-400"
-                  >
-                    Send Message
-                  </button>
+                  <div className='space-y-4'>
+                    <button
+                      type='submit'
+                      disabled={isSubmitting}
+                      className='w-full bg-yellow-500/60 hover:bg-yellow-500/40 border border-yellow-500/60 text-white uppercase tracking-wider font-light py-3 rounded-lg transition-all duration-300 hover:border-yellow-400 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed'
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 className='w-4 h-4 animate-spin' />
+                          Sending...
+                        </>
+                      ) : (
+                        'Send Message'
+                      )}
+                    </button>
+
+                    {status.message && (
+                      <p
+                        className={`text-center text-sm ${status.type === 'success' ? 'text-green-400' : 'text-red-400'}`}
+                      >
+                        {status.message}
+                      </p>
+                    )}
+                  </div>
                 </form>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <ContactInfoCard
+        isOpen={isContactOpen}
+        onClose={() => setIsContactOpen(false)}
+        title='RAGAM CONTACTS'
+        columns={CONTACT_COLUMNS}
+      />
     </main>
-  );
+  )
 }

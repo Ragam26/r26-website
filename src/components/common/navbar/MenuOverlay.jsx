@@ -13,20 +13,22 @@ export default function MenuOverlay({ isOpen, onMenuItemClick }) {
 
   const menuItems = [
     { title: "Home", href: "/" },
-    { title: "Certificates", href: "notFound" },
+    // { title: "Certificates", href: "notFound" },
     { title: "Workshops", href: "workshops" },
     { title: "Events", href: "events" },
     { title: "I-Ink", href: "i-ink" },
+    { title: "Sports", href: "sports" },
     { title: "Accommodations", href: "hospitality" },
-    { title: "Prodezza", href: "notFound" },
-    { title: "Proshows", href: "notFound" },
+    { title: "Prodezza", href: "prodezza" },
+    { title: "Proshows", href: "proshows" },
+    { title: "Ragnarok", href: "ragnarok" },
     {
       title: "Campus Ambassador",
       href: "https://ca.ragam.co.in",
       external: true,
     },
-    { title: "Team", href: "notFound" },
-    { title: "Sponsors", href: "notFound" },
+    { title: "Team", href: "meettheteam" },
+    // { title: "Sponsors", href: "notFound" },
     { title: "Contact", href: "contact" },
   ];
 

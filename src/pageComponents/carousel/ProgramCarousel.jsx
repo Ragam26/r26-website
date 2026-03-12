@@ -173,7 +173,6 @@ const ProgramCarousel = () => {
     titleContainer.appendChild(newTitle);
     descriptionContainer.appendChild(newDescription);
     counterContainer.appendChild(newCounter);
-
     [newMainWrapper, newNextWrapper, newNextNextWrapper].forEach((wrapper) => {
       gsap.set(wrapper.querySelector("img"), {
         x: direction === "right" ? "-50%" : "50%",
@@ -225,7 +224,6 @@ const ProgramCarousel = () => {
         );
       },
     );
-
     [currentMainWrapper, currentNextWrapper, currentNextNextWrapper].forEach(
       (wrapper) => {
         if (!wrapper) return;
@@ -372,7 +370,7 @@ const ProgramCarousel = () => {
         style={{
           background: `
       radial-gradient(ellipse at center, transparent 35%, rgba(0,0,0,0.84) 100%),
-      linear-gradient(to bottom, rgba(0,0,0,0.75) 0%, transparent 20%, transparent 65%, rgba(0,0,0,0.75) 100%)
+      linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.6) 10%, transparent 30%, transparent 65%, rgba(0,0,0,0.75) 100%)
     `,
           mixBlendMode: "multiply",
         }}
@@ -447,10 +445,10 @@ const ProgramCarousel = () => {
           <div className="slide-title relative w-125 h-15 md:h-20 mb-2 overflow-hidden">
             <h1
               className={`
-      absolute text-white leading-none translate-x-0 uppercase 
-      ${slideData[currentSlide - 1].titleFont} 
+      absolute text-white leading-none translate-x-0 uppercase
+      ${slideData[currentSlide - 1].titleFont}
       ${slideData[currentSlide - 1].titleWeight}
-      ${slideData[currentSlide - 1].titleSizeMobile} 
+      ${slideData[currentSlide - 1].titleSizeMobile}
       md:${slideData[currentSlide - 1].titleSize}
     `}
               style={{ willChange: "transform" }}
@@ -507,7 +505,7 @@ const ProgramCarousel = () => {
                   className={`
               text-sm tracking-[0.3em] uppercase transition-all duration-300 hover:text-white
               ${isActive ? "text-[#DFB385] scale-105" : "text-white/80"}
-              ${kiwi.className} 
+              ${kiwi.className}
             `}
                 >
                   {title}
