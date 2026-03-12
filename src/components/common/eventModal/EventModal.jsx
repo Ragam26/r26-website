@@ -56,7 +56,7 @@ export const EventModal = ({ event = {}, onClose, isOpen }) => {
         position: "fixed", inset: 0,
         background: "rgba(0,0,0,0.75)",
         display: "flex", alignItems: "center", justifyContent: "center",
-        zIndex: 1000, padding: "120px 20px 20px",
+        zIndex: 1000, padding: "70px 20px 20px",
         fontFamily: "'Trebuchet MS', sans-serif",
       }}
     >
@@ -66,8 +66,8 @@ export const EventModal = ({ event = {}, onClose, isOpen }) => {
           background: "#2a0f0a",
           borderRadius: "12px",
           width: "100%",
-          maxWidth: '780px',
-          maxHeight: '75vh',
+          maxWidth: "780px",
+          maxHeight: "75vh",
           display: "flex",
           flexDirection: "column",
           overflow: "hidden",
@@ -115,24 +115,33 @@ export const EventModal = ({ event = {}, onClose, isOpen }) => {
           }}>{title}</h1>
         </div>
 
-        {/* Body — split columns, each scrolls independently */}
-        <div style={{
-          display: "flex",
-          flex: 1,
-          minHeight: 0, // required for flex children to respect overflow
-          overflow: "hidden",
-        }}>
+        {/* Body — on mobile: single scroll with register first, on desktop: two side-by-side columns */}
+        <div
+          className="flex flex-col md:flex-row md:overflow-hidden"
+          style={{ flex: 1, minHeight: 0, overflowY: "auto" }}
+        >
 
           {/* Left column — main content */}
           <div
-            style={{
-              flex: 1,
-              overflowY: "auto",
-              padding: "0 24px 24px",
-              borderRight: "1px solid #4a2a20",
-            }}
+            className="flex-1 overflow-y-auto md:border-r md:border-[#4a2a20]"
+            style={{ padding: "0 24px 24px" }}
             onWheel={(e) => { e.currentTarget.scrollTop += e.deltaY; }}
           >
+            {/* Register card — mobile only, at top of scroll */}
+            <div className="block md:hidden" style={{ paddingTop: "20px" }}>
+              <div style={{ background: "#c9a84c", borderRadius: "12px", padding: "20px", textAlign: "left", marginBottom: "4px" }}>
+                <p style={{ margin: "0 0 16px", fontWeight: "800", fontSize: "16px", letterSpacing: "1.5px", color: "#1a0805", textTransform: "uppercase" }}>REGISTER</p>
+                <div style={{ background: "#fff", borderRadius: "8px", padding: "10px 14px", display: "inline-block", marginBottom: "16px" }}>
+                  <span style={{ fontSize: "20px", fontWeight: "800", color: "#2a0f0a" }}>{registrationFee}</span>
+                </div>
+                <br />
+                <button
+                  style={{ background: "#2a0f0a", color: "#e8d5a3", border: "none", borderRadius: "6px", padding: "10px 20px", fontWeight: "700", fontSize: "13px", letterSpacing: "1.5px", cursor: "pointer", width: "100%", textTransform: "uppercase" }}
+                  onMouseEnter={e => e.currentTarget.style.background = "#1a0805"}
+                  onMouseLeave={e => e.currentTarget.style.background = "#2a0f0a"}
+                >REGISTER</button>
+              </div>
+            </div>
             {/* Prizes Worth */}
             <Section label="PRIZES WORTH">
               <p style={{ fontSize: "28px", fontWeight: "700", color: "#e8d5a3", margin: "8px 0 0" }}>
@@ -149,12 +158,12 @@ export const EventModal = ({ event = {}, onClose, isOpen }) => {
             </Section>
 
             {/* About */}
-            <Section label="GUIDELINES">
+            <Section label="ABOUT">
               <div style={{ marginTop: "12px" }}>
                 {about.split("\n").map((line, i) =>
                   line.trim() === ""
                     ? <br key={i} />
-                    : <p key={i} style={{ fontSize: "16px", lineHeight: "1.7", color: "#c4aa7a", margin: "0 0 8px" }}>{line}</p>
+                    : <p key={i} style={{ fontSize: "12px", lineHeight: "1.7", color: "#c4aa7a", margin: "0 0 8px" }}>{line}</p>
                 )}
               </div>
             </Section>
@@ -180,8 +189,9 @@ export const EventModal = ({ event = {}, onClose, isOpen }) => {
             </Section>
           </div>
 
-          {/* Right column — register card */}
+          {/* Right column — register card (desktop only) */}
           <div
+            className="hidden md:block"
             style={{
               width: "204px",
               flexShrink: 0,
