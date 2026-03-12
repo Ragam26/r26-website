@@ -329,7 +329,7 @@ export function useProshows() {
   return { data: processedData, isLoading, error }
 }
 
-export function useProdezza() {
+export function useAlumniConclaves() {
   const [data, setData] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -337,7 +337,7 @@ export function useProdezza() {
   useEffect(() => {
     const getWorkshops = async () => {
       try {
-        const response = await api.get('/api/prodezza', {
+        const response = await api.get('/api/alumni-conclaves', {
           params: {
             'pagination[pageSize]': 25,
             'pagination[page]': 1,
@@ -349,7 +349,7 @@ export function useProdezza() {
         const requests = []
         for (let page = 2; page <= pageCount; page++) {
           requests.push(
-            api.get('/api/prodezza', {
+            api.get('/api/alumni-conclaves', {
               params: {
                 'pagination[pageSize]': 25,
                 'pagination[page]': page,
