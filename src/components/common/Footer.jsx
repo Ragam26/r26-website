@@ -1,13 +1,13 @@
 'use client'
 
-import { useState, useEffect, useRef, useCallback } from "react";
-import { FaInstagram, FaFacebook, FaLinkedinIn } from "react-icons/fa";
-import Image from "next/image";
-import Link from "next/link";
+import { useState, useEffect, useRef, useCallback } from 'react'
+import { FaInstagram, FaFacebook, FaLinkedinIn } from 'react-icons/fa'
+import Image from 'next/image'
+import Link from 'next/link'
 
-const FLOAT_W = 180; // px — floating image width
-const FLOAT_H = 110; // px — floating image height
-const CURSOR_GAP = 18; // px — gap between cursor and image edge
+const FLOAT_W = 180 // px — floating image width
+const FLOAT_H = 110 // px — floating image height
+const CURSOR_GAP = 18 // px — gap between cursor and image edge
 
 export default function Footer() {
   const [hoverData, setHoverData] = useState(null)
@@ -15,17 +15,17 @@ export default function Footer() {
   const [showRoast, setShowRoast] = useState(false)
 
   // double-buffer crossfade: two image slots, we alternate which is "active"
-  const [slots, setSlots] = useState({ a: null, b: null, active: "a" });
-  const slotsRef = useRef(slots);
+  const [slots, setSlots] = useState({ a: null, b: null, active: 'a' })
+  const slotsRef = useRef(slots)
 
   // ref to the single floating image container — we move it via direct DOM
-  const floatRef = useRef(null);
+  const floatRef = useRef(null)
 
   // lerp state
-  const targetPos = useRef({ x: 0, y: 0 });
-  const currentPos = useRef({ x: 0, y: 0 });
-  const rafId = useRef(null);
-  const isHovering = useRef(false);
+  const targetPos = useRef({ x: 0, y: 0 })
+  const currentPos = useRef({ x: 0, y: 0 })
+  const rafId = useRef(null)
+  const isHovering = useRef(false)
 
   // ref to measure the footer's DOM element
   const footerRef = useRef(null)
@@ -66,69 +66,69 @@ export default function Footer() {
 
   const calcTarget = useCallback((clientX, clientY) => {
     const wouldOverflowRight =
-      clientX + CURSOR_GAP + FLOAT_W > window.innerWidth;
+      clientX + CURSOR_GAP + FLOAT_W > window.innerWidth
     const x = wouldOverflowRight
       ? clientX - FLOAT_W - CURSOR_GAP
-      : clientX + CURSOR_GAP;
-    const y = clientY - FLOAT_H / 2;
-    return { x, y };
-  }, []);
+      : clientX + CURSOR_GAP
+    const y = clientY - FLOAT_H / 2
+    return { x, y }
+  }, [])
 
-  const animateRef = useRef(null);
+  const animateRef = useRef(null)
   useEffect(() => {
     animateRef.current = () => {
-      const el = floatRef.current;
-      if (!el) return;
-      const LERP = 0.1;
+      const el = floatRef.current
+      if (!el) return
+      const LERP = 0.1
       currentPos.current.x +=
-        (targetPos.current.x - currentPos.current.x) * LERP;
+        (targetPos.current.x - currentPos.current.x) * LERP
       currentPos.current.y +=
-        (targetPos.current.y - currentPos.current.y) * LERP;
-      el.style.left = `${currentPos.current.x}px`;
-      el.style.top = `${currentPos.current.y}px`;
+        (targetPos.current.y - currentPos.current.y) * LERP
+      el.style.left = `${currentPos.current.x}px`
+      el.style.top = `${currentPos.current.y}px`
       if (isHovering.current) {
-        rafId.current = requestAnimationFrame(animateRef.current);
+        rafId.current = requestAnimationFrame(animateRef.current)
       }
-    };
-  }, []);
+    }
+  }, [])
 
   const handleLetterMouseEnter = useCallback(
     (e, letter) => {
-      setHoverData(letter);
+      setHoverData(letter)
       // swap slots for crossfade
-      const prev = slotsRef.current;
-      const next = prev.active === "a" ? "b" : "a";
-      const updated = { ...prev, [next]: letter.image, active: next };
-      slotsRef.current = updated;
-      setSlots(updated);
-      isHovering.current = true;
-      const pos = calcTarget(e.clientX, e.clientY);
-      currentPos.current = { ...pos };
-      targetPos.current = { ...pos };
-      if (rafId.current) cancelAnimationFrame(rafId.current);
-      rafId.current = requestAnimationFrame(animateRef.current);
+      const prev = slotsRef.current
+      const next = prev.active === 'a' ? 'b' : 'a'
+      const updated = { ...prev, [next]: letter.image, active: next }
+      slotsRef.current = updated
+      setSlots(updated)
+      isHovering.current = true
+      const pos = calcTarget(e.clientX, e.clientY)
+      currentPos.current = { ...pos }
+      targetPos.current = { ...pos }
+      if (rafId.current) cancelAnimationFrame(rafId.current)
+      rafId.current = requestAnimationFrame(animateRef.current)
     },
     [calcTarget],
-  );
+  )
 
   const handleLetterMouseMove = useCallback(
     (e) => {
-      targetPos.current = calcTarget(e.clientX, e.clientY);
+      targetPos.current = calcTarget(e.clientX, e.clientY)
     },
     [calcTarget],
-  );
+  )
 
   const handleLetterMouseLeave = useCallback(() => {
-    setHoverData(null);
-    isHovering.current = false;
-    if (rafId.current) cancelAnimationFrame(rafId.current);
-  }, []);
+    setHoverData(null)
+    isHovering.current = false
+    if (rafId.current) cancelAnimationFrame(rafId.current)
+  }, [])
 
   useEffect(() => {
     return () => {
-      if (rafId.current) cancelAnimationFrame(rafId.current);
-    };
-  }, []);
+      if (rafId.current) cancelAnimationFrame(rafId.current)
+    }
+  }, [])
 
   const letters = [
     {
@@ -306,13 +306,16 @@ export default function Footer() {
               <Link href='/' className='hover:text-gray-400 transition'>
                 Home
               </Link>
-              <Link href='/meettheteam' className='hover:text-gray-400 transition'>
+              <Link
+                href='/meettheteam'
+                className='hover:text-gray-400 transition'
+              >
                 Team
               </Link>
               {/* <Link href='/notFound' className='hover:text-gray-400 transition'>
                 Sponsors
               </Link> */}
-              <Link href="/contact" className="hover:text-gray-400 transition">
+              <Link href='/contact' className='hover:text-gray-400 transition'>
                 Contact Us
               </Link>
             </div>
@@ -324,8 +327,11 @@ export default function Footer() {
               <Link href='/proshows' className='hover:text-gray-400 transition'>
                 Proshows
               </Link>
-              <Link href='/prodezza' className='hover:text-gray-400 transition'>
-                Prodezza
+              <Link
+                href='/alumniconclaves'
+                className='hover:text-gray-400 transition'
+              >
+                Alumni Conclaves
               </Link>
               <Link href='/i-ink' className='hover:text-gray-400 transition'>
                 I-Ink
