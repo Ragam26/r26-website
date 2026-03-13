@@ -9,6 +9,7 @@ import {
   useMemo,
 } from "react";
 import ProshowCard from "@/pageComponents/proshow/proshowCard";
+import DayPassPanel from "./DayPassPanel";
 
 const TILT_PER_OFFSET = 10;
 const MAX_TILT = 25;
@@ -142,6 +143,21 @@ export default function FocusCarousel({ items = [] }) {
     }
   };
 
+  const activeDay = items[activeIndex]?.day ?? "DAY 1";
+
+  const handleDayClick = useCallback(
+    (dayLabel) => {
+      stopAutoScroll();
+      const revealedOfDay = items.findIndex(
+        (a) => a.day === dayLabel && a.revealed,
+      );
+      const anyOfDay = items.findIndex((a) => a.day === dayLabel);
+      const target = revealedOfDay >= 0 ? revealedOfDay : anyOfDay;
+      if (target >= 0) goTo(target);
+    },
+    [items, stopAutoScroll, goTo],
+  );
+
   const dragFraction = isDragging ? dragOffset / cardGapPx : 0;
 
   const ringOffset = useCallback(
@@ -192,17 +208,17 @@ export default function FocusCarousel({ items = [] }) {
       onTouchEnd={handleTouchEnd}
     >
       {/* Navigation Controls */}
-      <div className="absolute top-[85%] left-0 right-0 flex items-center justify-between px-6 z-30 pointer-events-none">
+      <div className="absolute top-[380px] left-0 right-0 flex items-center justify-between px-6 z-30 pointer-events-none">
         <button
           onClick={() => {
             stopAutoScroll();
             goTo(activeIndex - 1);
           }}
-          className="w-8 h-8 flex items-center justify-center text-[#F4EFCF]/70 active:text-[#F4EFCF] text-5xl select-none pointer-events-auto"
+          className="w-8 h-8 flex items-center justify-center text-[#F4EFCF]/70 active:text-[#F4EFCF] text-6xl select-none pointer-events-auto"
         >
           ‹
         </button>
-        <span className="text-[#F4EFCF]/60 translate-y-1 text-md font-league-gothic tracking-widest select-none pointer-events-auto">
+        <span className="text-[#F4EFCF]/60 translate-y-2 text-lg font-league-gothic tracking-widest select-none pointer-events-auto">
           {activeIndex + 1}/{n}
         </span>
         <button
@@ -210,7 +226,7 @@ export default function FocusCarousel({ items = [] }) {
             stopAutoScroll();
             goTo(activeIndex + 1);
           }}
-          className="w-8 h-8 flex items-center justify-center text-[#F4EFCF]/70 active:text-[#F4EFCF] text-5xl select-none pointer-events-auto"
+          className="w-8 h-8 flex items-center justify-center text-[#F4EFCF]/70 active:text-[#F4EFCF] text-6xl select-none pointer-events-auto"
         >
           ›
         </button>
@@ -250,10 +266,19 @@ export default function FocusCarousel({ items = [] }) {
         })}
       </div>
 
+      <div className="absolute left-0 right-0 z-20" style={{ top: "450px" }}>
+        <DayPassPanel
+          artists={items}
+          activeDay={activeDay}
+          onDayClick={handleDayClick}
+          allDayPassLink={"https://ragam.co.in/proshows"}
+        />
+      </div>
+
       {/* Reflection */}
-      {/* <div className="overflow-hidden w-full pointer-events-none select-none">
+      <div className="overflow-hidden w-full pointer-events-none select-none h-[300px] overflow-hidden">
         <div
-          className="relative flex items-start justify-center scale-y-[-1] opacity-30 h-[300px]"
+          className="relative flex items-start justify-center scale-y-[-1] opacity-30 h-[600px]"
           style={{
             filter: "url(#water-ripple) blur(2px)",
             maskImage:
@@ -284,7 +309,7 @@ export default function FocusCarousel({ items = [] }) {
             );
           })}
         </div>
-      </div> */}
+      </div>
     </div>
   );
 }

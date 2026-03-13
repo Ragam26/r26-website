@@ -233,7 +233,7 @@ export default function ProshowDesktop({ artists, allDayPassLink }) {
           artists={artists}
           activeDay={activeDay}
           onDayClick={handleDayClick}
-          allDayPassLink={"https://makemypass.com/event/early-bird-ragam-pass"}
+          allDayPassLink={"https://ragam.co.in/proshows"}
         />
       </div>
 
