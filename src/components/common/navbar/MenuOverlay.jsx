@@ -100,7 +100,7 @@ export default function MenuOverlay({ isOpen, onMenuItemClick }) {
   return (
     <div
       ref={overlayRef}
-      className="fixed inset-0 opacity-0 pointer-events-none flex z-800"
+      className="fixed inset-0 opacity-0 bg-black pointer-events-none flex z-800"
     >
       <div
         ref={bgRef}
