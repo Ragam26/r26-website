@@ -13,19 +13,19 @@ gsap.registerPlugin(CustomEase)
 const ProgramCarousel = () => {
   const router = useRouter()
   const slideRoutes = [
-    "/events",
-    "/workshops",
-    "/sahiti",
-    "/notFound",
-    "/notFound",
-    "/notFound",
-    "/notFound",
-    "/i-ink",
-    "/notFound",
-  ];
-  const totalSlides = 8;
-  const [currentSlide, setCurrentSlide] = useState(1);
-  const isAnimating = useRef(false);
+    '/events',
+    '/workshops',
+    '/sahiti',
+    '/notFound',
+    '/alumniconclaves',
+    '/notFound',
+    '/notFound',
+    '/i-ink',
+    '/notFound',
+  ]
+  const totalSlides = 8
+  const [currentSlide, setCurrentSlide] = useState(1)
+  const isAnimating = useRef(false)
 
   const createSlide = (slideNumber, direction) => {
     const slide = document.createElement('div')
