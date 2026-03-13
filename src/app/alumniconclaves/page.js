@@ -1,25 +1,25 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import EventCard from '@/components/common/Card/EventCard'
-import { useProdezza } from '@/hooks/useEvents'
+import { useAlumniConclaves } from '@/hooks/useEvents'
 
 export default function EventsPage() {
-  let { data, isLoading, error } = useProdezza()
+  let { data, isLoading, error } = useAlumniConclaves()
 
   return (
     <main
       className='min-h-screen bg-black bg-top bg-no-repeat bg-fixed'
       style={{
         backgroundImage: "url('/images/prodezza/prodezza_bg.png')",
-        backgroundSize: "cover",
-        backgroundPosition: "top center",
-        backgroundRepeat: "no-repeat",
-        minHeight: "100vh"
+        backgroundSize: 'cover',
+        backgroundPosition: 'top center',
+        backgroundRepeat: 'no-repeat',
+        minHeight: '100vh',
       }}
     >
       <div className='pt-20 md:pt-32 pb-12 md:pb-16 flex flex-col items-center justify-center px-4'>
         <h1 className='text-white text-4xl md:text-7xl lg:text-8xl font-serif tracking-[0.3em] mt-20 mb-8 md:mb-12'>
-          PRODEZZA
+          ALUMNI CONCLAVES
         </h1>
       </div>
 
