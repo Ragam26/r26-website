@@ -8,7 +8,7 @@ import Link from "next/link";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const DOT_COLORS = ["#fef08a", "#fde68a", "#fdba74", "#fb923c", "#f97316"];
+const DOT_COLORS = ["#fde68a", "#fb923c", "#a78bfa", "#60a5fa", "#e5e7eb"];
 
 function SparkCanvas() {
   const canvasRef = useRef(null);
@@ -97,193 +97,302 @@ function SparkCanvas() {
   );
 }
 
-const HISTORY = [
+const EVENT_CATEGORIES = [
   {
-    year: "1978",
-    winner: "NIT Calicut",
-    caption:
-      "The very first Ragam Trophy was awarded in the inaugural edition — a fierce three-day battle of wit, art, and athleticism.",
+    title: "Dramatics",
+    events: ["Street Play", "Spoof", "Mime", "Drama"],
   },
   {
-    year: "1985",
-    winner: "IIT Madras",
-    caption:
-      "A legendary comeback — IIT Madras snatched the trophy on the final night with a jaw-dropping classical dance performance.",
+    title: "Kalolsavam – Group",
+    events: [
+      "Oppana",
+      "Duffmuttu",
+      "Kolkali",
+      "Vattapattu",
+      "Sanganritham",
+      "Thiruvathira",
+      "Nadanpaatt",
+    ],
   },
   {
-    year: "1993",
-    winner: "College of Engineering, Trivandrum",
-    caption:
-      "CET swept every major category — from literary arts to fine arts — making it the most dominant Ragam Trophy run ever recorded.",
+    title: "Kalolsavam – Solo",
+    events: [
+      "Swararaga",
+      "Acoustics",
+      "Bharathanatyam",
+      "Mohiniyattam",
+      "Rajan Memorial Light Music",
+      "Classical Music (Solo)",
+      "Mono Act",
+    ],
   },
   {
-    year: "2001",
-    winner: "NIT Calicut",
-    caption:
-      "NIT Calicut reclaimed glory after a 12-year drought. The crowd's roar when the results were announced shook the auditorium.",
+    title: "Literary",
+    events: [
+      "Kavitha Parayanam",
+      "Poem Recitation (English & Hindi)",
+      "Upanyasam",
+      "JAM (Malayalam, Hindi & English)",
+      "Katha Rajana",
+      "Kavitha Rajana",
+    ],
   },
   {
-    year: "2010",
-    winner: "PSG College of Technology",
-    caption:
-      "PSG's inter-collegiate literary team was unstoppable — they won 11 of 14 literary events, setting a record that still stands.",
+    title: "Music",
+    events: [
+      "Beat Boxing",
+      "Western Solo",
+      "Eastern Solo",
+      "String Solo",
+      "Alfaz",
+    ],
   },
   {
-    year: "2018",
-    winner: "IIT Palakkad",
-    caption:
-      "The newest entrant IIT Palakkad stunned all with a flawless street play and a dominating music programme lineup.",
-  },
-  {
-    year: "2023",
-    winner: "NIT Calicut",
-    caption:
-      "NIT Calicut cemented their dynasty with a comprehensive victory — their third trophy in the 21st century.",
-  },
-  {
-    year: "2025",
-    winner: "IIT Madras",
-    caption:
-      "A razor-thin margin decided it — IIT Madras edged NIT Calicut by 40 points in the most competitive Ragam in recent history.",
+    title: "Dance",
+    events: ["Tal Se Tal Mila", "Tangled", "Dance Off", "Free Style"],
   },
 ];
 
 const GUIDELINES = [
   {
     icon: "🏛️",
-    title: "Eligible Institutions",
-    body: "Any degree-granting institution with a valid affiliation letter may field a team. Participants must be currently enrolled students with a valid ID card.",
+    title: "CATEGORY PARTICIPATION REQUIREMENT",
+    body: "To remain eligible for the Ragam Ever-Rolling Trophy, a college must participate in at least one event from each major category listed in the official Ragam event lineup. This ensures that institutions showcase versatility across diverse cultural disciplines and engage with the full spectrum of the festival’s competitive spirit.",
   },
   {
     icon: "🎭",
-    title: "Points Across Categories",
-    body: "Points are accumulated across Cultural, Literary, Fine Arts, Music, Dance, and Sports categories. Each event carries weighted points based on difficulty and participation tier.",
+    title: "PARTICIPATION POINTS SYSTEM",
+    body: "Every valid participation in a Ragam event contributes to the institution’s overall points tally. Colleges accumulate points through active involvement across events, ensuring that each performance and entry strengthens the team’s cumulative standing on the Ragam Trophy leaderboard.",
   },
   {
     icon: "🏆",
-    title: "How Winners Are Decided",
-    body: "The institution with the highest cumulative points at the close of all events wins the Ragam Trophy. In the event of a tie, the institution with more first-place finishes is declared the winner.",
-  },
-  {
-    icon: "📋",
-    title: "Team Registration",
-    body: "A minimum contingent of 25 participants is required. Teams must pre-register at least 30 days before the fest. Late entries are subject to availability and incur a 10% point penalty.",
-  },
-  {
-    icon: "⚖️",
-    title: "Code of Conduct",
-    body: "Any form of misconduct, plagiarism, or unsportsmanlike behaviour results in immediate disqualification from that event and a 50-point deduction from the team's total.",
-  },
-  {
-    icon: "🎯",
-    title: "Pro-Shows & Special Events",
-    body: "Pro-shows and celebrity performances do not contribute to trophy points. However, the Trophy Night Gala performance carries a special 200-point bonus.",
+    title: "PODIUM PERFORMANCE WEIGHTAGE",
+    body: "Outstanding performances receive additional scoring weightage. Podium finishes—First, Second, and Third place—carry significantly higher points compared to regular participation. These results play a crucial role in shaping the final leaderboard and determining the Ragam Trophy champion.",
   },
 ];
-
-function HistoryCard({ entry, index }) {
-  const cardRef = useRef(null);
-
-  useEffect(() => {
-    if (!cardRef.current) return;
-    gsap.fromTo(
-      cardRef.current,
-      { opacity: 0, x: index % 2 === 0 ? -80 : 80, y: 30 },
-      {
-        opacity: 1,
-        x: 0,
-        y: 0,
-        duration: 0.9,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: cardRef.current,
-          start: "top 85%",
-          once: true,
-        },
-      },
-    );
-  }, [index]);
-
-  return (
-    <div
-      ref={cardRef}
-      className={`flex flex-col md:flex-row items-start gap-6 md:gap-10 ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}
-    >
-      {/* Year bubble */}
-      <div className="shrink-0 flex flex-col items-center">
-        <div
-          className={`w-20 h-20 rounded-full flex items-center justify-center text-black font-bold text-sm border-4 border-orange-400 shadow-[0_0_24px_4px_rgba(251,146,60,0.5)]`}
-          style={{ background: "linear-gradient(135deg,#fb923c,#fde68a)" }}
-        >
-          <span
-            className={`${brixton.className} text-xs leading-tight text-center`}
-          >
-            {entry.year}
-          </span>
-        </div>
-        <div className="w-0.5 h-full min-h-12 bg-linear-to-b from-orange-400/60 to-transparent mt-2" />
-      </div>
-
-      {/* Card */}
-      <div className="flex-1 rounded-2xl border border-orange-400/20 bg-white/3 backdrop-blur-sm p-6 md:p-8 hover:border-orange-400/50 transition-all duration-300 hover:shadow-[0_0_32px_4px_rgba(251,146,60,0.15)]">
-        <p className="text-orange-400 text-xs tracking-[0.3em] uppercase mb-2 font-semibold">
-          Winner
-        </p>
-        <h3
-          className={`${brixton.className} text-white text-xl md:text-2xl mb-3`}
-        >
-          {entry.winner}
-        </h3>
-        <p
-          className={`${playfair.className} text-gray-400 text-sm md:text-base leading-relaxed italic`}
-        >
-          &ldquo;{entry.caption}&rdquo;
-        </p>
-      </div>
-    </div>
-  );
-}
 
 function GuidelineCard({ item, index }) {
   const cardRef = useRef(null);
 
   useEffect(() => {
     if (!cardRef.current) return;
+
+    const el = cardRef.current;
+
     gsap.fromTo(
-      cardRef.current,
-      { opacity: 0, y: 60, scale: 0.95 },
+      el,
+      { opacity: 0, y: 80, scale: 0.9 },
       {
         opacity: 1,
         y: 0,
         scale: 1,
-        duration: 0.8,
+        duration: 0.9,
         ease: "power3.out",
         scrollTrigger: {
-          trigger: cardRef.current,
-          start: "top 88%",
+          trigger: el,
+          start: "top 85%",
           once: true,
         },
-        delay: (index % 3) * 0.12,
+        delay: index * 0.1,
       },
     );
+
+    // floating icon animation
+    gsap.to(el.querySelector(".icon"), {
+      y: -6,
+      x: 2,
+      duration: 0.8,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut",
+    });
   }, [index]);
+
+  const handleMouseMove = (e) => {
+    const card = cardRef.current;
+    const rect = card.getBoundingClientRect();
+
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const rotateX = (y / rect.height - 0.5) * 10;
+    const rotateY = (x / rect.width - 0.5) * -10;
+
+    gsap.to(card, {
+      rotateX,
+      rotateY,
+      transformPerspective: 800,
+      duration: 0.4,
+      ease: "power2.out",
+    });
+  };
+
+  const handleLeave = () => {
+    gsap.to(cardRef.current, {
+      rotateX: 0,
+      rotateY: 0,
+      duration: 0.4,
+      ease: "power2.out",
+    });
+  };
 
   return (
     <div
       ref={cardRef}
-      className="rounded-2xl border border-orange-500/20 bg-white/3 p-6 hover:bg-white/6 hover:border-orange-400/50 transition-all duration-300 hover:shadow-[0_0_24px_2px_rgba(251,146,60,0.1)] group"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleLeave}
+      className="
+      relative
+      rounded-2xl
+      border border-orange-500/20
+      bg-white/3
+      backdrop-blur-lg
+      p-6
+      transition-all
+      duration-300
+      hover:scale-[1.04]
+      hover:border-orange-400/60
+      hover:shadow-[0_0_40px_rgba(251,146,60,0.15)]
+      group
+      overflow-hidden
+      flex flex-col items-start justify-center
+      "
     >
-      <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">
+      {/* glow overlay */}
+      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-gradient-to-br from-orange-500/10 via-transparent to-yellow-500/10 pointer-events-none" />
+
+      {/* icon */}
+      <div className="icon text-4xl mb-4 transition-transform duration-300 group-hover:scale-125">
         {item.icon}
       </div>
+
+      {/* title */}
       <h3 className={`${brixton.className} text-orange-300 text-lg mb-3`}>
         {item.title}
       </h3>
+
+      {/* body */}
       <p
         className={`${playfair.className} text-gray-400 text-sm leading-relaxed`}
       >
         {item.body}
       </p>
+    </div>
+  );
+}
+function CategoryCard({ category, index }) {
+  const cardRef = useRef(null);
+
+  useEffect(() => {
+    if (!cardRef.current) return;
+
+    const el = cardRef.current;
+
+    // entrance animation
+    gsap.fromTo(
+      el,
+      { opacity: 0, y: 70, scale: 0.92 },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.9,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: el,
+          start: "top 88%",
+          once: true,
+        },
+        delay: index * 0.1,
+      },
+    );
+
+    // floating title effect
+    const title = el.querySelector(".cat-title");
+    gsap.to(title, {
+      y: -4,
+      x: 2,
+      duration: 0.8,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut",
+    });
+  }, [index]);
+
+  const handleMouseMove = (e) => {
+    const card = cardRef.current;
+    const rect = card.getBoundingClientRect();
+
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const rotateX = (y / rect.height - 0.5) * 8;
+    const rotateY = (x / rect.width - 0.5) * -8;
+
+    gsap.to(card, {
+      rotateX,
+      rotateY,
+      transformPerspective: 800,
+      duration: 0.35,
+      ease: "power2.out",
+    });
+  };
+
+  const handleLeave = () => {
+    gsap.to(cardRef.current, {
+      rotateX: 0,
+      rotateY: 0,
+      duration: 0.4,
+      ease: "power2.out",
+    });
+  };
+
+  return (
+    <div
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleLeave}
+      className="
+      relative
+      rounded-2xl
+      border border-orange-400/20
+      bg-white/3
+      backdrop-blur-sm
+      p-6
+      transition-all
+      duration-300
+      hover:scale-[1.04]
+      hover:border-orange-400/50
+      hover:shadow-[0_0_30px_rgba(251,146,60,0.15)]
+      overflow-hidden
+      group
+      "
+    >
+      {/* glow overlay */}
+      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-gradient-to-br from-orange-500/10 via-transparent to-yellow-500/10 pointer-events-none" />
+
+      {/* title */}
+      <h3
+        className={`cat-title ${brixton.className} text-orange-400 text-xl mb-4`}
+        style={{ textShadow: "0 0 15px rgba(251,146,60,0.4)" }}
+      >
+        {category.title}
+      </h3>
+
+      {/* events */}
+      <ul className={`${playfair.className} text-gray-400 text-sm space-y-2`}>
+        {category.events.map((event) => (
+          <li
+            key={event}
+            className="flex items-start gap-2 group-hover:translate-x-1 transition-transform duration-300"
+          >
+            <span className="text-orange-400 group-hover:text-orange-300 transition-colors">
+              •
+            </span>
+            <span>{event}</span>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
@@ -424,48 +533,14 @@ export default function RagamTrophyPageContent() {
             ref={subtitleRef}
             className={`${playfair.className} text-gray-300 text-lg md:text-xl lg:text-2xl max-w-2xl mx-auto leading-relaxed italic`}
           >
-            A legacy forged in passion, discipline, and the relentless pursuit
-            of cultural excellence — earned, never given.
+            The Ultimate Testament to Cultural Spirit
           </p>
-        </div>
-
-        {/* Scroll cue */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
-          <div className="w-px h-12 bg-linear-to-b from-orange-400 to-transparent" />
-          <span
-            className={`${brixton.className} text-orange-400/60 text-xs tracking-widest`}
-          >
-            SCROLL
-          </span>
         </div>
       </section>
 
       {/* ── ABOUT SECTION ── */}
       <section className="py-24 px-4 max-w-4xl mx-auto text-center">
         <AboutSection />
-      </section>
-
-      {/* ── HISTORY SECTION ── */}
-      <section className="py-24 px-4 max-w-5xl mx-auto">
-        <h2
-          ref={historyTitleRef}
-          className={`${brixton.className} text-center text-white text-4xl md:text-6xl mb-4`}
-          style={{ textShadow: "0 0 40px rgba(251,146,60,0.4)" }}
-        >
-          HALL OF
-          <span className="text-orange-400"> CHAMPIONS</span>
-        </h2>
-        <p
-          className={`${playfair.className} text-gray-500 text-center italic mb-16`}
-        >
-          Past winners who wrote their names in Ragam history
-        </p>
-
-        <div className="flex flex-col gap-12">
-          {HISTORY.map((entry, i) => (
-            <HistoryCard key={entry.year} entry={entry} index={i} />
-          ))}
-        </div>
       </section>
 
       {/* ── GUIDELINES SECTION ── */}
@@ -490,6 +565,29 @@ export default function RagamTrophyPageContent() {
           ))}
         </div>
       </section>
+      {/* EVENT CATEGORIES */}
+      <div className="mt-20 flex flex-col justify-center items-center  ">
+        <h3
+          className={`${brixton.className} text-center text-white text-3xl md:text-4xl mb-6`}
+        >
+          EVENT
+          <span className="text-orange-400"> CATEGORIES</span>
+        </h3>
+
+        <p
+          className={`${playfair.className} text-gray-500 text-center italic mb-12 max-w-2xl mx-auto`}
+        >
+          The Ragam Ever-Rolling Trophy spans a wide spectrum of cultural
+          expression, from classical traditions to contemporary performance and
+          literary excellence.
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {EVENT_CATEGORIES.map((category) => (
+            <CategoryCard key={category.title} category={category} />
+          ))}
+        </div>
+      </div>
 
       {/* ── BOTTOM CTA ── */}
       <BottomCTA />
@@ -521,77 +619,30 @@ function AboutSection() {
         <span
           className={`${brixton.className} text-orange-400 text-xs tracking-[0.4em]`}
         >
-          SINCE 1978
+          Ragam Ever-Rolling Trophy
         </span>
       </div>
       <p
         className={`${playfair.className} text-gray-300 text-lg md:text-xl leading-relaxed mb-8`}
       >
-        The <span className="text-orange-400 font-semibold">Ragam Trophy</span>{" "}
-        is the most prestigious inter-collegiate award in South India&apos;s
-        cultural circuit. Instituted at the very first edition of Ragam in 1978,
-        it recognises the institution that collectively excels across every
-        pillar of the fest — arts, literature, music, dance, dramatics, and
-        sports.
+        After a long-awaited hiatus, the{" "}
+        <span className="text-orange-400 font-semibold">
+          Ragam Ever-Rolling Trophy
+        </span>{" "}
+        returns—reimagined not merely as an award for numerical dominance, but
+        as a celebration of the Cultural Spirit that defines Ragam. It honours
+        colleges that bring sustained energy, diversity of expression, and
+        collective talent to the festival, transforming participation into
+        presence and performance into legacy.
       </p>
       <p
         className={`${playfair.className} text-gray-400 text-base md:text-lg leading-relaxed`}
       >
-        Unlike trophies that celebrate a single event, the Ragam Trophy demands
-        consistent brilliance across days of competition. Institutions send
-        their finest minds and greatest performers — and only the best, across
-        all disciplines, earns the right to hoist the golden flame.
+        What sets the Ever-Rolling Trophy apart is its emphasis on breadth over
+        isolation, and continuity over momentary triumph. It recognises
+        institutions that move in harmony with Ragam’s many forms, embodying
+        balance, collaboration, and depth across the festival.
       </p>
-
-      {/* Stats row */}
-      <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6">
-        {[
-          { value: "48", label: "Years of Legacy" },
-          { value: "120+", label: "Competing Colleges" },
-          { value: "300+", label: "Events Across Days" },
-          { value: "∞", label: "Glory on the Line" },
-        ].map((stat) => (
-          <StatPill key={stat.label} {...stat} />
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function StatPill({ value, label }) {
-  const ref = useRef(null);
-
-  useEffect(() => {
-    if (!ref.current) return;
-    gsap.fromTo(
-      ref.current,
-      { scale: 0.8, opacity: 0 },
-      {
-        scale: 1,
-        opacity: 1,
-        duration: 0.7,
-        ease: "back.out(1.4)",
-        scrollTrigger: { trigger: ref.current, start: "top 90%", once: true },
-      },
-    );
-  }, []);
-
-  return (
-    <div
-      ref={ref}
-      className="flex flex-col items-center p-6 rounded-2xl border border-orange-400/20 bg-white/3 hover:border-orange-400/50 transition-colors duration-300"
-    >
-      <span
-        className={`${brixton.className} text-orange-400 text-3xl md:text-4xl mb-2`}
-        style={{ textShadow: "0 0 20px rgba(251,146,60,0.6)" }}
-      >
-        {value}
-      </span>
-      <span
-        className={`${playfair.className} text-gray-500 text-xs tracking-widest uppercase`}
-      >
-        {label}
-      </span>
     </div>
   );
 }
@@ -633,10 +684,27 @@ function BottomCTA() {
           <span className="text-orange-400">CLAIM IT IN 2026?</span>
         </h2>
         <p
-          className={`${playfair.className} text-gray-400 italic mb-10 text-lg`}
+          className={`${playfair.className} text-gray-400 italic  text-lg`}
         >
-          Register your contingent and begin your journey to the most prized
-          trophy in South Indian cultural history.
+          To vie for the Ever-Rolling Trophy is to become part of a legacy that
+          defines Ragam itself. Beyond competition, it is an expression of
+          collective pride—where individual excellence converges to represent an
+          institution’s spirit on South India’s grandest cultural stage.
+        </p>
+        <p
+          className={`${playfair.className} text-gray-100 italic text-lg`}
+        >
+          The stage is set.
+        </p>
+        <p
+          className={`${playfair.className} text-gray-100 italic text-lg`}
+        >
+          The stakes are historic.
+        </p>
+        <p
+          className={`${playfair.className} text-gray-100 italic mb-10 text-lg`}
+        >
+          The legacy is yours for the taking.
         </p>
         <Link
           href="/events"

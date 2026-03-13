@@ -9,102 +9,7 @@ import Link from "next/link";
 
 gsap.registerPlugin(ScrollTrigger);
 
-function MorphText({ texts = [], morphTime = 2.5, cooldownTime = 2 }) {
-  const containerRef = useRef(null);
-  const t1 = useRef(null);
-  const t2 = useRef(null);
 
-  useEffect(() => {
-    if (texts.length < 2) return;
-
-    let idx = 0;
-    let cancelled = false;
-    const el1 = t1.current;
-    const el2 = t2.current;
-
-    const playMorph = () => {
-      if (cancelled) return;
-
-      el1.textContent = texts[idx % texts.length];
-      el2.textContent = texts[(idx + 1) % texts.length];
-
-      const tl = gsap.timeline({
-        onComplete: () => {
-          idx = (idx + 1) % texts.length;
-          gsap.delayedCall(cooldownTime, playMorph);
-        },
-      });
-
-      tl.fromTo(
-        el1,
-        { filter: "blur(0px)", opacity: 1 },
-        {
-          filter: "blur(12px)",
-          opacity: 0,
-          duration: morphTime,
-          ease: "sine.inOut",
-        },
-        0,
-      );
-
-      tl.fromTo(
-        el2,
-        { filter: "blur(12px)", opacity: 0 },
-        {
-          filter: "blur(0px)",
-          opacity: 1,
-          duration: morphTime,
-          ease: "sine.inOut",
-        },
-        0,
-      );
-    };
-
-    playMorph();
-    return () => {
-      cancelled = true;
-      gsap.killTweensOf([el1, el2]);
-    };
-  }, [texts, morphTime, cooldownTime]);
-
-  return (
-    <>
-      <div ref={containerRef} className="morph-container">
-        <span ref={t1} className="morph-text" />
-        <span ref={t2} className="morph-text" />
-      </div>
-
-      <style jsx>{`
-        .morph-container {
-          filter: url(#threshold);
-          display: grid;
-          place-items: center;
-          will-change: filter;
-          -webkit-font-smoothing: antialiased;
-          min-width: 1px;
-          min-height: 1px;
-        }
-        .morph-text {
-          grid-area: 1/1;
-          position: relative;
-          display: inline-block;
-          user-select: none;
-          transform: translateZ(0);
-        }
-      `}</style>
-
-      <svg style={{ position: "absolute", width: 0, height: 0 }}>
-        <filter id="threshold">
-          <feColorMatrix
-            in="SourceGraphic"
-            type="matrix"
-            values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 14 -5"
-          />
-        </filter>
-      </svg>
-    </>
-  );
-}
 
 const DOT_COLORS = ["#fef08a", "#fde68a", "#fdba74", "#fb923c"];
 
@@ -310,15 +215,15 @@ export default function RagamTrophy() {
     <div
       ref={sectionRef}
       className={`relative ${brixton.className} h-[65vh] sm:min-h-screen w-full bg-cover bg-center bg-no-repeat overflow-hidden`}
-      style={{
-        backgroundImage: `
-          radial-gradient(ellipse at center,
-            rgba(0,0,0,0) 25%,
-            rgba(0,0,0,0.8) 50%,
-            rgba(0,0,0,0.9) 100%),
-          url('/images/legacy/fire-background.png')
-        `,
-      }}
+      // style={{
+      //   backgroundImage: `
+      //     radial-gradient(ellipse at center,
+      //       rgba(0,0,0,0) 25%,
+      //       rgba(0,0,0,0.8) 50%,
+      //       rgba(0,0,0,0.9) 100%),
+      //     url('/images/legacy/fire-background.png')
+      //   `,
+      // }}
     >
       <div
         className="absolute inset-0"
@@ -331,31 +236,7 @@ export default function RagamTrophy() {
         />
       </div>
 
-      <div className="absolute inset-x-0 bottom-0 z-10 flex items-end justify-center pointer-events-none">
-        <Image
-          src="/images/legacy/fire.svg"
-          alt="fire"
-          className="hidden lg:block w-auto translate-x-60"
-          width={800}
-          height={800}
-          priority
-          loading="eager"
-        />
-        <Image
-          src="/images/legacy/fire2.svg"
-          alt="fire"
-          className="block lg:hidden w-auto"
-          width={600}
-          height={600}
-          priority
-          loading="eager"
-          style={{
-            height: "clamp(180px, 52vw, 420px)",
-            objectFit: "contain",
-            objectPosition: "bottom center",
-          }}
-        />
-      </div>
+      
 
       <div className="relative z-20 md:py-16 mt-0 md:mt-18 lg:mt-0 sm:py-8 sm:px-2">
         {/* Eyebrow label */}
@@ -376,22 +257,12 @@ export default function RagamTrophy() {
             className="w-auto flex self-start justify-center text-white font-bold -mr-8 left-text"
             style={{ fontSize: "max(10vw, 6rem)", willChange: "filter" }}
           >
-            <MorphText
-              texts={["RAGAM", "STILL"]}
-              morphTime={1.5}
-              cooldownTime={1}
-            />
           </div>
 
           <div
             className="w-auto flex self-start -mt-[8%] sm:-mt-[6%] justify-center text-orange-500 font-bold right-text"
             style={{ fontSize: "max(24vw, 12rem)", willChange: "filter" }}
           >
-            <MorphText
-              texts={["TROPHY", "BURNS"]}
-              morphTime={1.5}
-              cooldownTime={1}
-            />
           </div>
         </div>
 
@@ -416,8 +287,7 @@ export default function RagamTrophy() {
             letterSpacing: "0.05em",
           }}
         >
-          Earned through excellence across every stage, every art, every
-          discipline.
+          The Ultimate Testament to Cultural Spirit
         </p>
 
         <style jsx>{`
@@ -438,34 +308,14 @@ export default function RagamTrophy() {
         `}</style>
       </div>
 
-      <div className="absolute inset-0 z-30 flex items-end justify-center overflow-hidden pointer-events-none">
-        <Image
-          ref={mobileRef}
-          src="/images/legacy/Rajan2.svg"
-          alt="character"
-          width={500}
-          height={800}
-          className="block lg:hidden object-cover w-auto max-h-[60vh] sm:max-h-[75vh] md:max-h-[95vh]"
-          priority
-          loading="eager"
-          style={{ willChange: "transform" }}
-        />
-        <Image
-          ref={desktopRef}
-          src="/images/legacy/Rajan.svg"
-          alt="character"
-          width={800}
-          height={1200}
-          className="hidden lg:block h-full w-auto translate-x-60"
-          priority
-          loading="eager"
-          style={{ willChange: "transform" }}
-        />
-      </div>
-
+     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 pointer-events-none">
+  <div className="text-[#f8f8ff] text-[clamp(3rem,10vw,9rem)] font-bold">
+    RAGAM TROPHY
+  </div>
+</div>
       <div
         ref={linkRef}
-        className="absolute z-40 bottom-8 sm:bottom-10 left-0 right-0 p-4 flex flex-col items-center gap-3"
+        className="absolute z-40 bottom-8 sm:bottom-20 left-0 right-0 p-4 flex flex-col items-center gap-3"
         style={{ willChange: "transform, opacity" }}
       >
         <Link
