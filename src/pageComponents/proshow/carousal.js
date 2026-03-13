@@ -271,7 +271,7 @@ export default function FocusCarousel({ items = [] }) {
           artists={items}
           activeDay={activeDay}
           onDayClick={handleDayClick}
-          allDayPassLink={"https://makemypass.com/event/early-bird-ragam-pass"}
+          allDayPassLink={"https://ragam.co.in/proshows"}
         />
       </div>
 
