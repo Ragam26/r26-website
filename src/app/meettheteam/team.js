@@ -26,6 +26,13 @@ export const techLeads = [
     github: "https://github.com/FayisRahman",
     linkedin: "https://www.linkedin.com/in/fayis-rahman-thadathil-6644b9250/",
   },
+  {
+    name: "Mann Saxena",
+    image: "/images/meettheteam/tech/Mann.webp",
+    position: "Lead Developer",
+    github: "https://github.com/Mann-1909",
+    linkedin: "www.linkedin.com/in/mann-saxena-nitc",
+  },
 ];
 
 export const techTeam = [
