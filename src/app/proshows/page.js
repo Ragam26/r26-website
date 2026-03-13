@@ -1,8 +1,7 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-import EventCard from '@/components/common/Card/EventCard'
-import { useProshows } from '@/hooks/useEvents'
 import EventCardLong from '@/components/common/Card/EventCardLong'
+import ComboCards from '@/components/common/Card/ComboCards'
 
 const registrationUrl = 'https://makemypass.com/event/early-bird-ragam-pass'
 
@@ -43,7 +42,39 @@ const PROSHOW_EVENTS = [
     artists: ['JONITA GANDHI', 'VINEETH SREENIVASAN', 'YOGISEKAR'],
     images: ['/images/proshow/day3/Jonita.webp', '/images/proshow/day3/Vineeth.webp','/images/proshow/day3/yogi.webp'],
   }
-  
+]
+
+const COMBO_EVENTS = [
+  {
+    id: 1,
+    name: "Day 1 + Day 2",
+    regUrl: registrationUrl,
+    alignment: "right",
+    regFee: "2299",
+    earlyBirdFee: "1999",
+    dates: ['27', '28'],
+    comboDays: 2,
+  },
+  {
+    id: 2,
+    name: "Day 2 + Day 3",
+    regUrl: registrationUrl,
+    alignment: "left",
+    regFee: "2499",
+    earlyBirdFee: "2199",
+    dates: ['28', '29'],
+    comboDays: 2,
+  },
+  {
+    id: 3,
+    name: "3-Day",
+    regUrl: registrationUrl,
+    alignment: "right",
+    regFee: "3299",
+    earlyBirdFee:"2799",
+    dates: ['27', '28', '29'],
+    comboDays: 3,
+  },
 ]
 
 export default function EventsPage() {
@@ -88,7 +119,31 @@ export default function EventsPage() {
               NO EVENTS FOUND
             </p>
             )}
+      </div>
+      <div className='w-full max-w-350 mx-auto px-4 sm:px-6 lg:px-8 pb-20'>
+          <div className='page pt-5 flex items-center md:justify-left justify-center gap-10 flex-wrap'>
+            {COMBO_EVENTS.map((event) => (
+              <ComboCards
+                key={event.id}
+                name={event.name}
+                images={event.images}
+                eventImage={event.eventImage}
+                dates={event.dates}
+                regUrl={event.regUrl}
+                regFee={event.regFee}
+                earlyBirdFee={event.earlyBirdFee}
+                alignment={event.alignment}
+                comboDays={event.comboDays}
+              />
+            ))}
           </div>
+
+          {COMBO_EVENTS.length === 0 && (
+            <p className='text-center text-gray-500 py-20 text-xl font-light tracking-widest'>
+              NO EVENTS FOUND
+            </p>
+            )}
+      </div>
     </main>
   )
 }
