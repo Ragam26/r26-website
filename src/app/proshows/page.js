@@ -40,7 +40,7 @@ const PROSHOW_EVENTS = [
     regFee: '1499',
     earlyBirdFee: '1199',
     artists: ['JONITA GANDHI', 'VINEETH SREENIVASAN', 'YOGISEKAR'],
-    images: ['/images/proshow/day3/Jonita.webp', '/images/proshow/day3/Vineeth.webp','/images/proshow/day3/yogi.webp'],
+    images: ['/images/proshow/day3/Jonita.jpeg', '/images/proshow/day3/Vineeth.webp','/images/proshow/day3/Yogi.jpeg'],
   }
 ]
 
@@ -54,7 +54,7 @@ const COMBO_EVENTS = [
     earlyBirdFee:"2799",
     dates: ['27', '28', '29'],
     comboDays: 3,
-    images: ['/images/proshow/day1/Amitbro.jpeg', '/images/proshow/day1/IWish.jpeg','/images/proshow/day2/Darshan.jpg', '/images/proshow/day2/Vedan2.jpeg','/images/proshow/day3/Jonita.webp', '/images/proshow/day3/Vineeth.webp','/images/proshow/day3/yogi.webp']
+    images: ['/images/proshow/day1/Amitbro.jpeg', '/images/proshow/day1/IWish.jpeg','/images/proshow/day2/Darshan.jpg', '/images/proshow/day2/Vedan2.jpeg','/images/proshow/day3/Jonita.jpeg', '/images/proshow/day3/Vineeth.webp','/images/proshow/day3/Yogi.jpeg']
   },
   {
     id: 2,
@@ -65,7 +65,7 @@ const COMBO_EVENTS = [
     earlyBirdFee: "2199",
     dates: ['28', '29'],
     comboDays: 2,
-    images: ['/images/proshow/day2/Darshan.jpg', '/images/proshow/day2/Vedan2.jpeg','/images/proshow/day3/Jonita.webp', '/images/proshow/day3/Vineeth.webp','/images/proshow/day3/yogi.webp']
+    images: ['/images/proshow/day2/Darshan.jpg', '/images/proshow/day2/Vedan2.jpeg','/images/proshow/day3/Jonita.jpeg', '/images/proshow/day3/Vineeth.webp','/images/proshow/day3/Yogi.jpeg']
   },
   {
     id: 1,
