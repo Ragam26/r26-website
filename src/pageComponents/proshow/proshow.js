@@ -19,7 +19,7 @@ export default function ProshowSection({ isMobile }) {
       imageOffsetX: 60,
       imageOffsetY: -56,
       imageScale: 1.7,
-      passLink: "https://makemypass.com/event/early-bird-ragam-pass",
+      passLink: "https://makemypass.com/event/ragam-pass",
     },
     {
       id: 2,
@@ -33,7 +33,7 @@ export default function ProshowSection({ isMobile }) {
       imageOffsetX: 0,
       imageOffsetY: -20,
       imageScale: 1.2,
-      passLink: "https://makemypass.com/event/early-bird-ragam-pass",
+      passLink: "https://makemypass.com/event/ragam-pass",
     },
     {
       id: 3,
@@ -47,7 +47,7 @@ export default function ProshowSection({ isMobile }) {
       imageOffsetX: 35,
       imageOffsetY: -100,
       imageScale: 1.7,
-      passLink: "https://makemypass.com/event/early-bird-ragam-pass",
+      passLink: "https://makemypass.com/event/ragam-pass",
     },
     {
       id: 4,
@@ -61,7 +61,7 @@ export default function ProshowSection({ isMobile }) {
       imageOffsetX: 35,
       imageOffsetY: -30,
       imageScale: 1.8,
-      passLink: "https://makemypass.com/event/early-bird-ragam-pass",
+      passLink: "https://makemypass.com/event/ragam-pass",
     },
     {
       id: 5,
@@ -76,7 +76,7 @@ export default function ProshowSection({ isMobile }) {
       imageOffsetX: 16,
       imageOffsetY: -28,
       imageScale: 1.4,
-      passLink: "https://makemypass.com/event/early-bird-ragam-pass",
+      passLink: "https://makemypass.com/event/ragam-pass",
     },
     {
       id: 6,
@@ -90,7 +90,7 @@ export default function ProshowSection({ isMobile }) {
       imageOffsetX: 60,
       imageOffsetY: -69,
       imageScale: 1.7,
-      passLink: "https://makemypass.com/event/early-bird-ragam-pass",
+      passLink: "https://makemypass.com/event/ragam-pass",
     },
     {
       id: 7,
@@ -104,7 +104,7 @@ export default function ProshowSection({ isMobile }) {
       imageOffsetX: 70,
       imageOffsetY: -69,
       imageScale: 1.7,
-      passLink: "https://makemypass.com/event/early-bird-ragam-pass",
+      passLink: "https://makemypass.com/event/ragam-pass",
     },
   ];
 

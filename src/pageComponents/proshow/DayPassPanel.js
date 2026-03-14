@@ -93,9 +93,9 @@ export default function DayPassPanel({
             Grab Your Passes Now
           </span>
         )}
-        <span className="text-[#F4EFCF]/70 text-md font-league-gothic tracking-wider uppercase animate-pulse">
+        {/* <span className="text-[#F4EFCF]/70 text-md font-league-gothic tracking-wider uppercase animate-pulse">
           Early Bird Pricing Available Now
-        </span>
+        </span> */}
       </div>
     </div>
   );

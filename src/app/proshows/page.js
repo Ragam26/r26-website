@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import EventCardLong from '@/components/common/Card/EventCardLong'
 import ComboCards from '@/components/common/Card/ComboCards'
 
-const registrationUrl = 'https://makemypass.com/event/early-bird-ragam-pass'
+const registrationUrl = 'https://makemypass.com/event/ragam-pass'
 
 const PROSHOW_EVENTS = [
   {
@@ -14,7 +14,6 @@ const PROSHOW_EVENTS = [
     alignment: 'right',
     regUrl: registrationUrl,
     regFee: '1199',
-    earlyBirdFee: '999',
     artists: ['AMIT MISHRA', 'W.i.S.H'],
     images: ['/images/proshow/day1/Amitbro.jpeg', '/images/proshow/day1/IWish.jpeg'],
   },
@@ -26,7 +25,6 @@ const PROSHOW_EVENTS = [
     alignment: 'left',
     regUrl: registrationUrl,
     regFee: '1499',
-    earlyBirdFee: '1199',
     artists: ['DARSHAN RAVAL', 'VEDAN'],
     images: ['/images/proshow/day2/Darshan.jpg', '/images/proshow/day2/Vedan2.jpeg'],
   },
@@ -38,7 +36,6 @@ const PROSHOW_EVENTS = [
     alignment: 'right',
     regUrl: registrationUrl,
     regFee: '1499',
-    earlyBirdFee: '1199',
     artists: ['JONITA GANDHI', 'VINEETH SREENIVASAN', 'YOGISEKAR'],
     images: ['/images/proshow/day3/Jonita.jpeg', '/images/proshow/day3/Vineeth.webp','/images/proshow/day3/Yogi.jpeg'],
   }
@@ -51,7 +48,6 @@ const COMBO_EVENTS = [
     regUrl: registrationUrl,
     alignment: "left",
     regFee: "3299",
-    earlyBirdFee:"2799",
     dates: ['27', '28', '29'],
     comboDays: 3,
     images: ['/images/proshow/day1/Amitbro.jpeg', '/images/proshow/day1/IWish.jpeg','/images/proshow/day2/Darshan.jpg', '/images/proshow/day2/Vedan2.jpeg','/images/proshow/day3/Jonita.jpeg', '/images/proshow/day3/Vineeth.webp','/images/proshow/day3/Yogi.jpeg']
@@ -62,7 +58,6 @@ const COMBO_EVENTS = [
     regUrl: registrationUrl,
     alignment: "right",
     regFee: "2499",
-    earlyBirdFee: "2199",
     dates: ['28', '29'],
     comboDays: 2,
     images: ['/images/proshow/day2/Darshan.jpg', '/images/proshow/day2/Vedan2.jpeg','/images/proshow/day3/Jonita.jpeg', '/images/proshow/day3/Vineeth.webp','/images/proshow/day3/Yogi.jpeg']
@@ -73,7 +68,6 @@ const COMBO_EVENTS = [
     regUrl: registrationUrl,
     alignment: "left",
     regFee: "2299",
-    earlyBirdFee: "1999",
     dates: ['27', '28'],
     comboDays: 2,
     images: ['/images/proshow/day1/Amitbro.jpeg', '/images/proshow/day1/IWish.jpeg','/images/proshow/day2/Darshan.jpg', '/images/proshow/day2/Vedan2.jpeg']
