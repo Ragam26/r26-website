@@ -2,13 +2,6 @@ import { hover } from "motion";
 
 export const techLeads = [
   {
-    name: "Aariz",
-    image: "/images/meettheteam/tech/Aariz.webp",
-    position: "UI/UX Lead",
-    github: "",
-    linkedin: "https://www.linkedin.com/in/mohammad-aariz-imran",
-  },
-  {
     name: "Aravind Anil",
     image: "/images/meettheteam/tech/Aravind.webp",
     hoverImage: "/images/meettheteam/tech/Jack.webp",
@@ -38,7 +31,14 @@ export const techLeads = [
     image: "/images/meettheteam/tech/Mann.webp",
     position: "Lead Developer",
     github: "https://github.com/Mann-1909",
-    linkedin: "www.linkedin.com/in/mann-saxena-nitc",
+    linkedin: "https://www.linkedin.com/in/mann-saxena-nitc",
+  },
+  {
+    name: "Aariz",
+    image: "/images/meettheteam/tech/Aariz.webp",
+    position: "UI/UX Lead",
+    github: "",
+    linkedin: "https://www.linkedin.com/in/mohammad-aariz-imran",
   },
 ];
 
