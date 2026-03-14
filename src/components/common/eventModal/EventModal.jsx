@@ -1,5 +1,6 @@
 'use client';
 
+import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 
 export const EventModal = ({ event = {}, onClose, isOpen }) => {
@@ -17,6 +18,7 @@ export const EventModal = ({ event = {}, onClose, isOpen }) => {
       { name: "JANE DOE", phone: "+91 12345 67890" },
     ],
     brochure = null,
+    guidelines = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n2. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n3. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n4. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.\n5. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
   } = event;
 
   // Scroll lock
@@ -87,7 +89,7 @@ export const EventModal = ({ event = {}, onClose, isOpen }) => {
           <div style={{
             position: "absolute", top: "-20px", right: "-20px",
             width: "160px", height: "160px",
-            opacity: 0.15,
+            opacity: 0.75,
             backgroundImage: `url("/images/events/mandala.png")`,
             backgroundSize: "cover",
           }} />
@@ -128,60 +130,86 @@ export const EventModal = ({ event = {}, onClose, isOpen }) => {
             onWheel={(e) => { e.currentTarget.scrollTop += e.deltaY; }}
           >
             {/* Register card — mobile only, at top of scroll */}
+            <Link href={event.regUrl} target="_blank" className="block md:hidden" style={{ paddingTop: "20px" }}>
             <div className="block md:hidden" style={{ paddingTop: "20px" }}>
               <div style={{ background: "#c9a84c", borderRadius: "12px", padding: "20px", textAlign: "left", marginBottom: "4px" }}>
                 <button
-                  style={{ background: "#2a0f0a", color: "#e8d5a3", border: "none", borderRadius: "6px", padding: "10px 20px", fontWeight: "700", fontSize: "13px", letterSpacing: "1.5px", cursor: "pointer", width: "100%", textTransform: "uppercase" }}
+                  style={{ background: "#2a0f0a", color: "#e8d5a3", border: "none", borderRadius: "6px", padding: "10px 20px", fontWeight: "800", fontSize: "20px", letterSpacing: "1.5px", cursor: "pointer", width: "100%", textTransform: "uppercase" }}
                   onMouseEnter={e => e.currentTarget.style.background = "#1a0805"}
                   onMouseLeave={e => e.currentTarget.style.background = "#2a0f0a"}
                 >REGISTER NOW</button>
               </div>
             </div>
+            </Link>
+
             {/* Prizes Worth */}
+            {prizesWorth && prizesWorth !== "Rs. 0" && (
             <Section label="PRIZES WORTH">
               <p style={{ fontSize: "28px", fontWeight: "700", color: "#e8d5a3", margin: "8px 0 0" }}>
-                {prizesWorth}
+                Rs.{prizesWorth}
               </p>
             </Section>
+            )}
 
             {/* Details */}
-            <Section label="DETAILS">
-              <div style={{ display: "flex", gap: "24px", marginTop: "12px", flexWrap: "wrap" }}>
-                <DetailItem icon="📅" label="EVENT DATE" value={eventDate} />
-                <DetailItem icon="🗓" label="REG. DEADLINE" value={regDeadline} />
-              </div>
+            {(eventDate || regDeadline) && (
+              <Section label="DETAILS">
+                <div style={{ display: "flex", gap: "24px", marginTop: "12px", flexWrap: "wrap" }}>
+                  <DetailItem icon="📅" label="EVENT DATE" value={eventDate} />
+                  {regDeadline && regDeadline !== "N/A" && (
+                    <DetailItem icon="🗓" label="REG. DEADLINE" value={regDeadline} />
+                  )}
+                </div>
             </Section>
+            )}
 
             {/* About */}
-            <Section label="Guidelines">
-              <div style={{ marginTop: "12px" }}>
-                {about.split("\n").map((line, i) =>
-                  line.trim() === ""
-                    ? <br key={i} />
+            {about && (
+              <Section label="ABOUT">
+                <div style={{ marginTop: "12px" }}>
+                  {about.split("\n").map((line, i) =>
+                    line.trim() === ""
+                      ? <br key={i} />
+                    : <p key={i} style={{ fontSize: "18px", lineHeight: "1.7", color: "#c4aa7a", margin: "0 0 8px" }}>{line}</p>
+                )}
+              </div>
+            </Section>
+            )}
+
+            {/* Guidelines */}
+            {guidelines && (
+              <Section label="GUIDELINES">
+                <div style={{ marginTop: "12px" }}>
+                  {guidelines.split("\n").map((line, i) =>
+                    line.trim() === ""
+                      ? <br key={i} />
                     : <p key={i} style={{ fontSize: "16px", lineHeight: "1.7", color: "#c4aa7a", margin: "0 0 8px" }}>{line}</p>
                 )}
               </div>
             </Section>
+            )}
 
             {/* Contacts */}
-            <Section label="CONTACTS">
-              <div style={{ display: "flex", gap: "16px", marginTop: "12px", flexWrap: "wrap" }}>
-                {contacts.map((c, i) => (
-                  <div key={i} style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                    <div style={{
+            {contacts.length > 0 && (
+              <Section label="CONTACTS">
+                <div style={{ display: "flex", gap: "16px", marginTop: "12px", flexWrap: "wrap" }}>
+                  {contacts.map((c, i) => (
+                    <div key={i} style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                      <div style={{
                       width: "36px", height: "36px", borderRadius: "50%",
                       background: "#c9a84c",
                       display: "flex", alignItems: "center", justifyContent: "center",
                       fontSize: "16px", flexShrink: 0,
                     }}>📞</div>
                     <div>
-                      <p style={{ margin: 0, fontSize: "11px", fontWeight: "700", letterSpacing: "1px", color: "#e8d5a3" }}>{c.name}</p>
-                      <p style={{ margin: 0, fontSize: "12px", color: "#c4aa7a" }}>{c.phone}</p>
+                      <p style={{ margin: 0, fontSize: "16px", fontWeight: "700", letterSpacing: "1px", color: "#e8d5a3" }}>{c.name}</p>
+                      <p style={{ margin: 0, fontSize: "14px", color: "#c4aa7a" }}>{c.phone}</p>
                     </div>
                   </div>
                 ))}
               </div>
             </Section>
+            )}
           </div>
 
           {/* Right column — register card (desktop only) */}
@@ -222,6 +250,7 @@ export const EventModal = ({ event = {}, onClose, isOpen }) => {
                   color: "#2a0f0a",
                 }}>{registrationFee}</span>
               </div> */}
+              <Link href={event.regUrl} target="_blank">
               <button
                 style={{
                   background: "#2a0f0a",
@@ -241,6 +270,7 @@ export const EventModal = ({ event = {}, onClose, isOpen }) => {
               >
                 REGISTER NOW
               </button>
+              </Link>
             </div>
 
             {brochure && (
@@ -282,7 +312,7 @@ const Section = ({ label, children }) => (
       border: "1.5px solid #c9a84c",
       borderRadius: "4px",
       padding: "4px 14px",
-      fontSize: "11px",
+      fontSize: "16px",
       fontWeight: "800",
       letterSpacing: "1.5px",
       color: "#e8d5a3",
@@ -304,8 +334,8 @@ const DetailItem = ({ icon, label, value }) => (
       fontSize: "16px", flexShrink: 0,
     }}>{icon}</div>
     <div>
-      <p style={{ margin: 0, fontSize: "10px", fontWeight: "700", letterSpacing: "1px", color: "#8a6a3a", textTransform: "uppercase" }}>{label}</p>
-      <p style={{ margin: 0, fontSize: "13px", fontWeight: "600", color: "#e8d5a3" }}>{value}</p>
+      <p style={{ margin: 0, fontSize: "14px", fontWeight: "700", letterSpacing: "1px", color: "#8a6a3a", textTransform: "uppercase" }}>{label}</p>
+      <p style={{ margin: 0, fontSize: "18px", fontWeight: "600", color: "#e8d5a3" }}>{value}</p>
     </div>
   </div>
 );

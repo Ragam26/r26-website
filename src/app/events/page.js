@@ -135,18 +135,20 @@ export default function EventsPage() {
         onClose={() => setSelectedEvent(null)}
         event={{
           title: selectedEvent?.eventName,
-          prizesWorth: selectedEvent?.prizeMoney,
+          prizesWorth: selectedEvent?.prizesWorth,
           registrationFee: selectedEvent?.regFee,
           eventDate: selectedEvent?.eventDay && selectedEvent?.eventMonth
             ? `${selectedEvent.eventDay} ${selectedEvent.eventMonth}`
             : undefined,
-          regDeadline: selectedEvent?.regDeadline,
+          regDeadline: selectedEvent?.expDate,
           about: selectedEvent?.description,
-          contacts: selectedEvent?.contact?.map((c) => ({
+          contacts: selectedEvent?.pocList?.map((c) => ({
             name: c.name,
             phone: c.phoneNo,
           })),
           brochure: selectedEvent?.brochureUrl,
+          regUrl: selectedEvent?.makeMyPassUrl,
+          guidelines: selectedEvent?.guidelines,
         }}
       />
     </main>
