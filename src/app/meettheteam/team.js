@@ -2,6 +2,13 @@ import { hover } from "motion";
 
 export const techLeads = [
   {
+    name: "Aariz",
+    image: "/images/meettheteam/tech/Aariz.webp",
+    position: "UI/UX Lead",
+    github: "",
+    linkedin: "https://www.linkedin.com/in/mohammad-aariz-imran",
+  },
+  {
     name: "Aravind Anil",
     image: "/images/meettheteam/tech/Aravind.webp",
     hoverImage: "/images/meettheteam/tech/Jack.webp",
@@ -37,6 +44,13 @@ export const techLeads = [
 
 export const techTeam = [
   {
+    name: "Abhinav Mathew",
+    image: "/images/meettheteam/tech/Abhinav.webp",
+    position: "Frontend Developer",
+    github: "https://github.com/Mat-hew-24",
+    linkedin: "https://www.linkedin.com/in/abhinav-mathew-5b878835a",
+  },
+  {
     name: "Emir Ziyan",
     image: "/images/meettheteam/tech/Emir.webp",
     position: "Frontend Developer",
@@ -63,6 +77,14 @@ export const techTeam = [
     position: "Frontend Developer",
     github: "https://github.com/Kamaze123",
     linkedin: "https://www.linkedin.com/in/kamalesh-dhinesh-a976a0344/",
+  },
+  {
+    name: "Nadeem M Siyam",
+    image: "/images/meettheteam/tech/Nadeem.webp",
+    position: "Frontend Developer",
+    github: "https://github.com/Centinoughty",
+    linkedin: "https://linkedin.com/in/nadeem-m-siyam",
+
   },
   {
     name: "Varun",
@@ -108,6 +130,13 @@ export const uiTeam = [
     position: "UI/UX Designer",
     github: "",
     linkedin: "https://www.linkedin.com/in/anush-p-37317738b/",
+  },
+  {
+    name: "Kalpana",
+    image: "/images/meettheteam/tech/Kalpana.webp",
+    position: "UI/UX Designer",
+    github: "https://github.com/kalpragh",
+    linkedin: "https://www.linkedin.com/in/kalpanaraghuram?trk=contact-info",
   },
   {
     name: "Kavitha",
