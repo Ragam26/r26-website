@@ -42,7 +42,7 @@ const PROSHOW_EVENTS = [
 ]
 
 const COMBO_EVENTS = [
-  {
+    {
     id: 1,
     name: "Day 1 + Day 2",
     regUrl: registrationUrl,
@@ -132,7 +132,8 @@ export default function EventsPage() {
             </span>
           ))}
         </div>
-      <div className='w-full max-w-350 mx-auto px-4 sm:px-6 lg:px-8 pb-20'>
+      </div>
+      <div className='w-full max-w-350 mx-auto px-4 sm:px-6 lg:px-8 pb-10'>
           <div className='page pt-5 flex items-center md:justify-left justify-center gap-15 flex-wrap'>
             {PROSHOW_EVENTS.map((event) => (
               <EventCardLong
@@ -155,7 +156,6 @@ export default function EventsPage() {
               NO EVENTS FOUND
             </p>
             )}
-      </div>
       </div>
         <div className='w-full max-w-350 mx-auto px-4 sm:px-6 lg:px-8 pb-10'>
           <div className='page pt-5 flex items-center md:justify-left justify-center gap-15 flex-wrap'>
