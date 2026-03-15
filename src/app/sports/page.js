@@ -8,9 +8,14 @@ import InfoCard from '@/components/common/infoCard/infoCard'
 export default function EventsPage() {
   let { data, isLoading, error } = useSports()
 
-  const sortedEvents = [...(data || [])].sort(
+  const coverEvents = [...(data || [])].sort(
     (a, b) => (!!b.eventCover) - (!!a.eventCover)
   );
+
+  const sortedEvents = [...coverEvents].sort((a, b) => {
+    return (b.priority ?? 0) - (a.priority ?? 0);
+  });
+
 
   let { committeeData, isCommitteeLoading, committeeError } = useCommittees("Sports");
   const [isInfoOpen, setIsInfoOpen] = useState(false);

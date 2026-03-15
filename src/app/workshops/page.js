@@ -6,9 +6,13 @@ import { useWorkshops } from "@/hooks/useEvents";
 export default function EventsPage() {
   let { data, isLoading, error } = useWorkshops();
 
-  const sortedEvents = [...(data || [])].sort(
+  const coverEvents = [...(data || [])].sort(
     (a, b) => (!!b.eventCover) - (!!a.eventCover)
   );
+
+  const sortedEvents = [...coverEvents].sort((a, b) => {
+    return (b.priority ?? 0) - (a.priority ?? 0);
+  });
 
   return (
     <main
