@@ -84,7 +84,9 @@ const TICKER_ITEMS = [
   '🎟',
   'Extra Ticket will be provided during conversion to physical ticket',
   '✦',
-  
+  '🎟 WORKSHOP OFFER',
+  'Workshop registrants get special discounts on Proshow tickets',
+  '✦',
 ]
  
 
