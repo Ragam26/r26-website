@@ -8,7 +8,11 @@ import InfoCard from '@/components/common/infoCard/infoCard'
 export default function EventsPage() {
   let { data, isLoading, error } = useSports()
 
-    let { committeeData, isCommitteeLoading, committeeError } = useCommittees("Sports");
+  const sortedEvents = [...(data || [])].sort(
+    (a, b) => (!!b.eventCover) - (!!a.eventCover)
+  );
+
+  let { committeeData, isCommitteeLoading, committeeError } = useCommittees("Sports");
   const [isInfoOpen, setIsInfoOpen] = useState(false);
 
   return (
@@ -45,8 +49,7 @@ export default function EventsPage() {
       ) : (
         <div className='w-full max-w-350 mx-auto px-4 sm:px-6 lg:px-8 pb-20'>
           <div className='page pt-10 flex items-center md:justify-left justify-center gap-10 flex-wrap'>
-            {data.map((eventData) => (
-              
+            {sortedEvents.map((eventData) => (
               <EventCard
                 key={eventData.id}
                 day={eventData.eventDay}
@@ -59,7 +62,7 @@ export default function EventsPage() {
             ))}
           </div>
 
-          {data.length === 0 && (
+          {sortedEvents.length === 0 && (
             <p className='text-center text-gray-500 py-20 text-xl font-light tracking-widest'>
               NO EVENTS FOUND
             </p>
