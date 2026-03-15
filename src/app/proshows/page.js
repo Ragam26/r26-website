@@ -25,8 +25,8 @@ const PROSHOW_EVENTS = [
     alignment: 'left',
     regUrl: registrationUrl,
     regFee: '1499',
-    artists: ['DARSHAN RAVAL', 'VEDAN'],
-    images: ['/images/proshow/day2/Darshan.jpg', '/images/proshow/day2/Vedan2.jpeg'],
+    artists: ['DARSHAN RAVAL'],
+    images: ['/images/proshow/day2/Darshan.jpg'],
   },
   {
     id: 3,
@@ -50,7 +50,7 @@ const COMBO_EVENTS = [
     regFee: "3299",
     dates: ['27', '28', '29'],
     comboDays: 3,
-    images: ['/images/proshow/day1/Amitbro.jpeg', '/images/proshow/day1/IWish.jpeg','/images/proshow/day2/Darshan.jpg', '/images/proshow/day2/Vedan2.jpeg','/images/proshow/day3/Jonita.jpeg', '/images/proshow/day3/Vineeth.webp','/images/proshow/day3/Yogi.jpeg']
+    images: ['/images/proshow/day1/Amitbro.jpeg', '/images/proshow/day1/IWish.jpeg','/images/proshow/day2/Darshan.jpg','/images/proshow/day3/Jonita.jpeg', '/images/proshow/day3/Vineeth.webp','/images/proshow/day3/Yogi.jpeg']
   },
   {
     id: 2,
@@ -60,7 +60,7 @@ const COMBO_EVENTS = [
     regFee: "2499",
     dates: ['28', '29'],
     comboDays: 2,
-    images: ['/images/proshow/day2/Darshan.jpg', '/images/proshow/day2/Vedan2.jpeg','/images/proshow/day3/Jonita.jpeg', '/images/proshow/day3/Vineeth.webp','/images/proshow/day3/Yogi.jpeg']
+    images: ['/images/proshow/day2/Darshan.jpg','/images/proshow/day3/Jonita.jpeg', '/images/proshow/day3/Vineeth.webp','/images/proshow/day3/Yogi.jpeg']
   },
   {
     id: 1,
@@ -70,7 +70,7 @@ const COMBO_EVENTS = [
     regFee: "2299",
     dates: ['27', '28'],
     comboDays: 2,
-    images: ['/images/proshow/day1/Amitbro.jpeg', '/images/proshow/day1/IWish.jpeg','/images/proshow/day2/Darshan.jpg', '/images/proshow/day2/Vedan2.jpeg']
+    images: ['/images/proshow/day1/Amitbro.jpeg', '/images/proshow/day1/IWish.jpeg','/images/proshow/day2/Darshan.jpg']
   },
 ]
 

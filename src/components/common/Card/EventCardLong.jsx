@@ -23,6 +23,8 @@ export default function EventCardLong({
 
   const imageList = images && images.length > 0 ? images : (eventImage ? [eventImage] : ['/images/card/dancerBg.svg'])
 
+  const isSlider = imageList.length > 1
+
   const [currentIdx, setCurrentIdx] = useState(0)
 
   // -- CROSSFADE
@@ -107,7 +109,9 @@ export default function EventCardLong({
               target="_blank"
               style={{
                 backgroundImage: `url('${img}')`,
-                transform: idx === currentIdx
+                transform: !isSlider
+                  ? 'translateX(0%)'
+                  : idx === currentIdx
                   ? 'translateX(0%)'
                   : idx < currentIdx
                   ? 'translateX(-100%)'
@@ -160,7 +164,7 @@ export default function EventCardLong({
               </div>
             )}
             <div className='flex items-center gap-3 ml-auto md:ml-0 mt-1'>
-              <span className={`text-lg md:text-xl font-medium ${earlyBirdFee ? 'line-through opacity-50' : 'text-2xl font-extrabold'}`}>
+              <span className={`text-xl md:text-2xl font-medium ${earlyBirdFee ? 'line-through opacity-50' : 'text-2xl font-extrabold'}`}>
                 ₹{regFee}
               </span>
               {earlyBirdFee && (

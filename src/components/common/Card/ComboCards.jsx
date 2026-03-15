@@ -127,7 +127,7 @@ export default function ComboCards({
 
             {/* Price display */}
             <div className='flex items-center gap-3 ml-auto md:ml-0 mt-1'>
-              <span className={`text-lg md:text-xl font-medium ${earlyBirdFee ? 'line-through opacity-50' : 'text-2xl font-extrabold'}`}>
+              <span className={`text-xl md:text-2xl font-extrabold ${earlyBirdFee ? 'line-through opacity-50' : 'text-2xl font-extrabold'}`}>
                 ₹{regFee}
               </span>
               {earlyBirdFee && (
