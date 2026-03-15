@@ -42,15 +42,15 @@ const PROSHOW_EVENTS = [
 ]
 
 const COMBO_EVENTS = [
-    {
-    id: 3,
-    name: "3-Day",
+  {
+    id: 1,
+    name: "Day 1 + Day 2",
     regUrl: registrationUrl,
     alignment: "left",
-    regFee: "3299",
-    dates: ['27', '28', '29'],
-    comboDays: 3,
-    images: ['/images/proshow/day1/Amitbro.jpeg', '/images/proshow/day1/IWish.jpeg','/images/proshow/day2/Darshan.jpg','/images/proshow/day3/Jonita.jpeg', '/images/proshow/day3/Vineeth.webp','/images/proshow/day3/Yogi.jpeg']
+    regFee: "2299",
+    dates: ['27', '28'],
+    comboDays: 2,
+    images: ['/images/proshow/day1/Amitbro.jpeg', '/images/proshow/day1/IWish.jpeg','/images/proshow/day2/Darshan.jpg']
   },
   {
     id: 2,
@@ -63,14 +63,14 @@ const COMBO_EVENTS = [
     images: ['/images/proshow/day2/Darshan.jpg','/images/proshow/day3/Jonita.jpeg', '/images/proshow/day3/Vineeth.webp','/images/proshow/day3/Yogi.jpeg']
   },
   {
-    id: 1,
-    name: "Day 1 + Day 2",
+    id: 3,
+    name: "3-Day",
     regUrl: registrationUrl,
     alignment: "left",
-    regFee: "2299",
-    dates: ['27', '28'],
-    comboDays: 2,
-    images: ['/images/proshow/day1/Amitbro.jpeg', '/images/proshow/day1/IWish.jpeg','/images/proshow/day2/Darshan.jpg']
+    regFee: "3299",
+    dates: ['27', '28', '29'],
+    comboDays: 3,
+    images: ['/images/proshow/day1/Amitbro.jpeg', '/images/proshow/day1/IWish.jpeg','/images/proshow/day2/Darshan.jpg','/images/proshow/day3/Jonita.jpeg', '/images/proshow/day3/Vineeth.webp','/images/proshow/day3/Yogi.jpeg']
   },
 ]
 
@@ -132,6 +132,30 @@ export default function EventsPage() {
             </span>
           ))}
         </div>
+      <div className='w-full max-w-350 mx-auto px-4 sm:px-6 lg:px-8 pb-20'>
+          <div className='page pt-5 flex items-center md:justify-left justify-center gap-15 flex-wrap'>
+            {PROSHOW_EVENTS.map((event) => (
+              <EventCardLong
+                key={event.id}
+                day={event.day}
+                divasam={event.divasam}
+                date={event.date}
+                alignment={event.alignment}
+                regUrl={event.regUrl}
+                regFee={event.regFee}
+                earlyBirdFee={event.earlyBirdFee}
+                artists={event.artists}
+                images={event.images}
+              />
+            ))}
+          </div>
+
+          {PROSHOW_EVENTS.length === 0 && (
+            <p className='text-center text-gray-500 py-20 text-xl font-light tracking-widest'>
+              NO EVENTS FOUND
+            </p>
+            )}
+      </div>
       </div>
         <div className='w-full max-w-350 mx-auto px-4 sm:px-6 lg:px-8 pb-10'>
           <div className='page pt-5 flex items-center md:justify-left justify-center gap-15 flex-wrap'>
@@ -157,30 +181,7 @@ export default function EventsPage() {
             </p>
             )}
         </div>
-        <div className='w-full max-w-350 mx-auto px-4 sm:px-6 lg:px-8 pb-20'>
-          <div className='page pt-5 flex items-center md:justify-left justify-center gap-15 flex-wrap'>
-            {PROSHOW_EVENTS.map((event) => (
-              <EventCardLong
-                key={event.id}
-                day={event.day}
-                divasam={event.divasam}
-                date={event.date}
-                alignment={event.alignment}
-                regUrl={event.regUrl}
-                regFee={event.regFee}
-                earlyBirdFee={event.earlyBirdFee}
-                artists={event.artists}
-                images={event.images}
-              />
-            ))}
-          </div>
-
-          {PROSHOW_EVENTS.length === 0 && (
-            <p className='text-center text-gray-500 py-20 text-xl font-light tracking-widest'>
-              NO EVENTS FOUND
-            </p>
-            )}
-      </div>
+        
       
     </main>
   )
