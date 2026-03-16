@@ -88,7 +88,7 @@ export default function AdjModal({ adj, onClose }) {
               <h3
                 className={`${instrument.className} text-[#D4AF37] text-xs uppercase tracking-widest mb-3`}
               >
-                Prior Adjudication Experience
+                Prior Experience
               </h3>
               <ul className="flex flex-col gap-2">
                 {adj.accomplishments.map((item, i) => (
