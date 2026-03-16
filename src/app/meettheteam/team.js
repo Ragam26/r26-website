@@ -22,9 +22,11 @@ export const techLeads = [
   {
     name: "Fayis Rahman",
     image: "/images/meettheteam/tech/fayis.webp",
+    hoverImage: "/images/meettheteam/tech/fayisalt.png",
     position: "Lead Developer",
     github: "https://github.com/FayisRahman",
     linkedin: "https://www.linkedin.com/in/fayis-rahman-thadathil-6644b9250/",
+    song: "/images/meettheteam/tech/notrickroll.m4a",
   },
   {
     name: "Mann Saxena",
