@@ -19,7 +19,7 @@ const policyButtons = [
   { label: "ACCOMMODATION", href: "/hospitality" },
   { label: "EQUITY POLICY", href: null },
   { label: "TAB POLICY", href: "/images/debate/SahitiTabPolicies.pdf" },
-  { label: "SCHEDULE", href: null },
+  { label: "SCHEDULE", href: "/images/debate/SahitiSchedule.pdf"},
 ];
 
 const details = [

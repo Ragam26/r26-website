@@ -33,16 +33,18 @@ const CA_DATA = [
     revealed: true,
   },
   {
-    name: "Adjudicator Three",
-    institution: "Institution Name",
-    bio: "Brief background about this adjudicator goes here.",
+    name: "Jaefar Shameem",
+    institution: "NIT Calicut",
+    bio: "Jaefar Shameem is a highly accomplished debater with extensive experience in both World Schools (WSDC) and British Parliamentary formats, under QatarDebate. He is the QSDL Nationals Champion and Best Speaker, and was ranked 8th Best ESL Speaker at the Winter Holiday Open in Croatia. An alumnus of the World Schools Debate Academy in Slovenia, Jaefar has also debated and adjudicated training rounds with national teams representing the UAE, Tanzania, and Slovenia, making him a strong presence on the international debating circuit.",
     accomplishments: [
-      "Grand Finals adjudicator, ABC Championship 2024",
-      "Break adjudicator, XYZ Open 2023",
-      "Octos adjudicator, DEF Invitational 2023",
+      "OrgComm Student Rep - 5th International Schools Debating Championship (ISDC) (Organized by QatarDebate; featuring 50+ participating national teams)",
+      "8th Best ESL Speaker - Winter Holiday Open (WHO), Croatia (WSDC-format tournament featuring 50+ national teams)",
+      "National Champion & Overall Best Speaker - Qatar Schools Debate League (QSDL)",
+      "Alumnus & Undefeated Practice Team Member - World Schools Debate Academy (WSDA), Slovenia (International training program hosting 50+ national teams)",
+      "Secretariat, Head Chair, and Best Delegate - Across 15+ Model UN Conferences"
     ],
-    image: "/images/debate/caTempo.png",
-    revealed: false,
+    image: "/images/debate/temp/jaefar.jpeg",
+    revealed: true,
   },
 ];
 
