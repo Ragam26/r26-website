@@ -6,39 +6,45 @@ import { archivo, instrument } from "@/lib/fonts";
 
 const CA_DATA = [
   {
-    name: "Adjudicator One",
-    institution: "Institution Name",
-    bio: "Brief background about this adjudicator goes here.",
+    name: "Swayam Krishna",
+    institution: "SRM University, Kattankulathur",
+    bio: "Swayam Krishnan is a versatile and competitive debater with various achievements across national and intercollegiate circuits. A Best Speaker and Overall Winner at the CRMD National Level Debate (FRCRCE, Mumbai), he has also won the Athena '25 Parliamentary Debate and the Hermex '25 National Debate. He frequently serves as a chief adjudicator and MUN chair and has won 15+ awards across multiple MUN conferences.",
     accomplishments: [
-      "Grand Finals adjudicator, ABC Championship 2024",
-      "Break adjudicator, XYZ Open 2023",
-      "Octos adjudicator, DEF Invitational 2023",
+      "Chief Adjudicator, Rhetoric'24 Parliamentary Debate, PS Senior Secondary School",
+      "Chief Adjudicator, Rhetoric'23 Parliamentary Debate, PS Senior Secondary School",
+      "Chief Adjudicator, Jhalak'26 Oxford-Style Debate, SRM KTR",
+      "Chief Adjudicator, Reflection'25 Parliamentary Debate, Vidya Mandir, Mylapore",
+      "Chaired 15+ Model United Nations (MUN) Conferences"
     ],
-    image: "/images/debate/caTempo.png",
-    revealed: false,
+    image: "/images/debate/temp/swayam.jpeg",
+    revealed: true,
   },
   {
-    name: "Adjudicator Two",
-    institution: "Institution Name",
-    bio: "Brief background about this adjudicator goes here.",
+    name: "Aditya Santosh",
+    institution: "Vivekanand Education Society's Institute Of Technology, Mumbai",
+    bio: "Aditya Santosh is a highly accomplished debater known for his dynamic presence across national debate circuits. With outstanding performances at prestigious platforms including the Hindustan Times Centennial Debate and multiple IITs and IIMs, he has also competed across economics, strategy, and case study competitions while remaining actively involved in adjudication and campus literary initiatives.",
     accomplishments: [
-      "Grand Finals adjudicator, ABC Championship 2024",
-      "Break adjudicator, XYZ Open 2023",
+      "Adjudicator at NMIMS School of Business, School of Arts, School of Economics",
+      "Hindustan Times Centennial Debate - 2nd in Mumbai , Top 12 in India (Judged by Dr. Shashi Tharoor, Jay Panda, Justice Mittal)",
+      "Deputy Head of the VESLit Circle - Official Literary Society of VESIT",
+      "Fifth Place at NIT Surathkal Asian Parliamentary Debate"
     ],
-    image: "/images/debate/caTempo.png",
-    revealed: false,
+    image: "/images/debate/temp/aditya.jpeg",
+    revealed: true,
   },
   {
-    name: "Adjudicator Three",
-    institution: "Institution Name",
-    bio: "Brief background about this adjudicator goes here.",
+    name: "Jaefar Shameem",
+    institution: "NIT Calicut",
+    bio: "Jaefar Shameem is a highly accomplished debater with extensive experience in both World Schools (WSDC) and British Parliamentary formats, under QatarDebate. He is the QSDL Nationals Champion and Best Speaker, and was ranked 8th Best ESL Speaker at the Winter Holiday Open in Croatia. An alumnus of the World Schools Debate Academy in Slovenia, Jaefar has also debated and adjudicated training rounds with national teams representing the UAE, Tanzania, and Slovenia, making him a strong presence on the international debating circuit.",
     accomplishments: [
-      "Grand Finals adjudicator, ABC Championship 2024",
-      "Break adjudicator, XYZ Open 2023",
-      "Octos adjudicator, DEF Invitational 2023",
+      "OrgComm Student Rep - 5th International Schools Debating Championship (ISDC) (Organized by QatarDebate; featuring 50+ participating national teams)",
+      "8th Best ESL Speaker - Winter Holiday Open (WHO), Croatia (WSDC-format tournament featuring 50+ national teams)",
+      "National Champion & Overall Best Speaker - Qatar Schools Debate League (QSDL)",
+      "Alumnus & Undefeated Practice Team Member - World Schools Debate Academy (WSDA), Slovenia (International training program hosting 50+ national teams)",
+      "Secretariat, Head Chair, and Best Delegate - Across 15+ Model UN Conferences"
     ],
-    image: "/images/debate/caTempo.png",
-    revealed: false,
+    image: "/images/debate/temp/jaefar.jpeg",
+    revealed: true,
   },
 ];
 
