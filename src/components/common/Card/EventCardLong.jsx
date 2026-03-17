@@ -1,22 +1,60 @@
+'use client'
 import Link from "next/link";
+import { useState, useEffect } from "react";
 
 export default function EventCardLong({
   alignment,
-  imageURL,
+  eventImage,
+  images,
   day,
+  divasam,
   description,
   name,
+  artists,
   date,
   regUrl,
+  regFee,
+  earlyBirdFee,
 }) {
   const LETTERS_ARR = ['D', 'A', 'Y', day]
   const reverse = alignment === 'right'
+
+  const artistList = artists && artists.length > 0 ? artists : (name ? [name] : [])
+
+  const imageList = images && images.length > 0 ? images : (eventImage ? [eventImage] : ['/images/card/dancerBg.svg'])
+
+  const isSlider = imageList.length > 1
+
+  const [currentIdx, setCurrentIdx] = useState(0)
+
+  // -- CROSSFADE
+  // const [fading, setFading] = useState(false)
+  // useEffect(() => {
+  //   if (imageList.length <= 1) return;
+  //   const interval = setInterval(() => {
+  //     setFading(true)
+  //     setTimeout(() => {
+  //       setCurrentIdx((prev) => (prev + 1) % imageList.length)
+  //       setFading(false)
+  //     }, 500)
+  //   }, 3000)
+  //   return () => clearInterval(interval)
+  // }, [imageList.length])
+
+  // -- SLIDING --
+  useEffect(() => {
+    if (imageList.length <= 1) return;
+    const interval = setInterval(() => {
+      setCurrentIdx((prev) => (prev + 1) % imageList.length)
+    }, 3000)
+    return () => clearInterval(interval)
+  }, [imageList.length])
 
   const commonBorderStyle =
     "border border-[#7d1912] group-hover:border-[#fdebc8] transition-colors"
 
   return (
-    <div className='group max-w-6xl w-full mx-auto p-1.5 bg-[#fdebc8] hover:bg-[#7d1912] font-serif text-[#7d1912] hover:text-[#fdebc8] transition-colors'>
+    <div className='group max-w-6xl w-[85%] mx-auto p-1.5 bg-[#fdebc8] hover:bg-[#7d1912] font-serif text-[#7d1912] hover:text-[#fdebc8] transition-colors'>
       <div
         className={`flex flex-wrap md:flex-nowrap gap-2 w-full md:min-h-[400px] ${
           reverse ? 'md:flex-row-reverse' : ''
@@ -45,40 +83,103 @@ export default function EventCardLong({
 
         <div
           style={{ backgroundImage: "url('/images/card/normBg.svg')" }}
-          className={`w-[calc(25%-0.25rem)] md:w-[10%] min-h-[250px] md:min-h-[150px] bg-cover bg-center ${commonBorderStyle} order-2 md:order-3`}
+          className={`w-[calc(25%-0.25rem)] md:w-[10%] min-h-[250px] md:min-h-[150px] bg-cover bg-center ${commonBorderStyle} ${reverse ? 'order-3 md:order-3' : 'order-2 md:order-3'}`}
         ></div>
 
-        <div
+        {/* -- CROSSFADE image panel
+        <Link
+          href={regUrl}
+          target="_blank"
           style={{
-            backgroundImage: imageURL
-              ? `url('${imageURL}')`
+            backgroundImage: eventImage
+              ? `url('${imageList[currentIdx]}')`
               : "url('/images/card/dancerBg.svg')",
           }}
-          className={`w-[calc(75%-0.25rem)] md:w-[35%] min-h-[300px] md:min-h-[250px] bg-cover bg-center bg-black ${commonBorderStyle} order-3 md:order-2`}
-        ></div>
+          className={`w-[calc(75%-0.25rem)] md:w-[35%] min-h-[300px] md:min-h-[250px] bg-cover bg-center bg-black ${commonBorderStyle} ${reverse? 'order-2 md:order-2' : 'order-3 md:order-2'}`}
+        /> */}
 
-        <div className={`w-full md:flex-1 p-6 md:p-8 flex flex-col justify-between ${commonBorderStyle} order-4 text-right md:text-left`}>
+        {/* -- SLIDING image panel -- */}
+        <div
+          className={`relative overflow-hidden w-[calc(75%-0.25rem)] md:w-[35%] min-h-[300px] md:min-h-[250px] bg-black ${commonBorderStyle} ${reverse ? 'order-2 md:order-2' : 'order-3 md:order-2'}`}
+        >
+          {imageList.map((img, idx) => (
+            <Link
+              key={img}
+              href={regUrl}
+              target="_blank"
+              style={{
+                backgroundImage: `url('${img}')`,
+                transform: !isSlider
+                  ? 'translateX(0%)'
+                  : idx === currentIdx
+                  ? 'translateX(0%)'
+                  : idx < currentIdx
+                  ? 'translateX(-100%)'
+                  : 'translateX(100%)',
+                transition: 'transform 0.5s cubic-bezier(0.76, 0, 0.24, 1)',
+              }}
+              className="absolute inset-0 bg-cover bg-center"
+            />
+          ))}
+        </div>
+
+        <Link
+          href={regUrl}
+          target="_blank"
+          className={`w-full md:flex-1 p-6 md:p-8 flex flex-col justify-between ${commonBorderStyle} order-4 text-left`}
+        >
           <div>
             <div className='text-3xl md:text-4xl'>
               <span className='font-bold'>{date} </span>
               <span className='font-light'>MARCH</span>
             </div>
-
             <div className='text-xl md:text-2xl mt-1 font-light'>
-              Friday
+              {divasam}
             </div>
           </div>
 
           <div className='mt-8 md:mt-auto'>
-            <h1 className='text-4xl sm:text-5xl md:text-6xl font-extrabold mb-4 tracking-wide'>
-              {name.toUpperCase()}
-            </h1>
-
-            <p className='text-sm font-medium leading-5 md:max-w-lg ml-auto md:ml-0'>
-              {description}
-            </p>
+            {artistList.length === 1 ? (
+              <h1 className='text-3xl md:text-6xl font-extrabold mb-4 tracking-wide'>
+                {artistList[0].toUpperCase()}
+              </h1>
+            ) : (
+              <div className='mb-4 flex flex-col gap-1'>
+                {artistList.map((artist, idx) => (
+                  <div key={idx} className='flex items-baseline gap-3'>
+                    <span className='text-xs font-bold opacity-50 tabular-nums w-4 shrink-0'>
+                      {String(idx + 1).padStart(2, '0')}
+                    </span>
+                    <span
+                      className={`font-extrabold tracking-wide leading-tight ${
+                        artistList.length <= 2
+                          ? 'text-2xl md:text-4xl'
+                          : 'text-xl md:text-3xl'
+                      }`}
+                    >
+                      {artist}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            )}
+            <div className='flex items-center gap-3 ml-auto md:ml-0 mt-1'>
+              <span className={`text-xl md:text-2xl font-medium ${earlyBirdFee ? 'line-through opacity-50' : 'text-2xl font-extrabold'}`}>
+                ₹{regFee}
+              </span>
+              {earlyBirdFee && (
+                <span className='text-xl md:text-2xl font-extrabold'>
+                  ₹{earlyBirdFee}
+                </span>
+              )}
+              {earlyBirdFee && (
+                <span className='text-xs md:text-md font-bold uppercase tracking-widest opacity-80'>
+                  (Early Bird Offer)
+                </span>
+              )}
+            </div>
           </div>
-        </div>
+        </Link>
       </div>
     </div>
   )

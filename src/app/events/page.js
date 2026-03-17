@@ -6,43 +6,25 @@ import { useEvents } from "@/hooks/useEvents";
 import { useCommittees } from "@/hooks/useCommittees";
 import CategoryMenu from "@/components/common/categoryMenu/CategoryMenu";
 import InfoCard from "@/components/common/infoCard/infoCard";
+import { EventModal } from "@/components/common/eventModal/EventModal";
 
 const CATEGORY_CONFIG = [
-  {
-    name: "Flagship Events",
-    label: "Flagship Events",
-    banner: "/images/banner/banner1.svg",
-  },
-  {
-    name: "Dramatics",
-    label: "Dramatics",
-    banner: "/images/banner/banner2.svg",
-  },
-  {
-    name: "Kalolsavam (group)",
-    label: "Kalolsavam (group)",
-    banner: "/images/banner/banner1.svg",
-  },
-  {
-    name: "Kalolsavam -solo-pass",
-    label: "Kalolsavam (solo)",
-    banner: "/images/banner/banner2.svg",
-  },
-  {
-    name: "M&D-pass",
-    label: "Music & Dance",
-    banner: "/images/banner/banner1.svg",
-  },
-  { name: "Other", label: "Other", banner: "/images/banner/banner1.svg" },
+  { name: "Flagship Events", label: "Flagship Events" },
+  { name: "Dramatics", label: "Dramatics" },
+  { name: "Kalolsavam (group)", label: "Kalolsavam (group)" },
+  { name: "Kalolsavam -solo-pass", label: "Kalolsavam (solo)" },
+  { name: "M&D-pass", label: "Music & Dance" },
+  { name: "Other", label: "Other" },
 ];
 
 export default function EventsPage() {
-  let { data, isLoading, error } = useEvents("events");
-
-  let { committeeData, isCommitteeLoading, committeeError } = useCommittees("Events");
+  const { data, isLoading, error } = useEvents("events");
+  const { committeeData, isCommitteeLoading, committeeError } = useCommittees("Events");
 
   const [activeCategory, setActiveCategory] = useState(CATEGORY_CONFIG[0].name);
   const [isInfoOpen, setIsInfoOpen] = useState(false);
+  const [selectedEvent, setSelectedEvent] = useState(null);
+
   const selectedCategory = CATEGORY_CONFIG.find(
     (category) => category.name === activeCategory,
   );
@@ -59,7 +41,7 @@ export default function EventsPage() {
         backgroundSize: "cover",
         backgroundPosition: "top center",
         backgroundRepeat: "no-repeat",
-        minHeight: "100vh"
+        minHeight: "100vh",
       }}
     >
       <div className="pt-20 md:pt-32 pb-6 md:pb-16 flex flex-col items-center justify-center px-4 gap-6">
@@ -70,7 +52,7 @@ export default function EventsPage() {
           onClick={() => setIsInfoOpen(true)}
           className="px-4 py-2 rounded-full bg-[#730000] text-[#FFDEAC] font-semibold hover:bg-[#FFDEAC] hover:text-[#730000] transition-all duration-200 hover:scale-105 active:scale-95 flex items-center justify-center text-sm md:text-lg whitespace-nowrap"
         >
-          Know More
+          Contact Us
         </button>
       </div>
 
@@ -108,6 +90,7 @@ export default function EventsPage() {
                     regUrl={event.makeMyPassUrl}
                     regFee={0}
                     eventimage={event.eventCover ?? "/images/card/dancerBg.svg"}
+                    onClick={() => setSelectedEvent(event)}
                   />
                 ) : (
                   <EventCard
@@ -118,6 +101,7 @@ export default function EventsPage() {
                     regUrl={event.makeMyPassUrl}
                     regFee={0}
                     eventimage={event.eventCover ?? "/images/card/dancerBg.svg"}
+                    onClick={() => setSelectedEvent(event)}
                   />
                 ),
               )}
@@ -125,21 +109,47 @@ export default function EventsPage() {
           </div>
         </section>
       )}
+
       {!isLoading && !error && data.length === 0 && (
         <p className="text-center text-gray-500 py-20 text-xl font-light tracking-widest">
           NO EVENTS FOUND
         </p>
       )}
+
       <InfoCard
         isOpen={isInfoOpen}
         onClose={() => setIsInfoOpen(false)}
         title={committeeData?.Name}
         description={committeeData?.description}
-        pocList={committeeData?.contact?.map((contact) => ({
-          name: contact.name,
-          phone: contact.phoneNo,
-        })) ?? []}
+        pocList={
+          committeeData?.contact?.map((contact) => ({
+            name: contact.name,
+            phone: contact.phoneNo,
+          })) ?? []
+        }
         brochure={committeeData?.brochureUrl}
+      />
+
+      <EventModal
+        isOpen={!!selectedEvent}
+        onClose={() => setSelectedEvent(null)}
+        event={{
+          title: selectedEvent?.eventName,
+          prizesWorth: selectedEvent?.prizesWorth,
+          registrationFee: selectedEvent?.regFee,
+          eventDate: selectedEvent?.eventDay && selectedEvent?.eventMonth
+            ? `${selectedEvent.eventDay} ${selectedEvent.eventMonth}`
+            : undefined,
+          regDeadline: selectedEvent?.expDate,
+          about: selectedEvent?.description,
+          contacts: selectedEvent?.pocList?.map((c) => ({
+            name: c.name,
+            phone: c.phoneNo,
+          })),
+          brochure: selectedEvent?.brochureUrl,
+          regUrl: selectedEvent?.makeMyPassUrl,
+          guidelines: selectedEvent?.guidelines,
+        }}
       />
     </main>
   );

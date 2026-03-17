@@ -13,22 +13,22 @@ export default function MenuOverlay({ isOpen, onMenuItemClick }) {
 
   const menuItems = [
     { title: "Home", href: "/" },
-    { title: "Certificates", href: "notFound" },
+    // { title: "Certificates", href: "notFound" },
     { title: "Workshops", href: "workshops" },
     { title: "Events", href: "events" },
     { title: "I-Ink", href: "i-ink" },
     { title: "Sports", href: "sports" },
     { title: "Accommodations", href: "hospitality" },
-    { title: "Prodezza", href: "prodezza" },
+    { title: "Alumni Conclaves", href: "alumniconclaves" },
     { title: "Proshows", href: "proshows" },
-    { title: "Ragnarok", href: "ragnarok" },
+    { title: "Gaming", href: "gaming" },
     {
       title: "Campus Ambassador",
       href: "https://ca.ragam.co.in",
       external: true,
     },
-    { title: "Team", href: "notFound" },
     { title: "Sponsors", href: "sponsors" },
+    { title: "Team", href: "meettheteam" },
     { title: "Contact", href: "contact" },
   ];
 
@@ -100,7 +100,7 @@ export default function MenuOverlay({ isOpen, onMenuItemClick }) {
   return (
     <div
       ref={overlayRef}
-      className="fixed inset-0 opacity-0 pointer-events-none flex z-800"
+      className="fixed inset-0 opacity-0 bg-black pointer-events-none flex z-800"
     >
       <div
         ref={bgRef}
@@ -125,9 +125,7 @@ export default function MenuOverlay({ isOpen, onMenuItemClick }) {
           </Link>
         ))}
       </div>
-      <div className="hidden md:flex">
-        <ThreeScene />
-      </div>
+      <div className="hidden md:flex">{/* <ThreeScene /> */}</div>
     </div>
   );
 }
