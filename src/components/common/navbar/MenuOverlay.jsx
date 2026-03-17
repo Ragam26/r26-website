@@ -28,7 +28,7 @@ export default function MenuOverlay({ isOpen, onMenuItemClick }) {
       external: true,
     },
     { title: "Team", href: "meettheteam" },
-    // { title: "Sponsors", href: "notFound" },
+    { title: "Sponsors", href: "sponsors" },
     { title: "Contact", href: "contact" },
   ];
 

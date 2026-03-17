@@ -312,9 +312,9 @@ export default function Footer() {
               >
                 Team
               </Link>
-              {/* <Link href='/notFound' className='hover:text-gray-400 transition'>
+              <Link href='/sponsors' className='hover:text-gray-400 transition'>
                 Sponsors
-              </Link> */}
+              </Link>
               <Link href="/contact" className="hover:text-gray-400 transition">
                 Contact Us
               </Link>
