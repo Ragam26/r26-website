@@ -15,16 +15,16 @@ import { alata, ibmPlexMono, archivo, neuemachina } from "@/lib/fonts";
 
 const policyButtons = [
   { label: "BROCHURE", href: "/images/debate/SahitiBrochure.pdf" },
-  { label: "GUIDELINES", href: null },
+  { label: "GUIDELINES", href: "/images/debate/SahitiGuidelines.pdf" },
   { label: "ACCOMMODATION", href: "/hospitality" },
-  { label: "EQUITY POLICY", href: null },
-  { label: "TAB POLICY", href: "/images/debate/SahitiTabPolicies.pdf" },
+  { label: "EQUITY POLICY", href: "/images/debate/SahitiEquityPolicy.pdf" },
+  { label: "TAB POLICY", href: "/images/debate/SahitiTabPolicy.pdf" },
   { label: "SCHEDULE", href: "/images/debate/SahitiSchedule.pdf"},
 ];
 
 const details = [
-  { type: "EVENT DATES", value: "27–28 MARCH 2026", icon: CalendarDays },
-  { type: "REG DEADLINE", value: "17 MARCH 2026", icon: CalendarDays },
+  { type: "EVENT DATES", value: "27-28 MARCH 2026", icon: CalendarDays },
+  { type: "REG DEADLINE", value: "20 MARCH 2026", icon: CalendarDays },
   { type: "TEAM CAP", value: "16 TEAMS", icon: Users },
   { type: "FORMAT", value: "4 PRELIMS + SEMIS + FINAL", icon: LayoutList },
   { type: "BREAK", value: "TOP 4 TO SEMIFINALS", icon: Trophy },
