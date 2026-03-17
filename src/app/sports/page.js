@@ -2,9 +2,23 @@
 import React, { useEffect, useState } from 'react'
 import EventCard from '@/components/common/Card/EventCard'
 import { useSports } from '@/hooks/useEvents'
+import { useCommittees } from '@/hooks/useCommittees'
+import InfoCard from '@/components/common/infoCard/infoCard'
 
 export default function EventsPage() {
   let { data, isLoading, error } = useSports()
+
+  const coverEvents = [...(data || [])].sort(
+    (a, b) => (!!b.eventCover) - (!!a.eventCover)
+  );
+
+  const sortedEvents = [...coverEvents].sort((a, b) => {
+    return (b.priority ?? 0) - (a.priority ?? 0);
+  });
+
+
+  let { committeeData, isCommitteeLoading, committeeError } = useCommittees("Sports");
+  const [isInfoOpen, setIsInfoOpen] = useState(false);
 
   return (
     <main
@@ -21,6 +35,12 @@ export default function EventsPage() {
         <h1 className='text-white text-4xl md:text-7xl lg:text-8xl font-serif tracking-[0.3em] mt-20 mb-8 md:mb-12'>
           SPORTS
         </h1>
+        <button
+          onClick={() => setIsInfoOpen(true)}
+          className="px-4 py-2 rounded-full bg-[#730000] text-[#FFDEAC] font-semibold hover:bg-[#FFDEAC] hover:text-[#730000] transition-all duration-200 hover:scale-105 active:scale-95 flex items-center justify-center text-sm md:text-lg whitespace-nowrap"
+        >
+          Contact Us
+        </button>
       </div>
 
       {isLoading ? (
@@ -34,12 +54,12 @@ export default function EventsPage() {
       ) : (
         <div className='w-full max-w-350 mx-auto px-4 sm:px-6 lg:px-8 pb-20'>
           <div className='page pt-10 flex items-center md:justify-left justify-center gap-10 flex-wrap'>
-            {data.map((eventData) => (
+            {sortedEvents.map((eventData) => (
               <EventCard
                 key={eventData.id}
                 day={eventData.eventDay}
                 month={eventData.eventMonth}
-                eventName={eventData.eventName}
+                eventName={eventData.eventName || eventData.name}
                 regUrl={eventData.makeMyPassUrl}
                 regFee={eventData.regFee}
                 eventimage={eventData.eventCover ?? '/images/card/dancerBg.svg'}
@@ -47,13 +67,24 @@ export default function EventsPage() {
             ))}
           </div>
 
-          {data.length === 0 && (
+          {sortedEvents.length === 0 && (
             <p className='text-center text-gray-500 py-20 text-xl font-light tracking-widest'>
               NO EVENTS FOUND
             </p>
           )}
         </div>
       )}
+      <InfoCard
+        isOpen={isInfoOpen}
+        onClose={() => setIsInfoOpen(false)}
+        title={committeeData?.Name}
+        description={committeeData?.description}
+        pocList={committeeData?.contact?.map((contact) => ({
+          name: contact.name,
+          phone: contact.phoneNo,
+        })) ?? []}
+        brochure={committeeData?.brochureUrl}
+      />  
     </main>
   )
 }
