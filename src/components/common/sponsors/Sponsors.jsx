@@ -43,7 +43,7 @@ export default function Sponsors() {
             {section.logos.map((item, i) => (
               <div key={i} className="flex flex-col items-center w-full md:w-1/2">
                 <SponsorCard logo={item.src} />
-                <p className="mt-3 text-lg md:text-xl text-gray-300 text-center font-bold tracking-wide">
+                <p className="mt-3 text-2xl md:text-3xl text-gray-300 text-center font-bold tracking-wide">
                   {item.name}
                 </p>
               </div>
