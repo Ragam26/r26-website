@@ -10,8 +10,8 @@ export const EventModal = ({ event = {}, onClose, isOpen }) => {
     title = "FASHION",
     prizesWorth = "Rs. 25,000",
     registrationFee = "Rs. 499",
-    eventDate = "21 OCT 2022",
-    regDeadline = "15 OCT 2022",
+    eventDate = "28 MAR",
+    regDeadline = "25 MAR",
     about = "Potenti felis facilisi feugiat volutpat amet. Elementum sed quisque eget vulputate et neque, cursus tellus. Adipiscing cras pellentesque velit commodo. It dictumst a cras nisi facilisis cursus dolor. Ornare morbi lobortis tristique diam. Adipiscing sed at id sit et, consequat. Ornare diam mattis eu nunc ornare erat. Vehicula ultrices orci, nunc vel. Vestibulum lacus, cursus tellus consectetur nisl lorem ullamcorper non. Arcu ipsum, congue tortor non eget. Fermentum, platea sit mi vulputate et nisl. In ornare habitasse tempus, tempor. Purus in id quisque viverra.",
     contacts = [
       { name: "JOHN DOE", phone: "+91 12345 67890" },
