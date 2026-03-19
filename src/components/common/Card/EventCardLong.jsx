@@ -165,7 +165,7 @@ export default function EventCardLong({
             )}
             <div className='flex items-center gap-3 ml-auto md:ml-0 mt-1'>
               <span className={`text-xl md:text-2xl font-medium ${earlyBirdFee ? 'line-through opacity-50' : 'text-2xl font-extrabold'}`}>
-                ₹{regFee}
+                {regFee}
               </span>
               {earlyBirdFee && (
                 <span className='text-xl md:text-2xl font-extrabold'>

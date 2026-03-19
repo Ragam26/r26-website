@@ -13,7 +13,7 @@ const PROSHOW_EVENTS = [
     date: "27",
     alignment: "right",
     regUrl: registrationUrl,
-    regFee: "1199",
+    regFee: "Grab your Ragam Passes Now!",
     artists: ["AMIT MISHRA", "W.i.S.H"],
     images: [
       "/images/proshow/day1/Amitbro.jpeg",
@@ -27,7 +27,7 @@ const PROSHOW_EVENTS = [
     date: "28",
     alignment: "left",
     regUrl: registrationUrl,
-    regFee: "1499",
+    regFee: "Grab your Ragam Passes Now!",
     artists: ["DARSHAN RAVAL", "VEDAN"],
     images: [
       "/images/proshow/day2/Darshan.jpg",
@@ -41,7 +41,7 @@ const PROSHOW_EVENTS = [
     date: "29",
     alignment: "right",
     regUrl: registrationUrl,
-    regFee: "1499",
+    regFee: "Grab your Ragam Passes Now!",
     artists: ["JONITA GANDHI", "VINEETH SREENIVASAN", "YOGISEKAR"],
     images: [
       "/images/proshow/day3/Jonita.jpeg",
@@ -105,16 +105,16 @@ const COMBO_EVENTS = [
 
 const TICKER_ITEMS = [
   "🎟 GROUP OFFER",
-  "Buy 10 Tickets, get 1 Ticket FREE",
+  "Buy 10 Passes, get 1 Pass FREE",
   "✦",
   "🎟 GROUP OFFER",
-  "Only applicable for Single Day Tickets",
+  "Only applicable for Single Day Passes",
   "✦",
   "🎟",
-  "Extra Ticket will be provided during conversion to physical ticket",
+  "Extra Pass will be provided during conversion to physical passes",
   "✦",
   "🎟 WORKSHOP OFFER",
-  "Workshop registrants get special discounts on Proshow tickets",
+  "Workshop registrants get special discounts on Ragam Passes",
   "✦",
 ];
 
@@ -186,7 +186,7 @@ export default function EventsPage() {
           </p>
         )}
       </div>
-      <div className="w-full max-w-350 mx-auto px-4 sm:px-6 lg:px-8 pb-10">
+      {/* <div className="w-full max-w-350 mx-auto px-4 sm:px-6 lg:px-8 pb-10">
         <div className="page pt-5 flex items-center md:justify-left justify-center gap-15 flex-wrap">
           {COMBO_EVENTS.map((event) => (
             <ComboCards
@@ -209,7 +209,7 @@ export default function EventsPage() {
             NO EVENTS FOUND
           </p>
         )}
-      </div>
+      </div> */}
     </main>
   );
 }
