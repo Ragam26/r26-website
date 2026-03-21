@@ -1,13 +1,33 @@
 export const content = [
     {
-        name: 'Shifana Shafeek',
-        image: '/images/meettheteam/committees/content/Shifana.webp',
+        name: 'Adarsh Mahato',
+        image: '/images/meettheteam/committees/content/Adarsh.webp',
+        position: 'Head',
+    },
+    {
+        name: 'Krantikumar',
+        image: '/images/meettheteam/committees/content/Krantikumar.webp',
         position: 'Head',
     },
     {
         name: 'Liyana Basheer',
         image: '/images/meettheteam/committees/content/Liyana.webp',
         position: 'Head',
+    },
+    {
+        name: 'Pavan Kumar',
+        image: '/images/meettheteam/committees/content/Pavan.webp',
+        position: 'Head',
+    },
+    {
+        name: 'Shifana Shafeek',
+        image: '/images/meettheteam/committees/content/Shifana.webp',
+        position: 'Head',
+    },
+    {
+        name: 'Mohammed Hanan',
+        image: '/images/meettheteam/committees/content/Hanan.webp',
+        position: 'Associate Head',
     }
 ]
 
@@ -78,6 +98,11 @@ export const gpc = [
         image: '/images/meettheteam/committees/gpc/Shehzad.webp',
         position: 'Head',
     },
+    {
+        name: 'Mohammed Sabir',
+        image: '/images/meettheteam/committees/gpc/Sabir.webp',
+        position: 'Associate Head',
+    }
 ]
 
 export const hospitality = [
@@ -102,6 +127,11 @@ export const iink = [
     {
         name: 'Anugraha P',
         image: '/images/meettheteam/committees/i-ink/Anugraha.webp',
+        position: 'Head',
+    },
+    {
+        name: 'Chandrabushan',
+        image: '/images/meettheteam/committees/i-ink/Chandrabushan.webp',
         position: 'Head',
     },
     {
@@ -130,8 +160,28 @@ export const iink = [
         position: 'Head',
     },
     {
+        name: 'Agnes Theresa',
+        image: '/images/meettheteam/committees/i-ink/Agnes.webp',
+        position: 'Associate Head',
+    },
+    {
         name: 'Asiya Nowshad',
         image: '/images/meettheteam/committees/i-ink/Asiya.webp',
+        position: 'Associate Head',
+    },
+    {
+        name: 'Basma Rafi',
+        image: '/images/meettheteam/committees/i-ink/Basma.webp',
+        position: 'Associate Head',
+    },
+    {
+        name: 'Haala C V',
+        image: '/images/meettheteam/committees/i-ink/Haala.webp',
+        position: 'Associate Head',
+    },
+    {
+        name: 'Lakshmi Nandana',
+        image: '/images/meettheteam/committees/i-ink/Lakshmi.webp',
         position: 'Associate Head',
     },
     {
@@ -178,8 +228,18 @@ export const informals = [
         position: 'Head',
     },
     {
+        name: 'Vivek Gupta',
+        image: '/images/meettheteam/committees/informals/Vivek.webp',
+        position: 'Head',
+    },
+    {
         name: 'Anaswara ',
         image: '/images/meettheteam/committees/informals/Anaswara.webp',
+        position: 'Associate Head',
+    },
+    {
+        name: 'Arjun J',
+        image: '/images/meettheteam/committees/informals/Arjun.webp',
         position: 'Associate Head',
     },
     {
@@ -314,6 +374,11 @@ export const pad = [
     {
         name: 'Samin Murali',
         image: '/images/meettheteam/committees/pad/Samin.webp',
+        position: 'Head',
+    },
+    {
+        name: 'Siddharth',
+        image: '/images/meettheteam/committees/pad/Siddharth.webp',
         position: 'Head',
     },
     {
@@ -511,6 +576,14 @@ export const registration = [
     }
 ]
 
+export const security = [
+    {
+        name: 'Akash Kumar',
+        image: '/images/meettheteam/committees/security/Akash.webp',
+        position: 'Head',
+    }
+]
+
 export const social = [
     {   
         name: 'Amisha Kumari',
@@ -550,6 +623,11 @@ export const social = [
 ]
 
 export const sports = [
+    {
+        name: 'Pradeep',
+        image: '/images/meettheteam/committees/sports/Pradeep.webp',
+        position: 'Head',
+    },
     {
         name: 'Ryan Anil',
         image: '/images/meettheteam/committees/sports/Ryan.webp',
