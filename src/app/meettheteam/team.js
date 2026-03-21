@@ -4,10 +4,11 @@ export const techLeads = [
   {
     name: "Aravind Anil",
     image: "/images/meettheteam/tech/Aravind.webp",
-    hoverImage: "/images/meettheteam/tech/Jack.webp",
+    hoverImage: "/images/meettheteam/tech/chill.webp",
     position: "Lead Developer",
     github: "https://github.com/aravind2104",
     linkedin: "https://www.linkedin.com/in/aravind-anil-92a96b27a/",
+    song: "/images/meettheteam/tech/chill.mp3",
   },
   {
     name: "Arun Natarajan",
