@@ -88,7 +88,7 @@ export default function PrizesSection({
                   </div>
                   <div className="absolute w-full h-full backface-hidden rounded-[0.8em] overflow-hidden transform-[rotateY(180deg)]">
                     <Image
-                      src={`"https://cdn.ragam.co.in/debate/prize${i + 1}.png`}
+                      src={`https://cdn.ragam.co.in/debate/prize${i + 1}.png`}
                       alt={`Prize ${i + 1}`}
                       fill
                       className="object-cover"
