@@ -133,7 +133,7 @@ export default function Footer() {
   const letters = [
     {
       id: 1,
-      char: "https://cdn.ragam.co.in/footer/R.svg",
+      char: "https://cdn.ragam.co.in/footer/R.svg?v=2",
       color: "#EC8047",
       image: "https://cdn.ragam.co.in/footer/footer-1.svg",
       hoverOffset: { x: "10%", y: "59%" },
@@ -268,7 +268,7 @@ export default function Footer() {
           <div className="order-2 md:order-1 flex flex-col gap-6 items-center md:items-start w-full md:w-auto pl-6">
             <div className="font-bold pl-5">
               <Image
-                src="https://cdn.ragam.co.in/footer/ragam-logo.svg"
+                src="https://cdn.ragam.co.in/footer/ragam-logo.svg?v=2"
                 alt="Ragam Logo"
                 width={100}
                 height={100}

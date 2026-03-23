@@ -33,7 +33,7 @@ export default function ProshowCard({
           transform-3d
         "
         style={{
-          backgroundImage: `url("https://cdn.ragam.co.in/proshow/proshowCardBg.png)`,
+          backgroundImage: `url(https://cdn.ragam.co.in/proshow/proshowCardBg.png)`,
           transform: `rotateY(${tilt}deg)`,
         }}
       >

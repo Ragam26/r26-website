@@ -227,9 +227,9 @@ function Navbar({ routesToHide }) {
             {/* Center Logo */}
             <div className="flex justify-center">
               <Link href="/" className="block">
-                <div className="transition-transform duration-200 hover:scale-105 bg-black">
+                <div className="transition-transform duration-200 hover:scale-105">
                   <img
-                    src="https://cdn.ragam.co.in/ragam-logo.svg"
+                    src="https://cdn.ragam.co.in/ragam-logo.svg?v=2"
                     className="h-12"
                   />
                 </div>

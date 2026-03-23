@@ -456,7 +456,7 @@ export default function LandingPage() {
         {/* Red Logo */}
         <div
           ref={logoRef}
-          className="absolute left-1/2 top-1/2 z-100 aspect-square w-[64vmin] md:w-[44vmin] -translate-x-1/2 -translate-y-1/2 opacity-0 will-change-transform"
+          className="absolute left-1/2 top-1/2 z-100 aspect-square w-[26vmin] md:w-[18vmin] -translate-x-1/2 -translate-y-1/2 opacity-0 will-change-transform"
         >
           <div className="relative w-full h-full">
             <Image
@@ -464,6 +464,7 @@ export default function LandingPage() {
               alt="Red Logo"
               fill
               className="object-contain"
+              priority
               unoptimized
             />
           </div>
