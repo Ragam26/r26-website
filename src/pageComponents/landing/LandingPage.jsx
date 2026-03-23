@@ -356,7 +356,7 @@ export default function LandingPage() {
       >
         <div className="absolute inset-0 z-5 opacity-100 pointer-events-none mix-blend-overlay">
           <Image
-            src="/images/landingAnimation/heroBgOverlay.png"
+            src="https://cdn.ragam.co.in/landingAnimation/heroBgOverlay.png"
             alt="Texture"
             fill
             className="object-cover"
@@ -395,7 +395,7 @@ export default function LandingPage() {
               }}
             >
               <Image
-                src="/images/landingAnimation/loops/gradient.png"
+                src="https://cdn.ragam.co.in/landingAnimation/loops/gradient.png"
                 alt={`Loop Decoration ${index + 1}`}
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
@@ -443,11 +443,12 @@ export default function LandingPage() {
         >
           <div className="relative w-full h-full">
             <Image
-              src="/images/landingAnimation/ragamLogoWhite.svg"
+              src="https://cdn.ragam.co.in/landingAnimation/ragamLogoWhite.svg"
               alt="White Logo"
               fill
               className="object-contain"
               priority
+              unoptimized
             />
           </div>
         </div>
@@ -459,10 +460,11 @@ export default function LandingPage() {
         >
           <div className="relative w-full h-full">
             <Image
-              src="/images/landingAnimation/ragamLogo.svg"
+              src="https://cdn.ragam.co.in/landingAnimation/ragamLogo.svg"
               alt="Red Logo"
               fill
               className="object-contain"
+              unoptimized
             />
           </div>
         </div>
@@ -473,11 +475,10 @@ export default function LandingPage() {
           className="absolute left-1/2 top-1/2 z-102 aspect-video w-[64vmin] md:w-[44vmin] -translate-x-1/2 -translate-y-1/2 opacity-0 will-change-transform"
         >
           <div className="relative w-full h-full">
-            <Image
-              src="/images/landingAnimation/ragamText.svg"
+            <img
+              src="https://cdn.ragam.co.in/landingAnimation/ragamText.svg"
               alt="Ragam 2026"
-              fill
-              className="object-contain"
+              className="absolute inset-0 w-full h-full object-contain"
             />
           </div>
         </div>

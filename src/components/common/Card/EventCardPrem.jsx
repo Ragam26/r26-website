@@ -8,7 +8,7 @@ export default function EventCardPrem({
   day = "",
   month = "",
   eventName = "Event Name",
-  eventimage = "/images/card/dancerBg.svg",
+  eventimage = "https://cdn.ragam.co.in/card/dancerBg.svg",
   regFee = "000",
   expDate = "00/00",
   regUrl = "",

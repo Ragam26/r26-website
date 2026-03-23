@@ -229,7 +229,7 @@ function Navbar({ routesToHide }) {
               <Link href="/" className="block">
                 <div className="transition-transform duration-200 hover:scale-105">
                   <Image
-                    src="/images/ragam-logo.svg"
+                    src="https://cdn.ragam.co.in/ragam-logo.svg"
                     alt="Logo"
                     width={100}
                     height={100}

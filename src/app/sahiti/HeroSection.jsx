@@ -16,7 +16,7 @@ const CA_DATA = [
       "Chief Adjudicator, Reflection'25 Parliamentary Debate, Vidya Mandir, Mylapore",
       "Chaired 15+ Model United Nations (MUN) Conferences"
     ],
-    image: "/images/debate/temp/swayam.jpeg",
+    image: "https://cdn.ragam.co.in/debate/temp/swayam.jpeg",
     revealed: true,
   },
   {
@@ -29,7 +29,7 @@ const CA_DATA = [
       "Deputy Head of the VESLit Circle - Official Literary Society of VESIT",
       "Fifth Place at NIT Surathkal Asian Parliamentary Debate"
     ],
-    image: "/images/debate/temp/aditya.jpeg",
+    image: "https://cdn.ragam.co.in/debate/temp/aditya.jpeg",
     revealed: true,
   },
   {
@@ -43,7 +43,7 @@ const CA_DATA = [
       "Alumnus & Undefeated Practice Team Member - World Schools Debate Academy (WSDA), Slovenia (International training program hosting 50+ national teams)",
       "Secretariat, Head Chair, and Best Delegate - Across 15+ Model UN Conferences"
     ],
-    image: "/images/debate/temp/jaefar.jpeg",
+    image: "https://cdn.ragam.co.in/debate/temp/jaefar.jpeg",
     revealed: true,
   },
 ];
@@ -91,7 +91,7 @@ export default function HeroSection({
           setFlickering(false);
           // play audio
           if (!audioRef.current) {
-            audioRef.current = new Audio("/images/debate/dhab.mp3");
+            audioRef.current = new Audio("https://cdn.ragam.co.in/debate/dhab.mp3");
           }
           audioRef.current.currentTime = 0;
           audioRef.current.play().catch(() => {});

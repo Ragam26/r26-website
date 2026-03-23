@@ -8,7 +8,7 @@ export default function ProshowCard({
   month = "MAR",
   date = "00",
   tilt = 0,
-  image = "/images/proshow/proshowArtist_1.png",
+  image = "https://cdn.ragam.co.in/proshow/proshowArtist_1.png",
   song = null,
   imageOffsetX = 0,
   imageOffsetY = 0,

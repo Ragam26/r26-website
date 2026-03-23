@@ -24,7 +24,7 @@ export default function InitialLoader({ onFinished }) {
     >
       <div className="relative w-[12vmin] h-auto aspect-square">
         <img
-          src="/images/landingAnimation/ragamLogoWhite.svg"
+          src="https://cdn.ragam.co.in/landingAnimation/ragamLogoWhite.svg"
           alt="Loading..."
           className="absolute inset-0 w-full h-full object-contain opacity-20"
         />

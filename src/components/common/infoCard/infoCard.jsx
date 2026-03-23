@@ -60,7 +60,7 @@ export default function InfoCard({
             onClick={onClose}
             className="absolute right-4 top-1/2 -translate-y-1/2 text-3xl text-white hover:scale-115 transition"
           >
-            <img src="/images/infoCard/X.svg" alt="Close" className="w-6 h-6" />
+            <img src="https://cdn.ragam.co.in/infoCard/X.svg" alt="Close" className="w-6 h-6" />
           </button>
         </div>
 

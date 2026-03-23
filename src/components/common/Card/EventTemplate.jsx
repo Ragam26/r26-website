@@ -7,7 +7,7 @@ export default function EventTemplate() {
         day="27"
         month="MAR"
         eventName="Your Event Name"
-        eventimage="/images/card/dancerBg.svg"
+        eventimage="https://cdn.ragam.co.in/card/dancerBg.svg"
         regFee="500"
         expDate="20/03"
         regUrl="https://registration-link.com"

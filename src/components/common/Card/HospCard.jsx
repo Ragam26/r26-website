@@ -18,7 +18,7 @@ export default function HospCard({roomType = "",priceList = []}) {
 
                 <div className="w-1/3 relative min-h-40 md:min-h-60">
                     <Image
-                        src="/images/card/normBg.svg"
+                        src="https://cdn.ragam.co.in/card/normBg.svg"
                         alt="design"
                         fill
                         className="object-cover"

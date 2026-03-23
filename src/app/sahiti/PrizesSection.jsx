@@ -34,7 +34,7 @@ export default function PrizesSection({
 
           <div className="absolute inset-0 z-20 flex items-center justify-center">
             <Image
-              src="/images/debate/trophy.png"
+              src="https://cdn.ragam.co.in/debate/trophy.png"
               alt="Trophy"
               fill
               className="object-contain"
@@ -79,7 +79,7 @@ export default function PrizesSection({
                 >
                   <div className="absolute w-full h-full backface-hidden rounded-[0.8em] overflow-hidden">
                     <Image
-                      src="/images/debate/playingCardBack.png"
+                      src="https://cdn.ragam.co.in/debate/playingCardBack.png"
                       alt="prize card"
                       fill
                       className="object-cover"

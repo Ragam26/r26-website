@@ -89,7 +89,7 @@ export default function EventsPage() {
                     eventName={event.eventName}
                     regUrl={event.makeMyPassUrl}
                     regFee={0}
-                    eventimage={event.eventCover ?? "/images/card/dancerBg.svg"}
+                    eventimage={event.eventCover ?? "https://cdn.ragam.co.in/card/dancerBg.svg"}
                     onClick={() => setSelectedEvent(event)}
                   />
                 ) : (
@@ -100,7 +100,7 @@ export default function EventsPage() {
                     eventName={event.eventName}
                     regUrl={event.makeMyPassUrl}
                     regFee={0}
-                    eventimage={event.eventCover ?? "/images/card/dancerBg.svg"}
+                    eventimage={event.eventCover ?? "https://cdn.ragam.co.in/card/dancerBg.svg"}
                     onClick={() => setSelectedEvent(event)}
                   />
                 ),

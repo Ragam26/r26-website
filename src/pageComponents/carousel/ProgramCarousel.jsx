@@ -386,7 +386,7 @@ const ProgramCarousel = () => {
             }}
           >
             <img
-              src="/images/programCarousel/bg1.png"
+              src="https://cdn.ragam.co.in/programCarousel/bg1.png"
               alt=""
               className="w-full h-full object-cover"
               style={{ willChange: "transform" }}
@@ -472,7 +472,7 @@ const ProgramCarousel = () => {
               className="group transition-transform active:scale-95 disabled:opacity-50"
             >
               <img
-                src="/images/programCarousel/leftButton.svg"
+                src="https://cdn.ragam.co.in/programCarousel/leftButton.svg"
                 alt="Previous"
                 className="w-12 h-12 md:w-9 md:h-9 transition-opacity group-hover:opacity-80"
               />
@@ -483,7 +483,7 @@ const ProgramCarousel = () => {
               className="group transition-transform active:scale-95 disabled:opacity-50"
             >
               <img
-                src="/images/programCarousel/leftButton.svg"
+                src="https://cdn.ragam.co.in/programCarousel/leftButton.svg"
                 alt="Next"
                 className="w-12 h-12 md:w-9 md:h-9 transition-opacity group-hover:opacity-80 scale-x-[-1]"
               />

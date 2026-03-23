@@ -49,7 +49,7 @@ function TV() {
   return (
     <div className="relative">
       <img
-        src="/images/polaroid_page/retro_tv.svg"
+        src="https://cdn.ragam.co.in/polaroid_page/retro_tv.svg"
         alt="retro_tv"
         draggable="false"
         className="max-w-45 sm:min-w-50 md:max-w-60 lg:min-w-80"
@@ -57,7 +57,7 @@ function TV() {
 
       <div className="absolute top-[23.5%] left-[19%] w-[52%] h-[55%] rounded-2xl bg-black overflow-hidden">
         <img
-          src="/images/polaroid_page/tvVideo.gif"
+          src="https://cdn.ragam.co.in/polaroid_page/tvVideo.gif"
           alt="Screen Animation"
           className="w-full h-full object-cover opacity-80 blur-[0.5px]"
         />
@@ -205,7 +205,7 @@ function PolaroidPage() {
           <div className="flex items-center justify-center h-[30%] sm:min-h-35 md:h-40 lg:h-55 w-[72%] md:w-[95%] -translate-x-4 md:translate-x-0">
             <img
               ref={rangoliRef}
-              src="/images/polaroid_page/rangoli.svg"
+              src="https://cdn.ragam.co.in/polaroid_page/rangoli.svg"
               alt="rangoli"
               draggable="false"
               className="h-[92%] md:h-full w-auto object-contain flex-shrink-0"
@@ -233,7 +233,7 @@ function PolaroidPage() {
         <div className="relative z-10 flex sm:w-[40%] items-center justify-start bottom-29 sm:bottom-0 sm:ml-5">
           <div className="flex flex-col items-center sm:-mt-18">
             <img
-              src="/images/polaroid_page/camera.svg"
+              src="https://cdn.ragam.co.in/polaroid_page/camera.svg"
               alt="camera"
               draggable="false"
               className="max-w-40 sm:min-w-35 md:max-w-45 lg:max-w-60 object-cover mt-[25%]"
