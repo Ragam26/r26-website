@@ -48,7 +48,7 @@ export default function ContactInfoCard({
         style={{ maxWidth: 'min(90vw, 720px)', maxHeight: '85vh' }}
       >
         {/* ── Header ── */}
-        <div className="relative shrink-0 px-8 py-3 bg-[url('/images/infoCard/banner.svg')] bg-cover bg-center flex items-center justify-center min-h-13">
+        <div className="relative shrink-0 px-8 py-3 bg-[url('https://cdn.ragam.co.in/infoCard/banner.svg')] bg-cover bg-center flex items-center justify-center min-h-13">
           <h2 className='text-xl sm:text-2xl font-bold text-white tracking-[0.2em] text-center uppercase pr-8'>
             {title}
           </h2>
@@ -57,7 +57,7 @@ export default function ContactInfoCard({
             className='absolute right-4 top-1/2 -translate-y-1/2 text-white hover:scale-110 transition-transform cursor-pointer'
             aria-label='Close'
           >
-            <img src='/images/infoCard/X.svg' alt='Close' className='w-5 h-5' />
+            <img src='https://cdn.ragam.co.in/infoCard/X.svg' alt='Close' className='w-5 h-5' />
           </button>
         </div>
         <div className='overflow-y-auto overflow-x-hidden flex-1 p-4 sm:p-6'>

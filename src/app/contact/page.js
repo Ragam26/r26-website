@@ -91,7 +91,7 @@ export default function ContactPage() {
     <main
       className='min-h-screen bg-black bg-top bg-no-repeat bg-fixed relative'
       style={{
-        backgroundImage: "url('/images/contact/contactbg.png')",
+        backgroundImage: "url('https://cdn.ragam.co.in/contact/contactbg.png')",
         backgroundSize: '100% 100%',
         backgroundPosition: 'top center',
       }}

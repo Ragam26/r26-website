@@ -50,7 +50,7 @@ export default function InfoCard({
         className={`relative ${description ? "max-w-4xl" : "max-w-sm"} w-[90%] bg-[#1e0b0b]/50 shadow-2xl overflow-hidden border-r border-l border-b border-white/20 rounded-lg transition-all`}
       >
 
-        <div className ="relative px-8 py-2 bg-[url('/images/infoCard/banner.svg')] h-15 bg-cover bg-center">
+        <div className ="relative px-8 py-2 bg-[url('https://cdn.ragam.co.in/infoCard/banner.svg')] h-15 bg-cover bg-center">
           {/* Title */}
           <h2 className="text-4xl text-center font-bold text-white tracking-wide" style={{ fontFamily: grotapDemo.style.fontFamily }}>
             {title}
@@ -60,7 +60,7 @@ export default function InfoCard({
             onClick={onClose}
             className="absolute right-4 top-1/2 -translate-y-1/2 text-3xl text-white hover:scale-115 transition"
           >
-            <img src="/images/infoCard/X.svg" alt="Close" className="w-6 h-6" />
+            <img src="https://cdn.ragam.co.in/infoCard/X.svg" alt="Close" className="w-6 h-6" />
           </button>
         </div>
 

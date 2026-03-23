@@ -11,7 +11,7 @@ export default function EventCard({
   day = "",
   month = "",
   eventName = "Event Name",
-  eventimage = "/images/card/dancerBg.svg",
+  eventimage = "https://cdn.ragam.co.in/card/dancerBg.svg",
   regFee = "000",
   expDate = "00/00",
   regUrl = "",
@@ -23,7 +23,7 @@ export default function EventCard({
         <div className="w-5 flex flex-[1.2] flex-col gap-2">
           <div
             className={`${commonBorderStyle} flex-1 relative bg-cover bg-center`}
-            style={{ backgroundImage: "url(/images/card/normBg.svg)" }}
+            style={{ backgroundImage: "url(https://cdn.ragam.co.in/card/normBg.svg)" }}
           />
 
           {/* Date and Fee Box */}
@@ -86,7 +86,7 @@ export default function EventCard({
 
         {/* Arrow — decorative only */}
         <div className="w-12.5 relative flex items-center justify-center bg-[#FFDEAC] group-hover:bg-[#730000] transition-colors bg-cover bg-center">
-          <div className="bg-[url(/images/card/normArrow.svg)] group-hover:bg-[url(/images/card/premArrow.svg)] group-hover:rotate-12 transition-500 transition-all bg-fit bg-no-repeat bg-center w-full h-full flex items-center justify-center" />
+          <div className="bg-[url(https://cdn.ragam.co.in/card/normArrow.svg)] group-hover:bg-[url(https://cdn.ragam.co.in/card/premArrow.svg)] group-hover:rotate-12 transition-500 transition-all bg-fit bg-no-repeat bg-center w-full h-full flex items-center justify-center" />
         </div>
       </div>
 

@@ -10,7 +10,7 @@ export default function EventsPage() {
     <main
       className="min-h-screen bg-black bg-top bg-no-repeat bg-fixed"
       style={{
-        backgroundImage: "url('/images/i-ink/i-ink_bg.png')",
+        backgroundImage: "url('https://cdn.ragam.co.in/i-ink/i-ink_bg.png')",
         backgroundSize: "cover",
         backgroundPosition: "top center",
         backgroundRepeat: "no-repeat",
@@ -43,7 +43,7 @@ export default function EventsPage() {
               eventName={eventData.eventName} 
               regUrl={eventData.makeMyPassUrl} 
               regFee={eventData.regFee}
-              eventimage={eventData.eventCover ?? "/images/card/dancerBg.svg"}
+              eventimage={eventData.eventCover ?? "https://cdn.ragam.co.in/card/dancerBg.svg"}
             />
           ))}
         </div>

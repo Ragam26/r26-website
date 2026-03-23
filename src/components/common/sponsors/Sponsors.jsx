@@ -1,19 +1,19 @@
 import SponsorCard from "./SponsorCard";
 import { leagueGothic, abril } from "@/lib/fonts"; 
 
-const SECTION_ICON = "/images/ragam-logo.svg";
+const SECTION_ICON = "https://cdn.ragam.co.in/ragam-logo.svg";
 const sponsorData = [
   { 
     title: "OFFICIAL FOOTWEAR PARTNER", 
-    logos: [{ src: "/images/sponsors/Hawalker.jpeg", name: "Hawalker" }] 
+    logos: [{ src: "https://cdn.ragam.co.in/sponsors/Hawalker.jpeg", name: "Hawalker" }] 
   },
   { 
     title: "OFFICIAL RADIO PARTNER", 
-    logos: [{ src: "/images/sponsors/RedFM.png", name: "Red FM"}] 
+    logos: [{ src: "https://cdn.ragam.co.in/sponsors/RedFM.png", name: "Red FM"}] 
   },
   { 
     title: "PRE RAGAM WORKSHOP PARTNER", 
-    logos: [{ src: "/images/sponsors/Brilliant.png", name: "Brilliant" }] 
+    logos: [{ src: "https://cdn.ragam.co.in/sponsors/Brilliant.png", name: "Brilliant" }] 
   },
 ];
 

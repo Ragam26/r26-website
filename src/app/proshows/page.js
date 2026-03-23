@@ -16,8 +16,8 @@ const PROSHOW_EVENTS = [
     regFee: "Grab your Ragam Passes Now!",
     artists: ["AMIT MISHRA", "W.i.S.H"],
     images: [
-      "/images/proshow/day1/Amitbro.jpeg",
-      "/images/proshow/day1/IWish.jpeg",
+      "https://cdn.ragam.co.in/proshow/day1/Amitbro.jpeg",
+      "https://cdn.ragam.co.in/proshow/day1/IWish.jpeg",
     ],
   },
   {
@@ -30,8 +30,8 @@ const PROSHOW_EVENTS = [
     regFee: "Grab your Ragam Passes Now!",
     artists: ["DARSHAN RAVAL", "VEDAN"],
     images: [
-      "/images/proshow/day2/Darshan.jpg",
-      "/images/proshow/day2/Vedan2.jpeg",
+      "https://cdn.ragam.co.in/proshow/day2/Darshan.jpg",
+      "https://cdn.ragam.co.in/proshow/day2/Vedan2.jpeg",
     ],
   },
   {
@@ -44,9 +44,9 @@ const PROSHOW_EVENTS = [
     regFee: "Grab your Ragam Passes Now!",
     artists: ["JONITA GANDHI", "VINEETH SREENIVASAN", "YOGISEKAR"],
     images: [
-      "/images/proshow/day3/Jonita.jpeg",
-      "/images/proshow/day3/Vineeth.jpeg",
-      "/images/proshow/day3/Yogi.jpeg",
+      "https://cdn.ragam.co.in/proshow/day3/Jonita.jpeg",
+      "https://cdn.ragam.co.in/proshow/day3/Vineeth.jpeg",
+      "https://cdn.ragam.co.in/proshow/day3/Yogi.jpeg",
     ],
   },
 ];
@@ -61,10 +61,10 @@ const COMBO_EVENTS = [
     dates: ["27", "28"],
     comboDays: 2,
     images: [
-      "/images/proshow/day1/Amitbro.jpeg",
-      "/images/proshow/day1/IWish.jpeg",
-      "/images/proshow/day2/Darshan.jpg",
-      "/images/proshow/day2/Vedan2.jpeg",
+      "https://cdn.ragam.co.in/proshow/day1/Amitbro.jpeg",
+      "https://cdn.ragam.co.in/proshow/day1/IWish.jpeg",
+      "https://cdn.ragam.co.in/proshow/day2/Darshan.jpg",
+      "https://cdn.ragam.co.in/proshow/day2/Vedan2.jpeg",
     ],
   },
   {
@@ -76,11 +76,11 @@ const COMBO_EVENTS = [
     dates: ["28", "29"],
     comboDays: 2,
     images: [
-      "/images/proshow/day2/Darshan.jpg",
-      "/images/proshow/day2/Vedan2.jpeg",
-      "/images/proshow/day3/Jonita.jpeg",
-      "/images/proshow/day3/Vineeth.jpeg",
-      "/images/proshow/day3/Yogi.jpeg",
+      "https://cdn.ragam.co.in/proshow/day2/Darshan.jpg",
+      "https://cdn.ragam.co.in/proshow/day2/Vedan2.jpeg",
+      "https://cdn.ragam.co.in/proshow/day3/Jonita.jpeg",
+      "https://cdn.ragam.co.in/proshow/day3/Vineeth.jpeg",
+      "https://cdn.ragam.co.in/proshow/day3/Yogi.jpeg",
     ],
   },
   {
@@ -92,13 +92,13 @@ const COMBO_EVENTS = [
     dates: ["27", "28", "29"],
     comboDays: 3,
     images: [
-      "/images/proshow/day1/Amitbro.jpeg",
-      "/images/proshow/day1/IWish.jpeg",
-      "/images/proshow/day2/Darshan.jpg",
-      "/images/proshow/day2/Vedan2.jpeg",
-      "/images/proshow/day3/Jonita.jpeg",
-      "/images/proshow/day3/Vineeth.jpeg",
-      "/images/proshow/day3/Yogi.jpeg",
+      "https://cdn.ragam.co.in/proshow/day1/Amitbro.jpeg",
+      "https://cdn.ragam.co.in/proshow/day1/IWish.jpeg",
+      "https://cdn.ragam.co.in/proshow/day2/Darshan.jpg",
+      "https://cdn.ragam.co.in/proshow/day2/Vedan2.jpeg",
+      "https://cdn.ragam.co.in/proshow/day3/Jonita.jpeg",
+      "https://cdn.ragam.co.in/proshow/day3/Vineeth.jpeg",
+      "https://cdn.ragam.co.in/proshow/day3/Yogi.jpeg",
     ],
   },
 ];
@@ -123,7 +123,7 @@ export default function EventsPage() {
     <main
       className="min-h-screen bg-black bg-top bg-no-repeat bg-fixed"
       style={{
-        backgroundImage: "url('/images/proshow/proshows_bg.png')",
+        backgroundImage: "url('https://cdn.ragam.co.in/proshow/proshows_bg.png')",
         backgroundSize: "cover",
         backgroundPosition: "top center",
         backgroundRepeat: "no-repeat",

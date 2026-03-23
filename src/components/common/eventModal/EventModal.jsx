@@ -90,7 +90,7 @@ export const EventModal = ({ event = {}, onClose, isOpen }) => {
             position: "absolute", top: "-20px", right: "-20px",
             width: "160px", height: "160px",
             opacity: 0.75,
-            backgroundImage: `url("/images/events/mandala.png")`,
+            backgroundImage: `url("https://cdn.ragam.co.in/events/mandala.png")`,
             backgroundSize: "cover",
           }} />
 

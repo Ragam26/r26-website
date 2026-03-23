@@ -17,7 +17,7 @@ export default function ComboCards({
   const LETTERS_ARR = ['C', 'O', 'M', 'B', 'O']
   const reverse = alignment === 'right'
 
-  const imageList = images && images.length > 0 ? images : (eventImage ? [eventImage] : ['/images/card/dancerBg.svg'])
+  const imageList = images && images.length > 0 ? images : (eventImage ? [eventImage] : ['https://cdn.ragam.co.in/card/dancerBg.svg'])
 
   const [currentIdx, setCurrentIdx] = useState(0)
 
@@ -62,14 +62,14 @@ export default function ComboCards({
             <Link
               href={regUrl}
               target="_blank"
-              className="bg-[url(/images/card/normArrow.svg)] group-hover:bg-[url(/images/card/premArrow.svg)] group-hover:rotate-12 transition-all duration-500 bg-contain bg-no-repeat bg-center w-6 md:w-10 h-6 md:h-10"
+              className="bg-[url(https://cdn.ragam.co.in/card/normArrow.svg)] group-hover:bg-[url(https://cdn.ragam.co.in/card/premArrow.svg)] group-hover:rotate-12 transition-all duration-500 bg-contain bg-no-repeat bg-center w-6 md:w-10 h-6 md:h-10"
             />
           </div>
         </div>
 
         {/* Decorative background panel */}
         <div
-          style={{ backgroundImage: "url('/images/card/normBg.svg')" }}
+          style={{ backgroundImage: "url('https://cdn.ragam.co.in/card/normBg.svg')" }}
           className={`w-[calc(25%-0.25rem)] md:w-[10%] min-h-[250px] md:min-h-[150px] bg-cover bg-center ${commonBorderStyle} ${reverse ? 'order-3 md:order-3' : 'order-2 md:order-3'}`}
         ></div>
 

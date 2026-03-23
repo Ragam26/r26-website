@@ -210,7 +210,7 @@ export default function CampusAmbassador() {
   return (
     <div className='relative min-h-screen overflow-hidden'>
       <Image
-        src='/images/CA-page/fire.svg'
+        src='"https://cdn.ragam.co.in/CA-page/fire.svg'
         alt='Background'
         fill
         className='lg:object-contain lg:scale-120 object-cover'

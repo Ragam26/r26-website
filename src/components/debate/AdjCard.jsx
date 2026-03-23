@@ -27,7 +27,7 @@ const AdjCard = forwardRef(({ id, frontAlt, adjData, onOpenModal }, ref) => {
           <div className="absolute w-full h-full backface-hidden rounded-[0.8em] overflow-hidden flip-card-front">
             <Image
               priority
-              src="/images/debate/playingCardBack.png"
+              src="https://cdn.ragam.co.in/debate/playingCardBack.png"
               width={500}
               height={500}
               alt={frontAlt}
@@ -39,7 +39,7 @@ const AdjCard = forwardRef(({ id, frontAlt, adjData, onOpenModal }, ref) => {
             className="absolute w-full h-full backface-hidden rounded-[0.8em] overflow-hidden transform-[rotateY(180deg)] flip-card-back cursor-pointer"
           >
             <Image
-              src={adjData?.image ?? "/images/debate/caTemp.png"}
+              src={adjData?.image ?? "https://cdn.ragam.co.in/debate/caTemp.png"}
               alt={adjData?.name ?? "Adjudicator"}
               fill
               className="object-cover"
