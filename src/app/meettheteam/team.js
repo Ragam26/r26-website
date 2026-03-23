@@ -42,6 +42,8 @@ export const techLeads = [
     position: "UI/UX Lead",
     github: "",
     linkedin: "https://www.linkedin.com/in/mohammad-aariz-imran",
+    hoverImage: "https://cdn.ragam.co.in/meettheteam/tech/AarizAlt.jpeg",
+    song: "https://cdn.ragam.co.in/meettheteam/tech/suii.mpeg",
   },
 ];
 
@@ -120,6 +122,15 @@ export const techTeam = [
 ];
 
 export const uiTeam = [
+  {
+    name: "Adithya Jha",
+    image: "https://cdn.ragam.co.in/meettheteam/tech/Adithya.jpeg",
+    position: "UI/UX Designer",
+    github: "",
+    linkedin: "https://www.linkedin.com/in/adityajhaa01/",
+    hoverImage: "https://cdn.ragam.co.in/meettheteam/tech/AdithyaAlt.jpeg",
+    song: "https://cdn.ragam.co.in/meettheteam/tech/AdithySound.mpeg",
+  },
   {
     name: "Advaith",
     image: "https://cdn.ragam.co.in/meettheteam/tech/Advaith.webp",
