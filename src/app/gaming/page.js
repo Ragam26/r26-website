@@ -10,7 +10,7 @@ export default function EventsPage() {
     <main
       className="min-h-screen bg-black bg-top bg-no-repeat bg-fixed"
       style={{
-        backgroundImage: "url('/images/ragnarok/ragnarok_bg.png')",
+        backgroundImage: "url('https://cdn.ragam.co.in/ragnarok/ragnarok_bg.png')",
         backgroundSize: "cover",
         backgroundPosition: "top center",
         backgroundRepeat: "no-repeat",

@@ -10,7 +10,7 @@ export default function EventsPage() {
     <main
       className="min-h-screen bg-black bg-top bg-no-repeat bg-fixed"
       style={{
-        backgroundImage: "url('/images/i-ink/i-ink_bg.png')",
+        backgroundImage: "url('https://cdn.ragam.co.in/i-ink/i-ink_bg.png')",
         backgroundSize: "cover",
         backgroundPosition: "top center",
         backgroundRepeat: "no-repeat",

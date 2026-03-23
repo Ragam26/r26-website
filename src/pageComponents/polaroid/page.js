@@ -25,7 +25,7 @@ function Texture({ imageName, className }) {
   return (
     <>
       <img
-        src={`/images/polaroid_page/${imageName}.png`}
+        src={`https://cdn.ragam.co.in/polaroid_page/${imageName}.png`}
         alt="Background texture"
         className={className}
       />
@@ -37,7 +37,7 @@ function Cards({ imageName }) {
   return (
     <>
       <img
-        src={`/images/polaroid_page/${imageName}.svg`}
+        src={`https://cdn.ragam.co.in/polaroid_page/${imageName}.svg`}
         alt={imageName}
         className="w-16 sm:min-w-17 md:min-w-20 lg:min-w-24 object-cover"
       />
@@ -240,14 +240,14 @@ function PolaroidPage() {
             />
             <img
               ref={(el) => (framesRef.current[0] = el)}
-              src={`/images/polaroid_page/polaroids/frame${selectedFrames[0]}.svg`}
+              src={`https://cdn.ragam.co.in/polaroid_page/polaroids/frame${selectedFrames[0]}.svg`}
               alt="frame1"
               draggable="false"
               className="max-w-30 sm:max-w-25 md:max-w-30 lg:min-w-46 object-cover -mt-[25%] hover:rotate-12"
             />
             <img
               ref={(el) => (framesRef.current[1] = el)}
-              src={`/images/polaroid_page/polaroids/frame${selectedFrames[1]}.svg`}
+              src={`https://cdn.ragam.co.in/polaroid_page/polaroids/frame${selectedFrames[1]}.svg`}
               alt="frame2"
               draggable="false"
               className="max-w-30 sm:max-w-25 md:max-w-30 lg:min-w-45 object-cover -mt-[30%] hover:-rotate-12"

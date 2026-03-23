@@ -16,7 +16,7 @@ export default function Hospitality() {
     <main
       className='min-h-screen pb-12 md:pb-24 bg-black bg-top bg-no-repeat overflow-x-hidden'
       style={{
-        backgroundImage: "url('/images/hospitality/bg.png')",
+        backgroundImage: "url('https://cdn.ragam.co.in/hospitality/bg.png')",
         backgroundSize: '100% 100%',
         backgroundPosition: 'top center',
       }}

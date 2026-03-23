@@ -43,7 +43,7 @@ export default function CA() {
     }, 2000);
   };
   return (
-    <div className=" relative flex w-full h-screen flex-col items-center  justify-center gap-4 bg-[url('/images/flames.png')] bg-contain bg-no-repeat bg-bottom-left pt-8 md:pt-12 lg:pt-20">
+    <div className=" relative flex w-full h-screen flex-col items-center  justify-center gap-4 bg-[url('https://cdn.ragam.co.in/flames.png')] bg-contain bg-no-repeat bg-bottom-left pt-8 md:pt-12 lg:pt-20">
       <img
         src={"https://cdn.ragam.co.in/tathva.png"}
         alt=""

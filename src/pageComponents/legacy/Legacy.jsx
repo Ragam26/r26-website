@@ -315,7 +315,7 @@ export default function Legacy() {
             rgba(0,0,0,0) 25%,
             rgba(0,0,0,0.8) 50%,
             rgba(0,0,0,0.9) 100%),
-          url('/images/legacy/fire-background.png')
+          url('"https://cdn.ragam.co.in/legacy/fire-background.png')
         `,
       }}
     >
@@ -332,7 +332,7 @@ export default function Legacy() {
 
       <div className='absolute inset-x-0 bottom-0 z-10 flex items-end justify-center pointer-events-none'>
         <Image
-          src='/images/legacy/fire.svg'
+          src='"https://cdn.ragam.co.in/legacy/fire.svg'
           alt='fire'
           className='hidden lg:block w-auto translate-x-60'
           width={800}
@@ -341,7 +341,7 @@ export default function Legacy() {
           loading='eager'
         />
         <Image
-          src='/images/legacy/fire2.svg'
+          src='"https://cdn.ragam.co.in/legacy/fire2.svg'
           alt='fire'
           className='block lg:hidden w-auto'
           width={600}
@@ -396,7 +396,7 @@ export default function Legacy() {
       <div className='absolute inset-0 z-30 flex items-end justify-center overflow-hidden pointer-events-none'>
         <Image
           ref={mobileRef}
-          src='/images/legacy/Rajan2.svg'
+          src='"https://cdn.ragam.co.in/legacy/Rajan2.svg'
           alt='character'
           width={500}
           height={800}
@@ -407,7 +407,7 @@ export default function Legacy() {
         />
         <Image
           ref={desktopRef}
-          src='/images/legacy/Rajan.svg'
+          src='"https://cdn.ragam.co.in/legacy/Rajan.svg'
           alt='character'
           width={800}
           height={1200}

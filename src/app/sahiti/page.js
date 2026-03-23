@@ -33,8 +33,8 @@ export default function Home() {
             className="h-screen w-24"
             style={{
               backgroundColor: "#BA9B64",
-              maskImage: "url('/images/debate/borderRight.png')",
-              WebkitMaskImage: "url('/images/debate/borderRight.png')",
+              maskImage: "url('https://cdn.ragam.co.in/debate/borderRight.png')",
+              WebkitMaskImage: "url('https://cdn.ragam.co.in/debate/borderRight.png')",
               maskSize: "100% 100%",
               WebkitMaskSize: "100% 100%",
               maskRepeat: "no-repeat",
@@ -50,8 +50,8 @@ export default function Home() {
             className="h-screen w-24"
             style={{
               backgroundColor: "#BA9B64",
-              maskImage: "url('/images/debate/borderLeft.png')",
-              WebkitMaskImage: "url('/images/debate/borderLeft.png')",
+              maskImage: "url('https://cdn.ragam.co.in/debate/borderLeft.png')",
+              WebkitMaskImage: "url('https://cdn.ragam.co.in/debate/borderLeft.png')",
               maskSize: "100% 100%",
               WebkitMaskSize: "100% 100%",
               maskRepeat: "no-repeat",

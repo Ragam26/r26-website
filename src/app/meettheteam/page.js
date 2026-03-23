@@ -144,7 +144,7 @@ export default function MeetTheTeamPage() {
     <main
       style={{
         minHeight: '100vh',
-        backgroundImage: "url('/images/meettheteam/bg.png')",
+        backgroundImage: "url('https://cdn.ragam.co.in/meettheteam/bg.png')",
         backgroundSize: '100% auto',
         backgroundPosition: 'center top',
         backgroundRepeat: 'repeat',

@@ -18,7 +18,7 @@ export default function EventsPage() {
     <main
       className="min-h-screen bg-black bg-top bg-no-repeat bg-fixed"
       style={{
-        backgroundImage: "url('/images/workshop/workshop_bg.png')",
+        backgroundImage: "url('https://cdn.ragam.co.in/workshop/workshop_bg.png')",
         backgroundSize: "cover",
         backgroundPosition: "top center",
         backgroundRepeat: "no-repeat",

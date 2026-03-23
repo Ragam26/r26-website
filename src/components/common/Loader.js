@@ -33,8 +33,8 @@ export default function InitialLoader({ onFinished }) {
           className="absolute inset-0 w-full h-full overflow-hidden"
           style={{
             WebkitMaskImage:
-              "url('/images/landingAnimation/ragamLogoWhite.svg')",
-            maskImage: "url('/images/landingAnimation/ragamLogoWhite.svg')",
+              "url('https://cdn.ragam.co.in/landingAnimation/ragamLogoWhite.svg')",
+            maskImage: "url('https://cdn.ragam.co.in/landingAnimation/ragamLogoWhite.svg')",
             WebkitMaskSize: "contain",
             maskSize: "contain",
             WebkitMaskRepeat: "no-repeat",

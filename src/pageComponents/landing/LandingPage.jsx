@@ -384,8 +384,8 @@ export default function LandingPage() {
             <div
               className="relative w-full h-full"
               style={{
-                WebkitMaskImage: `url('/images/landingAnimation/${loop.src}')`,
-                maskImage: `url('/images/landingAnimation/${loop.src}')`,
+                WebkitMaskImage: `url('https://cdn.ragam.co.in/landingAnimation/${loop.src}')`,
+                maskImage: `url('https://cdn.ragam.co.in/landingAnimation/${loop.src}')`,
                 WebkitMaskRepeat: "no-repeat",
                 maskRepeat: "no-repeat",
                 WebkitMaskSize: "contain",
@@ -423,7 +423,7 @@ export default function LandingPage() {
               }}
             >
               <Image
-                src={`/images/landingAnimation/${loop.src}`}
+                src={`https://cdn.ragam.co.in/landingAnimation/${loop.src}`}
                 alt={`Loop Decoration ${index + 1}`}
                 fill
                 className="object-contain"
@@ -490,7 +490,7 @@ export default function LandingPage() {
           {/* Left Dancer */}
           <div className="absolute top-2 left-12 w-full h-[50vh] md:top-auto md:bottom-3 md:-left-25 md:h-screen md:w-auto overflow-visible">
             <Image
-              src={`/images/landingAnimation/dancers/dancerLeft${leftDancer}.webp`}
+              src={`https://cdn.ragam.co.in/landingAnimation/dancers/dancerLeft${leftDancer}.webp`}
               alt="Dancer L"
               width={1000}
               height={1500}
@@ -507,7 +507,7 @@ export default function LandingPage() {
           {/* Right Dancer */}
           <div className="absolute -bottom-7 right-14 w-full h-[50vh] md:-right-25 md:h-screen md:w-auto overflow-visible">
             <Image
-              src={`/images/landingAnimation/dancers/dancerRight${rightDancer}.webp`}
+              src={`https://cdn.ragam.co.in/landingAnimation/dancers/dancerRight${rightDancer}.webp`}
               alt="Dancer R"
               width={1000}
               height={1500}
