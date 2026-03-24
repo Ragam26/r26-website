@@ -356,7 +356,7 @@ export default function LandingPage() {
       >
         <div className="absolute inset-0 z-5 opacity-100 pointer-events-none mix-blend-overlay">
           <Image
-            src="/images/landingAnimation/heroBgOverlay.png"
+            src="https://cdn.ragam.co.in/landingAnimation/heroBgOverlay.png"
             alt="Texture"
             fill
             className="object-cover"
@@ -384,8 +384,8 @@ export default function LandingPage() {
             <div
               className="relative w-full h-full"
               style={{
-                WebkitMaskImage: `url('/images/landingAnimation/${loop.src}')`,
-                maskImage: `url('/images/landingAnimation/${loop.src}')`,
+                WebkitMaskImage: `url('https://cdn.ragam.co.in/landingAnimation/${loop.src}')`,
+                maskImage: `url('https://cdn.ragam.co.in/landingAnimation/${loop.src}')`,
                 WebkitMaskRepeat: "no-repeat",
                 maskRepeat: "no-repeat",
                 WebkitMaskSize: "contain",
@@ -395,7 +395,7 @@ export default function LandingPage() {
               }}
             >
               <Image
-                src="/images/landingAnimation/loops/gradient.png"
+                src="https://cdn.ragam.co.in/landingAnimation/loops/gradient.png"
                 alt={`Loop Decoration ${index + 1}`}
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
@@ -423,7 +423,7 @@ export default function LandingPage() {
               }}
             >
               <Image
-                src={`/images/landingAnimation/${loop.src}`}
+                src={`https://cdn.ragam.co.in/landingAnimation/${loop.src}`}
                 alt={`Loop Decoration ${index + 1}`}
                 fill
                 className="object-contain"
@@ -443,11 +443,12 @@ export default function LandingPage() {
         >
           <div className="relative w-full h-full">
             <Image
-              src="/images/landingAnimation/ragamLogoWhite.svg"
+              src="https://cdn.ragam.co.in/landingAnimation/ragamLogoWhite.svg"
               alt="White Logo"
               fill
               className="object-contain"
               priority
+              unoptimized
             />
           </div>
         </div>
@@ -455,14 +456,16 @@ export default function LandingPage() {
         {/* Red Logo */}
         <div
           ref={logoRef}
-          className="absolute left-1/2 top-1/2 z-100 aspect-square w-[64vmin] md:w-[44vmin] -translate-x-1/2 -translate-y-1/2 opacity-0 will-change-transform"
+          className="absolute left-1/2 top-1/2 z-100 aspect-square w-[26vmin] md:w-[18vmin] -translate-x-1/2 -translate-y-1/2 opacity-0 will-change-transform"
         >
           <div className="relative w-full h-full">
             <Image
-              src="/images/landingAnimation/ragamLogo.svg"
+              src="https://cdn.ragam.co.in/landingAnimation/ragamLogo.svg"
               alt="Red Logo"
               fill
               className="object-contain"
+              priority
+              unoptimized
             />
           </div>
         </div>
@@ -473,11 +476,10 @@ export default function LandingPage() {
           className="absolute left-1/2 top-1/2 z-102 aspect-video w-[64vmin] md:w-[44vmin] -translate-x-1/2 -translate-y-1/2 opacity-0 will-change-transform"
         >
           <div className="relative w-full h-full">
-            <Image
-              src="/images/landingAnimation/ragamText.svg"
+            <img
+              src="https://cdn.ragam.co.in/landingAnimation/ragamText.svg"
               alt="Ragam 2026"
-              fill
-              className="object-contain"
+              className="absolute inset-0 w-full h-full object-contain"
             />
           </div>
         </div>
@@ -489,7 +491,7 @@ export default function LandingPage() {
           {/* Left Dancer */}
           <div className="absolute top-2 left-12 w-full h-[50vh] md:top-auto md:bottom-3 md:-left-25 md:h-screen md:w-auto overflow-visible">
             <Image
-              src={`/images/landingAnimation/dancers/dancerLeft${leftDancer}.webp`}
+              src={`https://cdn.ragam.co.in/landingAnimation/dancers/dancerLeft${leftDancer}.webp`}
               alt="Dancer L"
               width={1000}
               height={1500}
@@ -506,7 +508,7 @@ export default function LandingPage() {
           {/* Right Dancer */}
           <div className="absolute -bottom-7 right-14 w-full h-[50vh] md:-right-25 md:h-screen md:w-auto overflow-visible">
             <Image
-              src={`/images/landingAnimation/dancers/dancerRight${rightDancer}.webp`}
+              src={`https://cdn.ragam.co.in/landingAnimation/dancers/dancerRight${rightDancer}.webp`}
               alt="Dancer R"
               width={1000}
               height={1500}

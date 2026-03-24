@@ -6,7 +6,7 @@ export default function InformalsPage() {
     <main
       className="min-h-screen bg-black bg-top bg-no-repeat bg-fixed"
       style={{
-        backgroundImage: "url('/images/card/dancerBg.svg')",
+        backgroundImage: "url('https://cdn.ragam.co.in/card/dancerBg.svg')",
         backgroundSize: "cover",
         backgroundPosition: "top center",
         backgroundRepeat: "no-repeat",

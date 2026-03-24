@@ -1,0 +1,14 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ragam26-main-website
+    env_file:
+      - .env
+    ports:
+      - "${PORT:-4000}:${PORT:-4000}"
+    environment:
+      NODE_ENV: production
+      PORT: ${PORT:-4000}
+      HOSTNAME: 0.0.0.0

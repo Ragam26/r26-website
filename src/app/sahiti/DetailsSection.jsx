@@ -14,12 +14,12 @@ import Image from "next/image";
 import { alata, ibmPlexMono, archivo, neuemachina } from "@/lib/fonts";
 
 const policyButtons = [
-  { label: "BROCHURE", href: "/images/debate/SahitiBrochure.pdf" },
-  { label: "GUIDELINES", href: "/images/debate/SahitiGuidelines.pdf" },
+  { label: "BROCHURE", href: "https://cdn.ragam.co.in/debate/SahitiBrochure.pdf" },
+  { label: "GUIDELINES", href: "https://cdn.ragam.co.in/debate/SahitiGuidelines.pdf" },
   { label: "ACCOMMODATION", href: "/hospitality" },
-  { label: "EQUITY POLICY", href: "/images/debate/SahitiEquityPolicy.pdf" },
-  { label: "TAB POLICY", href: "/images/debate/SahitiTabPolicy.pdf" },
-  { label: "SCHEDULE", href: "/images/debate/SahitiSchedule.pdf"},
+  { label: "EQUITY POLICY", href: "https://cdn.ragam.co.in/debate/SahitiEquityPolicy.pdf" },
+  { label: "TAB POLICY", href: "https://cdn.ragam.co.in/debate/SahitiTabPolicy.pdf" },
+  { label: "SCHEDULE", href: "https://cdn.ragam.co.in/debate/SahitiSchedule.pdf"},
 ];
 
 const details = [
@@ -180,7 +180,7 @@ const GavelAnimation = forwardRef(function GavelAnimation(
         }}
       >
         <Image
-          src="/images/debate/gavel.png"
+          src="https://cdn.ragam.co.in/debate/gavel.png"
           alt="Gavel"
           width={200}
           height={200}
@@ -200,7 +200,7 @@ const GavelAnimation = forwardRef(function GavelAnimation(
         }}
       >
         <Image
-          src="/images/debate/base.png"
+          src="https://cdn.ragam.co.in/debate/base.png"
           alt="Base"
           width={200}
           height={200}

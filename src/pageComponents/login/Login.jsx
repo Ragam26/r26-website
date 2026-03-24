@@ -18,7 +18,7 @@ export default function Login() {
     <div className='relative h-screen w-screen'>
       <div className='absolute bottom-0 w-full h-full'>
         <Image
-          src='/images/Login/bottom.png'
+          src='"https://cdn.ragam.co.in/Login/bottom.png'
           alt='bottom'
           width={0}
           height={0}
@@ -28,7 +28,7 @@ export default function Login() {
       </div>
       <div className='absolute top-0 w-full h-[50%] -z-10'>
         <Image
-          src='/images/Login/top.png'
+          src='"https://cdn.ragam.co.in/Login/top.png'
           alt='top'
           width={0}
           height={0}
@@ -86,7 +86,7 @@ export default function Login() {
             >
               <span className='absolute inset-y-0 left-0 w-[110%] bg-white/10 -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-in-out rounded-r-full' />
               <Image
-                src='/images/Login/google.png'
+                src='"https://cdn.ragam.co.in/Login/google.png'
                 alt='Google'
                 width={20}
                 height={20}

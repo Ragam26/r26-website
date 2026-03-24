@@ -144,7 +144,7 @@ export default function MeetTheTeamPage() {
     <main
       style={{
         minHeight: '100vh',
-        backgroundImage: "url('/images/meettheteam/bg.png')",
+        backgroundImage: "url('https://cdn.ragam.co.in/meettheteam/bg.png')",
         backgroundSize: '100% auto',
         backgroundPosition: 'center top',
         backgroundRepeat: 'repeat',
@@ -227,7 +227,7 @@ export default function MeetTheTeamPage() {
             </div>
 
             <div style={{ width: '100vw', margin: '2.5rem 0', lineHeight: 0 }}>
-              <img src="/images/meettheteam/divider.png" alt="divider" style={{ width: '100%', height: '40px', objectFit: 'cover', display: 'block' }} />
+              <img src="https://cdn.ragam.co.in/meettheteam/divider.png" alt="divider" style={{ width: '100%', height: '40px', objectFit: 'cover', display: 'block' }} />
             </div>
 
             <div className="meet-team-grid" style={{ display: 'flex', columnGap: '3rem', rowGap: '2rem', flexWrap: 'wrap', justifyContent: 'center', width: '100%', maxWidth: 1200 }}>
@@ -239,7 +239,7 @@ export default function MeetTheTeamPage() {
             </div>
 
             <div style={{ width: '100vw', margin: '2.5rem 0', lineHeight: 0 }}>
-              <img src="/images/meettheteam/divider.png" alt="divider" style={{ width: '100%', height: '40px', objectFit: 'cover', display: 'block' }} />
+              <img src="https://cdn.ragam.co.in/meettheteam/divider.png" alt="divider" style={{ width: '100%', height: '40px', objectFit: 'cover', display: 'block' }} />
             </div>
 
             <div className="meet-team-grid" style={{ display: 'flex', columnGap: '3rem', rowGap: '2rem', flexWrap: 'wrap', justifyContent: 'center', width: '100%', maxWidth: 1200 }}>

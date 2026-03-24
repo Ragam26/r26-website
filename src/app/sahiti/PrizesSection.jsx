@@ -17,7 +17,7 @@ export default function PrizesSection({
         <div className="sticky top-0 w-screen h-screen overflow-hidden">
           <div
             className="absolute inset-0 bg-cover bg-center bg-no-repeat z-0"
-            style={{ backgroundImage: "url('/images/debate/prizesBg.png')" }}
+            style={{ backgroundImage: "url('https://cdn.ragam.co.in/debate/prizesBg.png')" }}
           />
 
           <div
@@ -34,7 +34,7 @@ export default function PrizesSection({
 
           <div className="absolute inset-0 z-20 flex items-center justify-center">
             <Image
-              src="/images/debate/trophy.png"
+              src="https://cdn.ragam.co.in/debate/trophy.png"
               alt="Trophy"
               fill
               className="object-contain"
@@ -79,7 +79,7 @@ export default function PrizesSection({
                 >
                   <div className="absolute w-full h-full backface-hidden rounded-[0.8em] overflow-hidden">
                     <Image
-                      src="/images/debate/playingCardBack.png"
+                      src="https://cdn.ragam.co.in/debate/playingCardBack.png"
                       alt="prize card"
                       fill
                       className="object-cover"
@@ -88,7 +88,7 @@ export default function PrizesSection({
                   </div>
                   <div className="absolute w-full h-full backface-hidden rounded-[0.8em] overflow-hidden transform-[rotateY(180deg)]">
                     <Image
-                      src={`/images/debate/prize${i + 1}.png`}
+                      src={`https://cdn.ragam.co.in/debate/prize${i + 1}.png`}
                       alt={`Prize ${i + 1}`}
                       fill
                       className="object-cover"

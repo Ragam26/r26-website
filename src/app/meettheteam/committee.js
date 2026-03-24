@@ -1,53 +1,88 @@
 export const content = [
     {
-        name: 'Shifana Shafeek',
-        image: '/images/meettheteam/committees/content/Shifana.webp',
+        name: 'Adarsh Mahato',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/content/Adarsh.webp',
+        position: 'Head',
+    },
+    {
+        name: 'Anjali NS',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/content/Anjali.webp',
+        position: 'Head',
+    },
+    {
+        name: 'Krantikumar',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/content/Krantikumar.webp',
         position: 'Head',
     },
     {
         name: 'Liyana Basheer',
-        image: '/images/meettheteam/committees/content/Liyana.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/content/Liyana.webp',
         position: 'Head',
+    },
+    {
+        name: 'Pavan Kumar',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/content/Pavan.webp',
+        position: 'Head',
+    },
+    {
+        name: 'Shifana Shafeek',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/content/Shifana.webp',
+        position: 'Head',
+    },
+    {
+        name: 'Mohammed Hanan',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/content/Hanan.webp',
+        position: 'Associate Head',
     }
 ]
 
 export const design = [
     {
         name: 'Abhinav K C',
-        image: '/images/meettheteam/committees/design/Abhinav.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/design/Abhinav.webp',
         position: 'Head',
     },
     {
         name: 'Anushka Sharma',
-        image: '/images/meettheteam/committees/design/Anushka_Sharma.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/design/Anushka_Sharma.webp',
+        position: 'Head',
+    },
+    {
+        name: 'Geethanjali K S',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/design/Geethanjali.webp',
         position: 'Head',
     },
     {
         name: 'Nijin',
-        image: '/images/meettheteam/committees/design/Nijin.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/design/Nijin.webp',
         position: 'Head',
     },
     {
         name: 'Nikitha Remesh',
-        image: '/images/meettheteam/committees/design/Nikitha_Remesh.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/design/Nikitha_Remesh.webp',
         position: 'Head',
     },
     {
         name: 'Niyas Rahiman',
-        image: '/images/meettheteam/committees/design/Niyas.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/design/Niyas.webp',
         position: 'Head',
     },
     {
         name: 'Abhishek Chepena',
-        image: '/images/meettheteam/committees/design/Abhishek_Chepena.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/design/Abhishek_Chepena.webp',
         position: 'Co Head',
     },
 ]
 
 export const food = [
     {
+        name: 'Ajlan PV',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/food/Ajlan.webp',
+        position: 'Head',
+    },
+    {
         name: 'Mohammed Bilal',
-        image: '/images/meettheteam/committees/food/Bilal.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/food/Bilal.webp',
         position: 'Head',
     },
 ]
@@ -55,45 +90,50 @@ export const food = [
 export const gpc = [
     {
         name: 'Anaan M',
-        image: '/images/meettheteam/committees/gpc/Anaan.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/gpc/Anaan.webp',
         position: 'Head',
     },
     {
         name: 'Anusanj Kumar',
-        image: '/images/meettheteam/committees/gpc/Anusanj.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/gpc/Anusanj.webp',
         position: 'Head',
     },
     {
         name: 'Gabe Sakriya',
-        image: '/images/meettheteam/committees/gpc/Gabe.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/gpc/Gabe.webp',
         position: 'Head',
     },
     {
         name: 'Prashanth Bhukya',
-        image: '/images/meettheteam/committees/gpc/Prashanth.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/gpc/Prashanth.webp',
         position: 'Head',
     },
     {
         name: 'Shehzad',
-        image: '/images/meettheteam/committees/gpc/Shehzad.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/gpc/Shehzad.webp',
         position: 'Head',
     },
+    {
+        name: 'Mohammed Sabir',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/gpc/Sabir.webp',
+        position: 'Associate Head',
+    }
 ]
 
 export const hospitality = [
     {
         name: 'Abhinsha PV',
-        image: '/images/meettheteam/committees/hospitality/Abhinsha.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/hospitality/Abhinsha.webp',
         position: 'Head',
     },
     {
         name: 'Fayis',
-        image: '/images/meettheteam/committees/hospitality/Fayis.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/hospitality/Fayis.webp',
         position: 'Head',
     },
     {
         name: 'Shadiya V C',
-        image: '/images/meettheteam/committees/hospitality/Shadiya.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/hospitality/Shadiya.webp',
         position: 'Head',
     }
 ]
@@ -101,57 +141,87 @@ export const hospitality = [
 export const iink = [
     {
         name: 'Anugraha P',
-        image: '/images/meettheteam/committees/i-ink/Anugraha.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/i-ink/Anugraha.webp',
+        position: 'Head',
+    },
+    {
+        name: 'Chandrabushan',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/i-ink/Chandrabushan.webp',
         position: 'Head',
     },
     {
         name: 'Nishanth M Nair',
-        image: '/images/meettheteam/committees/i-ink/Nishanth.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/i-ink/Nishanth.webp',
         position: 'Head',
     },
     {
         name: 'Prathyush A S',
-        image: '/images/meettheteam/committees/i-ink/Prathyush.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/i-ink/Prathyush.webp',
         position: 'Head',
     },
     {
         name: 'Sajad Salih',
-        image: '/images/meettheteam/committees/i-ink/Sajad.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/i-ink/Sajad.webp',
         position: 'Head',
     },
     {
         name: 'Sandra Mathew',
-        image: '/images/meettheteam/committees/i-ink/Sandra.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/i-ink/Sandra.webp',
         position: 'Head',
     },
     {
         name: 'Sekhar',
-        image: '/images/meettheteam/committees/i-ink/Sekhar.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/i-ink/Sekhar.webp',
         position: 'Head',
     },
     {
+        name: 'Agnes Theresa',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/i-ink/Agnes.webp',
+        position: 'Associate Head',
+    },
+    {
         name: 'Asiya Nowshad',
-        image: '/images/meettheteam/committees/i-ink/Asiya.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/i-ink/Asiya.webp',
+        position: 'Associate Head',
+    },
+    {
+        name: 'Basma Rafi',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/i-ink/Basma.webp',
+        position: 'Associate Head',
+    },
+    {
+        name: 'Haala C V',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/i-ink/Haala.webp',
+        position: 'Associate Head',
+    },
+    {
+        name: 'Kavya K R',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/i-ink/Kavya.webp',
+        position: 'Associate Head',
+    },
+    {
+        name: 'Lakshmi Nandana',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/i-ink/Lakshmi.webp',
         position: 'Associate Head',
     },
     {
         name: 'Mariam Zeenath',
-        image: '/images/meettheteam/committees/i-ink/Maryam.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/i-ink/Maryam.webp',
         position: 'Associate Head',
     },
     {
         name: 'Musthaque Ali',
-        image: '/images/meettheteam/committees/i-ink/Musthaque.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/i-ink/Musthaque.webp',
         position: 'Associate Head',
     },
     {
         name: 'Sarah Paul',
-        image: '/images/meettheteam/committees/i-ink/Sarah.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/i-ink/Sarah.webp',
         position: 'Associate Head',
     },
     {
         name: 'Swathy V R',
-        image: '/images/meettheteam/committees/i-ink/Swathy_VR.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/i-ink/Swathy_VR.webp',
         position: 'Associate Head',
     },
 ]
@@ -159,55 +229,76 @@ export const iink = [
 export const informals = [
     {
         name: 'Adith Anil',
-        image: '/images/meettheteam/committees/informals/Adith.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/informals/Adith.webp',
         position: 'Head',
     },
     {
         name: 'Afna M',
-        image: '/images/meettheteam/committees/informals/Afna.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/informals/Afna.webp',
         position: 'Head',
     },
     {
         name: 'Himajala Reddy',
-        image: '/images/meettheteam/committees/informals/Himu.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/informals/Himu.webp',
         position: 'Head',
     },
     {
+        name: 'Imadudheen TP',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/informals/Imad.webp',
+        position: 'Head',
+    },  
+    {
         name: 'Mehsana N',
-        image: '/images/meettheteam/committees/informals/Mehsana.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/informals/Mehsana.webp',
+        position: 'Head',
+    },
+    {
+        name: 'Sreehari S',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/informals/Sreehari.webp',
+        position: 'Head',
+    },
+    {
+        name: 'Vivek Gupta',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/informals/Vivek.webp',
         position: 'Head',
     },
     {
         name: 'Anaswara ',
-        image: '/images/meettheteam/committees/informals/Anaswara.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/informals/Anaswara.webp',
         position: 'Associate Head',
     },
     {
-        name: 'Sreehari S',
-        image: '/images/meettheteam/committees/informals/Sreehari.webp',
+        name: 'Arjun J',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/informals/Arjun.webp',
+        position: 'Associate Head',
+    },
+    {
+        name: 'Sreedevi K',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/informals/Sreedevi.webp',
         position: 'Associate Head',
     }
+    
 ]
 
 export const infra = [
     {
         name: 'Abhishek V',
-        image: '/images/meettheteam/committees/infra/Abhishek.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/infra/Abhishek.webp',
         position: 'Head',
     },
     {
         name: 'Ashwin A',
-        image: '/images/meettheteam/committees/infra/Ashwin.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/infra/Ashwin.webp',
         position: 'Head',
     },
     {
         name: 'Chriss Charls',
-        image: '/images/meettheteam/committees/infra/Chriss.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/infra/Chriss.webp',
         position: 'Head',
     },
     {
         name: 'Ron David',
-        image: '/images/meettheteam/committees/infra/Ron.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/infra/Ron.webp',
         position: 'Head',
     },
 ]
@@ -215,25 +306,30 @@ export const infra = [
 export const judging = [
     {
         name: 'Akhila Souparnika',
-        image: '/images/meettheteam/committees/judging/Akhila.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/judging/Akhila.webp',
         position: 'Head',
     },
     {
         name: 'Manusri P',
-        image: '/images/meettheteam/committees/judging/Manusri.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/judging/Manusri.webp',
         position: 'Head',
     },
 ]
 
 export const lasIn = [
     {
+        name: 'Adil Ahamed',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/las-in/Adil.webp',
+        position: 'Head',
+    },
+    {
         name: 'Aravind S',
-        image: '/images/meettheteam/committees/las-in/Aravind.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/las-in/Aravind.webp',
         position: 'Head',
     },
     {
         name: 'Varun T',
-        image: '/images/meettheteam/committees/las-in/Varun.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/las-in/Varun.webp',
         position: 'Head',
     }
 ]
@@ -241,12 +337,17 @@ export const lasIn = [
 export const lasOut = [
     {
         name: 'Abdul Jawad',
-        image: '/images/meettheteam/committees/las-out/Jawad.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/las-out/Jawad.webp',
+        position: 'Head',
+    },
+    {
+        name: 'Kesav Dev',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/las-out/Kesav.webp',
         position: 'Head',
     },
     {
         name: 'Muhammed Anas',
-        image: '/images/meettheteam/committees/las-out/Anas.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/las-out/Anas.webp',
         position: 'Head',
     },
 ]
@@ -254,27 +355,32 @@ export const lasOut = [
 export const marketing = [
     {
         name: 'Arjith Lal C',
-        image: '/images/meettheteam/committees/marketing/Arjith.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/marketing/Arjith.webp',
         position: 'Head',
     },
     {
         name: 'Nihad Ali',
-        image: '/images/meettheteam/committees/marketing/Nihad.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/marketing/Nihad.webp',
+        position: 'Head',
+    },
+    {
+        name: 'Parvathy P Nair',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/marketing/Parvathy.webp',
         position: 'Head',
     },
     {
         name: 'Razin Muzamil',
-        image: '/images/meettheteam/committees/marketing/Razin.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/marketing/Razin.webp',
         position: 'Head',
     },
     {
         name: 'Tanish Mittal',
-        image: '/images/meettheteam/committees/marketing/Tanish.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/marketing/Tanish.webp',
         position: 'Head',
     },
     {
         name: 'Gowri Girish',
-        image: '/images/meettheteam/committees/marketing/Gowri.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/marketing/Gowri.webp',
         position: 'Associate Head',
     }
 ]
@@ -282,20 +388,25 @@ export const marketing = [
 export const media = [
     {
         name: 'Ansan Husain',
-        image: '/images/meettheteam/committees/media/Ansan.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/media/Ansan.webp',
         position: 'Head',
     },
     {
         name: 'Mobasshir Hasan Mahin',
-        image: '/images/meettheteam/committees/media/Mahin.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/media/Mahin.webp',
         position: 'Head',
     },
+    {
+        name: 'Muhammad Fidul',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/media/Fidul.webp',
+        position: 'Head',
+    }
 ]
 
 export const merchandise = [
     {
         name: 'Bazim Mohamed',
-        image: '/images/meettheteam/committees/merchandise/Bazim.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/merchandise/Bazim.webp',
         position: 'Head',
     },
 ]
@@ -303,27 +414,42 @@ export const merchandise = [
 export const pad = [
     {
         name: 'Nihal K S',
-        image: '/images/meettheteam/committees/pad/Nihal.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/pad/Nihal.webp',
         position: 'Head',
     },
     {
         name: 'Rahul T K',
-        image: '/images/meettheteam/committees/pad/Rahul.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/pad/Rahul.webp',
+        position: 'Head',
+    },
+    {
+        name: 'Hafla',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/pad/Hafla.webp',
         position: 'Head',
     },
     {
         name: 'Samin Murali',
-        image: '/images/meettheteam/committees/pad/Samin.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/pad/Samin.webp',
+        position: 'Head',
+    },
+    {
+        name: 'Siddharth',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/pad/Siddharth.webp',
         position: 'Head',
     },
     {
         name: 'Akshay V',
-        image: '/images/meettheteam/committees/pad/Akshay.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/pad/Akshay.webp',
+        position: 'Associate Head',
+    },
+    {
+        name: 'Danisha',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/pad/Danisha.webp',
         position: 'Associate Head',
     },
     {
         name: 'Nevil Sunny',
-        image: '/images/meettheteam/committees/pad/Nevil.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/pad/Nevil.webp',
         position: 'Associate Head',
     },
 ]
@@ -331,52 +457,52 @@ export const pad = [
 export const pc = [
     {
         name: 'Anitta Jyothi Saji',
-        image: '/images/meettheteam/committees/pc/Anitta.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/pc/Anitta.webp',
         position: 'Head',
     },
     {
         name: 'Ansh Paliwal',
-        image: '/images/meettheteam/committees/pc/Ansh.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/pc/Ansh.webp',
         position: 'Head',
     },
     {
         name: 'Hamis Ali',
-        image: '/images/meettheteam/committees/pc/Hamis.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/pc/Hamis.webp',
         position: 'Head',
     },
     {
         name: 'Huda Rasak',
-        image: '/images/meettheteam/committees/pc/Huda.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/pc/Huda.webp',
         position: 'Head',
     },
     {
         name: 'Irfan Habeeb',
-        image: '/images/meettheteam/committees/pc/Irfan.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/pc/Irfan.webp',
         position: 'Head',
     },
     {
         name: 'Minhaj',
-        image: '/images/meettheteam/committees/pc/Minhaj.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/pc/Minhaj.webp',
         position: 'Head',
     },
     {
         name: 'Pranav Babu Andy',
-        image: '/images/meettheteam/committees/pc/Pranav.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/pc/Pranav.webp',
         position: 'Head',
     },
     {
         name: 'Rathod Adarsh',
-        image: '/images/meettheteam/committees/pc/Rathod.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/pc/Rathod.webp',
         position: 'Head',
     },
     {
         name: 'Fathima Dhiya',
-        image: '/images/meettheteam/committees/pc/Fathima.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/pc/Fathima.webp',
         position: 'Associate Head',
     },
     {
         name: 'Shabeeba Thasneem',
-        image: '/images/meettheteam/committees/pc/Shabeeba.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/pc/Shabeeba.webp',
         position: 'Associate Head',
     }
 ]
@@ -384,17 +510,22 @@ export const pc = [
 export const prc = [
     {
         name: 'Adnan Ali',
-        image: '/images/meettheteam/committees/prc/Adnan.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/prc/Adnan.webp',
         position: 'Head',
     },
     {
         name: 'Athulya Saji',
-        image: '/images/meettheteam/committees/prc/Athulya.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/prc/Athulya.webp',
         position: 'Head',
     },
     {
         name: 'Sreeraj A',
-        image: '/images/meettheteam/committees/prc/Sreeraj.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/prc/Sreeraj.webp',
+        position: 'Head',
+    },
+    {
+        name: 'Vishnu Murali',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/prc/Vishnu.webp',
         position: 'Head',
     }
 ]
@@ -402,7 +533,7 @@ export const prc = [
 export const procurement = [
     {
         name: 'Pranav Prem',
-        image: '/images/meettheteam/committees/procurement/Pranav.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/procurement/Pranav.webp',
         position: 'Head',
     },
 ]
@@ -410,62 +541,67 @@ export const procurement = [
 export const prodezza = [
     {
         name: 'Fathima marvin',
-        image: '/images/meettheteam/committees/prodezza/Fathima.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/prodezza/Fathima.webp',
         position: 'Head',
     },
     {
         name: 'Imad Ismayil',
-        image: '/images/meettheteam/committees/prodezza/Imad.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/prodezza/Imad.webp',
         position: 'Head',
     },
     {
         name: 'Krishnaja A U',
-        image: '/images/meettheteam/committees/prodezza/Krishnaja.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/prodezza/Krishnaja.webp',
         position: 'Head',
     },
     {
         name: 'Jatin Goyal',
-        image: '/images/meettheteam/committees/prodezza/Jatin.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/prodezza/Jatin.webp',
         position: 'Head',
     },
     {
         name: 'Meeshal Shaik',
-        image: '/images/meettheteam/committees/prodezza/Meeshal.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/prodezza/Meeshal.webp',
         position: 'Head',
     },
     {
         name: 'Rushda',
-        image: '/images/meettheteam/committees/prodezza/Rushda.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/prodezza/Rushda.webp',
         position: 'Head',
     },
     {
         name: 'Sidharth M',
-        image: '/images/meettheteam/committees/prodezza/Sidharth.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/prodezza/Sidharth.webp',
         position: 'Head',
     },
     {
         name: 'Adhithya E D',
-        image: '/images/meettheteam/committees/prodezza/Adhithya.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/prodezza/Adhithya.webp',
         position: 'Associate Head',
     },
     {
         name: 'Athul Krishnan',
-        image: '/images/meettheteam/committees/prodezza/Athul.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/prodezza/Athul.webp',
         position: 'Associate Head',
     },
     {
         name: 'Aysha Diya',
-        image: '/images/meettheteam/committees/prodezza/Aysha.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/prodezza/Aysha.webp',
+        position: 'Associate Head',
+    },
+    {
+        name: 'Fathima Nasla',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/prodezza/Fathima_Nasla.webp',
         position: 'Associate Head',
     },
     {
         name: 'Rachel Paul',
-        image: '/images/meettheteam/committees/prodezza/Rachel.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/prodezza/Rachel.webp',
         position: 'Associate Head',
     },
     {
         name: 'Sona Krishna S',
-        image: '/images/meettheteam/committees/prodezza/Sona.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/prodezza/Sona.webp',
         position: 'Associate Head',
     }
 ]
@@ -473,22 +609,22 @@ export const prodezza = [
 export const proshow = [
     {
         name: 'Abhay R Nair',
-        image: '/images/meettheteam/committees/proshow/Abhay.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/proshow/Abhay.webp',
         position: 'Head',
     },
     {
         name: 'Adwaith',
-        image: '/images/meettheteam/committees/proshow/Adwaith.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/proshow/Adwaith.webp',
         position: 'Head',
     },
     {
         name: 'Mohamed Hafees',
-        image: '/images/meettheteam/committees/proshow/Hafees.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/proshow/Hafees.webp',
         position: 'Head',
     },
     {
         name: 'Saneen N',
-        image: '/images/meettheteam/committees/proshow/Saneen.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/proshow/Saneen.webp',
         position: 'Head',
     }
 ]
@@ -496,17 +632,25 @@ export const proshow = [
 export const registration = [
     {
         name: 'Afla Shaji',
-        image: '/images/meettheteam/committees/registration/Afla.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/registration/Afla.webp',
         position: 'Head',
     },
     {
         name: 'Jasna K M',
-        image: '/images/meettheteam/committees/registration/Jasna.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/registration/Jasna.webp',
         position: 'Head',
     },
     {
         name: 'Kannan E',
-        image: '/images/meettheteam/committees/registration/Kannan.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/registration/Kannan.webp',
+        position: 'Head',
+    }
+]
+
+export const security = [
+    {
+        name: 'Akash Kumar',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/security/Akash.webp',
         position: 'Head',
     }
 ]
@@ -514,68 +658,83 @@ export const registration = [
 export const social = [
     {   
         name: 'Amisha Kumari',
-        image: '/images/meettheteam/committees/social/Amisha.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/social/Amisha.webp',
         position: 'Head',
     },
     {
         name: 'Naahil Bin Niyas',
-        image: '/images/meettheteam/committees/social/Naahil.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/social/Naahil.webp',
         position: 'Head',
     },
     {
         name: 'Pavan',
-        image: '/images/meettheteam/committees/social/Pavan.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/social/Pavan.webp',
         position: 'Head',
     },
     {
         name: 'Subham Roushan',
-        image: '/images/meettheteam/committees/social/Subham.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/social/Subham.webp',
         position: 'Head',
     },
     {
         name: 'Timber',
-        image: '/images/meettheteam/committees/social/Timber.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/social/Timber.webp',
         position: 'Head',
     },
     {
         name: 'Vijay',
-        image: '/images/meettheteam/committees/social/Vijay.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/social/Vijay.webp',
         position: 'Head',
     },
     {
         name: 'Jayadev D J',
-        image: '/images/meettheteam/committees/social/Jayadev.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/social/Jayadev.webp',
         position: 'Associate Head',
     }
 ]
 
 export const sports = [
     {
+        name: 'Aaron Thomas',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/sports/Aaron.webp',
+        position: 'Head',
+    },
+    {
+        name: 'Pradeep',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/sports/Pradeep.webp',
+        position: 'Head',
+    },
+    {
         name: 'Ryan Anil',
-        image: '/images/meettheteam/committees/sports/Ryan.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/sports/Ryan.webp',
         position: 'Head',
     },
     {
         name: 'Shaheem P',
-        image: '/images/meettheteam/committees/sports/Shaheem.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/sports/Shaheem.webp',
         position: 'Head',
     },
+    {
+        name: 'Suryanarayanan',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/sports/Surya.webp',
+        position: 'Head',
+    }
 ]
 
 export const transportation = [
     {
         name: 'Abdul Raneesh',
-        image: '/images/meettheteam/committees/transportation/Raneesh.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/transportation/Raneesh.webp',
         position: 'Head',
     },
     {
         name: 'Bhagath Prakash',
-        image: '/images/meettheteam/committees/transportation/Bhagath.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/transportation/Bhagath.webp',
         position: 'Head',
     },
     {
         name: 'Mohamed Hanan',
-        image: '/images/meettheteam/committees/transportation/Hanan.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/transportation/Hanan.webp',
         position: 'Head',
     }
 ]
@@ -583,52 +742,52 @@ export const transportation = [
 export const workshop = [
     {
         name: 'Abhinav Shibu',
-        image: '/images/meettheteam/committees/workshop/Abhinav.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/workshop/Abhinav.webp',
         position: 'Head',
     },
     {
         name: 'Harika Ketavath',
-        image: '/images/meettheteam/committees/workshop/Harika.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/workshop/Harika.webp',
         position: 'Head',
     },
     {
         name: 'Prithvi G Bhat',
-        image: '/images/meettheteam/committees/workshop/Prithvi.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/workshop/Prithvi.webp',
         position: 'Head',
     },
     {
         name: 'Thomas Rahul',
-        image: '/images/meettheteam/committees/workshop/Thomas.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/workshop/Thomas.webp',
         position: 'Head',
     },
     {
         name: 'Fathima Jabin',
-        image: '/images/meettheteam/committees/workshop/Fathima_Jabin.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/workshop/Fathima_Jabin.webp',
         position: 'Associate Head',
     },
     {
         name: 'Hridya S Rajan',
-        image: '/images/meettheteam/committees/workshop/Hridya.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/workshop/Hridya.webp',
         position: 'Associate Head',
     },
     {
         name: 'Jeev Joe Jaison',
-        image: '/images/meettheteam/committees/workshop/Jeev.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/workshop/Jeev.webp',
         position: 'Associate Head',
     },
     {
         name: 'Pranaya T P',
-        image: '/images/meettheteam/committees/workshop/Pranaya.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/workshop/Pranaya.webp',
         position: 'Associate Head',
     },
     {
         name: 'Pooja K',
-        image: '/images/meettheteam/committees/workshop/Pooja.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/workshop/Pooja.webp',
         position: 'Associate Head',
     },
     {
         name: 'Rohan K',
-        image: '/images/meettheteam/committees/workshop/Rohan.webp',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/workshop/Rohan.webp',
         position: 'Associate Head',
     }
 ]

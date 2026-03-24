@@ -5,7 +5,7 @@ function Eyes({ width, top, aspectRatio, leftVal, pupilX, pupilY }) {
   return (
     <img
       className="absolute z-20"
-      src="/images/polaroid_page/eyes.png"
+      src="https://cdn.ragam.co.in/polaroid_page/eyes.png"
       style={{
         width,
         top,
@@ -35,7 +35,7 @@ function KathakaliEyes() {
     <div className="flex items-center justify-center h-full overflow-hidden">
       <div className="relative h-full">
         <img
-          src="/images/polaroid_page/face.svg"
+          src="https://cdn.ragam.co.in/polaroid_page/face.svg"
           alt="Kathakali Face"
           className="h-full object-cover border-3 border-[#F4EFCF] pointer-events-none"
         />

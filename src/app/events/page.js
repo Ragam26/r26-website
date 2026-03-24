@@ -37,7 +37,7 @@ export default function EventsPage() {
     <main
       className="min-h-screen pb-12 md:pb-24 bg-black bg-top bg-no-repeat bg-fixed"
       style={{
-        backgroundImage: "url('/images/events/events_bg.png')",
+        backgroundImage: "url('https://cdn.ragam.co.in/events/events_bg.png')",
         backgroundSize: "cover",
         backgroundPosition: "top center",
         backgroundRepeat: "no-repeat",
@@ -89,7 +89,7 @@ export default function EventsPage() {
                     eventName={event.eventName}
                     regUrl={event.makeMyPassUrl}
                     regFee={0}
-                    eventimage={event.eventCover ?? "/images/card/dancerBg.svg"}
+                    eventimage={event.eventCover ?? "https://cdn.ragam.co.in/card/dancerBg.svg"}
                     onClick={() => setSelectedEvent(event)}
                   />
                 ) : (
@@ -100,7 +100,7 @@ export default function EventsPage() {
                     eventName={event.eventName}
                     regUrl={event.makeMyPassUrl}
                     regFee={0}
-                    eventimage={event.eventCover ?? "/images/card/dancerBg.svg"}
+                    eventimage={event.eventCover ?? "https://cdn.ragam.co.in/card/dancerBg.svg"}
                     onClick={() => setSelectedEvent(event)}
                   />
                 ),

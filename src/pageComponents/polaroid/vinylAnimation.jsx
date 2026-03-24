@@ -64,7 +64,7 @@ function VinylDisc() {
     <div className="flex items-center justify-center cursor-grab transform transition-transform duration-300 hover:-rotate-10">
       <img
         ref={vinylRef}
-        src={"/images/polaroid_page/vinyl.svg"}
+        src={"https://cdn.ragam.co.in/polaroid_page/vinyl.svg"}
         alt="vinyl"
         draggable="false"
         className="w-33 sm:min-w-35 md:max-w-40 lg:min-w-50 lg:max-w-80 object-cover z-10 "

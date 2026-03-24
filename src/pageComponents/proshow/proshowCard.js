@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { leagueGothic } from "@/lib/fonts";
 
 export default function ProshowCard({
   name = "Artist Name",
@@ -8,7 +9,7 @@ export default function ProshowCard({
   month = "MAR",
   date = "00",
   tilt = 0,
-  image = "/images/proshow/proshowArtist_1.png",
+  image = "https://cdn.ragam.co.in/proshow/proshowArtist_1.png",
   song = null,
   imageOffsetX = 0,
   imageOffsetY = 0,
@@ -33,11 +34,11 @@ export default function ProshowCard({
           transform-3d
         "
         style={{
-          backgroundImage: `url(/images/proshow/proshowCardBg.png)`,
+          backgroundImage: `url(https://cdn.ragam.co.in/proshow/proshowCardBg.png)`,
           transform: `rotateY(${tilt}deg)`,
         }}
       >
-        <div className="flex flex-col flex-1 justify-end text-center font-league-gothic">
+        <div className={`flex flex-col flex-1 justify-end text-center ${leagueGothic.className}`}>
           {day && <div className="text-3xl">{day}</div>}
           <div className="text-6xl -translate-y-2">{name}</div>
         </div>
@@ -45,10 +46,10 @@ export default function ProshowCard({
         <div className="flex flex-row flex-4">
           <div className="flex flex-col p-3 pb-12 flex-1 justify-end">
             <div className="flex flex-col items-center gap-8 w-10">
-              <span className="text-7xl leading-none w-fit font-league-gothic">
+              <span className={`text-7xl leading-none w-fit ${leagueGothic.className}`}>
                 {date}
               </span>
-              <span className="rotate-90 origin-center text-7xl w-fit font-league-gothic">
+              <span className={`rotate-90 origin-center text-7xl w-fit ${leagueGothic.className}`}>
                 {month}
               </span>
             </div>

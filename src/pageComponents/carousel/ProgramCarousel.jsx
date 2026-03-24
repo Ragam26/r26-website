@@ -36,7 +36,7 @@ const ProgramCarousel = () => {
     slideBgImg.style.willChange = "clip-path";
 
     const img = document.createElement("img");
-    img.src = `/images/programCarousel/bg${slideNumber}.png`;
+    img.src = `https://cdn.ragam.co.in/programCarousel/bg${slideNumber}.png`;
     img.alt = "";
     img.className = "w-full h-full object-cover";
     img.style.willChange = "transform";
@@ -65,7 +65,7 @@ const ProgramCarousel = () => {
     wrapper.style.willChange = "clip-path";
 
     const img = document.createElement("img");
-    img.src = `/images/programCarousel/img${slideNumber}.png`;
+    img.src = `https://cdn.ragam.co.in/programCarousel/img${slideNumber}.png`;
     img.alt = "";
     img.className = "w-full h-full object-cover";
     img.style.willChange = "transform";
@@ -386,7 +386,7 @@ const ProgramCarousel = () => {
             }}
           >
             <img
-              src="/images/programCarousel/bg1.png"
+              src="https://cdn.ragam.co.in/programCarousel/bg1.png"
               alt=""
               className="w-full h-full object-cover"
               style={{ willChange: "transform" }}
@@ -404,7 +404,7 @@ const ProgramCarousel = () => {
           >
             <div className="slide-main-img-wrapper h-full w-full">
               <img
-                src={`/images/programCarousel/img${currentSlide}.png`}
+                src={`https://cdn.ragam.co.in/programCarousel/img${currentSlide}.png`}
                 alt=""
                 className="w-full h-full object-cover object-center"
                 style={{ willChange: "transform" }}
@@ -419,7 +419,7 @@ const ProgramCarousel = () => {
             className="slide-next-img relative w-[220px] h-[330px] rounded-2xl border-2 border-[#DFB385] overflow-hidden hidden md:block pointer-events-auto cursor-pointer transition-transform duration-300 hover:-translate-y-3"
           >
             <img
-              src={`/images/programCarousel/img${(currentSlide % totalSlides) + 1}.png`}
+              src={`https://cdn.ragam.co.in/programCarousel/img${(currentSlide % totalSlides) + 1}.png`}
               alt=""
               className="w-full h-full object-cover"
             />
@@ -433,7 +433,7 @@ const ProgramCarousel = () => {
             className="slide-next-next-img relative w-[220px] h-[330px] rounded-2xl border-2 border-[#DFB385] overflow-hidden hidden lg:block pointer-events-auto cursor-pointer transition-transform duration-300 hover:-translate-y-3"
           >
             <img
-              src={`/images/programCarousel/img${((currentSlide + 1) % totalSlides) + 1}.png`}
+              src={`https://cdn.ragam.co.in/programCarousel/img${((currentSlide + 1) % totalSlides) + 1}.png`}
               alt=""
               className="w-full h-full object-cover"
             />
@@ -472,7 +472,7 @@ const ProgramCarousel = () => {
               className="group transition-transform active:scale-95 disabled:opacity-50"
             >
               <img
-                src="/images/programCarousel/leftButton.svg"
+                src="https://cdn.ragam.co.in/programCarousel/leftButton.svg"
                 alt="Previous"
                 className="w-12 h-12 md:w-9 md:h-9 transition-opacity group-hover:opacity-80"
               />
@@ -483,7 +483,7 @@ const ProgramCarousel = () => {
               className="group transition-transform active:scale-95 disabled:opacity-50"
             >
               <img
-                src="/images/programCarousel/leftButton.svg"
+                src="https://cdn.ragam.co.in/programCarousel/leftButton.svg"
                 alt="Next"
                 className="w-12 h-12 md:w-9 md:h-9 transition-opacity group-hover:opacity-80 scale-x-[-1]"
               />

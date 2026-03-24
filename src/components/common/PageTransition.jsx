@@ -156,7 +156,7 @@ export default function PageTransition() {
             }}
           >
             <Image
-              src="/images/landingAnimation/ragamLogoWhite.svg"
+              src="https://cdn.ragam.co.in/landingAnimation/ragamLogoWhite.svg"
               alt="Ragam Logo"
               fill
               className="object-contain"

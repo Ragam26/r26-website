@@ -26,7 +26,7 @@ export default function BackgroundPage() {
       {/* Mandala 1*/}
       <div className="absolute top-0 left-0 z-0 opacity-90 pointer-events-none -translate-x-1/2 -translate-y-1/2 w-48 h-48 sm:w-64 sm:h-64 md:w-96 md:h-96 lg:w-lg lg:h-128">
         <Image
-          src="/images/mandala.png"
+          src="https://cdn.ragam.co.in/mandala.png"
           alt="Mandala"
           width={520}
           height={520}
@@ -38,7 +38,7 @@ export default function BackgroundPage() {
       {/* Mandala 2 */}
       <div className="absolute bottom-0 right-0 z-0 opacity-90 pointer-events-none translate-x-1/2 translate-y-1/2 w-48 h-48 sm:w-64 sm:h-64 md:w-96 md:h-96 lg:w-lg lg:h-128">
         <Image
-          src="/images/mandala.png"
+          src="https://cdn.ragam.co.in/mandala.png"
           alt="Mandala"
           width={520}
           height={520}
@@ -63,7 +63,7 @@ export default function BackgroundPage() {
           className="hidden lg:flex absolute right-4 top-1/2 z-10 w-56 h-56 sm:w-72 sm:h-72 md:w-96 md:h-96 lg:w-md lg:h-112 items-center justify-center"
         >
           <Image
-            src="/images/diya.png"
+            src="https://cdn.ragam.co.in/diya.png"
             alt="Diya"
             width={420}
             height={420}

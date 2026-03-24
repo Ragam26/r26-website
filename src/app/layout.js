@@ -38,23 +38,6 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body
         className={`
-          ${leagueGothic.variable}
-          ${slackey.variable}
-          ${brixton.variable}
-          ${archivo.variable}
-          ${impact.variable}
-          ${instrument.variable}
-          ${calfine.variable}
-          ${elanor.variable}
-          ${magilio.variable}
-          ${marko.variable}
-          ${moniqa.variable}
-          ${scalter.variable}
-          ${kiwi.variable}
-          ${montserrat.variable}
-          ${ibmPlexMono.variable}
-          ${alata.variable}
-          ${neuemachina.variable}
           antialiased
         `}
         suppressHydrationWarning

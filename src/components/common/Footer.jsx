@@ -92,38 +92,6 @@ export default function Footer() {
     };
   }, []);
 
-  const handleLetterMouseEnter = useCallback(
-    (e, letter) => {
-      setHoverData(letter);
-      // swap slots for crossfade
-      const prev = slotsRef.current;
-      const next = prev.active === "a" ? "b" : "a";
-      const updated = { ...prev, [next]: letter.image, active: next };
-      slotsRef.current = updated;
-      setSlots(updated);
-      isHovering.current = true;
-      const pos = calcTarget(e.clientX, e.clientY);
-      currentPos.current = { ...pos };
-      targetPos.current = { ...pos };
-      if (rafId.current) cancelAnimationFrame(rafId.current);
-      rafId.current = requestAnimationFrame(animateRef.current);
-    },
-    [calcTarget],
-  );
-
-  const handleLetterMouseMove = useCallback(
-    (e) => {
-      targetPos.current = calcTarget(e.clientX, e.clientY);
-    },
-    [calcTarget],
-  );
-
-  const handleLetterMouseLeave = useCallback(() => {
-    setHoverData(null);
-    isHovering.current = false;
-    if (rafId.current) cancelAnimationFrame(rafId.current);
-  }, []);
-
   useEffect(() => {
     return () => {
       if (rafId.current) cancelAnimationFrame(rafId.current);
@@ -133,37 +101,37 @@ export default function Footer() {
   const letters = [
     {
       id: 1,
-      char: "/images/footer/R.svg",
+      char: "https://cdn.ragam.co.in/footer/R.svg?v=2",
       color: "#EC8047",
-      image: "/images/footer/footer-1.svg",
+      image: "https://cdn.ragam.co.in/footer/footer-1.svg",
       hoverOffset: { x: "10%", y: "59%" },
     },
     {
       id: 2,
-      char: "/images/footer/A1.svg",
+      char: "https://cdn.ragam.co.in/footer/A1.svg",
       color: "#FAE4B2",
-      image: "/images/footer/footer-2.svg",
+      image: "https://cdn.ragam.co.in/footer/footer-2.svg",
       hoverOffset: { x: "-5%", y: "-135%" },
     },
     {
       id: 3,
-      char: "/images/footer/G.svg",
+      char: "https://cdn.ragam.co.in/footer/G.svg",
       color: "#850419",
-      image: "/images/footer/footer-3.svg",
+      image: "https://cdn.ragam.co.in/footer/footer-3.svg",
       hoverOffset: { x: "-120%", y: "-50%" },
     },
     {
       id: 4,
-      char: "/images/footer/A2.svg",
+      char: "https://cdn.ragam.co.in/footer/A2.svg",
       color: "#F7BD73",
-      image: "/images/footer/footer-4.svg",
+      image: "https://cdn.ragam.co.in/footer/footer-4.svg",
       hoverOffset: { x: "9%", y: "32%" },
     },
     {
       id: 5,
-      char: "/images/footer/M.svg",
+      char: "https://cdn.ragam.co.in/footer/M.svg",
       color: "#768367",
-      image: "/images/footer/footer-5.svg",
+      image: "https://cdn.ragam.co.in/footer/footer-5.svg",
       hoverOffset: { x: "-120%", y: "36%" },
     },
   ];
@@ -268,7 +236,7 @@ export default function Footer() {
           <div className="order-2 md:order-1 flex flex-col gap-6 items-center md:items-start w-full md:w-auto pl-6">
             <div className="font-bold pl-5">
               <Image
-                src="/images/footer/ragam-logo.svg"
+                src="https://cdn.ragam.co.in/footer/ragam-logo.svg?v=2"
                 alt="Ragam Logo"
                 width={100}
                 height={100}

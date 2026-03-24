@@ -35,7 +35,7 @@ export default function TeamMemberCard({
     <div
       style={{
         backgroundColor: "#ffffff",
-        backgroundImage: "url('/images/meettheteam/cardBg.png')",
+        backgroundImage: "url('https://cdn.ragam.co.in/meettheteam/cardBg.png')",
         backgroundRepeat: "repeat",
         backgroundSize: "auto",
         borderRadius: 2,

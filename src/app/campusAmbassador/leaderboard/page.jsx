@@ -43,9 +43,9 @@ export default function CA() {
     }, 2000);
   };
   return (
-    <div className=" relative flex w-full h-screen flex-col items-center  justify-center gap-4 bg-[url('/images/flames.png')] bg-contain bg-no-repeat bg-bottom-left pt-8 md:pt-12 lg:pt-20">
+    <div className=" relative flex w-full h-screen flex-col items-center  justify-center gap-4 bg-[url('https://cdn.ragam.co.in/flames.png')] bg-contain bg-no-repeat bg-bottom-left pt-8 md:pt-12 lg:pt-20">
       <img
-        src={"/images/tathva.png"}
+        src={"https://cdn.ragam.co.in/tathva.png"}
         alt=""
         className="w-auto h-13 sm:absolute top-3 right-3"
       />
@@ -68,7 +68,7 @@ export default function CA() {
               </div>
               <img
                 className="w-6 sm:w-7 h-auto"
-                src={"/images/share.png"}
+                src={"https://cdn.ragam.co.in/share.png"}
                 alt=""
               />
             </div>
@@ -81,7 +81,7 @@ export default function CA() {
               <img
                 onClick={handleCopy}
                 className="w-auto h-4 sm:h-6 cursor-pointer"
-                src={"/images/clipboard.png"}
+                src={"https://cdn.ragam.co.in/clipboard.png"}
                 alt=""
               />
             </div>
@@ -94,7 +94,7 @@ export default function CA() {
             <div className=" relative flex flex-col w-full h-full bg-[#330F0F] rounded-sm  ">
               <img
                 className="absolute w-[19%] sm:w-[18%] md:w-[17%] lg:w-[16%] right-1 h-auto z-1"
-                src={"/images/silver.png"}
+                src={"https://cdn.ragam.co.in/silver.png"}
                 alt=""
               />
               <div className="flex flex-row  items-center gap-0.5 m-0.5 z-2 flex-wrap">
@@ -116,7 +116,7 @@ export default function CA() {
             <div className=" relative flex flex-col w-full h-full bg-[#330F0F] rounded-sm  ">
               <img
                 className="absolute w-[20%] sm:w-[18%] md:w-[17%] lg:w-[16%] right-1 h-auto z-1"
-                src={"/images/gold.png"}
+                src={"https://cdn.ragam.co.in/gold.png"}
                 alt=""
               />
               <div className="flex flex-row  items-center gap-0.5 m-0.5 z-2 flex-wrap">
@@ -138,7 +138,7 @@ export default function CA() {
             <div className=" relative flex flex-col w-full h-full bg-[#330F0F] rounded-sm  ">
               <img
                 className="absolute w-[20%] sm:w-[18%] md:w-[17%] lg:w-[16%] right-1 h-auto z-1"
-                src={"/images/bronze.png"}
+                src={"https://cdn.ragam.co.in/bronze.png"}
                 alt=""
               />
               <div className="flex flex-row  items-center gap-0.5 m-0.5 z-2 flex-wrap">
