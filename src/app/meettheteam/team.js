@@ -42,7 +42,7 @@ export const techLeads = [
     position: "UI/UX Lead",
     github: "",
     linkedin: "https://www.linkedin.com/in/mohammad-aariz-imran",
-    hoverImage: "https://cdn.ragam.co.in/meettheteam/tech/AarizAlt.jpeg",
+    hoverImage: "/images/meettheteam/tech/aarizAlt2.jpeg",
     song: "https://cdn.ragam.co.in/meettheteam/tech/suii.mpeg",
   },
 ];
@@ -89,7 +89,6 @@ export const techTeam = [
     position: "Frontend Developer",
     github: "https://github.com/Centinoughty",
     linkedin: "https://linkedin.com/in/nadeem-m-siyam",
-
   },
   {
     name: "Varun",
@@ -148,6 +147,7 @@ export const uiTeam = [
   {
     name: "Kalpana",
     image: "https://cdn.ragam.co.in/meettheteam/tech/Kalpana.webp",
+    hoverImage: "/images/meettheteam/tech/kalpanaAlt.jpeg",
     position: "UI/UX Designer",
     github: "https://github.com/kalpragh",
     linkedin: "https://www.linkedin.com/in/kalpanaraghuram?trk=contact-info",
@@ -155,6 +155,7 @@ export const uiTeam = [
   {
     name: "Kavitha",
     image: "https://cdn.ragam.co.in/meettheteam/tech/Kavitha.webp",
+    hoverImage: "/images/meettheteam/tech/kavithaAlt.jpeg",
     position: "UI/UX Designer",
     github: "https://github.com/kavitharaghuram",
     linkedin: "www.linkedin.com/in/kavitharaghuram",
