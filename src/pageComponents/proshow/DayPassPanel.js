@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
+import { leagueGothic } from "@/lib/fonts";
 
 export default function DayPassPanel({
   artists,
@@ -39,7 +40,7 @@ export default function DayPassPanel({
             key={d.label}
             onClick={() => onDayClick(d.label)}
             className={`
-              px-5 py-2 rounded-full text-lg font-league-gothic tracking-widest uppercase
+              px-5 py-2 rounded-full text-lg ${leagueGothic.className} tracking-widest uppercase
               transition-all duration-300 border-3
               ${
                 activeDay === d.label
@@ -66,7 +67,7 @@ export default function DayPassPanel({
               {d.artists.map((name, i) => (
                 <span
                   key={i}
-                  className="text-[#F4EFCF] text-3xl font-league-gothic tracking-wide"
+                  className={`text-[#F4EFCF] text-3xl ${leagueGothic.className} tracking-wide`}
                 >
                   {name}
                 </span>
@@ -83,17 +84,17 @@ export default function DayPassPanel({
             href={allDayPassLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-8 py-2.5 rounded-full border-3 border-[#F4EFCF] text-[#F4EFCF] text-2xl font-league-gothic tracking-widest uppercase
-              hover:bg-[#F4EFCF] hover:text-black transition-all duration-300"
+            className={`px-8 py-2.5 rounded-full border-3 border-[#F4EFCF] text-[#F4EFCF] text-2xl ${leagueGothic.className} tracking-widest uppercase
+              hover:bg-[#F4EFCF] hover:text-black transition-all duration-300`}
           >
             Grab Your Passes Now
           </a>
         ) : (
-          <span className="px-8 py-2.5 rounded-full border-3 border-[#F4EFCF]/20 text-[#F4EFCF]/25 text-2xl font-league-gothic tracking-widest uppercase cursor-not-allowed">
+          <span className={`px-8 py-2.5 rounded-full border-3 border-[#F4EFCF]/20 text-[#F4EFCF]/25 text-2xl ${leagueGothic.className} tracking-widest uppercase cursor-not-allowed`}>
             Grab Your Passes Now
           </span>
         )}
-        {/* <span className="text-[#F4EFCF]/70 text-md font-league-gothic tracking-wider uppercase animate-pulse">
+        {/* <span className="text-[#F4EFCF]/70 text-md ${leagueGothic.className} tracking-wider uppercase animate-pulse">
           Early Bird Pricing Available Now
         </span> */}
       </div>

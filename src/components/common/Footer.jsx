@@ -92,38 +92,6 @@ export default function Footer() {
     };
   }, []);
 
-  const handleLetterMouseEnter = useCallback(
-    (e, letter) => {
-      setHoverData(letter);
-      // swap slots for crossfade
-      const prev = slotsRef.current;
-      const next = prev.active === "a" ? "b" : "a";
-      const updated = { ...prev, [next]: letter.image, active: next };
-      slotsRef.current = updated;
-      setSlots(updated);
-      isHovering.current = true;
-      const pos = calcTarget(e.clientX, e.clientY);
-      currentPos.current = { ...pos };
-      targetPos.current = { ...pos };
-      if (rafId.current) cancelAnimationFrame(rafId.current);
-      rafId.current = requestAnimationFrame(animateRef.current);
-    },
-    [calcTarget],
-  );
-
-  const handleLetterMouseMove = useCallback(
-    (e) => {
-      targetPos.current = calcTarget(e.clientX, e.clientY);
-    },
-    [calcTarget],
-  );
-
-  const handleLetterMouseLeave = useCallback(() => {
-    setHoverData(null);
-    isHovering.current = false;
-    if (rafId.current) cancelAnimationFrame(rafId.current);
-  }, []);
-
   useEffect(() => {
     return () => {
       if (rafId.current) cancelAnimationFrame(rafId.current);
