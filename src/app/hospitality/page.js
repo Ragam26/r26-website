@@ -40,7 +40,7 @@ export default function Hospitality() {
           </button>
         </div>
       </div>
-      <div className='flex flex-col md:flex-row items-center justify-center mb-8 md:mb-12 gap-8 mt-12 md:mt-12 px-4 md:px-12 overflow-x-auto'>
+      {/* <div className='flex flex-col md:flex-row items-center justify-center mb-8 md:mb-12 gap-8 mt-12 md:mt-12 px-4 md:px-12 overflow-x-auto'>
         <HospCard
           roomType='Dorm Rooms'
           priceList={[
@@ -86,12 +86,25 @@ export default function Hospitality() {
           <div className='w-full bg-[#854224] h-12 md:h-8 absolute top-1/2 -translate-y-1/2' />
 
           {/* Text inside bar */}
-          <h1
+          {/* <h1
             className='relative text-[#D0995F] font-bold text-lg md:text-xl px-8 text-center md:tracking-[0.5em] flex-1'
             style={{ fontFamily: magilio.style.fontFamily }}
           >
             Breakfast available (Veg Only) @ Rs. 149
           </h1>
+        </div>
+      </div> */}
+      <div className="w-full flex justify-center px-4 mt-10 md:mt-16">
+        <div className="bg-[#580000]/80 backdrop-blur-md border border-[#FFDEAC]/30 rounded-2xl px-6 py-5 md:px-10 md:py-6 max-w-2xl text-center shadow-lg">
+          <h2
+            className="text-[#FFE7C0] text-lg md:text-2xl font-semibold leading-relaxed"
+            style={{ fontFamily: magilio.style.fontFamily }}
+          >
+          Bookings for accommodation and food have been closed.
+          </h2>
+          <p className="text-[#FFDEAC] text-sm md:text-lg mt-2 opacity-90">
+            For any queries, please contact the hospitality committee.
+          </p>
         </div>
       </div>
       <InfoCard
