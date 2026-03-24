@@ -5,6 +5,11 @@ export const content = [
         position: 'Head',
     },
     {
+        name: 'Anjali NS',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/content/Anjali.webp',
+        position: 'Head',
+    },
+    {
         name: 'Krantikumar',
         image: 'https://cdn.ragam.co.in/meettheteam/committees/content/Krantikumar.webp',
         position: 'Head',
@@ -43,6 +48,11 @@ export const design = [
         position: 'Head',
     },
     {
+        name: 'Geethanjali K S',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/design/Geethanjali.webp',
+        position: 'Head',
+    },
+    {
         name: 'Nijin',
         image: 'https://cdn.ragam.co.in/meettheteam/committees/design/Nijin.webp',
         position: 'Head',
@@ -65,6 +75,11 @@ export const design = [
 ]
 
 export const food = [
+    {
+        name: 'Ajlan PV',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/food/Ajlan.webp',
+        position: 'Head',
+    },
     {
         name: 'Mohammed Bilal',
         image: 'https://cdn.ragam.co.in/meettheteam/committees/food/Bilal.webp',
@@ -180,6 +195,11 @@ export const iink = [
         position: 'Associate Head',
     },
     {
+        name: 'Kavya K R',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/i-ink/Kavya.webp',
+        position: 'Associate Head',
+    },
+    {
         name: 'Lakshmi Nandana',
         image: 'https://cdn.ragam.co.in/meettheteam/committees/i-ink/Lakshmi.webp',
         position: 'Associate Head',
@@ -223,8 +243,18 @@ export const informals = [
         position: 'Head',
     },
     {
+        name: 'Imadudheen TP',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/informals/Imad.webp',
+        position: 'Head',
+    },  
+    {
         name: 'Mehsana N',
         image: 'https://cdn.ragam.co.in/meettheteam/committees/informals/Mehsana.webp',
+        position: 'Head',
+    },
+    {
+        name: 'Sreehari S',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/informals/Sreehari.webp',
         position: 'Head',
     },
     {
@@ -243,10 +273,11 @@ export const informals = [
         position: 'Associate Head',
     },
     {
-        name: 'Sreehari S',
-        image: 'https://cdn.ragam.co.in/meettheteam/committees/informals/Sreehari.webp',
+        name: 'Sreedevi K',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/informals/Sreedevi.webp',
         position: 'Associate Head',
     }
+    
 ]
 
 export const infra = [
@@ -287,6 +318,11 @@ export const judging = [
 
 export const lasIn = [
     {
+        name: 'Adil Ahamed',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/las-in/Adil.webp',
+        position: 'Head',
+    },
+    {
         name: 'Aravind S',
         image: 'https://cdn.ragam.co.in/meettheteam/committees/las-in/Aravind.webp',
         position: 'Head',
@@ -305,6 +341,11 @@ export const lasOut = [
         position: 'Head',
     },
     {
+        name: 'Kesav Dev',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/las-out/Kesav.webp',
+        position: 'Head',
+    },
+    {
         name: 'Muhammed Anas',
         image: 'https://cdn.ragam.co.in/meettheteam/committees/las-out/Anas.webp',
         position: 'Head',
@@ -320,6 +361,11 @@ export const marketing = [
     {
         name: 'Nihad Ali',
         image: 'https://cdn.ragam.co.in/meettheteam/committees/marketing/Nihad.webp',
+        position: 'Head',
+    },
+    {
+        name: 'Parvathy P Nair',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/marketing/Parvathy.webp',
         position: 'Head',
     },
     {
@@ -350,6 +396,11 @@ export const media = [
         image: 'https://cdn.ragam.co.in/meettheteam/committees/media/Mahin.webp',
         position: 'Head',
     },
+    {
+        name: 'Muhammad Fidul',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/media/Fidul.webp',
+        position: 'Head',
+    }
 ]
 
 export const merchandise = [
@@ -372,6 +423,11 @@ export const pad = [
         position: 'Head',
     },
     {
+        name: 'Hafla',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/pad/Hafla.webp',
+        position: 'Head',
+    },
+    {
         name: 'Samin Murali',
         image: 'https://cdn.ragam.co.in/meettheteam/committees/pad/Samin.webp',
         position: 'Head',
@@ -384,6 +440,11 @@ export const pad = [
     {
         name: 'Akshay V',
         image: 'https://cdn.ragam.co.in/meettheteam/committees/pad/Akshay.webp',
+        position: 'Associate Head',
+    },
+    {
+        name: 'Danisha',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/pad/Danisha.webp',
         position: 'Associate Head',
     },
     {
@@ -461,6 +522,11 @@ export const prc = [
         name: 'Sreeraj A',
         image: 'https://cdn.ragam.co.in/meettheteam/committees/prc/Sreeraj.webp',
         position: 'Head',
+    },
+    {
+        name: 'Vishnu Murali',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/prc/Vishnu.webp',
+        position: 'Head',
     }
 ]
 
@@ -521,6 +587,11 @@ export const prodezza = [
     {
         name: 'Aysha Diya',
         image: 'https://cdn.ragam.co.in/meettheteam/committees/prodezza/Aysha.webp',
+        position: 'Associate Head',
+    },
+    {
+        name: 'Fathima Nasla',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/prodezza/Fathima_Nasla.webp',
         position: 'Associate Head',
     },
     {
@@ -624,6 +695,11 @@ export const social = [
 
 export const sports = [
     {
+        name: 'Aaron Thomas',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/sports/Aaron.webp',
+        position: 'Head',
+    },
+    {
         name: 'Pradeep',
         image: 'https://cdn.ragam.co.in/meettheteam/committees/sports/Pradeep.webp',
         position: 'Head',
@@ -638,6 +714,11 @@ export const sports = [
         image: 'https://cdn.ragam.co.in/meettheteam/committees/sports/Shaheem.webp',
         position: 'Head',
     },
+    {
+        name: 'Suryanarayanan',
+        image: 'https://cdn.ragam.co.in/meettheteam/committees/sports/Surya.webp',
+        position: 'Head',
+    }
 ]
 
 export const transportation = [
