@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import EventCardLong from "@/components/common/Card/EventCardLong";
 import ComboCards from "@/components/common/Card/ComboCards";
 
-const registrationUrl = "https://makemypass.com/event/ragam-pass";
+const registrationUrl = "https://makemypass.com/event/ragam-pass-3";
 
 const PROSHOW_EVENTS = [
   {
