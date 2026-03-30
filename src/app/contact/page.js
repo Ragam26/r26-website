@@ -16,7 +16,6 @@ const CONTACT_COLUMNS = [
     heading: 'Registration',
     pocs: [
       { name: 'Afla', phone: '9645917769' },
-      { name: 'Kannan', phone: '8078126516' },
       { name: 'Jasna', phone: '9846265747' },
     ],
   },
