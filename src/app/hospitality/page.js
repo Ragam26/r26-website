@@ -93,16 +93,16 @@ export default function Hospitality() {
           </h1>
         </div>
       </div> */}
-      <div className="w-full flex justify-center px-4 mt-10 md:mt-16">
-        <div className="bg-[#580000]/80 backdrop-blur-md border border-[#FFDEAC]/30 rounded-2xl px-6 py-5 md:px-10 md:py-6 max-w-2xl text-center shadow-lg">
+      <div className='w-full flex justify-center px-4 mt-10 md:mt-16'>
+        <div className='bg-[#580000]/80 backdrop-blur-md border border-[#FFDEAC]/30 rounded-2xl px-6 py-5 md:px-10 md:py-6 max-w-2xl text-center shadow-lg'>
           <h2
-            className="text-[#FFE7C0] text-lg md:text-2xl font-semibold leading-relaxed"
+            className='text-[#FFE7C0] text-lg md:text-2xl font-semibold leading-relaxed tracking wider'
             style={{ fontFamily: magilio.style.fontFamily }}
           >
-          Bookings for accommodation and food have been closed.
+            Online registrations are now closed.
           </h2>
-          <p className="text-[#FFDEAC] text-sm md:text-lg mt-2 opacity-90">
-            For any queries, please contact the hospitality committee.
+          <p className='text-[#FFDEAC] text-sm md:text-lg mt-2 opacity-90 tracking-wide'>
+            Spot registrations will be available.
           </p>
         </div>
       </div>
